@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Rajdhani", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom styles from index.html */
+body {
+  font-family: var(--font-sans);
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+}
+
+.bronze-gradient {
+  background: linear-gradient(135deg, #f5d5a6 0%, #c79155 50%, #8b5e34 100%);
+}
+
+.text-bronze-gradient {
+  background: linear-gradient(135deg, #f5d5a6 0%, #c79155 50%, #8b5e34 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
