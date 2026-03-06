@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "project": "Upstash Redis MCP",
+  "environment": "production",
+  "workspace": {
+    "name": "BRAVEECOM_STITCH",
+    "path": "./lib/mcp/upstash_redis"
+  },
+  "upstash": {
+    "redis": {
+      "account_id": "5a5b656c-e5f7-4912-84ed-2f904b82a607",
+      "region": "global",
+      "database_id": "default",
+      "rest_api": true,
+      "max_retries": 3,
+      "timeout": 5000
+    }
+  },
+  "global_settings": {
+    "enabled": true,
+    "persistent": true,
+    "auto_connect": true,
+    "connection_pooling": true,
+    "max_connections": 10
+  },
+  "features": {
+    "key_value_storage": true,
+    "pub_sub": true,
+    "rate_limiting": true,
+    "session_store": true,
+    "cache_layer": true,
+    "distributed_locking": true,
+    "counting": true
+  },
+  "cache": {
+    "default_ttl": 3600,
+    "max_ttl": 86400,
+    "enable_compression": true,
+    "serializer": "json"
+  },
+  "rate_limiting": {
+    "default_limit": 100,
+    "default_window": 60,
+    "enable_sliding": true
+  },
+  "session": {
+    "ttl": 86400,
+    "secure": true,
+    "http_only": true,
+    "same_site": "strict"
+  },
+  "auto_sync": {
+    "enabled": true,
+    "interval_seconds": 60,
+    "sync_on_startup": true
+  }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart RBAC User Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-hover": "#25cf5e",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "neutral-50": "#f9faf9",
+                        "neutral-100": "#f0f4f2",
+                        "neutral-200": "#dbe6df",
+                        "neutral-300": "#b8c9bd",
+                        "neutral-600": "#61896f",
+                        "neutral-800": "#2f4236",
+                        "neutral-900": "#111813",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(16, 34, 22, 0.08)',
+                        'glow': '0 0 15px rgba(43, 238, 108, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex items-center justify-center p-4">
+<!-- Modal Backdrop -->
+<div aria-hidden="true" class="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-40 transition-opacity"></div>
+<!-- Modal Container -->
+<div class="relative z-50 w-full max-w-[1100px] h-[800px] bg-white dark:bg-neutral-900 rounded-xl shadow-2xl flex overflow-hidden border border-neutral-200 dark:border-neutral-800">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 z-50 p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 transition-colors">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<!-- Sidebar Stepper -->
+<div class="w-[280px] bg-neutral-50 dark:bg-neutral-800/30 flex flex-col justify-between border-r border-neutral-200 dark:border-neutral-800">
+<div class="p-8">
+<!-- Header -->
+<div class="mb-10">
+<h1 class="text-neutral-900 dark:text-white text-xl font-bold leading-tight">Add New User</h1>
+<p class="text-neutral-600 dark:text-neutral-400 text-sm mt-1">Create a new profile</p>
+</div>
+<!-- Stepper Navigation -->
+<div class="flex flex-col gap-6 relative">
+<!-- Progress Line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-0.5 bg-neutral-200 dark:bg-neutral-700 -z-10"></div>
+<!-- Step 1: Account Type (Completed) -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="flex-none">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-neutral-900 shadow-glow">
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-neutral-900 dark:text-white text-sm font-semibold">Account Type</p>
+<p class="text-neutral-600 dark:text-neutral-400 text-xs">Role Selection</p>
+</div>
+</div>
+<!-- Step 2: Personal Info (Completed) -->
+<div class="flex gap-4 group cursor-pointer">
+<div class="flex-none">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-neutral-900 shadow-glow">
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-neutral-900 dark:text-white text-sm font-semibold">Personal Info</p>
+<p class="text-neutral-600 dark:text-neutral-400 text-xs">Basic Details</p>
+</div>
+</div>
+<!-- Step 3: Investment (Active) -->
+<div class="flex gap-4 group">
+<div class="flex-none">
+<div class="w-10 h-10 rounded-full bg-neutral-900 dark:bg-white flex items-center justify-center text-white dark:text-neutral-900 ring-4 ring-neutral-200 dark:ring-neutral-700">
+<span class="text-sm font-bold">3</span>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-primary text-sm font-bold">Investment &amp; Referral</p>
+<p class="text-neutral-600 dark:text-neutral-400 text-xs">Sun Ray Hierarchy</p>
+</div>
+</div>
+<!-- Step 4: Permissions (Pending) -->
+<div class="flex gap-4 group opacity-50">
+<div class="flex-none">
+<div class="w-10 h-10 rounded-full bg-white dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-600 flex items-center justify-center text-neutral-400">
+<span class="text-sm font-bold">4</span>
+</div>
+</div>
+<div class="pt-2">
+<p class="text-neutral-900 dark:text-white text-sm font-medium">RBAC Permissions</p>
+<p class="text-neutral-600 dark:text-neutral-400 text-xs">Access Controls</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="p-8 border-t border-neutral-200 dark:border-neutral-800">
+<div class="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
+<span class="material-symbols-outlined">help</span>
+<span class="text-sm font-medium">Need Help?</span>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full bg-white dark:bg-neutral-900">
+<!-- Scrollable Form Content -->
+<div class="flex-1 overflow-y-auto p-12">
+<div class="max-w-2xl mx-auto">
+<!-- Section Header -->
+<div class="mb-8">
+<h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Investment &amp; Referral</h2>
+<p class="text-neutral-600 dark:text-neutral-400">Configure financial details and link this user to the Sun Ray hierarchy.</p>
+</div>
+<!-- Selected Role Context -->
+<div class="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg flex items-center gap-4">
+<div class="p-2 bg-primary/20 rounded-md text-neutral-900">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div>
+<p class="text-xs text-neutral-600 dark:text-neutral-400 font-medium uppercase tracking-wider">Selected Role</p>
+<p class="text-neutral-900 dark:text-white font-bold">Franchise Partner</p>
+</div>
+<button class="ml-auto text-xs font-medium text-neutral-600 hover:text-primary transition-colors">Change</button>
+</div>
+<!-- Form Grid -->
+<div class="grid grid-cols-1 gap-8">
+<!-- Territory Selection (Conditional for Franchise) -->
+<div class="space-y-4">
+<label class="block text-sm font-semibold text-neutral-900 dark:text-white">
+                                Assigned Territory
+                                <span class="ml-1 text-primary">*</span>
+</label>
+<div class="relative">
+<button class="w-full flex items-center justify-between text-left bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-neutral-500">map</span>
+<span class="text-neutral-900 dark:text-white">Maharashtra - Zone A</span>
+</div>
+<span class="material-symbols-outlined text-neutral-400">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Referral Code Mapping -->
+<div class="space-y-4">
+<div class="flex justify-between">
+<label class="block text-sm font-semibold text-neutral-900 dark:text-white">
+                                    Referral Code Mapping
+                                    <span class="ml-1 text-primary">*</span>
+</label>
+<span class="text-xs text-neutral-500">Links to Sun Ray Hierarchy</span>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-400">group_add</span>
+</div>
+<input class="block w-full pl-11 pr-12 py-3.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-medium" placeholder="Enter referral code" type="text" value="SUNRAY-8821X"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 pl-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+<p class="text-xs text-neutral-600 dark:text-neutral-400">Valid Code: Linked to <span class="font-semibold">Mumbai Regional Hub</span></p>
+</div>
+</div>
+<!-- Initial Investment & Commission -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Investment Amount -->
+<div class="space-y-4">
+<label class="block text-sm font-semibold text-neutral-900 dark:text-white">
+                                    Initial Investment
+                                </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="text-neutral-500 font-semibold">₹</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" type="text" value="51,111"/>
+</div>
+</div>
+<!-- Lock-in Period -->
+<div class="space-y-4">
+<label class="block text-sm font-semibold text-neutral-900 dark:text-white">
+                                    Lock-in Period
+                                </label>
+<div class="relative">
+<select class="block w-full pl-4 pr-10 py-3.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-900 dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all appearance-none">
+<option>12 Months</option>
+<option>24 Months</option>
+<option>36 Months</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-500">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Upload Area (Subtle) -->
+<div class="border-2 border-dashed border-neutral-200 dark:border-neutral-700 rounded-lg p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+<div class="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-3 text-neutral-500">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<p class="text-sm font-medium text-neutral-900 dark:text-white">Upload Investment Agreement</p>
+<p class="text-xs text-neutral-500 mt-1">PDF up to 10MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="p-6 border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex justify-between items-center">
+<button class="px-6 py-3 rounded-lg text-neutral-600 dark:text-neutral-300 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    Back
+                </button>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-lg text-neutral-600 dark:text-neutral-300 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                        Save as Draft
+                    </button>
+<button class="bg-primary hover:bg-primary-hover text-neutral-900 px-8 py-3 rounded-lg font-bold shadow-soft transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                        Next Step
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Holographic Network Invitation Hub - Brave Ecom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f4d125",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711", 
+                        "surface-dark": "#221f10",
+                        "border-dark": "#393628",
+                        "text-secondary": "#bab59c"
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .aurora-bg {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(244, 209, 37, 0.08) 0%, transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(24, 23, 17, 0.8) 0%, transparent 50%),
+                linear-gradient(135deg, #181711 0%, #221f10 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 font-display min-h-screen flex flex-col aurora-bg selection:bg-primary selection:text-surface-dark">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark/95 backdrop-blur px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<div class="flex items-center gap-9 hidden lg:flex">
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Investment</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Shop</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary" href="#">Network</a>
+<a class="text-text-secondary hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-dark bg-surface-dark focus-within:border-primary transition-colors">
+<div class="text-text-secondary flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-text-secondary px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search members..." value=""/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-surface-dark hover:bg-yellow-400 transition-colors text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Invite</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-surface-dark hover:bg-border-dark transition-colors border border-border-dark text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-surface-dark hover:bg-border-dark transition-colors border border-border-dark text-white">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile picture showing a smiling man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6mWdY764gb0aUp9d5tBfjQRqg_7s1ekePCPSo_yKn5uKh4xFE1WfZwSv-RLlAgjQYU3xrrVZ3qtWJ522IhbzrymV6HKJUtB2_4TCMvMHrvtQoVtzA4z9kqkWRxU4BQUlkGu9L8-Zk0WOWexaluG-4ym5lWb6TgwiwKPxbGO_tIJr7kUgyicwon_60jikYjDmd8iYKPceJisDUEhASM1lk6c30Zb2nO4Vx_5Zqvg6W32zjGgx2keU8pogYvPuN4dsFsPQOw9LEIQjC");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1024px] flex-1 gap-8">
+<!-- Page Title -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-xs font-bold uppercase tracking-wider">Level 4 Access</span>
+</div>
+<h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Network Invitation Hub</h1>
+<p class="text-text-secondary text-lg font-normal leading-normal max-w-2xl">Expand your legacy. Distribute your exclusive holographic keys to grant access to the Brave Ecom network.</p>
+</div>
+<!-- Hero / Holographic Section -->
+<div class="@container w-full">
+<div class="flex flex-col lg:flex-row gap-8 bg-surface-dark border border-border-dark rounded-xl p-6 lg:p-8 relative overflow-hidden group">
+<!-- Background Glow Effect -->
+<div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-primary/5 to-blue-900/10 pointer-events-none"></div>
+<!-- 3D Card Visual -->
+<div class="w-full lg:w-1/2 flex items-center justify-center bg-black/40 rounded-lg min-h-[400px] border border-white/5 relative z-10 backdrop-blur-sm">
+<div class="relative w-64 h-80 transition-transform duration-700 hover:scale-105 perspective-1000 cursor-grab active:cursor-grabbing">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-blue-500/20 rounded-xl blur-xl animate-pulse"></div>
+<img alt="Abstract holographic 3D card floating in space with gold and blue light refractions" class="w-full h-full object-cover rounded-xl border border-white/10 shadow-2xl relative z-10 mix-blend-screen opacity-90" data-alt="Holographic 3D invitation card with glitch effect" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0PiLtcBN0vD41A9STljN_v3YHOvq5rHk3GmSv3w9mgcW2EVqLTWJewQwuGhukmsWHLJh8Zfde--PPTEKKO_p44gr_haqqLwoWeQrseF8jOn30WiHpautv23DBFxcbCbpQ55_aWpeohuBrGZr7HArwoGkEEcbzakbWVvxzybFkUamW4aT-vAD221d_O9-XjcxXNkhRCQlQa5CbeW40bIHpuqJhugGl3zyRAmshG8InSoP5y0APphh8MukyW2zLPSlc6sRq4-u40mzl"/>
+<!-- QR Overlay -->
+<div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/60 rounded-xl backdrop-blur-sm">
+<div class="bg-white p-4 rounded-lg shadow-lg border-2 border-primary">
+<img alt="Unique Sun-Link QR Code" class="size-32" data-alt="QR Code for network invitation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi5dFZKg-YIZmKOw6D3Ljg0znKMULTLnhN611F4IPko2lGh8nhzMdWxec2eaBi4Dm3rskvZg1f2dp2CYuspAU1KVIgaaLmvYnXUleD7PIhrOPheEA0cwJAnZzn_zT0vg7GvNe-_H4XeU3MKbnUWJFiM88fJaJ9jgHqYe3iTfAhijvc0dwjUWZxD1fIssvT7wlBEViYfvJqiRD7DmiyiEmKJWxwVfNfuqwULfFIQkPBiF_M3hC3Bjq3LCri50XVF2Bzmr5Z_mB1D0KY"/>
+</div>
+</div>
+<div class="absolute bottom-4 left-0 w-full text-center z-20 pointer-events-none group-hover:opacity-0 transition-opacity">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-black/50 rounded-full border border-white/10 backdrop-blur-md">
+<span class="material-symbols-outlined text-primary text-sm">360</span>
+<span class="text-xs font-medium text-white/80">Rotate to reveal QR</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Side -->
+<div class="flex flex-col justify-center gap-6 lg:w-1/2 z-10">
+<div class="space-y-4">
+<h2 class="text-3xl font-bold text-white leading-tight">
+                                    Your Holographic<br/><span class="text-primary">Sun-Link Invitation</span>
+</h2>
+<p class="text-text-secondary text-base leading-relaxed">
+                                    This unique digital artifact is your key to network expansion. Rotate the hologram to reveal your encrypted Sun-Link QR code. Only 5 active invites remaining for this cycle.
+                                </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 mt-2">
+<button class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-primary hover:bg-yellow-400 text-surface-dark rounded-lg font-bold text-base transition-all transform active:scale-95 shadow-[0_0_15px_rgba(244,209,37,0.3)]">
+<span class="material-symbols-outlined">link</span>
+<span>Copy Invite Link</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 h-12 px-6 bg-surface-dark hover:bg-border-dark border border-border-dark text-white rounded-lg font-bold text-base transition-all">
+<span class="material-symbols-outlined">share</span>
+<span>Share System</span>
+</button>
+</div>
+<!-- Expiry Timer -->
+<div class="flex items-center gap-3 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary animate-pulse">timer</span>
+<div class="flex flex-col">
+<span class="text-xs text-primary font-bold uppercase">Link Expires In</span>
+<span class="text-sm font-mono text-white">23h : 59m : 42s</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-border-dark bg-surface-dark/50 backdrop-blur-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Network Size</p>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">groups</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-white text-3xl font-bold leading-tight">142</p>
+<span class="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-1.5 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                                12%
+                            </span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-emerald-400 h-full w-[75%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-border-dark bg-surface-dark/50 backdrop-blur-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Pending Invites</p>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">outgoing_mail</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-white text-3xl font-bold leading-tight">5</p>
+<span class="text-text-secondary text-sm">/ 10 Sent</span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[50%] rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 border border-border-dark bg-surface-dark/50 backdrop-blur-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium uppercase tracking-wider">Rewards Earned</p>
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary transition-colors">monetization_on</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-white text-3xl font-bold leading-tight">24.5k</p>
+<span class="text-primary text-sm font-bold">Gold</span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-yellow-200 h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Share Options Section -->
+<div class="flex flex-col gap-4 pt-4">
+<h2 class="text-white text-xl font-bold leading-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">share_reviews</span>
+                        External Share Channels
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border-dark bg-surface-dark hover:bg-border-dark/50 hover:border-primary/50 transition-all group h-full">
+<div class="size-12 rounded-full bg-[#1DA1F2]/10 flex items-center justify-center text-[#1DA1F2] group-hover:scale-110 transition-transform">
+<svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</div>
+<span class="text-sm font-medium text-white">Twitter / X</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border-dark bg-surface-dark hover:bg-border-dark/50 hover:border-primary/50 transition-all group h-full">
+<div class="size-12 rounded-full bg-[#0A66C2]/10 flex items-center justify-center text-[#0A66C2] group-hover:scale-110 transition-transform">
+<svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
+</div>
+<span class="text-sm font-medium text-white">LinkedIn</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border-dark bg-surface-dark hover:bg-border-dark/50 hover:border-primary/50 transition-all group h-full">
+<div class="size-12 rounded-full bg-[#5865F2]/10 flex items-center justify-center text-[#5865F2] group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">chat</span>
+</div>
+<span class="text-sm font-medium text-white">Discord</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border-dark bg-surface-dark hover:bg-border-dark/50 hover:border-primary/50 transition-all group h-full">
+<div class="size-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">mail</span>
+</div>
+<span class="text-sm font-medium text-white">Direct Email</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

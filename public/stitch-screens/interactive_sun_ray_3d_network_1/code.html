@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interactive Sun Ray 3D Network</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "surface-dark": "#2d291d",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(242, 185, 13, 0.3)',
+                        'glow-strong': '0 0 40px rgba(242, 185, 13, 0.5)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for the 3D representation since we can't use real WebGL */
+        .perspective-container {
+            perspective: 1200px;
+        }
+        .transform-3d-plane {
+            transform: rotateX(60deg) rotateZ(0deg) scale(0.9);
+            transform-style: preserve-3d;
+        }
+        .ring-orbit {
+            border-radius: 50%;
+            border: 1px solid rgba(242, 185, 13, 0.1);
+            box-shadow: 0 0 15px rgba(242, 185, 13, 0.05);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-style: preserve-3d;
+        }
+        .node-3d {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #f2b90d;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #f2b90d, 0 0 20px #f2b90d;
+            transform: translate(-50%, -50%) rotateX(-60deg); /* Counter rotation to face camera */
+        }
+        .node-3d.active {
+            background: #4ade80; /* Green-400 */
+            box-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80;
+        }
+        .node-3d.warning {
+            background: #fb923c; /* Orange-400 */
+            box-shadow: 0 0 10px #fb923c, 0 0 20px #fb923c;
+        }
+        .node-3d.danger {
+            background: #f87171; /* Red-400 */
+            box-shadow: 0 0 10px #f87171, 0 0 20px #f87171;
+        }
+        
+        .vortex-gradient {
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(34,30,16,1) 40%, rgba(242,185,13,0.1) 100%);
+        }
+        
+        /* Floating Data Bubble */
+        .data-bubble {
+            background: rgba(34, 30, 16, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(242, 185, 13, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 min-h-screen overflow-x-hidden flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#393528] bg-background-light/90 dark:bg-[#181611]/90 backdrop-blur-md px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">LUXURY ECOSYSTEM</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-0.5" href="#">Network</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Treasury</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4 md:gap-6">
+<div class="hidden sm:flex items-center gap-2 bg-slate-200 dark:bg-surface-dark rounded-full px-3 py-1.5">
+<span class="material-symbols-outlined text-primary text-sm">account_balance_wallet</span>
+<span class="text-xs font-bold font-mono">24.5 ETH</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary hover:bg-yellow-400 text-background-dark text-sm font-bold leading-normal tracking-wide transition-all shadow-glow">
+<span class="truncate">Connect Wallet</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLvi8ycRpeMB9F70ltlWgZF2WXMyaxonANwFEJ8u--48Qo9LW8GMKR3ITEqOvu7qgD5BJousNlq_85-tcGsa5U-FAgQZ7DSO8YuHvE2DNAE_-3z0gW-sJa3QifF68i3QjmWOhUBWbj_0rbcbLDWYS3CajJf5GiyndgbK0wZnrLfMFtRUYIx23U3Gx1HCLUa2kINZ2aiYE6ZOaU0yt_zUH-g3X2uePeUP9vVi6YhP0kUye34aFvyK2s7WsL3T0ogyXT97ftTeWmB1lm");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative flex-grow flex flex-col items-center justify-start w-full overflow-hidden">
+<!-- Background Ambient Effects -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[20%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Header Section -->
+<div class="relative z-10 w-full max-w-7xl px-4 pt-8 pb-4 text-center">
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-primary to-white drop-shadow-sm">
+                Referral Network Visualization
+            </h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-base">
+                Explore your 6-level referral hierarchy in the Sun Ray system. <br class="hidden sm:block"/>Use the observer controls to navigate the concentric rings of your ecosystem.
+            </p>
+</div>
+<!-- 3D Visualization Viewport -->
+<div class="relative w-full flex-grow flex flex-col items-center justify-center min-h-[600px] perspective-container overflow-hidden">
+<!-- Controls Overlay (Left) -->
+<div class="absolute left-6 top-10 z-20 flex flex-col gap-3">
+<div class="bg-surface-dark/80 backdrop-blur-md p-3 rounded-2xl border border-white/5 shadow-xl flex flex-col gap-2">
+<button aria-label="Zoom In" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button aria-label="Zoom Out" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="h-px bg-white/10 my-1"></div>
+<button aria-label="Reset View" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+<!-- Legend -->
+<div class="bg-surface-dark/80 backdrop-blur-md p-4 rounded-2xl border border-white/5 shadow-xl">
+<h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-3">Node Status</h3>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.6)]"></div>
+<span class="text-xs text-slate-300">Active</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.6)]"></div>
+<span class="text-xs text-slate-300">Warning</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.6)]"></div>
+<span class="text-xs text-slate-300">Critical</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Overlay (Right) -->
+<div class="absolute right-6 top-10 z-20 hidden lg:block">
+<div class="bg-surface-dark/80 backdrop-blur-md p-5 rounded-2xl border border-white/5 shadow-xl w-64">
+<h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span> Network Stats
+                    </h3>
+<div class="space-y-4">
+<div>
+<p class="text-xs text-slate-400 mb-1">Total Network AUM</p>
+<p class="text-xl font-bold text-white">$4,250,890</p>
+<div class="w-full bg-white/10 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%]"></div>
+</div>
+</div>
+<div>
+<p class="text-xs text-slate-400 mb-1">Active Nodes</p>
+<p class="text-lg font-bold text-white">142 <span class="text-xs font-normal text-slate-500">/ 200</span></p>
+</div>
+<div>
+<p class="text-xs text-slate-400 mb-1">Commission Pool</p>
+<p class="text-lg font-bold text-primary">12.4 BTC</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 3D Scene Representation -->
+<div class="transform-3d-plane relative w-[800px] h-[800px] flex items-center justify-center">
+<!-- Central Light Source (User) -->
+<div class="absolute z-10 w-24 h-24 bg-white rounded-full shadow-[0_0_100px_rgba(255,255,255,0.8),0_0_40px_rgba(242,185,13,0.8)] flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-4xl text-white drop-shadow-md">person</span>
+</div>
+</div>
+<!-- Level 1 Ring -->
+<div class="ring-orbit w-[250px] h-[250px] animate-[spin_60s_linear_infinite]">
+<!-- Nodes on Ring 1 -->
+<div class="node-3d active" style="top: 10%; left: 50%;"></div>
+<div class="node-3d active" style="top: 50%; left: 90%;"></div>
+<div class="node-3d warning" style="top: 80%; left: 20%;"></div>
+</div>
+<!-- Level 2 Ring -->
+<div class="ring-orbit w-[400px] h-[400px] border-primary/20 animate-[spin_80s_linear_infinite_reverse]">
+<div class="node-3d active" style="top: 15%; left: 80%;"></div>
+<div class="node-3d danger" style="top: 75%; left: 85%;"></div>
+<div class="node-3d active" style="top: 40%; left: 10%;"></div>
+<div class="node-3d active" style="top: 90%; left: 40%;"></div>
+</div>
+<!-- Level 3 Ring (With selected node) -->
+<div class="ring-orbit w-[550px] h-[550px] border-primary/10 animate-[spin_100s_linear_infinite]">
+<!-- Selected Node Wrapper (Positions the bubble relative to a node) -->
+<div class="absolute" style="top: 25%; left: 20%;">
+<!-- The Node -->
+<div class="node-3d active w-4 h-4 shadow-[0_0_30px_#4ade80] cursor-pointer hover:scale-125 transition-transform z-20"></div>
+<!-- Connecting Line -->
+<div class="absolute h-16 w-px bg-gradient-to-t from-transparent to-primary/50 -top-16 left-2 origin-bottom transform -rotate-x-60"></div>
+<!-- 3D Data Bubble (Popup) -->
+<div class="absolute -top-48 -left-24 w-64 transform rotateX(-60deg) z-50">
+<div class="data-bubble rounded-xl p-4 shadow-2xl animate-fade-in-up">
+<div class="flex items-start justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-cover bg-center border border-white/20" data-alt="Node user portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-yEQ6e_xTQADjHaYDXUMbaah6nIulUVfxzu3I4Cl_Ym5zQuOTofBx1Sk7RcXZIClJcMajG_xU1FZVULxGv-ova9COI-s_6_ZPLiiqUsYHrcB76aDpEEtwV57cyrWs03sZwvp0NhsxurVtENoWBFVoev2Z8j6zDqM3SC7pliBmMlW_QlrmGPssWFyp6xI2Elc2kzi7kMZuA7csQgCJFGAKJzsBQp413kI65e7fvh9XYaoO7YspolpewOD7vfrKRxp3CqRUnysEFlGj");'></div>
+<div>
+<p class="text-white text-sm font-bold">Alex_V</p>
+<p class="text-green-400 text-[10px] uppercase font-bold tracking-wider">Level 3 • Active</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<div class="space-y-2">
+<div class="bg-black/40 rounded p-2 flex justify-between items-center">
+<span class="text-slate-400 text-xs">AUM</span>
+<span class="text-white text-xs font-mono font-bold">$125,000</span>
+</div>
+<div class="bg-black/40 rounded p-2 flex justify-between items-center">
+<span class="text-slate-400 text-xs">Commission</span>
+<span class="text-primary text-xs font-mono font-bold">2.4%</span>
+</div>
+</div>
+<button class="mt-3 w-full py-1.5 bg-primary/20 hover:bg-primary/30 border border-primary/50 rounded-lg text-primary text-xs font-bold transition-colors">
+                                    View Profile
+                                </button>
+</div>
+</div>
+</div>
+<div class="node-3d warning" style="top: 60%; left: 95%;"></div>
+<div class="node-3d active" style="top: 85%; left: 30%;"></div>
+</div>
+<!-- Level 4 Ring -->
+<div class="ring-orbit w-[700px] h-[700px] border-primary/5 animate-[spin_120s_linear_infinite_reverse]">
+<div class="node-3d active" style="top: 10%; left: 40%;"></div>
+<div class="node-3d active" style="top: 30%; left: 80%;"></div>
+<div class="node-3d active" style="top: 70%; left: 10%;"></div>
+<div class="node-3d danger" style="top: 90%; left: 60%;"></div>
+</div>
+</div>
+<!-- Bottom Treasury Vortex -->
+<div class="absolute bottom-[-150px] w-full h-[300px] flex justify-center items-center pointer-events-none z-0">
+<!-- Vortex visual -->
+<div class="w-[800px] h-[200px] rounded-[100%] vortex-gradient opacity-80 blur-xl transform rotateX(70deg)"></div>
+<!-- Particles falling into vortex (Visual fake) -->
+<div class="absolute bottom-[80px] w-1 h-20 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 left-[48%] opacity-40"></div>
+<div class="absolute bottom-[60px] w-0.5 h-16 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 left-[51%] opacity-30"></div>
+<div class="absolute bottom-[90px] w-1 h-24 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 left-[53%] opacity-20"></div>
+<div class="absolute bottom-12 text-center z-10">
+<p class="text-primary/60 text-xs uppercase tracking-[0.3em] font-bold mb-1">Treasury Overflow</p>
+<span class="material-symbols-outlined text-primary/40 text-4xl animate-bounce">keyboard_double_arrow_down</span>
+</div>
+</div>
+</div>
+<!-- Detail Card (Floating UI Element at bottom) -->
+<div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-3xl px-4 z-30">
+<div class="p-1 rounded-2xl bg-gradient-to-r from-white/5 via-primary/20 to-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
+<div class="bg-[#27241b]/90 rounded-xl p-4 flex flex-col sm:flex-row items-center sm:items-stretch gap-6">
+<div class="w-full sm:w-48 bg-center bg-no-repeat aspect-video sm:aspect-square bg-cover rounded-xl shrink-0 shadow-lg border border-white/5" data-alt="Abstract golden luxury pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2sBcFOzqs6X9v1je0DWy3KRzq26HfHIAd2kcsiDmFY1wqv7Pr37DAqi8RhIjohsVuok1hkzlZCrx_68Nm8Xz-ceCRPSJezXR000vmB19SpGxTBhJPCBFKFPYpYVH_o7MpRU1mo6SXdrnPF8vRRLWtzdA3Lr3KK0c_em85TjMjKVa69AnRS55AR8Vqijm6WK5IBsx3wEWjk-7qI4fKqtBN53mqsXto9qhwyE-YGt7qv7_LU1Lsv-JWHhtI9oOLNMQZMl1Cl-Hn_1Ux");'></div>
+<div class="flex-1 flex flex-col justify-center w-full">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-white text-lg font-bold leading-tight tracking-tight">Level 3 Overview</h3>
+<p class="text-primary/80 text-sm font-medium">Network Expansion Phase</p>
+</div>
+<div class="flex items-center gap-1 bg-green-500/20 px-2 py-1 rounded text-green-400 text-xs font-bold border border-green-500/30">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                            </div>
+</div>
+<p class="text-slate-400 text-sm mb-4 line-clamp-2">
+                            Your level 3 nodes are performing exceptionally well. Commission overflow is currently filling the Treasury at a rate of 0.05 BTC/hour.
+                        </p>
+<div class="flex items-center gap-3 justify-between mt-auto">
+<div class="flex gap-4 text-xs font-mono text-slate-300">
+<div><span class="text-slate-500 block mb-0.5">NODES</span> 24</div>
+<div><span class="text-slate-500 block mb-0.5">VOLUME</span> 450K</div>
+</div>
+<button class="cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-6 bg-primary hover:bg-yellow-400 text-background-dark text-sm font-bold shadow-glow transition-all">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

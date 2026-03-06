@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Multi-Step Registration Wizard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a85c2",
+                        "primary-dark": "#086aa0", 
+                        "primary-light": "#e6f3fa",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#182830",
+                        "text-main-light": "#0f172a", // slate-900
+                        "text-main-dark": "#f1f5f9", // slate-100
+                        "text-sec-light": "#64748b", // slate-500
+                        "text-sec-dark": "#94a3b8", // slate-400
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark min-h-screen flex flex-col transition-colors duration-200">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-border-light dark:border-border-dark bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-text-main-light dark:text-text-main-dark">InvestSecure</h2>
+</div>
+<!-- Navigation (Simplified for Registration) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-sec-light hover:text-primary dark:text-text-sec-dark dark:hover:text-primary transition-colors" href="#">Support</a>
+<a class="text-sm font-medium text-text-sec-light hover:text-primary dark:text-text-sec-dark dark:hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<!-- Action -->
+<div class="flex items-center gap-4">
+<span class="text-sm text-text-sec-light dark:text-text-sec-dark hidden sm:block">Already have an account?</span>
+<button class="flex items-center justify-center rounded-lg px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+                        Login
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start py-12 px-4 sm:px-6 lg:px-8">
+<!-- Page Header -->
+<div class="w-full max-w-4xl mb-8 text-center sm:text-left sm:flex sm:items-end sm:justify-between">
+<div>
+<h1 class="text-3xl sm:text-4xl font-black tracking-tight text-text-main-light dark:text-text-main-dark mb-2">Create Investment Account</h1>
+<p class="text-text-sec-light dark:text-text-sec-dark text-lg">Join 50,000+ investors growing their capital securely.</p>
+</div>
+<div class="mt-4 sm:mt-0 flex items-center gap-2 text-sm font-medium text-text-sec-light dark:text-text-sec-dark bg-surface-light dark:bg-surface-dark px-3 py-1 rounded-full border border-border-light dark:border-border-dark shadow-sm">
+<span class="material-symbols-outlined text-primary text-lg">lock</span>
+<span>256-bit SSL Encrypted</span>
+</div>
+</div>
+<!-- Wizard Container -->
+<div class="w-full max-w-4xl bg-surface-light dark:bg-surface-dark rounded-xl shadow-xl border border-border-light dark:border-border-dark overflow-hidden">
+<!-- Progress Bar -->
+<div class="bg-primary/5 dark:bg-primary/5 p-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<div>
+<span class="text-sm font-semibold text-primary uppercase tracking-wider">Step 1 of 3</span>
+<h3 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mt-1">Personal &amp; Address Details</h3>
+</div>
+<span class="text-2xl font-black text-primary/20">33%</span>
+</div>
+<div class="h-2 w-full bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 33%"></div>
+</div>
+<!-- Steps Indicator -->
+<div class="flex justify-between mt-6 px-2 relative">
+<!-- Line connecting steps -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-border-light dark:border-border-dark -z-10 -translate-y-1/2"></div>
+<div class="flex flex-col items-center gap-2 bg-surface-light dark:bg-surface-dark px-2 z-10">
+<div class="size-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-md shadow-primary/20">1</div>
+<span class="text-xs font-semibold text-primary hidden sm:block">Personal Info</span>
+</div>
+<div class="flex flex-col items-center gap-2 bg-surface-light dark:bg-surface-dark px-2 z-10">
+<div class="size-8 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark text-text-sec-light dark:text-text-sec-dark flex items-center justify-center text-sm font-bold">2</div>
+<span class="text-xs font-medium text-text-sec-light dark:text-text-sec-dark hidden sm:block">Bank Details</span>
+</div>
+<div class="flex flex-col items-center gap-2 bg-surface-light dark:bg-surface-dark px-2 z-10">
+<div class="size-8 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark text-text-sec-light dark:text-text-sec-dark flex items-center justify-center text-sm font-bold">3</div>
+<span class="text-xs font-medium text-text-sec-light dark:text-text-sec-dark hidden sm:block">Security</span>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<form class="p-6 sm:p-10 space-y-8">
+<!-- Section: Referral -->
+<div class="bg-primary/5 rounded-lg p-5 border border-primary/10">
+<div class="flex items-start gap-4">
+<div class="mt-1 p-2 bg-primary/10 rounded-full text-primary">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<div class="flex-1">
+<label class="block text-sm font-bold text-text-main-light dark:text-text-main-dark mb-1" for="referral-code">
+                                Referral Code <span class="text-primary">*</span>
+</label>
+<p class="text-xs text-text-sec-light dark:text-text-sec-dark mb-3">Enter the code of the person who invited you to unlock tier benefits.</p>
+<div class="relative">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5 pl-4 pr-10 uppercase tracking-widest font-mono" id="referral-code" placeholder="INV-XXXX-XXXX" type="text"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-green-500">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark"></div>
+<!-- Section: Basic Information -->
+<div>
+<h4 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                        Basic Information
+                    </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="full-name">Full Name</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="full-name" placeholder="As per official documents" type="text"/>
+</div>
+<!-- Date of Birth -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="dob">Date of Birth</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="dob" type="date"/>
+</div>
+<!-- Email -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="email">Email Address</label>
+<div class="relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-text-sec-light dark:text-text-sec-dark text-lg">mail</span>
+</div>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5 pl-10" id="email" placeholder="you@example.com" type="email"/>
+</div>
+</div>
+<!-- Phone -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="phone">Phone Number</label>
+<div class="relative rounded-md shadow-sm">
+<div class="absolute inset-y-0 left-0 flex items-center">
+<select class="h-full rounded-md border-0 bg-transparent py-0 pl-3 pr-2 text-text-sec-light dark:text-text-sec-dark focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm">
+<option>IN +91</option>
+<option>US +1</option>
+<option>UK +44</option>
+</select>
+</div>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5 pl-24" id="phone" placeholder="98765 43210" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark"></div>
+<!-- Section: Address Details (Aadhaar) -->
+<div>
+<h4 class="text-lg font-bold text-text-main-light dark:text-text-main-dark mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">home_pin</span>
+                        Address Details (As per Aadhaar)
+                    </h4>
+<div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+<!-- Street Address -->
+<div class="col-span-6">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="street-address">Street Address</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="street-address" placeholder="House No, Building, Street Area" type="text"/>
+</div>
+<!-- City -->
+<div class="col-span-6 sm:col-span-2">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="city">City</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="city" type="text"/>
+</div>
+<!-- State -->
+<div class="col-span-6 sm:col-span-2">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="state">State</label>
+<select class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="state">
+<option>Select State</option>
+<option>Maharashtra</option>
+<option>Karnataka</option>
+<option>Delhi</option>
+<option>Tamil Nadu</option>
+<!-- Add more states as needed -->
+</select>
+</div>
+<!-- ZIP / Postal Code -->
+<div class="col-span-6 sm:col-span-2">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="postal-code">ZIP / Postal Code</label>
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="postal-code" type="text"/>
+</div>
+<!-- Aadhaar Number -->
+<div class="col-span-6 sm:col-span-3">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="aadhaar">Aadhaar Number</label>
+<div class="relative">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5 tracking-widest font-mono" id="aadhaar" placeholder="XXXX XXXX XXXX" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-text-sec-light dark:text-text-sec-dark">fingerprint</span>
+</div>
+</div>
+<!-- PAN Number -->
+<div class="col-span-6 sm:col-span-3">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-1" for="pan">PAN Number</label>
+<div class="relative">
+<input class="block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 text-text-main-light dark:text-text-main-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5 uppercase tracking-wide" id="pan" placeholder="ABCDE1234F" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-text-sec-light dark:text-text-sec-dark">badge</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="mt-8 pt-6 border-t border-border-light dark:border-border-dark flex items-center justify-end gap-4">
+<button class="px-6 py-2.5 border border-border-light dark:border-border-dark text-text-sec-light dark:text-text-sec-dark font-semibold rounded-lg hover:bg-background-light dark:hover:bg-surface-dark transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="group flex items-center gap-2 px-8 py-2.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all transform hover:-translate-y-0.5" type="button">
+                        Proceed to Step 2
+                        <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Trust Indicators Footer -->
+<div class="mt-12 mb-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl w-full">
+<div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-3xl text-primary">security</span>
+<span class="text-xs font-bold text-text-sec-light dark:text-text-sec-dark uppercase">Bank-Grade Security</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-3xl text-primary">gavel</span>
+<span class="text-xs font-bold text-text-sec-light dark:text-text-sec-dark uppercase">SEBI Compliant</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-3xl text-primary">support_agent</span>
+<span class="text-xs font-bold text-text-sec-light dark:text-text-sec-dark uppercase">24/7 Support</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-3xl text-primary">verified</span>
+<span class="text-xs font-bold text-text-sec-light dark:text-text-sec-dark uppercase">KYC Verified</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-8">
+<div class="max-w-7xl mx-auto px-4 text-center">
+<p class="text-sm text-text-sec-light dark:text-text-sec-dark">© 2023 InvestSecure Financial Services. All rights reserved.</p>
+<div class="flex justify-center gap-6 mt-4 text-xs text-text-sec-light dark:text-text-sec-dark">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<a class="hover:text-primary" href="#">Disclaimer</a>
+</div>
+</div>
+</footer>
+</body></html>

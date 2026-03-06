@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FACTRADE Retirement Freedom Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "primary-dark": "#1a4bbd",
+                        "accent-gold": "#d4af37",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1c2333",
+                        "card-border": "#2d3648",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-white">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-card-border bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="h-full w-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">FACTRADE</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium leading-normal text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Portfolio</a>
+<a class="text-sm font-medium leading-normal text-primary" href="#">Wealth Planner</a>
+<a class="text-sm font-medium leading-normal text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors" href="#">Reports</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full ring-1 ring-slate-200 dark:ring-card-border bg-slate-50 dark:bg-card-dark focus-within:ring-primary overflow-hidden">
+<div class="text-slate-400 dark:text-slate-500 flex border-none items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 border-none h-full placeholder:text-slate-400 dark:placeholder:text-slate-500 px-3 text-sm font-normal leading-normal" placeholder="Search funds..."/>
+</div>
+</label>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary-dark transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20">
+<span class="truncate">Invest Now</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-card-border" data-alt="User profile picture of a confident professional" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB767N7JwXCsE3GciXUVUlIHs77ID0Ygn7TdAgh8D20jz3Jnq5cxHGmKq6i5p1jVJdL4OwiX15M2MkbAo3tfI6IXOtb_Wv8kvdnz0rka5HafZeZbNXomikgYTzdgadD90oKHKYsyJ_uHMQtfaA-Udyiz8rBdCPgTlYyz0CsnK8mkjVvivScQcz2GIAve0VHH2dFZDnU4JpsaDtYbmRyoylhdeof9GxX8BiNvwOhE5nMz-HD9abX0A1qzfmygO1R9iHb8oVwZlDwv5tI");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 justify-center py-5 px-4 lg:px-8">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-8">
+<!-- Hero Section -->
+<div class="flex flex-col lg:flex-row justify-between items-end gap-6 border-b border-card-border pb-6">
+<div class="flex flex-col gap-3 max-w-2xl">
+<div class="flex items-center gap-2">
+<span class="bg-accent-gold/20 text-accent-gold text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Premium Member</span>
+<span class="text-slate-400 text-xs">ID: FT-882910</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">
+                            Retirement <span class="text-primary">Freedom</span> Tracker
+                        </h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-normal max-w-xl">
+                            Simulate your journey to a ₹5 Cr corpus. Adjust your monthly contributions and retirement age to see how FACTRADE tiers accelerate your wealth.
+                        </p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<p class="text-sm font-medium text-slate-400">Current AUM Context</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">₹111 Cr</span>
+<span class="text-emerald-500 font-medium flex items-center text-sm"><span class="material-symbols-outlined text-sm mr-1">trending_up</span>+4.2%</span>
+</div>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-card-border p-6 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+<div class="absolute right-0 top-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">savings</span>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Total Corpus at Age 60</p>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">₹5.2 Cr</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded text-xs font-bold">+12% projected</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs">vs last simulation</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent"></div>
+</div>
+<!-- Card 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-card-border p-6 shadow-sm hover:shadow-md hover:border-accent-gold/50 transition-all duration-300">
+<div class="absolute right-0 top-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-accent-gold">payments</span>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Monthly Pension</p>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">₹2.5 Lakh</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-bold">On Track</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs">Lifestyle maintained</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent-gold to-transparent"></div>
+</div>
+<!-- Card 3 -->
+<div class="group relative overflow-hidden rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-card-border p-6 shadow-sm hover:shadow-md hover:border-emerald-500/50 transition-all duration-300">
+<div class="absolute right-0 top-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-emerald-500">celebration</span>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Financial Independence</p>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">48 Years</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded text-xs font-bold">EARLY</span>
+<span class="text-slate-500 dark:text-slate-500 text-xs">7 years ahead</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-transparent"></div>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4">
+<!-- Left Column: Controls -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-card-border p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span> Configuration
+                            </h3>
+<!-- Slider 1 -->
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-slate-500 dark:text-slate-300">Target Retirement Age</label>
+<span class="text-xl font-bold text-slate-900 dark:text-white">55</span>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" max="75" min="40" type="range" value="55"/>
+<div class="flex justify-between text-xs text-slate-400">
+<span>40</span>
+<span>75</span>
+</div>
+</div>
+<!-- Slider 2 -->
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-slate-500 dark:text-slate-300">Monthly Contribution</label>
+<div class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded text-primary font-bold">₹50,000</div>
+</div>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" max="500000" min="10000" step="5000" type="range" value="50000"/>
+<div class="flex justify-between text-xs text-slate-400">
+<span>₹10k</span>
+<span>₹5L</span>
+</div>
+</div>
+<!-- Slider 3: Tier -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-slate-500 dark:text-slate-300">Expected Tier</label>
+<span class="text-sm font-bold text-accent-gold uppercase">Gold</span>
+</div>
+<div class="flex items-center justify-between gap-2 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+<button class="flex-1 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">Bronze</button>
+<button class="flex-1 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">Silver</button>
+<button class="flex-1 py-2 text-xs font-bold text-white bg-accent-gold shadow-md rounded shadow-accent-gold/20">Gold</button>
+<button class="flex-1 py-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">Platinum</button>
+</div>
+<p class="text-xs text-slate-500 mt-2">Gold tier offers <span class="text-accent-gold font-bold">14% APY</span> on stable returns.</p>
+</div>
+</div>
+<!-- Milestone Timeline -->
+<div class="rounded-xl bg-gradient-to-br from-card-dark to-slate-900 border border-card-border p-6 shadow-sm relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<h3 class="text-lg font-bold text-white mb-6 relative z-10">Wealth Milestones</h3>
+<div class="relative pl-4 border-l-2 border-slate-700 space-y-8 z-10">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-emerald-500 ring-4 ring-card-dark"></div>
+<p class="text-xs text-slate-400 mb-1">2026 (Age 32)</p>
+<p class="text-white font-medium text-sm">Cross ₹50L Corpus</p>
+<p class="text-emerald-500 text-xs font-bold mt-1">First 1 Cr Milestone</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-accent-gold ring-4 ring-card-dark"></div>
+<p class="text-xs text-slate-400 mb-1">2032 (Age 38)</p>
+<p class="text-white font-medium text-sm">Achieve Gold Status</p>
+<p class="text-accent-gold text-xs font-bold mt-1">Unlock 14% Yield</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-card-dark"></div>
+<p class="text-xs text-slate-400 mb-1">2044 (Age 50)</p>
+<p class="text-white font-medium text-sm">Financial Freedom</p>
+<p class="text-primary text-xs font-bold mt-1">Passive Income &gt; Salary</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Charts & Graph -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-card-border p-6 lg:p-8 shadow-sm h-full flex flex-col">
+<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Wealth Growth Projection</p>
+<h2 class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mt-1">₹5,20,00,000</h2>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Corpus</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-300">Investment</span>
+</div>
+</div>
+</div>
+<!-- Chart Area -->
+<div class="relative flex-1 min-h-[300px] w-full mt-4">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 300">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#256af4" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#256af4" stop-opacity="0"></stop>
+</lineargradient>
+<clippath id="chartClip">
+<rect height="300" width="800"></rect>
+</clippath>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#2d3648" stroke-width="1" x1="0" x2="800" y1="299" y2="299"></line>
+<line opacity="0.5" stroke="#2d3648" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="225" y2="225"></line>
+<line opacity="0.5" stroke="#2d3648" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="150" y2="150"></line>
+<line opacity="0.5" stroke="#2d3648" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="75" y2="75"></line>
+<!-- Chart Path Area -->
+<path d="M0 290 Q 200 280, 300 240 T 600 100 T 800 20 L 800 300 L 0 300 Z" fill="url(#chartGradient)"></path>
+<!-- Chart Line -->
+<path d="M0 290 Q 200 280, 300 240 T 600 100 T 800 20" fill="none" stroke="#256af4" stroke-linecap="round" stroke-width="3"></path>
+<!-- Investment Line (Lower) -->
+<path d="M0 295 L 800 200" fill="none" stroke="#64748b" stroke-dasharray="6 6" stroke-width="2"></path>
+<!-- Interactive Point -->
+<g class="group/point cursor-pointer">
+<circle cx="600" cy="100" fill="#256af4" r="6" stroke="white" stroke-width="2"></circle>
+<line stroke="#256af4" stroke-dasharray="2 2" stroke-width="1" x1="600" x2="600" y1="100" y2="300"></line>
+<!-- Tooltip -->
+<foreignobject class="opacity-0 group-hover/point:opacity-100 transition-opacity duration-200" height="70" width="200" x="500" y="20">
+<div class="flex flex-col items-center justify-center p-2 rounded-lg bg-slate-800 text-white text-xs shadow-xl border border-slate-700" xmlns="http://www.w3.org/1999/xhtml">
+<p class="font-bold">Year 2045</p>
+<p>Est. Value: ₹3.8 Cr</p>
+</div>
+</foreignobject>
+</g>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between mt-4 text-xs font-medium text-slate-500 uppercase tracking-wider">
+<span>2024</span>
+<span>2030</span>
+<span>2036</span>
+<span>2042</span>
+<span>2048</span>
+<span>2054</span>
+</div>
+</div>
+<!-- Recommendations Panel -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h4 class="text-white font-bold text-sm uppercase tracking-wide">AI Recommendation</h4>
+</div>
+<p class="text-slate-300 text-sm mb-4">
+                                        Increasing your monthly contribution by <span class="text-white font-bold">₹5,000</span> could help you reach financial independence <span class="text-white font-bold">2 years earlier</span>.
+                                    </p>
+</div>
+<button class="w-full py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg text-sm font-bold transition-colors">Apply Strategy</button>
+</div>
+<div class="rounded-xl bg-card-dark border border-card-border p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-accent-gold">star</span>
+<h4 class="text-white font-bold text-sm uppercase tracking-wide">Retirement Goal Status</h4>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div>
+<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200">
+                                                    On Track
+                                                </span>
+</div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-emerald-500">
+                                                    85% Probability
+                                                </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-slate-700">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500" style="width:85%"></div>
+</div>
+</div>
+<p class="text-slate-400 text-xs">Based on conservative market estimates (12% CAGR).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

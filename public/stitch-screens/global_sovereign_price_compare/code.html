@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Sovereign Price Compare - Brave Ecom</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111818", 
+                        "surface-dark": "#1b2626",
+                        "surface-highlight": "#283939",
+                        "text-secondary": "#9cbaba",
+                    },
+                    fontFamily: {
+                        "sans": ["Space Grotesk", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111818; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283939; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25f4f4; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-surface-highlight bg-background-dark/95 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Vault</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Analytics</a>
+<a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Concierge</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden sm:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-surface-highlight/50 group hover:bg-surface-highlight transition-colors border border-transparent focus-within:border-primary">
+<div class="text-text-secondary flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-text-secondary px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search assets..." value=""/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold hover:bg-primary/90 transition-colors">
+<span class="truncate">Cart (2)</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-surface-highlight" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBu65QuAWiMHlCpd7pEEnJ226AQRCxSibOJ12fX91OBdEtqaUPv7dncCZ3i0F7auPYvDBALNnDivpMA524IHVCMj2Wuj7j7CkHJnxQkA5FacXeyEJHnnsrZXOEUmXiZwZPMsgk_VmKULAk2kd2YZRpdFDUnFuuyP4-7ktRsBX4JHtJfCK2_8RnM0BYsfdxxuSYgFw_eycQL5LonOoKd5rpiQSlarBK5sp8T-TqcVe6ee6Ok85jvKHJ4Bv-Plax1oVyJ5i8c3xknJq8Z");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-6 lg:px-12 w-full max-w-[1440px] mx-auto">
+<!-- Breadcrumbs -->
+<div class="w-full flex flex-wrap gap-2 mb-8 items-center text-sm">
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-text-secondary">/</span>
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Luxury Watches</a>
+<span class="text-text-secondary">/</span>
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Patek Philippe</a>
+<span class="text-text-secondary">/</span>
+<span class="text-primary font-medium">Nautilus 5711/1A</span>
+</div>
+<!-- Main Content Grid -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Product Info & Global Status -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-surface-highlight pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">Global Price Analysis</h1>
+<span class="px-2 py-1 rounded bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Live</span>
+</div>
+<p class="text-text-secondary text-lg">Real-time arbitrage opportunities for <span class="text-white font-medium">Patek Philippe Nautilus 5711/1A</span></p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-surface-highlight hover:bg-surface-highlight/80 text-white text-sm font-bold transition-all border border-transparent hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span>Set Alert</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-surface-highlight hover:bg-surface-highlight/80 text-white text-sm font-bold transition-all border border-transparent hover:border-primary/50">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share</span>
+</button>
+</div>
+</div>
+<!-- Price Confidence & Main Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Sovereign Price Card -->
+<div class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-surface-dark to-surface-highlight border border-surface-highlight group hover:border-primary/50 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-4xl">verified_user</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Sovereign Mall Price</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white">$145,000</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm">
+<span class="text-primary font-bold bg-primary/10 px-2 py-0.5 rounded">-4.8%</span>
+<span class="text-text-secondary">vs Global Avg</span>
+</div>
+<!-- Confidence Bar -->
+<div class="mt-6">
+<div class="flex justify-between text-xs mb-2 text-text-secondary">
+<span>Confidence Score</span>
+<span class="text-white">98/100</span>
+</div>
+<div class="h-1.5 w-full bg-surface-highlight rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_10px_rgba(37,244,244,0.6)] w-[98%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Global Market Card -->
+<div class="rounded-xl p-6 bg-surface-dark border border-surface-highlight">
+<p class="text-text-secondary text-sm font-medium mb-1">Global Average</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white">$152,300</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm">
+<span class="text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +2.1%
+                            </span>
+<span class="text-text-secondary">YoY</span>
+</div>
+<div class="mt-6 flex flex-col gap-2">
+<div class="flex justify-between text-xs text-text-secondary">
+<span>High: <span class="text-white">$168k</span></span>
+<span>Low: <span class="text-white">$142k</span></span>
+</div>
+<div class="h-1.5 w-full bg-surface-highlight rounded-full overflow-hidden flex">
+<div class="h-full bg-transparent w-[10%]"></div>
+<div class="h-full bg-white/20 w-[80%] rounded-full"></div>
+<div class="h-full bg-transparent w-[10%]"></div>
+</div>
+<div class="text-center text-[10px] text-text-secondary mt-1">Market Volatility Range</div>
+</div>
+</div>
+<!-- Profit Opportunity -->
+<div class="rounded-xl p-6 bg-surface-dark border border-surface-highlight flex flex-col justify-between">
+<div>
+<p class="text-text-secondary text-sm font-medium mb-1">Potential Arbitrage</p>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-primary">$7,300</span>
+</div>
+<p class="text-xs text-text-secondary mt-2">Instant profit upon liquidation in global vaults.</p>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-highlight hover:bg-white text-white hover:text-background-dark text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span>Execute Trade</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Interactive Chart Section -->
+<div class="rounded-xl bg-surface-dark border border-surface-highlight p-6">
+<div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+<h3 class="text-lg font-bold text-white">Price Trend History</h3>
+<div class="flex bg-surface-highlight/50 p-1 rounded-lg">
+<button class="px-3 py-1 text-xs font-medium rounded text-text-secondary hover:text-white transition-colors">1D</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-text-secondary hover:text-white transition-colors">1W</button>
+<button class="px-3 py-1 text-xs font-medium rounded bg-surface-highlight text-white shadow-sm">1M</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-text-secondary hover:text-white transition-colors">1Y</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-text-secondary hover:text-white transition-colors">ALL</button>
+</div>
+</div>
+<div class="relative h-[300px] w-full">
+<!-- Chart SVG -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 300">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#25f4f4" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#25f4f4" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line stroke="#283939" stroke-dasharray="4 4" x1="0" x2="800" y1="225" y2="225"></line>
+<line stroke="#283939" stroke-dasharray="4 4" x1="0" x2="800" y1="150" y2="150"></line>
+<line stroke="#283939" stroke-dasharray="4 4" x1="0" x2="800" y1="75" y2="75"></line>
+<!-- Area fill -->
+<path d="M0 250 C100 240, 200 180, 300 200 C400 220, 500 100, 600 120 C700 140, 750 60, 800 80 V 300 H 0 Z" fill="url(#chartGradient)"></path>
+<!-- Line stroke -->
+<path d="M0 250 C100 240, 200 180, 300 200 C400 220, 500 100, 600 120 C700 140, 750 60, 800 80" fill="none" stroke="#25f4f4" stroke-linecap="round" stroke-width="3"></path>
+<!-- Current Point Marker -->
+<circle cx="800" cy="80" fill="#111818" r="6" stroke="#25f4f4" stroke-width="3"></circle>
+<circle cx="800" cy="80" fill="#25f4f4" fill-opacity="0.2" r="12"></circle>
+</svg>
+<!-- Tooltip Overlay (Static for design) -->
+<div class="absolute top-[60px] right-[20px] bg-surface-highlight border border-white/10 p-3 rounded-lg shadow-xl backdrop-blur-sm">
+<p class="text-xs text-text-secondary">Current Market</p>
+<p class="text-lg font-bold text-white">$152,300</p>
+</div>
+</div>
+<div class="flex justify-between text-xs text-text-secondary mt-4 px-2">
+<span>Nov 12</span>
+<span>Nov 19</span>
+<span>Nov 26</span>
+<span>Dec 03</span>
+<span>Dec 10</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Market List & Actions -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Best Prices List -->
+<div class="rounded-xl bg-surface-dark border border-surface-highlight overflow-hidden">
+<div class="p-4 border-b border-surface-highlight flex justify-between items-center bg-surface-highlight/20">
+<h3 class="font-bold text-white">Market Comparison</h3>
+<span class="text-xs text-primary cursor-pointer hover:underline">View All Markets</span>
+</div>
+<div class="flex flex-col">
+<!-- Item 1 (Highlighted) -->
+<div class="flex items-center justify-between p-4 bg-primary/5 border-l-4 border-primary">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-highlight flex items-center justify-center text-white font-bold text-xs">SM</div>
+<div>
+<p class="text-white font-bold text-sm">Sovereign Mall</p>
+<p class="text-xs text-primary">Lowest Price</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">$145,000</p>
+<p class="text-xs text-text-secondary">Instant</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-4 border-b border-surface-highlight/50 hover:bg-surface-highlight/20 transition-colors">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded object-cover" data-alt="Chrono24 Logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw6LTZKT82HpqUC6b2zZhAdF0OVVINkY3WXC5_uMNTTUwfO0x2yZ-f4yNPJk6JldFt9hQhC98ICpB0Qd3EfUUq4y3Zi8K-0mDzHzD_nP2n1MRtliOWqEktHx9HJ7Y618Bp81R2CiqSHWpu3ldwuEhUR5W9YZg--k-U3xzvH0kk-BXqjrGjouu5G-rYAHzax7veaOtHm83LCNphzHd-vTxU1miMzkD2lDzsQkyVDfAubwKuOg74a3zr5RC8905Jf-0mdUZDb8l2V6hF"/>
+<div>
+<p class="text-white text-sm">Chrono24</p>
+<p class="text-xs text-text-secondary">Global</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-medium">$151,200</p>
+<p class="text-xs text-emerald-400">+4.2%</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-4 border-b border-surface-highlight/50 hover:bg-surface-highlight/20 transition-colors">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded object-cover" data-alt="Watchbox Logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXGJMAKfr5xWE6XsUi4MAEJzQaal8gspuFoV5Nf5JfCywDrPBwM6HqVWZzONDvFP4ZTciuGYK4WJ2ySAFt0OGBd2R3F3U23tTHSexmPVRShA9BnSBKNklchjxcT33h_xVGkwlfDz-PXOB2jBBfqwK39XkJlvrL33H2Y9n2wlN_erVguebQW6Tw9fnbhT2jIq0Lzm9s_CCh3VP3XmMG_ipZ0-8M-nM8EvSORwFEjsO0eW97l7Pu5xYLmRvosXtZRGZDxrHWrMlgHo-u"/>
+<div>
+<p class="text-white text-sm">WatchBox</p>
+<p class="text-xs text-text-secondary">US Market</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-medium">$154,500</p>
+<p class="text-xs text-emerald-400">+6.5%</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-4 hover:bg-surface-highlight/20 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-highlight flex items-center justify-center text-text-secondary text-xs">
+<span class="material-symbols-outlined text-sm">public</span>
+</div>
+<div>
+<p class="text-white text-sm">Grey Market Avg</p>
+<p class="text-xs text-text-secondary">Mixed Sources</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-medium">$149,900</p>
+<p class="text-xs text-emerald-400">+3.3%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Preview Mini-Card -->
+<div class="p-4 rounded-xl border border-surface-highlight bg-surface-dark flex gap-4 items-center">
+<img class="w-20 h-20 rounded-lg object-cover border border-surface-highlight" data-alt="Patek Philippe Nautilus watch close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhWF9_S2gJvq8cHVJKWPUPzrjASXnJgYvq6aBie15b6vuXyo6hGiis9iPotbfNUuEB3bT2KDmfxcJBuu1U-et1_vwnKeRpRXIbOV-X5q7DADtHFbDdYMFPFVLVlMRhciZb-Jr2MeNM4OZl23-yYMMzRJN22cuu9l9_sm5V9WNJV7BG93ErKEzFJVw7bXuaIs457fvEtxOedcVpOLkvTZBixy7ui_mYrl7OCqAGgigeeFdMNaEuiF8Cyi0TSNiayszFX8iZgAM-sRom"/>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-bold truncate">Nautilus 5711/1A</h4>
+<p class="text-text-secondary text-xs mb-2 truncate">Blue Dial, Stainless Steel</p>
+<a class="text-primary text-xs font-bold hover:underline flex items-center gap-1" href="#">
+                            View Product Details <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Checkout Action -->
+<div class="mt-auto">
+<div class="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-surface-highlight/10 border border-primary/30 text-center">
+<p class="text-text-secondary text-sm mb-2">Ready to secure this price?</p>
+<div class="text-2xl font-bold text-white mb-4">$145,000</div>
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-primary/90 text-background-dark font-bold text-base flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,244,244,0.3)] hover:shadow-[0_0_30px_rgba(37,244,244,0.5)] transition-all">
+<span class="material-symbols-outlined">shopping_cart_checkout</span>
+                            Add to Cart
+                        </button>
+<p class="text-[10px] text-text-secondary mt-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                            Price guaranteed for 14:59 min
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Regional Map Section (Visual Context) -->
+<div class="w-full mt-8 pt-8 border-t border-surface-highlight">
+<h3 class="text-xl font-bold text-white mb-6">Regional Availability</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-3 rounded-xl overflow-hidden h-[300px] relative border border-surface-highlight bg-surface-dark group">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" data-alt="Dark stylized world map visualization with connection points" data-location="Global Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIbClipBQb323cesbmanoR_wKFy-AclQuKDxR9v5_lNo0x8M1v2HAEKyDQ055iNpMHyvmY9XAg6bJf4l7Ex9-YuuJXqQjKgcXT3r0CdnhtyduuYyZAuK98iMrSxjSXQa4whfPTXEPjV2WF44NbzzXt0SwgwE2MGgYH3OPTxLniNZSbGONCDuUtHzvQVR0dQ-_xr1TvwCQhnNpANXd2Pppqxg8YLFw0dH_sKSaiGp1M-mifRUUcFega_rfuewBFblHI7zD4wSq2syyX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<!-- Map Pin 1 -->
+<div class="absolute top-[30%] left-[25%] flex flex-col items-center group/pin">
+<div class="size-3 bg-primary rounded-full shadow-[0_0_10px_#25f4f4] animate-pulse"></div>
+<div class="mt-2 bg-surface-dark/90 px-3 py-1 rounded text-xs text-white border border-surface-highlight backdrop-blur-md opacity-0 group-hover/pin:opacity-100 transition-opacity">
+                            New York: $154k
+                        </div>
+</div>
+<!-- Map Pin 2 (Sovereign) -->
+<div class="absolute top-[45%] left-[48%] flex flex-col items-center group/pin z-10">
+<div class="size-4 bg-white rounded-full border-4 border-primary shadow-[0_0_20px_#25f4f4]"></div>
+<div class="mt-2 bg-primary px-3 py-1 rounded text-xs text-background-dark font-bold shadow-lg">
+                            Sovereign: $145k
+                        </div>
+</div>
+<!-- Map Pin 3 -->
+<div class="absolute top-[35%] right-[25%] flex flex-col items-center group/pin">
+<div class="size-3 bg-primary rounded-full shadow-[0_0_10px_#25f4f4] animate-pulse"></div>
+<div class="mt-2 bg-surface-dark/90 px-3 py-1 rounded text-xs text-white border border-surface-highlight backdrop-blur-md opacity-0 group-hover/pin:opacity-100 transition-opacity">
+                            Tokyo: $151k
+                        </div>
+</div>
+</div>
+<div class="md:col-span-1 flex flex-col gap-4">
+<div class="p-4 rounded-xl border border-surface-highlight bg-surface-dark">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">flight_takeoff</span>
+<span class="text-white font-bold text-sm">Shipping Est.</span>
+</div>
+<p class="text-text-secondary text-xs">From Sovereign Vault (Monaco)</p>
+<p class="text-white font-medium mt-1">2-3 Business Days</p>
+</div>
+<div class="p-4 rounded-xl border border-surface-highlight bg-surface-dark">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<span class="text-white font-bold text-sm">Import Duties</span>
+</div>
+<p class="text-text-secondary text-xs">Pre-calculated for your region</p>
+<p class="text-white font-medium mt-1">Included in Price</p>
+</div>
+<div class="flex-1 p-4 rounded-xl border border-surface-highlight bg-surface-dark flex items-center justify-center">
+<a class="text-primary text-sm font-bold hover:underline" href="#">View Logistics Details</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-12 py-8 border-t border-surface-highlight bg-background-dark text-center text-text-secondary text-sm">
+<p>© 2024 Brave Ecom. All rights reserved.</p>
+</footer>
+</body></html>

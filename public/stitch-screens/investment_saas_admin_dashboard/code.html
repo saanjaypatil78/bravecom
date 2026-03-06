@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investment SaaS Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0F766E", // Emerald-700
+                        secondary: "#1E3A8A", // Blue-900
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "border-light": "#E5E7EB",
+                        "border-dark": "#374151",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-gray-800 dark:text-gray-100 transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex-shrink-0 bg-secondary dark:bg-surface-dark border-r border-gray-700 dark:border-gray-800 hidden md:flex flex-col transition-all duration-300">
+<div class="h-16 flex items-center px-6 bg-blue-950 dark:bg-gray-900">
+<span class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+<span class="material-icons-outlined text-emerald-400">currency_rupee</span>
+                    InvestPro
+                </span>
+</div>
+<nav class="flex-1 overflow-y-auto py-4">
+<ul class="space-y-1 px-3">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-white bg-white/10 rounded-md" href="#">
+<span class="material-icons-outlined">dashboard</span>
+                            Dashboard
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">people</span>
+                            User Management
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">store</span>
+                            Franchise Control
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">settings_input_component</span>
+                            Commission Settings
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">account_balance</span>
+                            Royalty Distribution
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">bar_chart</span>
+                            Reports &amp; Analytics
+                        </a>
+</li>
+</ul>
+<div class="mt-8 px-6">
+<p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">System</p>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">settings</span>
+                                Settings
+                            </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors" href="#">
+<span class="material-icons-outlined">logout</span>
+                                Logout
+                            </a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="p-4 bg-blue-950 dark:bg-gray-900">
+<div class="flex items-center gap-3">
+<img alt="Admin Profile" class="h-9 w-9 rounded-full border-2 border-emerald-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnb2OUpuHvPlYhdMLSdBjYR8bT2yKGre-c09mklZk7HAOee1DWYhsZqtaUawE94ztxbXRd0_IPeNVpFH0JRKL1NQJCFjOsZEFfNfjIe_CW1vyRHtYab4XRGEDWyyJQ22u6qozP1YRPCsMVopBcLbAUFYSEl55X8CHEMeFpz-7HCWYmOrMW-oYrXFBIcFdHliTMdW_qdFSFmkRI1-v0cQHWR1dVBRObv2AvYBvg2GS4UYg13X3RIijecqGOlPkBVo539BkhrTi59Il3"/>
+<div>
+<p class="text-sm font-medium text-white">Super Admin</p>
+<p class="text-xs text-emerald-400">Online</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<header class="h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+<span class="material-icons-outlined">menu</span>
+</button>
+<h1 class="text-lg font-semibold text-gray-900 dark:text-white">Dashboard Overview</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
+<span class="material-icons-outlined">dark_mode</span>
+</button>
+<button class="p-2 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors relative">
+<span class="material-icons-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 block h-2 w-2 rounded-full ring-2 ring-white dark:ring-gray-800 bg-red-500"></span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total AUM Target</p>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-2">₹111 Cr</h3>
+<div class="flex items-center mt-2 text-sm text-emerald-600 dark:text-emerald-400">
+<span class="material-icons-outlined text-sm mr-1">trending_up</span>
+<span>65% Achieved</span>
+</div>
+</div>
+<div class="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg">
+<span class="material-icons-outlined text-emerald-600 dark:text-emerald-400">monetization_on</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Commissions</p>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-2">₹7.47 Cr</h3>
+<div class="flex items-center mt-2 text-sm text-blue-600 dark:text-blue-400">
+<span>Disbursed MTD</span>
+</div>
+</div>
+<div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+<span class="material-icons-outlined text-blue-600 dark:text-blue-400">payments</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Admin Charges</p>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-2">₹74.74 L</h3>
+<div class="flex items-center mt-2 text-sm text-purple-600 dark:text-purple-400">
+<span>Net Revenue</span>
+</div>
+</div>
+<div class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+<span class="material-icons-outlined text-purple-600 dark:text-purple-400">account_balance_wallet</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6 flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Investors</p>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-2">1,245</h3>
+<div class="flex items-center mt-2 text-sm text-gray-500 dark:text-gray-400">
+<span>+12 this week</span>
+</div>
+</div>
+<div class="p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+<span class="material-icons-outlined text-orange-600 dark:text-orange-400">groups</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<div class="xl:col-span-2 bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex flex-col">
+<div class="p-6 border-b border-border-light dark:border-border-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Investment Tiers &amp; Commission Structure</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400">Detailed breakdown of 12-month agreements and referral levels.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-sm font-medium text-primary border border-primary rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors">
+                                    Export CSV
+                                </button>
+<button class="px-3 py-1.5 text-sm font-medium text-white bg-primary rounded-lg hover:bg-emerald-800 transition-colors">
+                                    Add Tier
+                                </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-gray-50 dark:bg-gray-800 border-b border-border-light dark:border-border-dark">
+<tr>
+<th class="px-4 py-3 font-semibold text-gray-900 dark:text-white sticky left-0 bg-gray-50 dark:bg-gray-800 z-10">Level</th>
+<th class="px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 text-right">Investment</th>
+<th class="px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 text-right">Profit (15%)</th>
+<th class="px-4 py-3 font-semibold text-emerald-600 dark:text-emerald-400 text-right bg-emerald-50/50 dark:bg-emerald-900/10">Total Profit</th>
+<th class="px-4 py-3 font-semibold text-blue-600 dark:text-blue-400 text-right">Total Comm.</th>
+<th class="px-4 py-3 font-semibold text-gray-700 dark:text-gray-300 text-right">Admin (10%)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L1
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹10,60,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹1,59,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹1,59,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹8,38,500</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹83,850</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L2
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹27,00,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹4,05,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹4,05,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹15,13,500</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹1,51,350</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L3
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹53,00,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹7,95,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹7,95,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹21,20,250</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹2,12,025</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L4
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹1,10,00,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹16,50,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹16,50,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹28,31,250</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹2,83,125</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L5
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹2,50,00,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹37,50,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹37,50,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹48,57,750</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹4,85,775</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-surface-light dark:bg-surface-dark z-10">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100">
+                                                L6
+                                            </span>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">₹11,00,00,000</td>
+<td class="px-4 py-3 text-right text-green-600 dark:text-green-400">₹1,65,00,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-900 dark:text-white bg-emerald-50/30 dark:bg-emerald-900/5">₹1,65,00,000</td>
+<td class="px-4 py-3 text-right text-blue-600 dark:text-blue-400">₹32,92,500</td>
+<td class="px-4 py-3 text-right text-red-500 dark:text-red-400">₹3,29,250</td>
+</tr>
+<tr class="bg-gray-100 dark:bg-gray-900 font-bold border-t-2 border-primary">
+<td class="px-4 py-3 sticky left-0 bg-gray-100 dark:bg-gray-900 z-10">TOTAL</td>
+<td class="px-4 py-3 text-right">₹1,11,11,11,111</td>
+<td class="px-4 py-3 text-right">₹16,66,66,667</td>
+<td class="px-4 py-3 text-right bg-emerald-100/50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-300">₹16,66,66,667</td>
+<td class="px-4 py-3 text-right text-blue-800 dark:text-blue-300">₹7,47,45,450</td>
+<td class="px-4 py-3 text-right text-red-700 dark:text-red-300">₹74,74,545</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-border-light dark:border-border-dark flex justify-center">
+<button class="text-sm text-primary font-medium flex items-center gap-1 hover:underline">
+                                View Full 15-Level Report <span class="material-icons-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-gradient-to-br from-indigo-900 to-blue-900 rounded-xl shadow-lg p-6 text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-outlined">emoji_events</span>
+                                Direct Target Royalty
+                            </h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm border-b border-white/20 pb-2">
+<span class="text-blue-100">Bronze</span>
+<div class="text-right">
+<span class="block font-semibold">50 Lakh</span>
+<span class="text-xs text-green-300">1.00%</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-sm border-b border-white/20 pb-2">
+<span class="text-blue-100">Silver</span>
+<div class="text-right">
+<span class="block font-semibold">1 Crore</span>
+<span class="text-xs text-green-300">0.75%</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-sm border-b border-white/20 pb-2">
+<span class="text-blue-100">Gold</span>
+<div class="text-right">
+<span class="block font-semibold">5 Crore</span>
+<span class="text-xs text-green-300">0.50%</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-sm pb-1">
+<span class="text-blue-100">Platinum</span>
+<div class="text-right">
+<span class="block font-semibold">25 Crore</span>
+<span class="text-xs text-green-300">0.35%</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/30 flex justify-between items-center">
+<span class="font-bold text-sm uppercase tracking-wider text-blue-200">Total Pool</span>
+<span class="font-bold text-xl">3%</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark p-6">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Expense Allocation</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-600 dark:text-gray-400">Total Returns (Static)</span>
+<span class="font-medium text-gray-900 dark:text-white">25%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-600 dark:text-gray-400">Marketing &amp; Expansion</span>
+<span class="font-medium text-gray-900 dark:text-white">20%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="bg-blue-500 h-2 rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-600 dark:text-gray-400">Key Personnel</span>
+<span class="font-medium text-gray-900 dark:text-white">20%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="bg-purple-500 h-2 rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-600 dark:text-gray-400">Yearly Gifts &amp; Office</span>
+<span class="font-medium text-gray-900 dark:text-white">6% (Flexible)</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="bg-orange-400 h-2 rounded-full" style="width: 6%"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-gray-500 uppercase">Total Allocation</span>
+<span class="font-bold text-gray-900 dark:text-white">70%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

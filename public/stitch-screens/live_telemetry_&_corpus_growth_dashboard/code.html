@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Telemetry &amp; Corpus Growth Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25f46a", // Neon Emerald
+              "background-light": "#0b1116", // Force dark theme feel even in light mode config
+              "background-dark": "#0b1116", // Deep Navy/Black
+              "card-dark": "#131c26",
+              "gold": "#ffd700",
+              "accent-green": "#25f46a",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"],
+              "mono": ["monospace"]
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glow-text {
+            text-shadow: 0 0 10px rgba(37, 244, 106, 0.5);
+        }
+        .pulse-ring {
+            box-shadow: 0 0 0 0 rgba(37, 244, 106, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 244, 106, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(37, 244, 106, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 244, 106, 0);
+            }
+        }
+        .animate-scroll {
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .glass-panel {
+            background: rgba(19, 28, 38, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 font-display min-h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-background-dark">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-[#28392e]/30 bg-background-dark/95 backdrop-blur px-6 py-3 z-50 sticky top-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]">token</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] uppercase">Sovereign Wealth Console</h2>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>SYSTEM ONLINE</span>
+<span class="text-[10px] bg-primary/10 text-primary px-1 rounded border border-primary/20">SEBI COMPLIANT</span>
+</div>
+</div>
+</div>
+<!-- Center Status Ticker (Hidden on small screens) -->
+<div class="hidden md:flex flex-1 mx-12 overflow-hidden relative h-8 items-center bg-black/20 rounded border border-white/5">
+<div class="absolute whitespace-nowrap animate-scroll text-xs font-mono text-primary/80 w-full">
+                BTC/USD $64,231.20 ▲ 1.2%   |   NIFTY 50 22,145.00 ▲ 0.5%   |   GOLD ₹72,500 ▲ 0.1%   |   INFLOW VELOCITY: HIGH   |   NETWORK HASH: 0x4f...a92   |   LAST BLOCK: #189234
+            </div>
+</div>
+<div class="flex gap-3">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded h-9 px-4 bg-primary hover:bg-green-400 transition-colors text-background-dark text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined mr-2 text-[18px]">account_balance_wallet</span>
+<span class="truncate">Connect Wallet</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-9 w-9 bg-[#1f2937] hover:bg-[#28392e] text-slate-300 transition-colors border border-white/5">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-9 w-9 bg-[#1f2937] hover:bg-[#28392e] text-slate-300 transition-colors border border-white/5">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Background Grid Effect -->
+<div class="absolute inset-0 bg-[size:40px_40px] bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent pointer-events-none"></div>
+<!-- Left Panel: Telemetry -->
+<aside class="w-[320px] hidden xl:flex flex-col border-r border-white/5 bg-background-dark/50 backdrop-blur-sm z-10">
+<div class="p-5 border-b border-white/5">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-[20px]">speed</span>
+<h3 class="text-slate-200 font-bold text-sm tracking-wider uppercase">Live Velocity</h3>
+</div>
+<div class="space-y-6">
+<!-- Gauge 1 -->
+<div class="glass-panel p-4 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-50">
+<span class="material-symbols-outlined text-primary text-[16px]">bolt</span>
+</div>
+<p class="text-xs text-slate-400 uppercase tracking-wide mb-1">Inflow Velocity</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-white font-mono">₹15,000</span>
+<span class="text-xs text-slate-500">/min</span>
+</div>
+<div class="w-full bg-slate-800 h-1 mt-3 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] shadow-[0_0_10px_rgba(37,244,106,0.5)]"></div>
+</div>
+<p class="text-[10px] text-primary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                            +12% vs last hour
+                        </p>
+</div>
+<!-- Gauge 2 -->
+<div class="glass-panel p-4 rounded-lg">
+<p class="text-xs text-slate-400 uppercase tracking-wide mb-1">Active Investors</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-white font-mono">142</span>
+<span class="text-xs text-slate-500">online</span>
+</div>
+<div class="flex gap-1 mt-3">
+<div class="h-8 flex-1 bg-slate-800 rounded flex items-end justify-center pb-1"><div class="w-1.5 h-[40%] bg-primary/40 rounded-t-sm"></div></div>
+<div class="h-8 flex-1 bg-slate-800 rounded flex items-end justify-center pb-1"><div class="w-1.5 h-[60%] bg-primary/60 rounded-t-sm"></div></div>
+<div class="h-8 flex-1 bg-slate-800 rounded flex items-end justify-center pb-1"><div class="w-1.5 h-[30%] bg-primary/30 rounded-t-sm"></div></div>
+<div class="h-8 flex-1 bg-slate-800 rounded flex items-end justify-center pb-1"><div class="w-1.5 h-[80%] bg-primary rounded-t-sm shadow-[0_0_8px_rgba(37,244,106,0.4)]"></div></div>
+<div class="h-8 flex-1 bg-slate-800 rounded flex items-end justify-center pb-1"><div class="w-1.5 h-[50%] bg-primary/50 rounded-t-sm"></div></div>
+</div>
+</div>
+<!-- Gauge 3 -->
+<div class="glass-panel p-4 rounded-lg">
+<p class="text-xs text-slate-400 uppercase tracking-wide mb-1">Avg Ticket Size</p>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-gold font-mono">₹5.2L</span>
+</div>
+<div class="w-full bg-slate-800 h-1 mt-3 rounded-full overflow-hidden">
+<div class="h-full bg-gold w-[45%] shadow-[0_0_10px_rgba(255,215,0,0.3)]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-5 flex-1 overflow-y-auto">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">dns</span>
+<h3 class="text-slate-200 font-bold text-sm tracking-wider uppercase">System Health</h3>
+</div>
+<div class="space-y-2 text-xs font-mono text-slate-400">
+<div class="flex justify-between p-2 rounded bg-white/5 border border-white/5">
+<span>Latency</span>
+<span class="text-primary">12ms</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white/5 border border-white/5">
+<span>WebSocket</span>
+<span class="text-primary">Connected</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white/5 border border-white/5">
+<span>Encryption</span>
+<span class="text-slate-300">AES-256</span>
+</div>
+<div class="flex justify-between p-2 rounded bg-white/5 border border-white/5">
+<span>Uptime</span>
+<span class="text-slate-300">99.99%</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Stage: Corpus Stream -->
+<section class="flex-1 flex flex-col relative overflow-y-auto">
+<!-- Breadcrumbs & Title -->
+<div class="px-8 py-6">
+<div class="flex items-center gap-2 text-sm font-medium mb-4">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="text-slate-600">/</span>
+<span class="text-primary">Live Telemetry</span>
+</div>
+<div class="flex justify-between items-end">
+<h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight uppercase glow-text">
+                        Live Corpus Stream
+                    </h1>
+<div class="text-right hidden sm:block">
+<p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Fundraising Status</p>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                            Active Round
+                        </span>
+</div>
+</div>
+</div>
+<!-- Main Visualization -->
+<div class="flex-1 px-8 py-4 flex flex-col justify-center items-center relative min-h-[500px]">
+<!-- Central Circular Progress -->
+<div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex items-center justify-center">
+<!-- Decorative outer rings -->
+<div class="absolute inset-0 rounded-full border border-white/5 animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-white/5 border-dashed animate-[spin_15s_linear_infinite_reverse]"></div>
+<!-- Main Glow Ring -->
+<div class="absolute inset-0 rounded-full pulse-ring border-4 border-primary/20"></div>
+<!-- SVG Progress Circle -->
+<svg class="w-full h-full -rotate-90 transform" viewbox="0 0 100 100">
+<!-- Track -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#1f2937" stroke-width="6"></circle>
+<!-- Progress (12Cr / 111Cr = ~10.8%) -->
+<circle class="filter drop-shadow-[0_0_10px_rgba(37,244,106,0.8)]" cx="50" cy="50" fill="none" r="45" stroke="#25f46a" stroke-dasharray="283" stroke-dashoffset="252" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<!-- Center Data -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+<span class="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest mb-2">Current Raised</span>
+<div class="text-4xl md:text-6xl font-bold text-white font-mono tracking-tighter tabular-nums flex flex-col items-center">
+<div class="flex items-baseline">
+<span class="text-2xl md:text-3xl text-slate-500 mr-1">₹</span>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-slate-400">12,45,00,000</span>
+</div>
+</div>
+<div class="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent my-4"></div>
+<span class="text-slate-400 text-sm md:text-base font-medium uppercase tracking-widest mb-1">Target Goal</span>
+<span class="text-xl md:text-2xl font-bold text-gold tracking-wide">₹111,00,00,000</span>
+<div class="mt-6 px-4 py-1.5 bg-[#1f2937]/80 rounded border border-primary/30 text-primary text-sm font-mono flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] animate-bounce">arrow_upward</span>
+<span>+ ₹25L in last hour</span>
+</div>
+</div>
+</div>
+<!-- Floating Abstract Orbs (Visual Interest) -->
+<div class="absolute top-10 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+<div class="absolute bottom-20 right-20 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-700"></div>
+</div>
+<!-- Bottom Metrics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-8 pb-8">
+<!-- Metric 1 -->
+<div class="glass-panel p-5 rounded-lg border-l-4 border-l-primary flex flex-col gap-1">
+<span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Current AUM</span>
+<span class="text-2xl font-bold text-white font-mono">₹12.45 Cr</span>
+<span class="text-xs text-primary">+2.4% today</span>
+</div>
+<!-- Metric 2 -->
+<div class="glass-panel p-5 rounded-lg border-l-4 border-l-blue-500 flex flex-col gap-1">
+<span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Total Transactions</span>
+<span class="text-2xl font-bold text-white font-mono">1,892</span>
+<span class="text-xs text-slate-400">Since inception</span>
+</div>
+<!-- Metric 3 -->
+<div class="glass-panel p-5 rounded-lg border-l-4 border-l-gold flex flex-col gap-1">
+<span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Pre-IPO Valuation</span>
+<span class="text-2xl font-bold text-gold font-mono">₹450 Cr</span>
+<span class="text-xs text-slate-400">Estimated</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: Transactions -->
+<aside class="w-[360px] hidden lg:flex flex-col border-l border-white/5 bg-card-dark z-10">
+<div class="p-5 border-b border-white/5 bg-background-dark/95 backdrop-blur sticky top-0">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gold text-[20px]">history_edu</span>
+<h3 class="text-slate-200 font-bold text-sm tracking-wider uppercase">Immutable Ledger</h3>
+</div>
+<button class="text-xs text-primary hover:text-white transition-colors">View All</button>
+</div>
+<p class="text-[11px] text-slate-500">Real-time hashed transaction feed via WebSocket.</p>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-2">
+<!-- Transaction Item 1 (Just Now) -->
+<div class="group relative p-3 rounded bg-white/[0.03] hover:bg-white/[0.06] border border-transparent hover:border-primary/20 transition-all cursor-default">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l animate-pulse"></div>
+<div class="flex justify-between items-start mb-1 pl-2">
+<span class="text-xs font-mono text-slate-400">0x7f...3a2</span>
+<span class="text-[10px] text-primary bg-primary/10 px-1.5 py-0.5 rounded border border-primary/10">Just now</span>
+</div>
+<div class="flex justify-between items-end pl-2">
+<div>
+<div class="text-sm font-bold text-white">₹5,00,000</div>
+<div class="text-[10px] text-gold uppercase tracking-wider font-bold mt-0.5">Sovereign Tier</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-[16px]">verified</span>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="group relative p-3 rounded bg-white/[0.02] hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-default">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs font-mono text-slate-500">0x4b...e91</span>
+<span class="text-[10px] text-slate-500">2 mins ago</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-sm font-bold text-slate-200">₹25,00,000</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">HNI Investor</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-[16px]">verified</span>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="group relative p-3 rounded bg-white/[0.02] hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-default">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs font-mono text-slate-500">0x9a...c44</span>
+<span class="text-[10px] text-slate-500">5 mins ago</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-sm font-bold text-slate-200">₹1,50,000</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Retail Tier</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-[16px]">verified</span>
+</div>
+</div>
+<!-- Transaction Item 4 -->
+<div class="group relative p-3 rounded bg-white/[0.02] hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-default">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs font-mono text-slate-500">0x1d...f22</span>
+<span class="text-[10px] text-slate-500">12 mins ago</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-sm font-bold text-slate-200">₹10,00,000</div>
+<div class="text-[10px] text-gold uppercase tracking-wider font-bold mt-0.5">Sovereign Tier</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-[16px]">verified</span>
+</div>
+</div>
+<!-- Transaction Item 5 -->
+<div class="group relative p-3 rounded bg-white/[0.02] hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-default">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs font-mono text-slate-500">0x88...b01</span>
+<span class="text-[10px] text-slate-500">18 mins ago</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-sm font-bold text-slate-200">₹50,000</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Retail Tier</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-[16px]">verified</span>
+</div>
+</div>
+<!-- Transaction Item 6 -->
+<div class="group relative p-3 rounded bg-white/[0.02] hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all cursor-default">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs font-mono text-slate-500">0x2c...a99</span>
+<span class="text-[10px] text-slate-500">24 mins ago</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<div class="text-sm font-bold text-slate-200">₹2,00,000</div>
+<div class="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Retail Tier</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-[16px]">verified</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-white/5 bg-background-dark/95">
+<button class="w-full flex items-center justify-center gap-2 py-2 rounded border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                    Export Ledger (CSV)
+                </button>
+</div>
+</aside>
+</main>
+<!-- Footer Status Bar -->
+<footer class="bg-[#0f151c] border-t border-white/5 px-6 py-2 flex items-center justify-between text-[10px] text-slate-500 uppercase tracking-wider font-medium z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+<span>All Systems Operational</span>
+</div>
+<span>Build v2.4.1 (Stable)</span>
+</div>
+<div class="flex items-center gap-4">
+<span>Data updated via Secure WebSocket</span>
+<span class="text-slate-600">|</span>
+<span>Server Time: 14:32:01 IST</span>
+</div>
+</footer>
+</body></html>

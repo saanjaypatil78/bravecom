@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "./cinematic-animations.css";
+
+@theme {
+  --color-primary: #1173d4;
+  --color-background-light: #f6f7f8;
+  --color-background-dark: #101922;
+  --font-display: "Inter", sans-serif;
+}
+
+:root {
+  --foreground: #171717;
+  --background: #f6f7f8;
+}
+
+.dark {
+  --foreground: #e2e8f0;
+  --background: #101922;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(17, 115, 212, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 4px rgba(17, 115, 212, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Level card accents */
+.level-1 {
+  border-left-color: #1173d4;
+}
+
+.level-2 {
+  border-left-color: #60a5fa;
+}
+
+.level-3 {
+  border-left-color: #818cf8;
+}
+
+.level-4 {
+  border-left-color: #94a3b8;
+}
+
+.level-5 {
+  border-left-color: #94a3b8;
+}
+
+.level-6 {
+  border-left-color: #94a3b8;
+}

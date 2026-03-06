@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Franchise Management Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#1A2632",
+                        "surface-light": "#FFFFFF",
+                        "border-dark": "#283039",
+                        "border-light": "#E5E7EB",
+                        "text-secondary-dark": "#9dabb9",
+                        "text-secondary-light": "#64748B",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for dark mode */
+        .dark ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Sidebar Navigation -->
+<aside class="w-72 hidden lg:flex flex-col border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-background-dark flex-shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-3xl">token</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-lg font-bold leading-tight">InvestFlow</h1>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">Enterprise Admin</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">groups</span>
+<span class="text-sm font-bold">Franchise Mgmt</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">work</span>
+<span class="text-sm font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">payments</span>
+<span class="text-sm font-medium">Commissions</span>
+</a>
+<div class="my-2 border-t border-border-light dark:border-border-dark"></div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-gray-50 dark:bg-surface-dark">
+<div class="h-10 w-10 rounded-full bg-cover bg-center" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlzJaeKi9XkAbh9ZKn2u1kMAdQg07CMmInZqoCPwHzLhN8dRG9lpRPSq9h94XnCrE__ANyk7Gi5yGkX-IGwAbz6E96OzOc--CR_eLfp2gTrKqdE-hKOFELKOQX40nm2b4sXewsZVTSDpRtAcXLxNeoR4Dv03jJv3RND2-1XBnhpEhCqsUBYTOSOHZmIm_v88y8TtfofuEiaehNq9X3DfcuHB3ikMeXEuutiCCJoM_7JUzWAZjFWIKYexUa2DuuhgGS_dhNriFIvHB8')"></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold truncate text-slate-900 dark:text-white">Alex Morgan</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">alex.m@investflow.com</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative">
+<!-- Top Header -->
+<header class="flex items-center justify-between px-6 py-5 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-background-dark z-10">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-xs text-text-secondary-light dark:text-text-secondary-dark">
+<span>Home</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-primary font-medium">Franchise Management</span>
+</div>
+<h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Regional Partners</h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center h-10 w-10 rounded-full hover:bg-gray-100 dark:hover:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center h-10 px-4 rounded-lg bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark text-sm font-bold hover:bg-gray-50 dark:hover:bg-[#253341] transition-colors">
+<span class="material-symbols-outlined mr-2 text-base">download</span>
+                        Export Report
+                    </button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-8">
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- KPI 1 -->
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium">Total Franchise Partners</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg text-xl">handshake</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">124</p>
+<p class="text-[#0bda5b] text-sm font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                    +5%
+                                </p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">Active across 12 regions</p>
+</div>
+<!-- KPI 2 -->
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium">Total Franchise AUM</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg text-xl">monitoring</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">$45.2M</p>
+<p class="text-[#0bda5b] text-sm font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                    +12%
+                                </p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">Assets Under Management</p>
+</div>
+<!-- KPI 3 -->
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm relative overflow-hidden">
+<div class="absolute right-0 top-0 w-24 h-24 bg-orange-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-center justify-between mb-2 relative z-10">
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium">Pending Payouts</p>
+<span class="material-symbols-outlined text-orange-500 bg-orange-500/10 p-1.5 rounded-lg text-xl">pending</span>
+</div>
+<div class="flex items-end gap-3 relative z-10">
+<p class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">$12,500</p>
+<p class="text-orange-500 text-sm font-bold mb-1 flex items-center">
+                                    Due in 3 days
+                                </p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1 relative z-10">Commission Cycle: Oct 2023</p>
+</div>
+</div>
+<!-- Main Action Bar & Table Section -->
+<div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm">
+<!-- Toolbar -->
+<div class="p-4 border-b border-border-light dark:border-border-dark flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+<!-- Search & Filters -->
+<div class="flex flex-1 w-full sm:w-auto gap-3">
+<div class="relative flex-1 sm:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark text-xl">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-gray-50 dark:bg-background-dark border border-border-light dark:border-border-dark text-sm text-slate-900 dark:text-white placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Search franchise, region, or ID..." type="text"/>
+</div>
+<button class="h-10 px-3 rounded-lg bg-gray-50 dark:bg-background-dark border border-border-light dark:border-border-dark flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-[#1c252e] transition-colors">
+<span class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">filter_list</span>
+<span class="text-sm font-medium hidden md:inline">Filters</span>
+</button>
+</div>
+<!-- Primary Action -->
+<button class="h-10 px-4 bg-primary hover:bg-blue-600 text-white text-sm font-bold rounded-lg flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined text-xl">add</span>
+                                Add New Franchise
+                            </button>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 dark:bg-background-dark/50 border-b border-border-light dark:border-border-dark">
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark w-1/4">Franchise Partner</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark">Region</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark text-right">Investors</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark text-right">Total AUM</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark">Commission Tier</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark text-sm">
+<!-- Row 1 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 font-bold text-xs" data-alt="Initials Avatar">AC</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">Apex Capital North</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-2094</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            North America (East)
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            45
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $5,240,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-400/10 text-yellow-600 dark:text-yellow-400 border border-yellow-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                                Gold (2.5%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-bold text-xs" data-alt="Initials Avatar">SV</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">Silicon Valley Partners</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-2095</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            North America (West)
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            32
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $8,150,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-400/10 text-purple-600 dark:text-purple-400 border border-purple-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                                Platinum (3.0%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-300 font-bold text-xs" data-alt="Initials Avatar">LE</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">London Equity Grp</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-3002</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            EMEA (UK)
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            18
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $2,900,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-400/10 text-slate-600 dark:text-slate-400 border border-slate-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                                Silver (2.0%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-300 font-bold text-xs" data-alt="Initials Avatar">TA</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">Tokyo Alpha</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-4101</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            APAC (Japan)
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            29
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $3,450,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-400/10 text-yellow-600 dark:text-yellow-400 border border-yellow-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                                Gold (2.5%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-300 font-bold text-xs" data-alt="Initials Avatar">BF</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">Berlin FinTech</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-3022</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            EMEA (Germany)
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            12
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $1,200,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-400/10 text-slate-600 dark:text-slate-400 border border-slate-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                                Silver (2.0%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-[#1c252e] transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-300 font-bold text-xs" data-alt="Initials Avatar">DB</div>
+<div class="flex flex-col">
+<span class="font-semibold text-slate-900 dark:text-white">Dubai Brokers</span>
+<span class="text-xs text-text-secondary-light dark:text-text-secondary-dark">ID: #FR-5120</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-slate-700 dark:text-slate-300">
+                                            MENA
+                                        </td>
+<td class="py-4 px-6 text-right font-medium text-slate-900 dark:text-white">
+                                            54
+                                        </td>
+<td class="py-4 px-6 text-right font-bold text-slate-900 dark:text-white">
+                                            $12,800,000
+                                        </td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-400/10 text-purple-600 dark:text-purple-400 border border-purple-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                                Platinum (3.0%)
+                                            </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-blue-400 font-medium text-xs px-3 py-1.5 rounded hover:bg-primary/10 transition-colors">
+                                                View Performance
+                                            </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-border-light dark:border-border-dark flex items-center justify-between">
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">Showing 1-6 of 124 partners</p>
+<div class="flex gap-2">
+<button class="h-8 w-8 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-background-dark disabled:opacity-50">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-background-dark text-xs">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-background-dark text-xs">3</button>
+<span class="h-8 w-8 flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark">...</span>
+<button class="h-8 w-8 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-background-dark">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Hidden Modal Code (Simulated Structure) -->
+<!-- 
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="w-full max-w-lg bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl border border-border-light dark:border-border-dark overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-border-light dark:border-border-dark">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Add New Franchise</h3>
+                <button class="text-text-secondary-light dark:text-text-secondary-dark hover:text-slate-900 dark:hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase">Franchise Name</label>
+                    <input type="text" class="w-full h-10 rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 text-sm text-white focus:ring-primary" placeholder="e.g. Apex Capital">
+                </div>
+                 <div class="flex flex-col gap-1">
+                    <label class="text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase">Region</label>
+                    <select class="w-full h-10 rounded-lg bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 text-sm text-white focus:ring-primary">
+                        <option>North America</option>
+                        <option>EMEA</option>
+                        <option>APAC</option>
+                    </select>
+                </div>
+            </div>
+            <div class="p-6 border-t border-border-light dark:border-border-dark flex justify-end gap-3">
+                <button class="px-4 py-2 rounded-lg text-sm font-bold text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-dark">Cancel</button>
+                <button class="px-4 py-2 rounded-lg text-sm font-bold bg-primary text-white">Create Franchise</button>
+            </div>
+        </div>
+    </div>
+    -->
+</body></html>

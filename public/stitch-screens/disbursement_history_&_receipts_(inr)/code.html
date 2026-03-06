@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Disbursement History &amp; Receipts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e619",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#112111",
+                        "surface-dark": "#1c261c",
+                        "border-dark": "#293829",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #112111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293829; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c533c; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#111811]/95 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">InvestPro SaaS</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg bg-surface-dark border border-border-dark px-4 text-white transition-colors hover:bg-border-dark">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="hidden sm:inline text-sm font-bold">Alerts</span>
+</button>
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-background-dark transition-opacity hover:opacity-90">
+<div class="size-6 rounded-full bg-background-dark/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">person</span>
+</div>
+<span class="hidden sm:inline text-sm font-bold">Profile</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-4 md:p-8 lg:px-12 max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-[#9db89d] mb-6">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Wallets</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-white font-medium">Disbursement History</span>
+</nav>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">Disbursement History</h1>
+<p class="text-[#9db89d] text-base font-normal max-w-2xl">
+                    Track your bi-monthly payouts, monitor deductions, and download official receipts.
+                </p>
+</div>
+<button class="flex h-11 items-center gap-2 rounded-lg bg-surface-dark border border-border-dark px-5 text-white font-bold text-sm transition-all hover:bg-border-dark hover:border-primary/50 group">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">download</span>
+                Export All Data (CSV)
+            </button>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<!-- Card 1 -->
+<div class="relative overflow-hidden rounded-xl border border-border-dark bg-surface-dark p-6 group transition-all hover:border-primary/30">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">payments</span>
+</div>
+<p class="text-[#9db89d] text-sm font-medium mb-2">Total Payouts Received</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white tracking-tight">₹ 12,45,000</h3>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">+12% YTD</span>
+</div>
+<div class="h-1 w-full bg-border-dark mt-4 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative overflow-hidden rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/30">
+<p class="text-[#9db89d] text-sm font-medium mb-2">Last Payout Amount</p>
+<h3 class="text-3xl font-bold text-white tracking-tight">₹ 45,000</h3>
+<p class="text-[#9db89d] text-sm mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                    Credited on Oct 16, 2023
+                </p>
+</div>
+<!-- Card 3 -->
+<div class="relative overflow-hidden rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/30">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[#9db89d] text-sm font-medium mb-2">Next Scheduled Cycle</p>
+<h3 class="text-2xl font-bold text-white tracking-tight">Cycle A (1-14 Nov)</h3>
+</div>
+<div class="size-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 animate-pulse">
+<span class="material-symbols-outlined">hourglass_top</span>
+</div>
+</div>
+<p class="text-blue-400 text-sm mt-2 font-medium">Processing • Est. Nov 16</p>
+</div>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-col xl:flex-row gap-4 mb-6 bg-surface-dark border border-border-dark rounded-xl p-4">
+<div class="flex flex-1 flex-wrap gap-3">
+<!-- Search -->
+<div class="relative flex-1 min-w-[240px]">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-[#9db89d]">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full bg-background-dark border border-border-dark text-white text-sm rounded-lg pl-10 pr-4 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-[#5c6e5c]" placeholder="Search by Transaction ID..." type="text"/>
+</div>
+<!-- Filter: Year -->
+<div class="relative min-w-[120px]">
+<select class="w-full appearance-none bg-background-dark border border-border-dark text-white text-sm rounded-lg pl-4 pr-10 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
+<option>2023</option>
+<option>2022</option>
+<option>2021</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#9db89d] pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</span>
+</div>
+<!-- Filter: Month -->
+<div class="relative min-w-[140px]">
+<select class="w-full appearance-none bg-background-dark border border-border-dark text-white text-sm rounded-lg pl-4 pr-10 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
+<option value="">All Months</option>
+<option>October</option>
+<option>September</option>
+<option>August</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#9db89d] pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</span>
+</div>
+<!-- Filter: Type -->
+<div class="relative min-w-[180px]">
+<select class="w-full appearance-none bg-background-dark border border-border-dark text-white text-sm rounded-lg pl-4 pr-10 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary cursor-pointer">
+<option value="">All Payout Types</option>
+<option>Standard (30-Day)</option>
+<option>Initial (45-Day)</option>
+</select>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[#9db89d] pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-3 border-t xl:border-t-0 xl:border-l border-border-dark pt-3 xl:pt-0 xl:pl-4">
+<span class="text-[#9db89d] text-sm whitespace-nowrap">Sort by:</span>
+<button class="text-white text-sm font-medium hover:text-primary flex items-center gap-1">
+                    Date (Newest)
+                    <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="w-full overflow-hidden rounded-xl border border-border-dark bg-surface-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-background-dark border-b border-border-dark">
+<tr>
+<th class="px-6 py-4 font-semibold text-[#9db89d]">Payout Date</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d]">Transaction ID</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d]">Cycle</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d]">
+<div class="flex items-center gap-1">
+                                    Type
+                                    <span class="material-symbols-outlined text-[14px] text-[#5c6e5c] cursor-help" title="Initial payouts have a 45-day waiting period.">info</span>
+</div>
+</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d] text-right">Gross Amount</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d] text-right">Deductions</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d] text-right">Net Credited</th>
+<th class="px-6 py-4 font-semibold text-[#9db89d] text-center">Receipt</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<!-- Row 1 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-white font-medium whitespace-nowrap">Oct 16, 2023</td>
+<td class="px-6 py-4 text-[#9db89d] font-mono text-xs">TXN-882910-AQ</td>
+<td class="px-6 py-4 text-white">Cycle B (15-31)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-medium text-blue-400 border border-blue-500/20">
+                                    Monthly 30-Day
+                                </span>
+</td>
+<td class="px-6 py-4 text-right text-white tabular-nums">₹ 50,000</td>
+<td class="px-6 py-4 text-right text-red-400/80 tabular-nums">- ₹ 5,000</td>
+<td class="px-6 py-4 text-right font-bold text-primary tabular-nums">₹ 45,000</td>
+<td class="px-6 py-4 text-center">
+<button class="text-[#9db89d] hover:text-white hover:bg-border-dark p-2 rounded-lg transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">description</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-white font-medium whitespace-nowrap">Oct 01, 2023</td>
+<td class="px-6 py-4 text-[#9db89d] font-mono text-xs">TXN-772109-BB</td>
+<td class="px-6 py-4 text-white">Cycle A (1-14)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-medium text-blue-400 border border-blue-500/20">
+                                    Monthly 30-Day
+                                </span>
+</td>
+<td class="px-6 py-4 text-right text-white tabular-nums">₹ 52,000</td>
+<td class="px-6 py-4 text-right text-red-400/80 tabular-nums">- ₹ 5,200</td>
+<td class="px-6 py-4 text-right font-bold text-primary tabular-nums">₹ 46,800</td>
+<td class="px-6 py-4 text-center">
+<button class="text-[#9db89d] hover:text-white hover:bg-border-dark p-2 rounded-lg transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">description</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-white font-medium whitespace-nowrap">Sep 16, 2023</td>
+<td class="px-6 py-4 text-[#9db89d] font-mono text-xs">TXN-661092-CC</td>
+<td class="px-6 py-4 text-white">Cycle B (15-31)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-medium text-blue-400 border border-blue-500/20">
+                                    Monthly 30-Day
+                                </span>
+</td>
+<td class="px-6 py-4 text-right text-white tabular-nums">₹ 48,000</td>
+<td class="px-6 py-4 text-right text-red-400/80 tabular-nums">- ₹ 4,800</td>
+<td class="px-6 py-4 text-right font-bold text-primary tabular-nums">₹ 43,200</td>
+<td class="px-6 py-4 text-center">
+<button class="text-[#9db89d] hover:text-white hover:bg-border-dark p-2 rounded-lg transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">description</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Initial 45-Day Type -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-white font-medium whitespace-nowrap">Aug 01, 2023</td>
+<td class="px-6 py-4 text-[#9db89d] font-mono text-xs">TXN-559012-DD</td>
+<td class="px-6 py-4 text-white">Cycle A (1-14)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-purple-500/10 px-2.5 py-0.5 text-xs font-medium text-purple-400 border border-purple-500/20">
+                                    Initial 45-Day
+                                </span>
+</td>
+<td class="px-6 py-4 text-right text-white tabular-nums">₹ 75,000</td>
+<td class="px-6 py-4 text-right text-red-400/80 tabular-nums">- ₹ 7,500</td>
+<td class="px-6 py-4 text-right font-bold text-primary tabular-nums">₹ 67,500</td>
+<td class="px-6 py-4 text-center">
+<button class="text-[#9db89d] hover:text-white hover:bg-border-dark p-2 rounded-lg transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">description</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-white font-medium whitespace-nowrap">Jun 16, 2023</td>
+<td class="px-6 py-4 text-[#9db89d] font-mono text-xs">TXN-441209-EE</td>
+<td class="px-6 py-4 text-white">Cycle B (15-31)</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-medium text-blue-400 border border-blue-500/20">
+                                    Monthly 30-Day
+                                </span>
+</td>
+<td class="px-6 py-4 text-right text-white tabular-nums">₹ 45,000</td>
+<td class="px-6 py-4 text-right text-red-400/80 tabular-nums">- ₹ 4,500</td>
+<td class="px-6 py-4 text-right font-bold text-primary tabular-nums">₹ 40,500</td>
+<td class="px-6 py-4 text-center">
+<button class="text-[#9db89d] hover:text-white hover:bg-border-dark p-2 rounded-lg transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">description</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border-dark bg-background-dark/50 px-6 py-4">
+<div class="text-sm text-[#9db89d]">
+                    Showing <span class="font-medium text-white">1</span> to <span class="font-medium text-white">5</span> of <span class="font-medium text-white">24</span> entries
+                </div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-lg border border-border-dark bg-surface-dark px-3 py-2 text-sm font-medium text-white hover:bg-border-dark disabled:opacity-50">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                        Previous
+                    </button>
+<div class="hidden sm:flex gap-1">
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-background-dark font-bold text-sm">1</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-white hover:bg-border-dark text-sm">2</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-white hover:bg-border-dark text-sm">3</button>
+<span class="flex h-9 w-9 items-center justify-center text-[#9db89d]">...</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-white hover:bg-border-dark text-sm">8</button>
+</div>
+<button class="flex items-center justify-center rounded-lg border border-border-dark bg-surface-dark px-3 py-2 text-sm font-medium text-white hover:bg-border-dark">
+                        Next
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

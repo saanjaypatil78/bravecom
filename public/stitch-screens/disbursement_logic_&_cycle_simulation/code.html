@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Disbursement Logic &amp; Cycle Simulation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "primary-light": "#eef6fd",
+                        "primary-dark": "#0e5a9c",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2632",
+                        "text-primary": "#111418",
+                        "text-secondary": "#637588",
+                        "border-light": "#f0f2f4",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light text-text-primary font-display antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="bg-surface-light border-b border-border-light sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo Area -->
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900">InvestAdmin</h2>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-6">
+<div class="flex gap-2">
+<button class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+<div class="size-9 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Admin user avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxJBUvZnU9uZB36la74PIlONtBp5aLumlgbIAAVmPrqYKr-ibAibZoXMgHgZFPcyQxobkV7IEtDlnV9_h2er6qg9hEvk-_wt5CgGTqX0j_3lIX_XxZZnQys08Pynaoyi5ARhtWJoqEvjVRkJVcIZ73kdhnGXDSPepXngLKL-iRwMk7Dp_u6nckhKVsRQdWMAXTMniHalGdZLZHqsmtK7--Tr8tjwwv1dOAWaZWpobcEXul0uni4N2BCXcY2QKADn9m-vcnbFtwt9wv"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex mb-6">
+<ol class="flex items-center space-x-2">
+<li><a class="text-text-secondary hover:text-primary text-sm font-medium" href="#">Home</a></li>
+<li class="text-text-secondary">/</li>
+<li><a class="text-text-secondary hover:text-primary text-sm font-medium" href="#">Admin</a></li>
+<li class="text-text-secondary">/</li>
+<li aria-current="page" class="text-text-primary text-sm font-medium">Payout Logic Configuration</li>
+</ol>
+</nav>
+<!-- Page Header -->
+<div class="mb-10">
+<h1 class="text-3xl font-bold text-slate-900 mb-2">Disbursement Logic &amp; Cycle Simulation</h1>
+<p class="text-text-secondary text-lg max-w-3xl">Configure payout cycles, visualize disbursement windows, and simulate payment schedules based on entry dates.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+<!-- Cycle Visualization (Left Column - Spans 2) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Disbursement Windows Cards -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                            Disbursement Windows
+                        </h2>
+<span class="text-xs font-semibold uppercase tracking-wider text-text-secondary bg-slate-100 px-2 py-1 rounded">Active Configuration</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Cycle A -->
+<div class="bg-surface-light rounded-xl border border-slate-200 p-6 shadow-sm relative overflow-hidden group hover:border-primary/50 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">looks_one</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm font-semibold text-text-secondary uppercase tracking-wider">Cycle A (Monthly)</span>
+</div>
+<div class="text-3xl font-bold text-slate-900 mb-1">1st - 14th</div>
+<p class="text-text-secondary text-sm">Processed mid-month. Covers entries maturing before the 14th.</p>
+</div>
+</div>
+<!-- Cycle B -->
+<div class="bg-surface-light rounded-xl border border-slate-200 p-6 shadow-sm relative overflow-hidden group hover:border-emerald-500/50 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-emerald-600">looks_two</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-sm font-semibold text-text-secondary uppercase tracking-wider">Cycle B (Monthly)</span>
+</div>
+<div class="text-3xl font-bold text-slate-900 mb-1">15th - End</div>
+<p class="text-text-secondary text-sm">Processed end-of-month. Covers entries maturing after the 15th.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Simulation Tool -->
+<section class="bg-surface-light rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h2 class="text-lg font-bold text-slate-900">Payout Simulator</h2>
+<p class="text-sm text-text-secondary">Test the 45-day rule logic against specific entry dates.</p>
+</div>
+<div class="flex gap-3">
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 sm:text-sm" type="date" value="2024-03-05"/>
+</div>
+<button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+<span class="material-symbols-outlined text-lg mr-2">play_arrow</span>
+                                Run Simulation
+                            </button>
+</div>
+</div>
+<!-- Simulation Result Display -->
+<div class="p-8">
+<!-- Timeline Graphic -->
+<div class="relative py-8">
+<!-- Connecting Line -->
+<div class="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -translate-y-1/2 rounded-full z-0"></div>
+<!-- Timeline Nodes -->
+<div class="relative z-10 flex justify-between">
+<!-- Step 1: Entry -->
+<div class="flex flex-col items-center group">
+<div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-md mb-3 ring-4 ring-white">
+<span class="material-symbols-outlined text-sm">login</span>
+</div>
+<div class="text-center">
+<div class="text-xs font-semibold text-text-secondary uppercase mb-1">Entry Date</div>
+<div class="font-bold text-slate-900">Mar 5, 2024</div>
+<div class="text-xs text-text-secondary mt-1">Invested: ₹1,00,000</div>
+</div>
+</div>
+<!-- Step 2: Bridge -->
+<div class="flex flex-col items-center justify-center">
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold border border-primary/20 flex items-center gap-1 mb-8">
+<span class="material-symbols-outlined text-sm">lock_clock</span>
+                                        45 Days Lock-in
+                                    </div>
+</div>
+<!-- Step 3: Maturity -->
+<div class="flex flex-col items-center group">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center mb-3 ring-4 ring-white">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</div>
+<div class="text-center">
+<div class="text-xs font-semibold text-text-secondary uppercase mb-1">Maturity</div>
+<div class="font-bold text-slate-600">Apr 19, 2024</div>
+<div class="text-xs text-text-secondary mt-1">Logic Check</div>
+</div>
+</div>
+<!-- Step 4: Logic Decision -->
+<div class="flex flex-col items-center justify-center">
+<div class="text-emerald-600 text-xs font-bold mb-8 flex flex-col items-center">
+<span class="material-symbols-outlined mb-1">arrow_forward</span>
+                                        Next Window
+                                    </div>
+</div>
+<!-- Step 5: Payout -->
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 mb-3 ring-4 ring-white animate-pulse">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="text-center">
+<div class="text-xs font-semibold text-primary uppercase mb-1">First Payout</div>
+<div class="font-bold text-slate-900 text-lg">Apr 20, 2024</div>
+<div class="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded mt-1 font-medium">
+<span class="material-symbols-outlined text-[10px]">cycle</span>
+                                            Cycle B
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Breakdown Table -->
+<div class="mt-8 bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+<table class="min-w-full divide-y divide-slate-200">
+<thead class="bg-slate-100">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider" scope="col">Milestone</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider" scope="col">Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider" scope="col">Note</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Entry Date</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">March 5th</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Start of contract</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">45-Day Mark</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">April 19th</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Eligibility threshold</td>
+</tr>
+<tr class="bg-primary/5">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-primary">First Payout</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-primary">April 20th</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-primary">Falls in Cycle B (15th-End)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+<!-- Smart Rules Sidebar (Right Column) -->
+<div class="space-y-6">
+<!-- Smart Rules Panel -->
+<div class="bg-surface-light rounded-xl border border-slate-200 shadow-sm p-6">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500">lightbulb</span>
+                        Smart Rules
+                    </h3>
+<div class="space-y-4">
+<!-- Rule 1 -->
+<div class="flex gap-3 items-start p-3 bg-slate-50 rounded-lg border border-slate-100">
+<div class="min-w-[24px] mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">verified</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">45-Day First Payout</h4>
+<p class="text-xs text-text-secondary mt-1 leading-relaxed">First investment payout is strictly locked for 45 days from the Entry Date. No disbursements occur before this maturity.</p>
+</div>
+</div>
+<!-- Rule 2 -->
+<div class="flex gap-3 items-start p-3 bg-slate-50 rounded-lg border border-slate-100">
+<div class="min-w-[24px] mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">update</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Bi-Monthly Settlement</h4>
+<p class="text-xs text-text-secondary mt-1 leading-relaxed">System automatically assigns the payout to the nearest open window (Cycle A or B) post-maturity.</p>
+</div>
+</div>
+<!-- Rule 3 -->
+<div class="flex gap-3 items-start p-3 bg-slate-50 rounded-lg border border-slate-100">
+<div class="min-w-[24px] mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">event_repeat</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900">Recurring 30-Day Cycle</h4>
+<p class="text-xs text-text-secondary mt-1 leading-relaxed">Subsequent profits are calculated on a 30-day cycle and paid out in the aligned window.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Calculator -->
+<div class="bg-surface-light rounded-xl border border-slate-200 shadow-sm p-6">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-600">calculate</span>
+                        Profit Estimator
+                    </h3>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-medium text-text-secondary mb-1">Principal Amount (₹)</label>
+<div class="relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-slate-500 sm:text-sm">₹</span>
+</div>
+<input class="block w-full rounded-md border-slate-300 pl-7 pr-12 focus:border-primary focus:ring-primary sm:text-sm" id="price" name="price" placeholder="1,00,000" type="text" value="1,00,000"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="text-slate-500 sm:text-sm">INR</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-xs font-medium text-text-secondary mb-1">Interest Rate (Annual %)</label>
+<input class="block w-full rounded-md border-slate-300 focus:border-primary focus:ring-primary sm:text-sm" placeholder="12" type="number" value="18"/>
+</div>
+<div class="pt-4 border-t border-slate-100">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm text-text-secondary">Est. Monthly Payout</span>
+<span class="text-lg font-bold text-slate-900">₹1,500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-text-secondary">First Payout Total (inc. 15d bonus)</span>
+<span class="text-sm font-semibold text-emerald-600">₹2,250</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Projected Calendar View -->
+<section class="bg-surface-light rounded-xl border border-slate-200 shadow-sm p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-slate-900">Projected Disbursement Calendar</h3>
+<div class="flex gap-2">
+<button class="text-text-secondary hover:text-slate-900 p-1">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="text-sm font-bold text-slate-900 self-center">April 2024</span>
+<button class="text-text-secondary hover:text-slate-900 p-1">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-px bg-slate-200 rounded-lg overflow-hidden border border-slate-200">
+<!-- Days Header -->
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Sun</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Mon</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Tue</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Wed</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Thu</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Fri</div>
+<div class="bg-slate-50 p-2 text-center text-xs font-semibold text-text-secondary">Sat</div>
+<!-- Calendar Days (Mockup for April 2024 starts Mon) -->
+<div class="bg-white h-24 p-2 text-slate-400">31</div>
+<!-- 1st-14th Window (Cycle A) -->
+<div class="bg-slate-50/50 h-24 p-2 relative group hover:bg-slate-100 transition-colors">
+<span class="text-sm font-medium text-slate-700">1</span>
+<div class="absolute bottom-1 right-1">
+<span class="text-[10px] text-slate-400 uppercase font-bold opacity-0 group-hover:opacity-100">Cycle A</span>
+</div>
+</div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">2</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">3</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">4</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">5</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">6</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">7</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">8</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">9</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">10</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">11</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">12</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">13</span></div>
+<div class="bg-slate-50/50 h-24 p-2 relative border-r-4 border-slate-300">
+<span class="text-sm font-medium text-slate-700">14</span>
+<div class="w-full bg-slate-200 text-slate-600 text-[10px] px-1 rounded mt-8 text-center font-bold">End Cycle A</div>
+</div>
+<!-- 15th-30th Window (Cycle B) -->
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">15</span>
+<div class="w-full bg-emerald-100 text-emerald-700 text-[10px] px-1 rounded mt-1 truncate">Window Open</div>
+</div>
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">16</span>
+</div>
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">17</span>
+</div>
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">18</span>
+</div>
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">19</span>
+<div class="absolute inset-1 border-2 border-dashed border-primary rounded flex items-center justify-center bg-primary/5">
+<span class="text-xs font-bold text-primary text-center leading-tight">Maturity<br/>(45d)</span>
+</div>
+</div>
+<div class="bg-primary/10 h-24 p-2 relative ring-2 ring-inset ring-primary">
+<span class="text-sm font-bold text-primary">20</span>
+<div class="w-full bg-primary text-white text-[10px] px-1 rounded mt-1 font-bold text-center shadow-sm">PAYOUT</div>
+<div class="text-[10px] text-primary text-center mt-1">₹2,250</div>
+</div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">21</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">22</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">23</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">24</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">25</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">26</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">27</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">28</span></div>
+<div class="bg-white h-24 p-2 relative"><span class="text-sm font-medium text-slate-700">29</span></div>
+<div class="bg-white h-24 p-2 relative">
+<span class="text-sm font-medium text-slate-700">30</span>
+<div class="w-full bg-emerald-100 text-emerald-700 text-[10px] px-1 rounded mt-8 text-center font-bold">End Cycle B</div>
+</div>
+<!-- Blank days for end of month grid -->
+<div class="bg-slate-50/30 h-24 p-2 text-slate-300">1</div>
+<div class="bg-slate-50/30 h-24 p-2 text-slate-300">2</div>
+<div class="bg-slate-50/30 h-24 p-2 text-slate-300">3</div>
+<div class="bg-slate-50/30 h-24 p-2 text-slate-300">4</div>
+</div>
+<div class="mt-4 flex gap-6 text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-slate-100 border border-slate-300 rounded"></div>
+<span class="text-text-secondary">Cycle A (1-14)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-white border border-slate-200 rounded"></div>
+<span class="text-text-secondary">Cycle B (15-End)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded"></div>
+<span class="text-text-secondary font-medium text-slate-900">Projected Payout Date</span>
+</div>
+</div>
+</section>
+</main>
+</body></html>

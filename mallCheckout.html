@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Mall: Secure Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f2b90d",
+              "background-light": "#f8f8f5",
+              "background-dark": "#221e10",
+              "primary-dark": "#d4a00b",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem", 
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header Section -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a170d] px-10 py-4 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Sovereign Mall</h2>
+</div>
+<label class="hidden lg:flex flex-col min-w-64 !h-10 w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-slate-700 focus-within:border-primary transition-colors">
+<div class="text-slate-500 dark:text-slate-400 flex border-none bg-slate-50 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-slate-50 dark:bg-slate-800 focus:border-none h-full placeholder:text-slate-400 px-4 pl-2 text-sm font-medium leading-normal" placeholder="Search investments..."/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-700 dark:text-slate-300 hover:text-primary text-sm font-bold transition-colors" href="#">Mall</a>
+<a class="text-slate-700 dark:text-slate-300 hover:text-primary text-sm font-bold transition-colors" href="#">My Portfolio</a>
+<a class="text-slate-700 dark:text-slate-300 hover:text-primary text-sm font-bold transition-colors" href="#">ROI Wallet</a>
+</div>
+<div class="flex gap-3">
+<button class="relative flex size-10 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-primary ring-2 ring-white dark:ring-[#1a170d]"></span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 overflow-hidden ring-2 ring-slate-100 dark:ring-slate-700">
+<div class="bg-center bg-no-repeat bg-cover w-full h-full" data-alt="User profile photo showing a smiling professional man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHNWTJeXWaydoHWBOm2UD99HLQXXmqhV0W4iVZP6d5oaRcs4U71caLbg0PpuUUxdk4vjufbX8KhdSo_Ytp6i7AyG6w4DbxlgEifKOpHszfsaiBV_MaU3VeMILINJNurrQSj60l-C_ZzYMZtTmJWPftEvAMjdoWwke8JnE0hYXkCSxajMlyZCERDH9kJVXR2u1unjArUpOTHXRptFVejPP1HlkUgfNRYG2fELXiFuZzYg7n-E-ynasWGOSc50EKbMbZivEwBaPFuLF5");'></div>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex justify-center py-10 px-4 md:px-10">
+<div class="w-full max-w-7xl flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
+<a class="hover:text-primary" href="#">Mall</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Cart</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100">Checkout</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Secure Checkout</h1>
+<p class="text-slate-600 dark:text-slate-400">Complete your sovereign investment acquisition securely.</p>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 border border-primary/30 rounded-full text-primary-dark dark:text-primary text-sm font-bold">
+<span class="material-symbols-outlined text-base">verified_user</span>
+                        Sovereign Verified Transaction
+                    </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Checkout Steps -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Step 1: Cart Review -->
+<div class="bg-white dark:bg-[#1a170d] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group">
+<div class="flex justify-between items-center p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+<h2 class="text-xl font-bold flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-primary text-white text-sm font-bold">1</span>
+                                    Review Your Cart
+                                </h2>
+<button class="text-sm font-bold text-primary hover:text-primary-dark underline decoration-2 underline-offset-4">Edit Cart</button>
+</div>
+<div class="p-6 flex flex-col gap-6">
+<!-- Tier Group 1 -->
+<div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="bg-slate-100 dark:bg-slate-800 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+<span>Tier 5: Executive</span>
+<span class="bg-primary/20 text-primary-dark dark:text-primary px-2 py-0.5 rounded text-[10px]">High Yield</span>
+</div>
+<div class="p-4 flex gap-4 items-center">
+<div class="h-20 w-20 rounded-lg bg-slate-200 dark:bg-slate-700 overflow-hidden flex-shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxury watch display case executive tier item" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBklLi-iGWoYixeh7skgEpSHbLF2ZmqKfY5F-pKZ8OSriOVcL3YvBvyigswnuM8sfzsR_xk9qSJv7vHOdy6l30CbiBbosqmpQiVP6jytuMmjby2pYfQfLjglXvrwVJx95FlUwS1bJ2VYLAE5tft7JDShNyuqW3oFxkxsz6AlEmOZIVaW0HaeapZ-asylqD_Vrzrv1c0oECsBKtVUSGxUkUTpSbiGT4sNlylr9KVfrstIpRcdgnyMCCQk1O9X3NG_UM9q09FFrMUz-i');"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-slate-900 dark:text-white">Executive Gold Bond Series A</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Unit Price: ₹50,000</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-lg text-slate-900 dark:text-white">₹1,00,000</p>
+<p class="text-xs text-slate-500">Qty: 2</p>
+</div>
+</div>
+</div>
+<!-- Tier Group 2 -->
+<div class="border border-primary/40 rounded-xl overflow-hidden ring-1 ring-primary/20 relative">
+<div class="absolute top-0 right-0 size-16 overflow-hidden">
+<div class="absolute top-0 right-0 h-2 w-full bg-primary transform rotate-45 translate-x-4 -translate-y-2"></div>
+</div>
+<div class="bg-yellow-50 dark:bg-yellow-900/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary-dark dark:text-primary border-b border-primary/20 flex justify-between items-center">
+<span>Tier 15: Sovereign</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">stars</span> Premium</span>
+</div>
+<div class="p-4 flex gap-4 items-center bg-yellow-50/10 dark:bg-yellow-900/5">
+<div class="h-20 w-20 rounded-lg bg-slate-200 dark:bg-slate-700 overflow-hidden flex-shrink-0 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Modern high rise building for sovereign tier investment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCr31Es4k2mUsKVMTo4_ZY116RwEjpxND7NA1pJxo-M4sUlobPBQjNGTiY_UxObP492Ekl_VQr_lx-vClgHyYq2FgCH5Mi2DVn2i3z5lIjqjKTyallBL2jp1gwgl5F45mQiKQgIFge5O2vDy7cKuYvQgLKyqdbq81FENsBISrdDj8CFhs9lhlkpQ-jc3YmH-5FGuh1DqeWS1KReHLIyjY4J-n1DphagF0LZko-5DcF7W_kC-6-WLCZdp4n7md2QrX0b02VPCjsjnvCh');"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-slate-900 dark:text-white">Sovereign Estate Fund - Block C</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Unit Price: ₹5,00,000</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-lg text-slate-900 dark:text-white">₹5,00,000</p>
+<p class="text-xs text-slate-500">Qty: 1</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: Payment -->
+<div class="bg-white dark:bg-[#1a170d] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="flex justify-between items-center p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+<h2 class="text-xl font-bold flex items-center gap-3">
+<span class="flex items-center justify-center size-8 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold">2</span>
+                                    Select Payment Method
+                                </h2>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">256-bit Secure</span>
+</div>
+</div>
+<div class="p-6 grid gap-4">
+<!-- ROI Wallet Option -->
+<label class="cursor-pointer relative flex items-center p-5 rounded-xl border-2 border-primary bg-yellow-50/30 dark:bg-yellow-900/10 transition-all hover:shadow-md">
+<input checked="" class="h-5 w-5 text-primary border-slate-300 focus:ring-primary bg-transparent" name="payment" type="radio"/>
+<div class="ml-4 flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-bold text-slate-900 dark:text-white text-lg">ROI Wallet Pay</span>
+<span class="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded">Recommended</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Use your accumulated returns. Instant approval.</p>
+<div class="mt-2 text-xs font-mono text-primary-dark dark:text-primary font-bold">Available Balance: ₹12,45,000</div>
+</div>
+<span class="material-symbols-outlined text-primary text-4xl ml-4">account_balance_wallet</span>
+</label>
+<!-- Standard Banking Option -->
+<label class="cursor-pointer relative flex items-center p-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800/50 transition-all hover:bg-slate-50 dark:hover:bg-slate-800">
+<input class="h-5 w-5 text-primary border-slate-300 focus:ring-primary bg-transparent" name="payment" type="radio"/>
+<div class="ml-4 flex-1">
+<span class="block font-bold text-slate-900 dark:text-white text-lg mb-1">Net Banking / UPI</span>
+<p class="text-sm text-slate-600 dark:text-slate-400">HDFC, ICICI, SBI, Axis &amp; UPI Apps</p>
+</div>
+<div class="flex gap-2 ml-4 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+<span class="material-symbols-outlined text-3xl">qr_code_scanner</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Step 3: Confirmation Preview (Sun Ray Map) -->
+<div class="bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-lg overflow-hidden relative">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#f2b90d 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative p-6 border-b border-slate-700 bg-slate-800/50">
+<h2 class="text-xl font-bold flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined">hub</span>
+                                    Projected Reward Distribution
+                                </h2>
+<p class="text-slate-400 text-sm mt-1">See how this purchase empowers the Sovereign Network up to 6 levels.</p>
+</div>
+<div class="relative p-8 flex flex-col items-center justify-center min-h-[300px]">
+<!-- Sun Ray Visualization -->
+<div class="relative w-full max-w-lg aspect-video flex items-center justify-center">
+<!-- Center Node (You) -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="size-16 rounded-full bg-primary border-4 border-white dark:border-slate-900 shadow-[0_0_20px_rgba(242,185,13,0.6)] flex items-center justify-center text-slate-900 font-black text-xl">
+                                            YOU
+                                        </div>
+<div class="mt-2 bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-primary border border-slate-700">₹6,00,000</div>
+</div>
+<!-- Connecting Rays -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<!-- Ray 1 -->
+<div class="absolute w-[200px] h-0.5 bg-gradient-to-r from-primary to-transparent rotate-[270deg] origin-left translate-y-[-40px]"></div>
+<!-- Ray 2 -->
+<div class="absolute w-[180px] h-0.5 bg-gradient-to-r from-primary/60 to-transparent rotate-[310deg] origin-left translate-y-[-20px]"></div>
+<!-- Ray 3 -->
+<div class="absolute w-[180px] h-0.5 bg-gradient-to-r from-primary/60 to-transparent rotate-[230deg] origin-left translate-y-[-20px]"></div>
+</div>
+<!-- Floating Nodes (Upper Levels) -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+<div class="size-10 rounded-full bg-slate-700 border-2 border-primary/50 flex items-center justify-center text-xs font-bold shadow-lg">L1</div>
+<span class="text-[10px] text-primary mt-1">+₹500</span>
+</div>
+<div class="absolute top-12 left-[70%] flex flex-col items-center">
+<div class="size-8 rounded-full bg-slate-800 border border-primary/30 flex items-center justify-center text-[10px] text-slate-400">L2</div>
+</div>
+<div class="absolute top-12 left-[30%] flex flex-col items-center">
+<div class="size-8 rounded-full bg-slate-800 border border-primary/30 flex items-center justify-center text-[10px] text-slate-400">L3</div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="text-sm text-slate-400 font-medium">Network Impact: <span class="text-white font-bold">Strong</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a170d] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl sticky top-28">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Order Summary</h3>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
+<span>Subtotal (3 items)</span>
+<span class="font-medium text-slate-900 dark:text-slate-200">₹6,00,000</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
+<span>Processing Fee</span>
+<span class="font-medium text-slate-900 dark:text-slate-200">₹1,200</span>
+</div>
+<div class="flex justify-between text-primary-dark dark:text-primary text-sm font-medium">
+<span>Sovereign Discount</span>
+<span>- ₹5,000</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
+<span>Tax (GST 18%)</span>
+<span class="font-medium text-slate-900 dark:text-slate-200">₹1,08,000</span>
+</div>
+<div class="my-2 border-t border-dashed border-slate-300 dark:border-slate-700"></div>
+<div class="flex justify-between items-end">
+<span class="text-base font-bold text-slate-900 dark:text-white">Total Payable</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white">₹7,04,200</span>
+</div>
+<div class="mt-6">
+<button class="w-full bg-primary hover:bg-primary-dark text-slate-900 font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
+<span class="material-symbols-outlined">lock</span>
+                                        Pay Securely
+                                    </button>
+<p class="text-xs text-center text-slate-500 mt-4 leading-relaxed">
+                                        By proceeding, you agree to the <a class="underline hover:text-primary" href="#">Terms of Investment</a> and <a class="underline hover:text-primary" href="#">Network Policy</a>.
+                                    </p>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-center gap-4 text-slate-400 grayscale opacity-70">
+<div class="h-6 w-auto flex items-center gap-1 font-bold text-xs"><span class="material-symbols-outlined">verified</span> VERIFIED</div>
+<div class="h-6 w-auto flex items-center gap-1 font-bold text-xs"><span class="material-symbols-outlined">shield</span> SECURE</div>
+<div class="h-6 w-auto flex items-center gap-1 font-bold text-xs"><span class="material-symbols-outlined">encrypted</span> 256-BIT SSL</div>
+</div>
+</div>
+<!-- Help Box -->
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-[#1a170d]">
+<h4 class="font-bold text-slate-900 dark:text-white text-sm mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+                                Need Assistance?
+                            </h4>
+<p class="text-xs text-slate-500 mb-3">Our Sovereign concierges are available 24/7 to assist with high-value transactions.</p>
+<button class="text-sm font-bold text-primary hover:underline">Chat with Concierge</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="mt-12 py-8 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-10 text-center">
+<p class="text-slate-500 text-sm">© 2024 Sovereign Mall. All rights reserved. Secure Payments by Razorpay &amp; Stripe.</p>
+</div>
+</footer>
+</div>
+</body></html>

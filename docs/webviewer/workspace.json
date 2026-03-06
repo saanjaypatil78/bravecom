@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "project": "WebViewer",
+  "environment": "development",
+  "workspace": {
+    "name": "BRAVEECOM_STITCH",
+    "path": "./docs/webviewer",
+    "autoSync": true,
+    "syncInterval": 300
+  },
+  "global_settings": {
+    "enabled": true,
+    "persistent": true,
+    "debug_mode": true,
+    "log_level": "verbose",
+    "capture_all_requests": true,
+    "performance_monitoring": true,
+    "error_tracking": true
+  },
+  "targets": {
+    "web": {
+      "enabled": true,
+      "url": "http://localhost:3000",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "device_scale_factor": 1
+      },
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "wait_for_network_idle": true,
+      "screenshot_on_error": true
+    },
+    "emulator": {
+      "enabled": true,
+      "platform": "android",
+      "device": "Pixel 7",
+      "api_level": 33,
+      "port": 5555,
+      "avd_name": "braveecom_emulator"
+    },
+    "mobile_app": {
+      "enabled": true,
+      "platform": "android",
+      "app_package": "com.braveecom.stitch",
+      "app_activity": ".MainActivity",
+      "automation_name": "UiAutomator2",
+      "remote_url": "http://localhost:4723"
+    }
+  },
+  "debugging": {
+    "console_log_capture": true,
+    "network_request_logging": true,
+    "js_error_capture": true,
+    "performance_profiling": true,
+    "memory_leak_detection": true,
+    "element_inspection": true,
+    "breakpoints": {
+      "enabled": true,
+      "typescript_support": true,
+      "source_maps": true
+    }
+  },
+  "validation": {
+    "require_testing_approval": true,
+    "min_test_duration": 30,
+    "screenshot_comparison": true,
+    "video_recording": true
+  },
+  "auto_sync": {
+    "enabled": true,
+    "interval_seconds": 300,
+    "sync_on_test_complete": true,
+    "backup_to_cloud": false,
+    "notify_on_failure": true,
+    "recipients": ["dev@braveecom.local"]
+  },
+  "qa_lead": {
+    "name": "opencode",
+    "email": "qa@webviewer.local",
+    "role": "primary_debugger",
+    "ai_assistant": {
+      "enabled": true,
+      "provider": "gemini",
+      "model": "gemini-2.0-pro",
+      "temperature": 0.3,
+      "maxTokens": 4096
+    }
+  },
+  "api_endpoints": {
+    "development": "http://localhost:3000/api/webviewer",
+    "staging": "https://staging.braveecom.com/api/webviewer",
+    "production": "https://braveecom.com/api/webviewer"
+  },
+  "features": {
+    "live_reload": true,
+    "hot_module_replacement": true,
+    "remote_debugging": true,
+    "screen_mirroring": true,
+    "network_throttling": true,
+    "geo_location_simulation": true,
+    "css_inspection": true,
+    "variable_watch": true,
+    "call_stack_navigation": true
+  },
+  "models": {
+    "gemini": {
+      "model": "gemini-2.0-pro",
+      "display_name": "Gemini 2.0 Pro",
+      "context_window": 2000000,
+      "supports_vision": true,
+      "supports_json": true
+    },
+    "gemini_flash": {
+      "model": "gemini-2.0-flash",
+      "display_name": "Gemini 2.0 Flash",
+      "context_window": 1000000,
+      "supports_vision": true,
+      "supports_json": true,
+      "is_default": false
+    }
+  },
+  "debugger": {
+    "enabled": true,
+    "model": "gemini-2.0-pro",
+    "logLevel": "verbose",
+    "capture_all_requests": true,
+    "performance_monitoring": true,
+    "error_tracking": true,
+    "breakpoint_manager": true,
+    "watch_expression": true,
+    "call_stack": true,
+    "network_timing": true
+  }
+}

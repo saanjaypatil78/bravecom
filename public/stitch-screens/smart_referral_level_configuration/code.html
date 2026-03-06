@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Referral Level Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6", // Blue for trust/finance
+                        "primary-dark": "#2563EB",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#0F172A",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B",
+                        "border-light": "#E2E8F0",
+                        "border-dark": "#334155",
+                        "success": "#10B981",
+                        "warning": "#F59E0B",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"], // For financial data
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.375rem",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans min-h-screen transition-colors duration-200">
+<nav class="sticky top-0 z-30 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark px-6 py-3 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-4">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-icons-outlined text-primary text-2xl">account_balance</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight">InvestFlow Admin</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">System Configuration / Referral Tiers</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors">
+<span class="material-icons-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors">
+<span class="material-icons-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+                AD
+            </div>
+</div>
+</nav>
+<main class="p-6 lg:p-8 max-w-[1920px] mx-auto">
+<header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    Smart Referral Level Configuration
+                    <span class="px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs font-medium border border-green-200 dark:border-green-800">Active</span>
+</h2>
+<p class="mt-1 text-slate-600 dark:text-slate-400 max-w-2xl">
+                    Configure the 15-tier AUM growth structure and 6-level referral commission hierarchy. Ensure total payout remains within the 20% cap of the 15% profit margin.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-md text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm">
+<span class="material-icons-outlined text-sm">file_download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-md text-sm font-medium shadow-md transition-colors">
+<span class="material-icons-outlined text-sm">save</span>
+                    Save Configuration
+                </button>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Total AUM Value</p>
+<span class="material-icons-outlined text-primary">analytics</span>
+</div>
+<h3 class="text-2xl font-mono font-bold text-slate-900 dark:text-white">₹ 1,11,11,11,111</h3>
+<div class="mt-2 text-xs text-green-600 dark:text-green-400 flex items-center">
+<span class="material-icons-outlined text-sm mr-1">trending_up</span> +12.5% vs last month
+                </div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Total Commission Payout</p>
+<span class="material-icons-outlined text-warning">payments</span>
+</div>
+<h3 class="text-2xl font-mono font-bold text-slate-900 dark:text-white">₹ 7,47,45,450</h3>
+<div class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                    6.72% of Total Investment
+                </div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Admin Charges Collected</p>
+<span class="material-icons-outlined text-purple-500">verified_user</span>
+</div>
+<h3 class="text-2xl font-mono font-bold text-slate-900 dark:text-white">₹ 74,74,545</h3>
+<div class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                    10% Flat Rate Applied
+                </div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<p class="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">Deduction Amount</p>
+<span class="material-icons-outlined text-red-500">remove_circle_outline</span>
+</div>
+<h3 class="text-2xl font-mono font-bold text-slate-900 dark:text-white">₹ 6,72,70,905</h3>
+<div class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                    Calculated automatically
+                </div>
+</div>
+</div>
+<div class="flex flex-col xl:flex-row gap-6">
+<div class="flex-1 overflow-hidden bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark shadow-lg flex flex-col">
+<div class="p-4 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50 dark:bg-slate-800/50">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-primary">table_chart</span> Master Configuration Matrix
+                    </h3>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-green-500"></div> Valid</span>
+<span class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-red-500"></div> Error</span>
+</div>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-right text-sm border-collapse">
+<thead class="bg-slate-100 dark:bg-slate-900 text-xs uppercase font-bold text-slate-600 dark:text-slate-300 sticky top-0 z-10 shadow-sm">
+<tr>
+<th class="px-3 py-3 text-left border-r border-border-light dark:border-border-dark min-w-[80px]" rowspan="2">Level</th>
+<th class="px-3 py-3 border-r border-border-light dark:border-border-dark min-w-[140px]" rowspan="2">Base Invest (₹)<br/><span class="text-[10px] text-slate-400 font-normal">12 Months</span></th>
+<th class="px-3 py-2 border-b border-r border-border-light dark:border-border-dark text-center bg-blue-50/50 dark:bg-blue-900/10" colspan="2">Investor Profit</th>
+<th class="px-3 py-2 border-b border-r border-border-light dark:border-border-dark text-center bg-amber-50/50 dark:bg-amber-900/10" colspan="5">Referral Commission Split</th>
+<th class="px-3 py-3 border-r border-border-light dark:border-border-dark bg-slate-200/50 dark:bg-slate-800 min-w-[120px]" rowspan="2">Total Profit</th>
+<th class="px-3 py-3 border-r border-border-light dark:border-border-dark bg-slate-200/50 dark:bg-slate-800 min-w-[120px]" rowspan="2">Total Comm.</th>
+</tr>
+<tr>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-blue-600 dark:text-blue-400">15%</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-blue-600 dark:text-blue-400">20%</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-amber-600 dark:text-amber-500">L1 (10%)</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-amber-600 dark:text-amber-500">L2 (7%)</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-amber-600 dark:text-amber-500">L3 (5%)</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-amber-600 dark:text-amber-500">L4 (2%)</th>
+<th class="px-2 py-2 border-r border-border-light dark:border-border-dark text-amber-600 dark:text-amber-500">L5 (1%)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark font-mono text-xs md:text-sm">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L1</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">51,111</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">7,667</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">31,800</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">40,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">55,650</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">82,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">75,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,65,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">7,667</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">4,50,450</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L2</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">10,60,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">1,59,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">81,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">79,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,15,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,87,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">3,30,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">45,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">1,59,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">8,38,500</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L3</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">27,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">4,05,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">1,59,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,65,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">2,62,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">8,25,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">90,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">12,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">4,05,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">15,13,500</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L4</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">1,10,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">16,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">7,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">16,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">3,15,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">60,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">22,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">33,750</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">16,50,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">28,31,250</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L5</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">2,50,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">37,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">33,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">4,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">84,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">56,250</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">67,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">9,00,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">37,50,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">48,57,750</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L6</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">11,00,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">1,65,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">9,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,20,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">78,750</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,68,750</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">18,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">2,25,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">1,65,00,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">32,92,500</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L7</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">3,00,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">45,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">2,40,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">1,12,500</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">2,36,250</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">45,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">4,50,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">79,500</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">45,00,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">56,18,250</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-blue-50/20 dark:bg-blue-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-blue-50/20 dark:bg-blue-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-amber-50/20 dark:bg-amber-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-amber-50/20 dark:bg-amber-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-amber-50/20 dark:bg-amber-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-amber-50/20 dark:bg-amber-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-amber-50/20 dark:bg-amber-900/5 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-slate-400 italic">...</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800 text-slate-400 italic">...</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-3 py-2 text-left font-bold text-slate-700 dark:text-slate-200 border-r border-border-light dark:border-border-dark">L15</td>
+<td class="px-3 py-2 border-r border-border-light dark:border-border-dark font-medium text-slate-800 dark:text-white">1,00,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">15,00,000</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-blue-50/20 dark:bg-blue-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 text-slate-600 dark:text-slate-400 bg-amber-50/20 dark:bg-amber-900/5 border-r border-border-light dark:border-border-dark">-</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">15,00,000</td>
+<td class="px-3 py-2 font-bold text-slate-800 dark:text-white bg-slate-50 dark:bg-slate-800 border-r border-border-light dark:border-border-dark">0</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-100 dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-white sticky bottom-0 z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
+<tr class="border-t-2 border-slate-300 dark:border-slate-700">
+<td class="px-3 py-3 text-left">TOTAL</td>
+<td class="px-3 py-3 text-primary">₹ 1,11,11,11,111</td>
+<td class="px-3 py-3 text-blue-700 dark:text-blue-300">16,66,66,667</td>
+<td class="px-3 py-3 text-blue-700 dark:text-blue-300">3,33,31,800</td>
+<td class="px-3 py-3 text-amber-700 dark:text-amber-300">1,66,50,000</td>
+<td class="px-3 py-3 text-amber-700 dark:text-amber-300">1,16,26,650</td>
+<td class="px-3 py-3 text-amber-700 dark:text-amber-300">82,65,000</td>
+<td class="px-3 py-3 text-amber-700 dark:text-amber-300">32,73,000</td>
+<td class="px-3 py-3 text-amber-700 dark:text-amber-300">15,99,000</td>
+<td class="px-3 py-3 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white border-l border-r border-slate-300 dark:border-slate-600">16,66,66,667</td>
+<td class="px-3 py-3 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white border-r border-slate-300 dark:border-slate-600">7,47,45,450</td>
+</tr>
+<tr class="text-[10px] text-slate-500 dark:text-slate-400">
+<td colspan="2"></td>
+<td class="text-center">15%</td>
+<td class="text-center">20.0%</td>
+<td class="text-center">10.0%</td>
+<td class="text-center">7.0%</td>
+<td class="text-center">5.0%</td>
+<td class="text-center">2.0%</td>
+<td class="text-center">1.0%</td>
+<td class="text-center bg-slate-200 dark:bg-slate-700 border-l border-r border-slate-300 dark:border-slate-600">15.00%</td>
+<td class="text-center bg-slate-200 dark:bg-slate-700 border-r border-slate-300 dark:border-slate-600">7%</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="w-full xl:w-[400px] flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark shadow-lg overflow-hidden">
+<div class="p-4 border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2 text-sm">
+<span class="material-icons-outlined text-warning text-lg">emoji_events</span> Direct Target Royalty
+                        </h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right text-xs md:text-sm">
+<thead class="bg-slate-100 dark:bg-slate-900 text-xs font-bold text-slate-600 dark:text-slate-300">
+<tr>
+<th class="px-4 py-2 text-left">Level</th>
+<th class="px-4 py-2">Target</th>
+<th class="px-4 py-2">%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark font-mono">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-amber-700 dark:text-amber-500 font-medium">BRONZE</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">50 LAKH</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">1.00%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-400 dark:text-slate-400 font-medium">SILVER</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">1 CRORE</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">0.75%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-yellow-500 dark:text-yellow-400 font-medium">GOLD</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">5 CRORE</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">0.50%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-cyan-600 dark:text-cyan-400 font-medium">PLATINUM</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">25 CRORE</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">0.35%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-blue-500 dark:text-blue-400 font-medium">DIAMOND</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">75 CRORE</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">0.25%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-purple-600 dark:text-purple-400 font-medium">AMBASSADOR</td>
+<td class="px-4 py-2 text-slate-600 dark:text-slate-400">100 CRORE</td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">0.15%</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-100 dark:bg-slate-900 border-t-2 border-slate-200 dark:border-slate-700">
+<tr>
+<td class="px-4 py-2 text-left font-bold text-slate-800 dark:text-white" colspan="2">TOTAL</td>
+<td class="px-4 py-2 font-bold text-primary text-right">3%</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark shadow-lg overflow-hidden">
+<div class="p-4 border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2 text-sm">
+<span class="material-icons-outlined text-red-500 text-lg">pie_chart</span> Expense Breakdown
+                        </h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-right text-xs md:text-sm">
+<tbody class="divide-y divide-border-light dark:divide-border-dark font-mono">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-600 dark:text-slate-400">TOTAL RETURNS</td>
+<td class="px-4 py-2 text-slate-500 dark:text-slate-500 text-xs">STATIC</td>
+<td class="px-4 py-2 font-medium text-slate-800 dark:text-white">25%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-600 dark:text-slate-400">YEARLY GIFTS</td>
+<td class="px-4 py-2 text-slate-500 dark:text-slate-500 text-xs">Flexible</td>
+<td class="px-4 py-2 font-medium text-slate-800 dark:text-white">3%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-600 dark:text-slate-400">OFFICE EXPENSE</td>
+<td class="px-4 py-2 text-slate-500 dark:text-slate-500 text-xs">Flexible</td>
+<td class="px-4 py-2 font-medium text-slate-800 dark:text-white">3%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-600 dark:text-slate-400">MARKETING EXPENSE</td>
+<td class="px-4 py-2 text-slate-500 dark:text-slate-500 text-xs">STATIC</td>
+<td class="px-4 py-2 font-medium text-slate-800 dark:text-white">10%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 text-left text-slate-600 dark:text-slate-400">COMPANY EXPANSION</td>
+<td class="px-4 py-2 text-slate-500 dark:text-slate-500 text-xs">STATIC</td>
+<td class="px-4 py-2 font-medium text-slate-800 dark:text-white">10%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-red-50/50 dark:bg-red-900/10">
+<td class="px-4 py-2 text-left text-slate-700 dark:text-slate-300 font-medium">MILIND PATIL</td>
+<td class="px-4 py-2"></td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">10%</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 bg-red-50/50 dark:bg-red-900/10">
+<td class="px-4 py-2 text-left text-slate-700 dark:text-slate-300 font-medium">ROSHAN KARNEKAR</td>
+<td class="px-4 py-2"></td>
+<td class="px-4 py-2 font-bold text-slate-800 dark:text-white">10%</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-100 dark:bg-slate-900 border-t-2 border-slate-200 dark:border-slate-700">
+<tr>
+<td class="px-4 py-2 text-left font-bold text-slate-800 dark:text-white" colspan="2">TOTAL DEDUCTION</td>
+<td class="px-4 py-2 font-bold text-red-600 dark:text-red-400 text-right">70%</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/20 p-4">
+<h4 class="font-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-icons-outlined">info</span> System Status
+                    </h4>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
+                        Calculations are validated. Total Commission (7%) is within the safe margin of Total Profit (15%).
+                    </p>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mb-1">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 45%"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+<span>Current Payout</span>
+<span>Safe Limit (20%)</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

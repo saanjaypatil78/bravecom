@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Sovereign System Console</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0db9f2",
+              "royal-purple": "#7c3aed",
+              "gold": "#fbbf24",
+              "background-dark": "#05070a",
+              "surface-dark": "#0f1216",
+              "surface-lighter": "#1a1f26",
+              "accent-glow": "rgba(13, 185, 242, 0.15)",
+              "success": "#0bda57",
+              "danger": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"],
+            },
+            backgroundImage: {
+                "hex-pattern": "url(\"data:image/svg+xml,%3Csvg width='24' height='40' viewBox='0 0 24 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40c5.523 0 10-4.477 10-10V10c0-5.523 4.477-10 10-10h4v20H14c-5.523 0-10 4.477-10 10v20H0z' fill='%231a1f26' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #05070a;
+        }
+        .mono-text {
+            font-family: "JetBrains Mono", monospace;
+        }.sun-ray-core {
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.2), inset 0 0 20px rgba(251, 191, 36, 0.4);
+        }@keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(13, 185, 242, 0.8);
+            box-shadow: 0 0 10px rgba(13, 185, 242, 0.8);
+            animation: scanline 2s linear infinite;
+        }.glitch-text {
+            position: relative;
+        }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ef4444;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+            border: 2px solid white;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-200 min-h-screen flex flex-col overflow-x-hidden bg-hex-pattern">
+<header class="flex items-center justify-between border-b border-white/10 bg-surface-dark/90 backdrop-blur-md px-8 py-4 sticky top-0 z-50 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-6">
+<div class="size-12 flex items-center justify-center bg-gradient-to-br from-purple-900 to-black rounded-xl border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-gold text-2xl">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="text-white text-2xl font-bold tracking-tight uppercase flex items-center gap-3">
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Sovereign Console</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-red-500/20 text-red-500 border border-red-500/30 tracking-widest font-mono">MASTER_ADMIN</span>
+</h1>
+<div class="text-xs text-slate-500 font-mono mt-1 flex gap-4 uppercase tracking-wider">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-success rounded-full animate-pulse"></span>Secure Connection</span>
+<span class="text-slate-600">|</span>
+<span>Session ID: <span class="text-primary">ALPHA-OMEGA-001</span></span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end mr-6">
+<div class="text-[10px] text-gold uppercase tracking-[0.2em] mb-1 font-bold">Goal: ₹111 Cr</div>
+<div class="flex items-center gap-3 bg-surface-lighter px-4 py-2 rounded-lg border border-gold/20 shadow-[0_0_15px_rgba(251,191,36,0.1)]">
+<span class="material-symbols-outlined text-gold animate-pulse">rocket_launch</span>
+<div class="w-32 h-2 bg-slate-800 rounded-full overflow-hidden relative">
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-yellow-600 to-gold w-[72%] shadow-[0_0_10px_rgba(251,191,36,0.6)]"></div>
+</div>
+<span class="font-mono text-gold font-bold">72%</span>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-white/10"></div>
+<button class="relative group p-2 hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white transition-colors">encrypted</span>
+</button>
+<button class="relative group p-2 hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white transition-colors">settings_system_daydream</span>
+</button>
+<div class="size-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 grid grid-cols-12 gap-8 max-w-[1920px] mx-auto w-full relative z-10">
+<aside class="col-span-12 xl:col-span-3 flex flex-col gap-6 h-full">
+<div class="bg-surface-dark border border-white/10 rounded-2xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<h3 class="text-slate-400 text-xs font-mono uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">dns</span> System Nodes
+                </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-3 border-b border-white/5">
+<span class="text-sm font-medium">Auth Core</span>
+<span class="text-xs bg-success/10 text-success px-2 py-1 rounded border border-success/20 font-mono">ONLINE</span>
+</div>
+<div class="flex justify-between items-center pb-3 border-b border-white/5">
+<span class="text-sm font-medium">Payment Gateway</span>
+<span class="text-xs bg-success/10 text-success px-2 py-1 rounded border border-success/20 font-mono">ONLINE</span>
+</div>
+<div class="flex justify-between items-center pb-3 border-b border-white/5">
+<span class="text-sm font-medium">Audit Agents</span>
+<span class="text-xs bg-warning/10 text-warning px-2 py-1 rounded border border-warning/20 font-mono">BUSY</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium">Ledger DB</span>
+<span class="text-xs bg-success/10 text-success px-2 py-1 rounded border border-success/20 font-mono">SYNCED</span>
+</div>
+</div>
+</div>
+<div class="flex-1 bg-black/40 border border-white/10 rounded-2xl p-4 font-mono text-xs overflow-hidden relative flex flex-col">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="flex items-center justify-between mb-2 opacity-50">
+<span class="uppercase">Encrypted Stream</span>
+<span class="animate-pulse text-primary">● REC</span>
+</div>
+<div class="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar text-slate-400">
+<div class="flex gap-2"><span class="text-slate-600">[14:42:01]</span> <span class="text-primary">REQ_AUTH</span> Override signal received.</div>
+<div class="flex gap-2"><span class="text-slate-600">[14:42:03]</span> <span class="text-purple-400">SYS_CHK</span> Integrity 99.9% confirmed.</div>
+<div class="flex gap-2"><span class="text-slate-600">[14:42:05]</span> <span class="text-gold">WARN</span> High volume on Node-7 detected.</div>
+<div class="flex gap-2"><span class="text-slate-600">[14:42:08]</span> <span class="text-primary">NET_OP</span> WebSocket channel optimized.</div>
+<div class="flex gap-2"><span class="text-slate-600">[14:42:12]</span> <span class="text-success">SUCCESS</span> Block #49921 verified.</div>
+<div class="flex gap-2 opacity-60"><span class="text-slate-600">[14:42:15]</span> <span class="text-slate-500">DAEMON</span> Garbage collection idle.</div>
+</div>
+</div>
+</aside>
+<section class="col-span-12 xl:col-span-6 flex flex-col relative h-[600px] xl:h-auto">
+<div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/50 rounded-tl-lg"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/50 rounded-tr-lg"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/50 rounded-bl-lg"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-lg"></div>
+<div class="flex-1 bg-surface-dark/50 border border-white/5 rounded-lg flex items-center justify-center relative overflow-hidden backdrop-blur-sm">
+<div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 30px 30px;"></div>
+<div class="w-32 h-32 rounded-full bg-gradient-to-r from-orange-500 via-gold to-yellow-300 sun-ray-core relative z-20 flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-white text-5xl drop-shadow-md">sunny</span>
+</div>
+<button class="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 z-20 group">
+<div class="w-16 h-16 rounded-xl bg-surface-lighter border border-primary/40 flex items-col justify-center items-center relative transition-all duration-300 group-hover:scale-110 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(13,185,242,0.4)]">
+<span class="material-symbols-outlined text-primary text-2xl mb-1">groups</span>
+<div class="absolute -bottom-6 text-[10px] font-mono text-primary uppercase bg-surface-dark px-2 rounded border border-primary/20 opacity-0 group-hover:opacity-100 transition-opacity">Level 1</div>
+</div>
+<div class="absolute top-1/2 left-1/2 w-[160px] h-[1px] bg-gradient-to-r from-primary/50 to-transparent origin-left rotate-[35deg] -z-10 pointer-events-none"></div>
+</button>
+<button class="absolute top-1/3 right-1/4 transform translate-x-1/2 -translate-y-1/2 z-20 group">
+<div class="w-16 h-16 rounded-xl bg-surface-lighter border border-purple-500/40 flex items-col justify-center items-center relative transition-all duration-300 group-hover:scale-110 group-hover:border-purple-500 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+<span class="material-symbols-outlined text-purple-500 text-2xl mb-1">diamond</span>
+<div class="absolute -bottom-6 text-[10px] font-mono text-purple-500 uppercase bg-surface-dark px-2 rounded border border-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity">Royalty</div>
+</div>
+<div class="absolute top-1/2 left-1/2 w-[140px] h-[1px] bg-gradient-to-l from-purple-500/50 to-transparent origin-left rotate-[145deg] -z-10 pointer-events-none -ml-[140px]"></div>
+</button>
+<button class="absolute bottom-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 group">
+<div class="w-16 h-16 rounded-xl bg-surface-lighter border border-success/40 flex items-col justify-center items-center relative transition-all duration-300 group-hover:scale-110 group-hover:border-success group-hover:shadow-[0_0_20px_rgba(11,218,87,0.4)]">
+<span class="material-symbols-outlined text-success text-2xl mb-1">payments</span>
+<div class="absolute -bottom-6 text-[10px] font-mono text-success uppercase bg-surface-dark px-2 rounded border border-success/20 opacity-0 group-hover:opacity-100 transition-opacity">Payouts</div>
+</div>
+<div class="absolute bottom-1/2 left-1/2 w-[100px] h-[1px] bg-gradient-to-t from-success/50 to-transparent origin-bottom -rotate-90 -z-10 pointer-events-none -mb-[100px]"></div>
+</button>
+</div>
+</section>
+<aside class="col-span-12 xl:col-span-3 flex flex-col gap-4">
+<h2 class="text-white text-lg font-bold tracking-tight uppercase flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-danger">gavel</span> Master Control Deck
+            </h2>
+<div class="bg-[#110505] border border-danger/30 rounded-xl p-5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-5xl text-danger">shield_lock</span>
+</div>
+<h3 class="text-danger font-bold text-sm uppercase tracking-widest mb-1">AUM Manual Override</h3>
+<p class="text-xs text-slate-500 mb-6 font-mono">Requires Level 5 Clearance. Slide to unlock manual adjustments.</p>
+<div class="relative w-full h-12 bg-slate-900 rounded-full border border-white/10 flex items-center px-1">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-widest text-slate-600 font-bold pointer-events-none">
+                        Slide to Unlock
+                    </div>
+<input class="w-full h-full opacity-0 absolute z-20 cursor-pointer" max="100" min="0" type="range" value="0"/>
+<div class="w-10 h-10 bg-gradient-to-b from-slate-700 to-slate-900 rounded-full border border-slate-500 shadow-lg flex items-center justify-center z-10 relative transition-all duration-75" style="left: 2px;">
+<span class="material-symbols-outlined text-white text-sm">lock</span>
+</div>
+</div>
+</div>
+<div class="bg-[#0f0a1a] border border-purple-600/30 rounded-xl p-5 relative overflow-hidden group hover:border-purple-500 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-purple-400 font-bold text-sm uppercase tracking-widest mb-1">Treasury Release</h3>
+<p class="text-xs text-slate-500 font-mono">Authorize batch payouts.</p>
+</div>
+<span class="material-symbols-outlined text-purple-500">account_balance_wallet</span>
+</div>
+<button class="w-full py-3 bg-gradient-to-r from-purple-900 to-purple-700 hover:from-purple-800 hover:to-purple-600 rounded-lg text-white font-bold text-sm uppercase tracking-wider shadow-[0_0_15px_rgba(124,58,237,0.3)] flex items-center justify-center gap-2 border border-purple-500/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">lock_open</span>
+                    Execute Release
+                 </button>
+</div>
+<div class="bg-[#050f14] border border-primary/30 rounded-xl p-5 relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<h3 class="text-primary font-bold text-sm uppercase tracking-widest mb-1">System Integrity</h3>
+<p class="text-xs text-slate-500 font-mono">Deep scan across all microservices.</p>
+</div>
+<span class="material-symbols-outlined text-primary">security_update_good</span>
+</div>
+<button class="w-full py-3 bg-surface-dark hover:bg-surface-lighter rounded-lg text-primary font-bold text-sm uppercase tracking-wider border border-primary/30 flex items-center justify-center gap-2 relative overflow-hidden group/btn transition-all">
+<div class="absolute inset-0 bg-primary/10 w-full h-full transform -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+<div class="scan-line opacity-0 group-hover/btn:opacity-100"></div>
+<span class="material-symbols-outlined text-lg relative z-10">radar</span>
+<span class="relative z-10">Initiate Scan</span>
+</button>
+</div>
+</aside>
+<div class="col-span-12 mt-4 border-t border-white/10 pt-4 flex items-center justify-between text-xs font-mono text-slate-500">
+<div class="flex gap-6">
+<span class="flex items-center gap-2"><span class="w-2 h-2 bg-success rounded-full"></span> Server Load: 12%</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Memory: 4.2GB / 64GB</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 bg-gold rounded-full"></span> Latency: 14ms</span>
+</div>
+<div class="opacity-50">
+                SYSTEM_V.4.0.2 // ENCRYPTED_CONNECTION_ESTABLISHED
+             </div>
+</div>
+</main>
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-40" style="background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, transparent 50%);"></div>
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] pointer-events-none -z-10 opacity-20" style="background: radial-gradient(circle, #3b0764 0%, transparent 70%);"></div>
+
+</body></html>

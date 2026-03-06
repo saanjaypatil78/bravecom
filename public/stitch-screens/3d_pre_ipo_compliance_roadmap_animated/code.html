@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brave Ecom - Pre-IPO Roadmap</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                        "surface-dark": "#231f16",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181611;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #393528;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f2b90d;
+        }
+        
+        /* Simulating 3D depth with perspective */
+        .perspective-container {
+            perspective: 1200px;
+        }
+        .rotate-3d-card {
+            transform: rotateX(5deg) scale(0.98);
+            transition: transform 0.3s ease;
+        }
+        .rotate-3d-card:hover {
+            transform: rotateX(0deg) scale(1);
+        }
+
+        /* Glowing path effect */
+        .glowing-path {
+            box-shadow: 0 0 15px rgba(242, 185, 13, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#393528] bg-background-light/95 dark:bg-[#181611]/95 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 32px;">diamond</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-[#bab29c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Ecosystem</a>
+<a class="text-slate-900 dark:text-white font-semibold text-sm leading-normal border-b-2 border-primary pb-1" href="#">IPO Journey</a>
+<a class="text-slate-600 dark:text-[#bab29c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Invest</a>
+<a class="text-slate-600 dark:text-[#bab29c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Shop Luxury</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-yellow-400 text-slate-900 text-sm font-bold leading-normal tracking-[0.015em] transition-all">
+<span class="truncate">Invest Now</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-200 dark:bg-[#393528] hover:bg-slate-300 dark:hover:bg-[#4a4536] text-slate-900 dark:text-white text-sm font-bold leading-normal tracking-[0.015em] transition-all">
+<span class="truncate">Login</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col relative">
+<!-- Background Ambient Effect -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[20%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px]"></div>
+</div>
+<!-- Hero Section -->
+<section class="relative px-40 py-12 flex flex-col items-center justify-center text-center z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-dark border border-[#393528] mb-6">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-medium text-primary uppercase tracking-wider">Live Roadmap</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] mb-6 drop-shadow-2xl">
+                The Path to <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-200">Public Listing</span>
+</h1>
+<p class="text-slate-600 dark:text-[#bab29c] text-lg max-w-2xl mx-auto leading-relaxed">
+                Navigate our strategic milestones towards compliance and market dominance. 
+                <span class="text-white font-semibold">Current Status:</span> 111 Cr Valuation reached.
+            </p>
+</section>
+<!-- 3D Roadmap Visualization Container -->
+<section class="flex-grow flex justify-center px-4 md:px-20 pb-20 perspective-container relative z-10">
+<div class="layout-content-container flex flex-col max-w-[1200px] w-full gap-12">
+<!-- Progress Header -->
+<div class="bg-surface-dark/80 backdrop-blur-xl border border-[#393528] rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-6">
+<div>
+<div class="text-[#bab29c] text-sm font-medium mb-1">Current Valuation</div>
+<div class="text-4xl md:text-5xl font-bold text-white tracking-tight flex items-baseline gap-2">
+                                ₹ 111 Cr <span class="text-lg text-primary font-normal">/ 500 Cr Target</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-primary font-bold text-xl mb-1">85% Ready</div>
+<div class="text-[#bab29c] text-sm">SEBI Filing in progress</div>
+</div>
+</div>
+<!-- Enhanced Progress Bar -->
+<div class="relative h-4 bg-[#181611] rounded-full overflow-hidden border border-[#393528]">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-700 via-primary to-yellow-200 w-[65%] rounded-full shadow-[0_0_20px_rgba(242,185,13,0.5)]">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-white opacity-50 animate-pulse"></div>
+</div>
+<!-- Milestone Ticks -->
+<div class="absolute top-0 bottom-0 left-[25%] w-0.5 bg-[#393528]"></div>
+<div class="absolute top-0 bottom-0 left-[50%] w-0.5 bg-[#393528]"></div>
+<div class="absolute top-0 bottom-0 left-[75%] w-0.5 bg-[#393528]"></div>
+</div>
+<div class="flex justify-between mt-2 text-xs text-[#bab29c] font-medium font-mono">
+<span>Seed</span>
+<span>Series A</span>
+<span>Pre-IPO</span>
+<span>IPO</span>
+</div>
+</div>
+<!-- 3D Roadmap Steps -->
+<div class="relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0">
+<!-- Decorative Central Path Line (Desktop) -->
+<div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -ml-0.5 bg-gradient-to-b from-primary via-[#393528] to-transparent z-0 glowing-path"></div>
+<!-- Step 1: Left Aligned -->
+<div class="col-span-12 md:col-span-5 md:text-right relative z-10 rotate-3d-card">
+<div class="bg-surface-dark border border-[#393528] p-6 rounded-xl hover:border-primary/50 transition-colors shadow-lg group cursor-pointer">
+<div class="flex flex-col md:items-end gap-3">
+<div class="bg-primary/20 p-3 rounded-lg w-fit text-primary group-hover:text-white group-hover:bg-primary transition-all">
+<span class="material-symbols-outlined">foundation</span>
+</div>
+<h3 class="text-xl font-bold text-white">Foundation Established</h3>
+<p class="text-[#bab29c] text-sm">Legal incorporation, initial core team assembly, and seed funding secured.</p>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">2020 - Completed</span>
+</div>
+</div>
+</div>
+<div class="hidden md:flex col-span-2 justify-center items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-[#181611] border-2 border-primary shadow-[0_0_15px_rgba(242,185,13,0.6)] flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary">check</span>
+</div>
+</div>
+<div class="hidden md:block col-span-5"></div>
+<!-- Step 2: Right Aligned -->
+<div class="hidden md:block col-span-5"></div>
+<div class="hidden md:flex col-span-2 justify-center items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-[#181611] border-2 border-primary shadow-[0_0_15px_rgba(242,185,13,0.6)] flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary">check</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-5 relative z-10 rotate-3d-card">
+<div class="bg-surface-dark border border-[#393528] p-6 rounded-xl hover:border-primary/50 transition-colors shadow-lg group cursor-pointer">
+<div class="flex flex-col gap-3">
+<div class="bg-primary/20 p-3 rounded-lg w-fit text-primary group-hover:text-white group-hover:bg-primary transition-all">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<h3 class="text-xl font-bold text-white">Nationalized Bank Partnerships</h3>
+<p class="text-[#bab29c] text-sm">Strategic alliances with top-tier national banks ensuring financial stability.</p>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-1 rounded">2022 - Secured</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Left Aligned (Current) -->
+<div class="col-span-12 md:col-span-5 md:text-right relative z-10 rotate-3d-card">
+<div class="bg-gradient-to-br from-surface-dark to-[#2a261a] border border-primary p-6 rounded-xl shadow-[0_0_30px_rgba(242,185,13,0.15)] group relative overflow-hidden">
+<!-- Animated Shine -->
+<div class="absolute top-0 right-0 w-[200%] h-full bg-gradient-to-l from-transparent via-white/5 to-transparent -skew-x-12 translate-x-full animate-[shimmer_3s_infinite]"></div>
+<div class="flex flex-col md:items-end gap-3 relative z-10">
+<div class="bg-primary p-3 rounded-lg w-fit text-slate-900 shadow-lg animate-bounce">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<h3 class="text-xl font-bold text-white">SEBI Compliance &amp; Filing</h3>
+<p class="text-slate-300 text-sm">Rigorous regulatory adherence and preparation of DRHP for filing.</p>
+<div class="flex gap-2 items-center">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-mono text-primary font-bold">In Progress - 85%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden md:flex col-span-2 justify-center items-center relative z-10">
+<div class="w-12 h-12 rounded-full bg-primary shadow-[0_0_25px_rgba(242,185,13,0.8)] flex items-center justify-center z-20 border-4 border-[#181611]">
+<span class="material-symbols-outlined text-slate-900">location_on</span>
+</div>
+</div>
+<div class="hidden md:block col-span-5"></div>
+<!-- Step 4: Right Aligned (Future) -->
+<div class="hidden md:block col-span-5"></div>
+<div class="hidden md:flex col-span-2 justify-center items-center relative z-10">
+<div class="w-8 h-8 rounded-full bg-[#181611] border-2 border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-slate-500">lock</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-5 relative z-10 rotate-3d-card opacity-60 hover:opacity-100 transition-opacity">
+<div class="bg-surface-dark border border-[#393528] border-dashed p-6 rounded-xl">
+<div class="flex flex-col gap-3">
+<div class="bg-[#2d2a20] p-3 rounded-lg w-fit text-slate-400">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="text-xl font-bold text-white">Public IPO Launch</h3>
+<p class="text-[#bab29c] text-sm">Listing on major stock exchanges (NSE/BSE) opening for public trade.</p>
+<span class="text-xs font-mono text-slate-500 bg-slate-800/50 px-2 py-1 rounded">Target Q4 2025</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Elements Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
+<div class="p-6 bg-[#1f1d15] rounded-xl border border-[#393528] hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-dark rounded-lg text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white transition-colors">arrow_outward</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-2">View Draft Prospectus</h4>
+<p class="text-[#bab29c] text-sm mb-4">Read the detailed Red Herring Prospectus draft filed with regulators.</p>
+<a class="text-primary text-sm font-bold hover:underline" href="#">Download PDF</a>
+</div>
+<div class="p-6 bg-[#1f1d15] rounded-xl border border-[#393528] hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-dark rounded-lg text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">currency_rupee</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white transition-colors">arrow_outward</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-2">Financial Audits</h4>
+<p class="text-[#bab29c] text-sm mb-4">Transparency reports audited by Big 4 accounting firms.</p>
+<a class="text-primary text-sm font-bold hover:underline" href="#">View Reports</a>
+</div>
+<div class="p-6 bg-[#1f1d15] rounded-xl border border-[#393528] hover:border-primary/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-dark rounded-lg text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white transition-colors">arrow_outward</span>
+</div>
+<h4 class="text-white font-bold text-lg mb-2">Board of Directors</h4>
+<p class="text-[#bab29c] text-sm mb-4">Meet the industry veterans guiding our path to public listing.</p>
+<a class="text-primary text-sm font-bold hover:underline" href="#">See Team</a>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="mt-8 relative rounded-2xl overflow-hidden" data-alt="Abstract 3D golden geometric shapes floating in dark space background">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="Abstract 3D blocks in dark void" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACfwVRvvAJGePZodlwdciioFQJgE7UvV5s2DPOEEcvfyJKlvIRd6alDz5GnhCMZjYLPa3XZohZTLizR_TwsGMCok-7S0oMQ44dWRXcl6J1IiWqhlFMMcOcrRSqD7L8_XS8K-Ag1YuX8K6K3bwvzKUm1tdavohtLlAKNJDT00HBx2MZhHroeRS3Sf8glAVlBYaw9gZV4A6BC3rQjufX2vmJ9VtatjP_Mt2nIQqXRR1RhRhnVwJlqYdoNNtBJKz_O0OEee1r6s3-oFQ9');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#181611] via-[#181611]/80 to-transparent"></div>
+<div class="relative z-10 px-6 py-16 flex flex-col items-center text-center">
+<h2 class="text-3xl md:text-4xl font-black text-white mb-4">Be Part of the Journey</h2>
+<p class="text-[#bab29c] max-w-xl mb-8">Early investors have already seen 3x returns. Secure your position before we ring the bell.</p>
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+<button class="flex-1 h-12 bg-primary hover:bg-yellow-400 text-slate-900 font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">trending_up</span>
+                                Invest Now
+                            </button>
+<button class="flex-1 h-12 bg-[#393528] hover:bg-[#4a4536] text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">mail</span>
+                                Get Updates
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-[#393528] bg-[#181611] py-10 px-10 md:px-40">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-primary">diamond</span>
+<span class="font-bold text-lg">Brave Ecom</span>
+</div>
+<p class="text-[#bab29c] text-sm">© 2024 Brave Ecom Ltd. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-[#bab29c] hover:text-white" href="#"><span class="material-symbols-outlined">policy</span></a>
+<a class="text-[#bab29c] hover:text-white" href="#"><span class="material-symbols-outlined">lock</span></a>
+<a class="text-[#bab29c] hover:text-white" href="#"><span class="material-symbols-outlined">help</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple shimmer animation configuration for Tailwind
+        tailwind.config.theme.extend.keyframes = {
+            ...tailwind.config.theme.extend.keyframes,
+            shimmer: {
+                '0%': { transform: 'translateX(-100%) skewX(-12deg)' },
+                '100%': { transform: 'translateX(200%) skewX(-12deg)' },
+            }
+        }
+    </script>
+</body></html>

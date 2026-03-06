@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investor One-Glance Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        secondary: "#1a2c32",
+                        accent: "#0bda57", 
+                        danger: "#ff4d4d",
+                        warning: "#ff9f43",
+                    },
+                    fontFamily: {
+                        display: ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem", 
+                        lg: "0.75rem", 
+                        xl: "1rem", 
+                        full: "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(26, 44, 50, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(13, 185, 242, 0.3);
+        }
+        /* Custom progress ring */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        /* Sun Ray Animation */
+        @keyframes pulse-ray {
+            0% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+            100% { opacity: 0.3; transform: scale(1); }
+        }
+        .animate-ray {
+            animation: pulse-ray 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-background-dark/80 backdrop-blur-md">
+<div class="px-6 lg:px-12 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3 text-white">
+<div class="flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">Investor One-Glance</h2>
+<p class="text-slate-400 text-xs font-medium">Wealth Command Center</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Global AUM Goal Progress -->
+<div class="hidden md:flex flex-col items-end mr-6">
+<div class="flex items-center gap-2 text-xs font-medium text-primary mb-1">
+<span>Global AUM Goal: ₹111 Cr</span>
+<span class="text-white">64%</span>
+</div>
+<div class="w-32 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[64%] shadow-[0_0_10px_rgba(13,185,242,0.5)]"></div>
+</div>
+</div>
+<button class="relative flex items-center justify-center size-10 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-danger rounded-full border-2 border-background-dark"></span>
+</button>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-white">Arjun K.</p>
+<p class="text-xs text-slate-400">Premium Investor</p>
+</div>
+<div class="size-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/10 overflow-hidden">
+<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="Portrait of a confident professional man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2UwjXudXTVaucjab0UU1YA9CYEnd2BAE-EIdzK7N7OLl4yhCqf0ssdNChJ0K9SCDUcrwfbC0C4cKd1p4jwukslnKMBpg_a8VBEhUesc7EP41ryZk3L_4kEXbYwxhhd2kccYBHNuZMm9EwNyQewJPMICHcY2F1bgw-f2Bt-Ivvu8CJnddr5_ZTpDqYFKwTLnqWPg4cc90dqw_dRVQt5ld9w6DV3xu33D4fUXB-ymngNAs39NcDeVQDtLxk0BMYbW6uUTHu70BGpyhL"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-6 lg:px-12 py-8 max-w-[1600px] mx-auto w-full">
+<!-- Welcome & Status Row -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 mb-1">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Dashboard Overview</p>
+<span class="bg-accent/10 text-accent border border-accent/20 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide flex items-center gap-1">
+<span class="block size-1.5 rounded-full bg-accent animate-pulse"></span>
+                        Active Status
+                    </span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-white glow-text">Welcome back, Arjun</h1>
+<p class="text-slate-400 max-w-xl">Your portfolio is performing optimally. You have 15 days remaining in your current ROI cycle.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-bold transition-all border border-white/10">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Report</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold shadow-[0_0_20px_rgba(13,185,242,0.3)] transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Invest More</span>
+</button>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Active Capital Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">account_balance_wallet</span>
+</div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex flex-col gap-1">
+<p class="text-slate-400 text-sm font-bold uppercase tracking-wider">Active Capital</p>
+<h3 class="text-3xl font-black text-white tracking-tight">₹51,111<span class="text-slate-500 text-xl font-medium">.00</span></h3>
+</div>
+<span class="bg-accent/10 text-accent px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +2.4%
+                    </span>
+</div>
+<div class="mt-2">
+<div class="flex justify-between text-xs text-slate-400 mb-1">
+<span>Portfolio Allocation</span>
+<span>0.04% of Total AUM</span>
+</div>
+<div class="w-full bg-slate-700/50 rounded-full h-1.5 overflow-hidden">
+<div class="bg-white h-full rounded-full w-[45%]"></div>
+</div>
+</div>
+</div>
+<!-- ROI Payout Countdown Card -->
+<div class="glass-panel p-6 rounded-xl flex items-center gap-6 relative overflow-hidden">
+<div class="relative size-20 shrink-0">
+<!-- Simple SVG Circle Progress -->
+<svg class="size-full" viewbox="0 0 100 100">
+<circle class="text-slate-700" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="66" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-lg font-bold text-white">15</span>
+<span class="text-[9px] text-slate-400 uppercase font-bold">Days Left</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 z-10">
+<p class="text-slate-400 text-sm font-bold uppercase tracking-wider">ROI Payout Countdown</p>
+<h3 class="text-xl font-bold text-white">45/60 Day Cycle</h3>
+<p class="text-primary text-sm font-medium flex items-center gap-1 mt-1">
+                        Next Payout: <span class="text-white">₹7,666</span>
+</p>
+</div>
+</div>
+<!-- Referral Earnings Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 size-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex flex-col gap-1">
+<p class="text-slate-400 text-sm font-bold uppercase tracking-wider">Total Referral Earnings</p>
+<h3 class="text-3xl font-black text-white tracking-tight">₹12,450</h3>
+</div>
+<button class="text-xs font-bold text-slate-300 bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded border border-white/10 transition-colors">
+                        History
+                    </button>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400">This Week</span>
+<span class="text-accent text-sm font-bold">+₹450.00</span>
+</div>
+<button class="text-xs font-bold text-background-dark bg-white hover:bg-slate-200 px-4 py-2 rounded flex items-center gap-1 transition-colors">
+                        Withdraw
+                        <span class="material-symbols-outlined text-sm">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Charts & Visuals -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Sun Ray Network Visualization -->
+<div class="glass-panel rounded-xl p-0 flex flex-col lg:col-span-1 overflow-hidden min-h-[400px]">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">hub</span>
+                            Network Depth
+                        </h2>
+<span class="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded">Sun Ray View</span>
+</div>
+<p class="text-sm text-slate-400">Visualizing your 6-level referral activity.</p>
+</div>
+<div class="flex-1 relative flex items-center justify-center bg-background-dark/50 p-6">
+<!-- Abstract Sun Ray Visualization -->
+<div class="relative size-64 flex items-center justify-center">
+<!-- Central Node (User) -->
+<div class="absolute z-20 size-16 rounded-full bg-slate-800 border-2 border-primary flex items-center justify-center shadow-[0_0_20px_rgba(13,185,242,0.4)]">
+<span class="material-symbols-outlined text-white text-2xl">person</span>
+</div>
+<!-- Level 1 (Direct) -->
+<div class="absolute size-24 rounded-full border border-primary/40 animate-ray z-10"></div>
+<div class="absolute w-24 h-24 flex items-center justify-center rotate-45">
+<div class="absolute top-0 size-2 bg-primary rounded-full shadow-[0_0_5px_#0db9f2]"></div>
+</div>
+<!-- Level 2-3 -->
+<div class="absolute size-36 rounded-full border border-white/10 z-0"></div>
+<div class="absolute size-36 flex items-center justify-center rotate-12">
+<div class="absolute bottom-2 right-4 size-1.5 bg-accent rounded-full"></div>
+<div class="absolute top-2 left-4 size-1.5 bg-accent rounded-full"></div>
+</div>
+<!-- Level 4-6 -->
+<div class="absolute size-52 rounded-full border border-white/5 border-dashed z-0"></div>
+<div class="absolute size-52 flex items-center justify-center -rotate-12">
+<div class="absolute top-0 size-1 bg-slate-500 rounded-full"></div>
+<div class="absolute bottom-0 size-1 bg-slate-500 rounded-full"></div>
+<div class="absolute left-0 size-1 bg-slate-500 rounded-full"></div>
+</div>
+<!-- Decor Ray Lines -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent rounded-full opacity-20 blur-xl"></div>
+</div>
+<!-- Floating Legend -->
+<div class="absolute bottom-4 left-4 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs text-slate-300">
+<span class="size-2 rounded-full bg-primary shadow-[0_0_5px_#0db9f2]"></span>
+                            Direct (L1)
+                        </div>
+<div class="flex items-center gap-2 text-xs text-slate-300">
+<span class="size-2 rounded-full bg-accent"></span>
+                            Active (L2-4)
+                        </div>
+<div class="flex items-center gap-2 text-xs text-slate-300">
+<span class="size-2 rounded-full bg-slate-600"></span>
+                            Dormant
+                        </div>
+</div>
+</div>
+</div>
+<!-- Earnings Pulse Chart -->
+<div class="glass-panel rounded-xl p-0 flex flex-col lg:col-span-2 min-h-[400px]">
+<div class="p-6 border-b border-white/5 flex items-center justify-between">
+<div>
+<h2 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-accent">ecg_heart</span>
+                            Earnings Pulse
+                        </h2>
+<p class="text-sm text-slate-400">Daily earnings volatility and growth.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-xs font-medium text-slate-400 hover:text-white rounded hover:bg-white/5">1W</button>
+<button class="px-3 py-1 text-xs font-bold text-white bg-white/10 rounded">1M</button>
+<button class="px-3 py-1 text-xs font-medium text-slate-400 hover:text-white rounded hover:bg-white/5">3M</button>
+</div>
+</div>
+<div class="flex-1 relative w-full h-full p-6 flex flex-col">
+<!-- Chart Placeholder using CSS Gradients/Lines -->
+<div class="flex-1 w-full h-full relative flex items-end gap-1">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-px bg-white/5"></div>
+<div class="w-full h-px bg-white/5"></div>
+<div class="w-full h-px bg-white/5"></div>
+<div class="w-full h-px bg-white/5"></div>
+<div class="w-full h-px bg-white/5"></div>
+</div>
+<!-- Chart Curve Representation -->
+<!-- We use a clip-path polygon to simulate a filled area chart -->
+<div class="absolute inset-x-0 bottom-8 h-[200px] bg-gradient-to-t from-primary/20 to-transparent z-0" style="clip-path: polygon(0% 100%, 0% 80%, 10% 70%, 20% 85%, 30% 60%, 40% 65%, 50% 40%, 60% 55%, 70% 30%, 80% 45%, 90% 20%, 100% 10%, 100% 100%);">
+</div>
+<!-- The Line itself -->
+<svg class="absolute inset-x-0 bottom-8 h-[200px] w-full z-10 overflow-visible" preserveaspectratio="none">
+<polyline class="drop-shadow-[0_0_10px_rgba(13,185,242,0.5)]" fill="none" points="0,40 100,60 200,30 300,80 400,70 500,120 600,90 700,140 800,110 900,160 1000,180" stroke="#0db9f2" stroke-width="3" vector-effect="non-scaling-stroke"></polyline>
+</svg>
+<!-- Hover Marker (Simulated) -->
+<div class="absolute left-[70%] top-[30%] h-[70%] w-px bg-white/20 z-20 flex flex-col items-center">
+<div class="size-3 bg-white rounded-full border-2 border-primary shadow-[0_0_10px_rgba(255,255,255,0.5)] -mt-1.5"></div>
+<div class="mt-4 bg-slate-800 border border-white/10 px-3 py-2 rounded shadow-xl whitespace-nowrap">
+<span class="text-xs text-slate-400 block">Aug 24</span>
+<span class="text-sm font-bold text-white">₹850.00</span>
+</div>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between text-xs text-slate-500 pt-4 border-t border-white/5 mt-2">
+<span>Aug 01</span>
+<span>Aug 05</span>
+<span>Aug 10</span>
+<span>Aug 15</span>
+<span>Aug 20</span>
+<span>Aug 25</span>
+<span>Aug 30</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Transactions / Bottom Row -->
+<div class="mt-8">
+<h3 class="text-white text-lg font-bold mb-4 px-1">Recent Activity</h3>
+<div class="glass-panel rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/5 border-b border-white/5 text-xs text-slate-400 uppercase tracking-wider">
+<th class="p-4 font-semibold">Type</th>
+<th class="p-4 font-semibold">Details</th>
+<th class="p-4 font-semibold">Date</th>
+<th class="p-4 font-semibold text-right">Amount</th>
+<th class="p-4 font-semibold text-center">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+<span class="material-symbols-outlined text-sm">payments</span>
+</div>
+<span class="text-white font-medium">ROI Payout</span>
+</div>
+</td>
+<td class="p-4 text-slate-300">Monthly Yield - Cycle 44</td>
+<td class="p-4 text-slate-400">Oct 24, 2023</td>
+<td class="p-4 text-right font-bold text-accent">+₹7,666.00</td>
+<td class="p-4 text-center">
+<span class="bg-accent/10 text-accent px-2 py-1 rounded text-xs font-bold">Completed</span>
+</td>
+</tr>
+<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">group_add</span>
+</div>
+<span class="text-white font-medium">Referral Bonus</span>
+</div>
+</td>
+<td class="p-4 text-slate-300">Level 2 Activation (Sarah M.)</td>
+<td class="p-4 text-slate-400">Oct 22, 2023</td>
+<td class="p-4 text-right font-bold text-white">+₹450.00</td>
+<td class="p-4 text-center">
+<span class="bg-accent/10 text-accent px-2 py-1 rounded text-xs font-bold">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">arrow_outward</span>
+</div>
+<span class="text-white font-medium">Withdrawal</span>
+</div>
+</td>
+<td class="p-4 text-slate-300">Transfer to Bank Ending ••45</td>
+<td class="p-4 text-slate-400">Oct 15, 2023</td>
+<td class="p-4 text-right font-bold text-slate-300">-₹5,000.00</td>
+<td class="p-4 text-center">
+<span class="bg-white/5 text-slate-400 px-2 py-1 rounded text-xs font-bold">Processed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-white/5 text-center">
+<button class="text-primary text-sm font-bold hover:text-white transition-colors flex items-center justify-center gap-1 mx-auto">
+                        View Full History
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RBAC Central Landing Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e44b3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f172a", // Deep slate as requested
+                        "surface-dark": "#1e293b",
+                        "accent-green": "#0bda5e",
+                        "accent-orange": "#fa6238",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(19, 91, 236, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(11, 218, 94, 0.05) 0px, transparent 50%)',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-white overflow-hidden">
+<div class="flex h-screen w-full bg-mesh-gradient">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-72 h-full glass-panel border-r border-slate-700/30 z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 rounded-xl bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white" style="font-size: 24px;">token</span>
+</div>
+<div>
+<h1 class="text-lg font-bold tracking-tight text-white">InvestOne</h1>
+<p class="text-xs text-slate-400">Pro Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-6 flex flex-col gap-2 overflow-y-auto">
+<!-- Role: Investor Specific Menu -->
+<div class="mb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Investor Menu</div>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-md shadow-primary/20 group transition-all" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-size: 20px;">pie_chart</span>
+<span class="font-medium text-sm">Portfolio</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-size: 20px;">receipt_long</span>
+<span class="font-medium text-sm">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-size: 20px;">account_balance_wallet</span>
+<span class="font-medium text-sm">Transactions</span>
+</a>
+<div class="my-4 border-t border-slate-700/50"></div>
+<div class="mb-2 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Settings</div>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-size: 20px;">settings</span>
+<span class="font-medium text-sm">Preferences</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-size: 20px;">support_agent</span>
+<span class="font-medium text-sm">Support</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-700/30">
+<div class="glass-panel rounded-xl p-3 flex items-center gap-3 hover:bg-white/5 transition-colors cursor-pointer">
+<img alt="Profile Picture" class="size-10 rounded-full object-cover border border-slate-600" data-alt="Professional woman in business attire smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5D84YEMkCHK_VBV36FAEUesDeSHkicwdiCSlC5i6APtc7rx8nR7s6DaHYyJV7liYQFAR8teNYfcft32Mrd-cSITHPCS6GZriKKUZFyd06Spi4QvgkAqEtJsxEahM8RVrRyDph5I2K9Gw8hka__Pho9xDpNkUaq-G5PBaXerhlLNm1ZMmethoS1Q16iqkoIPUYPHCpTI5L1m4qiknMCOW-T6s5EwvL56-schZy-IoMM79zRqxHCVDrJZzNRNtg1_GBOJ_gx6VSRgNw"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-white truncate">Priya Sharma</p>
+<p class="text-xs text-slate-400 truncate">Premium Investor</p>
+</div>
+<button class="text-slate-400 hover:text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 h-full overflow-y-auto overflow-x-hidden relative">
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 glass-panel border-b border-slate-700/30 sticky top-0 z-30">
+<div class="flex items-center gap-3">
+<button class="text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-lg font-bold text-white">InvestOne</span>
+</div>
+<div class="size-8 rounded-full bg-slate-700 overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Professional woman profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWS_jCoh1dTTxb62kqeUBCvdnRzWzM3H9wW1WfdG1tIGo0YkyIQrWGk9zLvMqVgod0VTv2zu3KOQfTvqFJUz34oiFOdMLsE_iY09u1ULzpMMaCvyR34w6Yeb0GLrhqFlCLOAi3bFjsD3LtSX809hH-A1bQhcaYhRGR5T9IAKdAYGD-jiVBkm17QVtDoxKFrBuKDJKzCYizqzw6W2vtbN0QfTof1fDCmqLIe9lqrWP3ZaxGQL2R6gTY9yfd-qLCJIiaPnCPUVdF8KwU"/>
+</div>
+</header>
+<!-- Top Bar (Desktop) -->
+<div class="hidden md:flex justify-between items-center px-8 py-5">
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<span>Overview</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-white">Dashboard</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Notification Bell -->
+<button class="relative p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent-orange rounded-full border border-slate-900"></span>
+</button>
+<!-- Theme Toggle Simulation -->
+<div class="flex items-center bg-surface-dark rounded-full p-1 border border-slate-700/50">
+<button class="p-1.5 rounded-full bg-slate-700 text-yellow-400 shadow-sm">
+<span class="material-symbols-outlined text-sm">light_mode</span>
+</button>
+<button class="p-1.5 rounded-full text-slate-500 hover:text-slate-300">
+<span class="material-symbols-outlined text-sm">dark_mode</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-4 md:px-8 pb-10 max-w-7xl mx-auto">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                            Investor Portal
+                        </div>
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">Welcome back, Priya</h1>
+<p class="text-slate-400">Here's your investment performance overview for <span class="text-white font-medium">October 24, 2023</span>.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2.5 rounded-lg glass-panel text-sm font-medium text-white hover:bg-white/5 transition-colors border border-slate-600/50 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">download</span>
+                            Statement
+                        </button>
+<button class="px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-sm font-medium text-white shadow-lg shadow-primary/25 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add</span>
+                            New Investment
+                        </button>
+</div>
+</section>
+<!-- Hero Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Total Asset Value Card -->
+<div class="glass-panel p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">account_balance</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-2 bg-emerald-500/10 rounded-lg">
+<span class="material-symbols-outlined text-emerald-500">trending_up</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Total Asset Value</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-white tracking-tight mb-1">₹1,25,00,000</h3>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-emerald-500 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                                        12.5%
+                                    </span>
+<span class="text-slate-500">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Decorative gradient line -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-transparent opacity-50"></div>
+</div>
+<!-- Next Payout Card -->
+<div class="glass-panel p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">schedule</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">event_upcoming</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Next Payout</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-white tracking-tight mb-1">12 Days</h3>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-slate-300">Est. Amount:</span>
+<span class="text-white font-semibold">₹4,50,000</span>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-slate-700/50 rounded-full h-1.5 mt-4">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+<!-- Monthly Returns Card -->
+<div class="glass-panel p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">currency_rupee</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-2 bg-purple-500/10 rounded-lg">
+<span class="material-symbols-outlined text-purple-400">payments</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Total Returns (YTD)</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold text-white tracking-tight mb-1">₹28,45,000</h3>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-purple-400 font-semibold">+8.2%</span>
+<span class="text-slate-500">above target</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-transparent opacity-50"></div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Chart Section -->
+<section class="lg:col-span-2 glass-panel rounded-2xl p-6 border border-slate-700/30">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-white">Portfolio Performance</h3>
+<div class="flex bg-slate-800/50 rounded-lg p-1">
+<button class="px-3 py-1 rounded-md text-xs font-medium bg-slate-700 text-white shadow-sm">1M</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition-colors">6M</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition-colors">1Y</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition-colors">ALL</button>
+</div>
+</div>
+<!-- Simulated Chart Area -->
+<div class="relative h-64 w-full bg-gradient-to-b from-primary/5 to-transparent rounded-lg border border-slate-700/30 overflow-hidden flex items-end px-2 pt-10 pb-0">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between p-6 pointer-events-none">
+<div class="border-t border-slate-700/20 w-full"></div>
+<div class="border-t border-slate-700/20 w-full"></div>
+<div class="border-t border-slate-700/20 w-full"></div>
+<div class="border-t border-slate-700/20 w-full"></div>
+<div class="border-t border-slate-700/20 w-full"></div>
+</div>
+<!-- Simulated Line Path (SVG) -->
+<svg class="absolute inset-0 w-full h-full p-6 pointer-events-none" preserveaspectratio="none" viewbox="0 0 800 300">
+<path d="M0,250 C100,240 150,200 200,210 C250,220 300,150 400,160 C500,170 550,100 600,110 C650,120 700,50 800,40" fill="none" stroke="#135bec" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<lineargradient id="gradientArea" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#135bec;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#135bec;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,250 C100,240 150,200 200,210 C250,220 300,150 400,160 C500,170 550,100 600,110 C650,120 700,50 800,40 L800,300 L0,300 Z" fill="url(#gradientArea)"></path>
+</svg>
+<!-- Tooltip Simulation -->
+<div class="absolute top-1/3 left-2/3 transform -translate-x-1/2 -translate-y-1/2 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-20">
+<p class="text-xs text-slate-400 mb-1">Oct 12, 2023</p>
+<p class="text-sm font-bold text-white">₹1,18,40,000</p>
+</div>
+<div class="absolute top-1/3 left-2/3 transform -translate-x-1/2 translate-y-6 w-3 h-3 bg-primary rounded-full border-2 border-white shadow-lg z-20"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-500 mt-4 px-2">
+<span>Oct 01</span>
+<span>Oct 05</span>
+<span>Oct 10</span>
+<span>Oct 15</span>
+<span>Oct 20</span>
+<span>Oct 25</span>
+</div>
+</section>
+<!-- Quick Actions Panel -->
+<section class="lg:col-span-1 flex flex-col gap-6">
+<div class="glass-panel rounded-2xl p-6 h-full border border-slate-700/30">
+<h3 class="text-lg font-bold text-white mb-6">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="group glass-panel-hover flex flex-col items-center justify-center p-4 rounded-xl border border-slate-700/50 transition-all">
+<div class="mb-3 p-3 rounded-full bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+<span class="material-symbols-outlined text-blue-400">add_card</span>
+</div>
+<span class="text-xs font-semibold text-slate-300 text-center">Invest New Capital</span>
+</button>
+<button class="group glass-panel-hover flex flex-col items-center justify-center p-4 rounded-xl border border-slate-700/50 transition-all">
+<div class="mb-3 p-3 rounded-full bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
+<span class="material-symbols-outlined text-emerald-400">description</span>
+</div>
+<span class="text-xs font-semibold text-slate-300 text-center">Tax Reports</span>
+</button>
+<button class="group glass-panel-hover flex flex-col items-center justify-center p-4 rounded-xl border border-slate-700/50 transition-all">
+<div class="mb-3 p-3 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+<span class="material-symbols-outlined text-purple-400">person_add</span>
+</div>
+<span class="text-xs font-semibold text-slate-300 text-center">Refer Friend</span>
+</button>
+<button class="group glass-panel-hover flex flex-col items-center justify-center p-4 rounded-xl border border-slate-700/50 transition-all">
+<div class="mb-3 p-3 rounded-full bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors">
+<span class="material-symbols-outlined text-orange-400">headset_mic</span>
+</div>
+<span class="text-xs font-semibold text-slate-300 text-center">Contact RM</span>
+</button>
+</div>
+<div class="mt-6 pt-6 border-t border-slate-700/30">
+<p class="text-xs text-slate-500 mb-3 uppercase tracking-wider font-semibold">Pending Action</p>
+<div class="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50 flex items-start gap-3">
+<span class="material-symbols-outlined text-yellow-500 mt-0.5 text-sm">warning</span>
+<div>
+<p class="text-sm font-medium text-white">KYC Update Required</p>
+<p class="text-xs text-slate-400 mt-1">Please update your PAN details before Nov 1st.</p>
+<button class="text-xs text-primary font-medium mt-2 hover:underline">Update Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Recent Transactions (Brief) -->
+<section class="mt-8">
+<div class="glass-panel rounded-2xl border border-slate-700/30 overflow-hidden">
+<div class="p-6 border-b border-slate-700/30 flex justify-between items-center">
+<h3 class="text-lg font-bold text-white">Recent Activity</h3>
+<button class="text-sm text-primary font-medium hover:text-primary-dark transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-slate-400">
+<thead class="text-xs uppercase bg-slate-800/50 text-slate-300 font-medium">
+<tr>
+<th class="px-6 py-4">Transaction</th>
+<th class="px-6 py-4">Date</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-700/30">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500 text-sm">arrow_downward</span>
+</div>
+                                            Monthly Payout - Sept
+                                        </td>
+<td class="px-6 py-4">Oct 01, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                                Completed
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right text-white font-semibold">+ ₹4,50,000</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-500 text-sm">arrow_upward</span>
+</div>
+                                            Capital Injection
+                                        </td>
+<td class="px-6 py-4">Sept 15, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                                                Completed
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right text-white font-semibold">+ ₹25,00,000</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 text-sm">description</span>
+</div>
+                                            Service Fee
+                                        </td>
+<td class="px-6 py-4">Sept 01, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/10 text-slate-400 border border-slate-500/20">
+                                                Processed
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right text-white font-semibold">- ₹12,500</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

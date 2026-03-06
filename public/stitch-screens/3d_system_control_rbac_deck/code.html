@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LuxVerse OS - System Control Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a212e",
+                        "surface-hover": "#242c3d",
+                        "border-dark": "#282e39",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a sleeker look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111318;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #282e39;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3d4655;
+        }
+        /* 3D-like toggle switch effect */
+        .mechanical-switch:checked + div {
+            transform: translateX(20px);
+            background: #0d59f2;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(13, 89, 242, 0.5);
+        }
+        .mechanical-switch-track {
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+        .mechanical-knob {
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-border-dark bg-[#111318]/90 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">deployed_code</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">LuxVerse OS</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Assets</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="text-white text-sm font-medium leading-normal relative after:content-[''] after:absolute after:bottom-[-22px] after:left-0 after:w-full after:h-[2px] after:bg-primary" href="#">System</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center justify-end gap-6">
+<div class="relative hidden lg:flex items-center">
+<span class="absolute left-4 text-slate-500 material-symbols-outlined">search</span>
+<input class="w-64 rounded-xl bg-surface-dark border border-border-dark py-2.5 pl-12 pr-4 text-sm text-white placeholder-slate-500 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search parameters..." type="text"/>
+</div>
+<button class="hidden sm:flex items-center justify-center rounded-xl bg-surface-dark border border-border-dark p-2 text-slate-400 hover:bg-surface-hover hover:text-white transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-surface-dark bg-cover bg-center" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoS_AaTLHho9_L771S23t_sYEUdK_qS-bjXfJl6IwrLwWXv5ItXz5lqJ8oFYjJqku3cT_fyOTdAavti0BdL8hRLNJlv-S92EvbEigiX5PXvVpRJoShipUp6a4XK8z1xCY_U2ISsw1g3H0jxg4bRAmRzuM6GVc29FLnNdkS55_KHIQoqaM36YihT44m-G91yeqeQap3XBHeNWt4cJHZz7tzSs2fGFMHfP06aWofVgQeoScXORwjYxJNa_lr6i8U5tmkUpFVlSQkmRwj");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-8 md:px-10 lg:px-20 xl:px-40 max-w-[1600px] mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">System Control Deck</h1>
+<p class="text-slate-400 text-lg max-w-2xl">Manage environment security, RBAC protocols, and neural interface configurations via the 3D control plane.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-dark border border-border-dark text-slate-300 font-medium hover:bg-surface-hover transition-all">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Customize Layout</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:bg-blue-600 transition-all">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>Save Config</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Security Shield & Main Stats -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Hero Security Card -->
+<div class="relative overflow-hidden rounded-3xl bg-surface-dark border border-border-dark p-8 md:p-12 min-h-[420px] flex flex-col justify-end group">
+<!-- Abstract Background Graphic -->
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay transition-transform duration-1000 group-hover:scale-105" data-alt="Abstract 3D digital security shield network" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_JDroobS2NyxAsv9av9ueKQmBNN3Npv-_0YrVlZM7vJVokVTIivcoPGqX2TgrCUUY3ud_lJShLRzPQJ7wnXfNBDcE4oJ8CHqXjMas_DOfAI9mVscVdkwqcRr6YOMs4U22DI6WQpXGWYbkzmEO73llNZrYX_qZlAuDsNmCvCBTWeU2s-IZQgz6JKYu_o8iykw6QhmaR2hOAwvm9e3d1LUxiRAm_UsfhrDcA6afkhZRj-yli21knpTZiMdFvlm5R-RIZbSp7zg3sL1d");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent z-10"></div>
+<div class="relative z-20 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 w-fit backdrop-blur-sm">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+</span>
+<span class="text-blue-200 text-xs font-bold uppercase tracking-wider">Active Protection</span>
+</div>
+<div>
+<h2 class="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter">TITANIUM</h2>
+<p class="text-xl text-slate-300 font-light">Security Shield Status</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-white/10">
+<div>
+<p class="text-slate-400 text-sm mb-1">Threat Level</p>
+<p class="text-green-400 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">check_circle</span> LOW
+                                </p>
+</div>
+<div>
+<p class="text-slate-400 text-sm mb-1">Encryption</p>
+<p class="text-white font-bold">Quantum-256</p>
+</div>
+<div>
+<p class="text-slate-400 text-sm mb-1">Integrity</p>
+<div class="flex items-center gap-2">
+<div class="h-2 w-24 bg-surface-hover rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-full"></div>
+</div>
+<span class="text-white font-bold">100%</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4 mt-2">
+<button class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold text-sm tracking-wide transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined">security_update_good</span>
+                                Run Diagnostics
+                            </button>
+<button class="bg-surface-hover hover:bg-[#2f394d] text-white px-6 py-3 rounded-xl font-medium text-sm tracking-wide transition-all border border-border-dark backdrop-blur-md flex items-center gap-2">
+<span class="material-symbols-outlined">history</span>
+                                View Logs
+                            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Widget 1 -->
+<div class="bg-surface-dark border border-border-dark rounded-2xl p-6 flex items-start justify-between group hover:border-primary/50 transition-colors cursor-pointer">
+<div>
+<div class="bg-primary/10 text-primary p-3 rounded-lg w-fit mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<h3 class="text-slate-400 text-sm font-medium mb-1">CPU Load</h3>
+<p class="text-2xl font-bold text-white">12.4%</p>
+</div>
+<div class="h-16 w-16 relative">
+<!-- Placeholder for a mini chart/graph -->
+<svg class="w-full h-full text-primary" viewbox="0 0 36 36">
+<path class="text-surface-hover" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="12, 100" stroke-width="4"></path>
+</svg>
+</div>
+</div>
+<!-- Widget 2 -->
+<div class="bg-surface-dark border border-border-dark rounded-2xl p-6 flex items-start justify-between group hover:border-primary/50 transition-colors cursor-pointer">
+<div>
+<div class="bg-purple-500/10 text-purple-400 p-3 rounded-lg w-fit mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">cloud_sync</span>
+</div>
+<h3 class="text-slate-400 text-sm font-medium mb-1">Network Latency</h3>
+<p class="text-2xl font-bold text-white">24ms</p>
+</div>
+<!-- Signal strength visual -->
+<div class="flex items-end gap-1 h-12 pb-1">
+<div class="w-2 h-4 bg-purple-500/30 rounded-sm"></div>
+<div class="w-2 h-6 bg-purple-500/30 rounded-sm"></div>
+<div class="w-2 h-8 bg-purple-500/60 rounded-sm"></div>
+<div class="w-2 h-10 bg-purple-500 rounded-sm"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: RBAC & Control Panel -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- RBAC Panel -->
+<div class="bg-surface-dark border border-border-dark rounded-2xl overflow-hidden flex flex-col h-full">
+<div class="p-6 border-b border-border-dark bg-[#151b26]">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+                            RBAC Matrix
+                        </h3>
+<p class="text-slate-500 text-sm mt-1">Configure role-based access permissions.</p>
+</div>
+<div class="p-4 flex flex-col gap-4 overflow-y-auto max-h-[600px]">
+<!-- Permission Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#111318] hover:bg-[#161a23] transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-dark flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">key</span>
+</div>
+<div>
+<p class="text-white font-medium text-sm">Master Admin</p>
+<p class="text-slate-500 text-xs">Full system override</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer mechanical-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-hover peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full mechanical-switch-track"></div>
+<div class="absolute left-[2px] top-[2px] bg-white border-gray-300 border rounded-full h-5 w-5 transition-all mechanical-knob"></div>
+</label>
+</div>
+<!-- Permission Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#111318] hover:bg-[#161a23] transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-dark flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-white font-medium text-sm">Financial Ops</p>
+<p class="text-slate-500 text-xs">Transaction approval</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer mechanical-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-hover peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full mechanical-switch-track"></div>
+<div class="absolute left-[2px] top-[2px] bg-white border-gray-300 border rounded-full h-5 w-5 transition-all mechanical-knob"></div>
+</label>
+</div>
+<!-- Permission Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#111318] hover:bg-[#161a23] transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-dark flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div>
+<p class="text-white font-medium text-sm">Marketplace</p>
+<p class="text-slate-500 text-xs">Listing management</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer mechanical-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-hover peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full mechanical-switch-track"></div>
+<div class="absolute left-[2px] top-[2px] bg-white border-gray-300 border rounded-full h-5 w-5 transition-all mechanical-knob"></div>
+</label>
+</div>
+<!-- Permission Item 4 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#111318] hover:bg-[#161a23] transition-colors border border-transparent hover:border-border-dark group">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-dark flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<p class="text-white font-medium text-sm">Support Staff</p>
+<p class="text-slate-500 text-xs">User data read-only</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer mechanical-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-hover peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full mechanical-switch-track"></div>
+<div class="absolute left-[2px] top-[2px] bg-white border-gray-300 border rounded-full h-5 w-5 transition-all mechanical-knob"></div>
+</label>
+</div>
+<!-- Permission Item 5 -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#111318] hover:bg-[#161a23] transition-colors border border-transparent hover:border-border-dark group opacity-50 cursor-not-allowed" title="Requires Supervisor Authorization">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-dark flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div>
+<p class="text-white font-medium text-sm">Deployment</p>
+<p class="text-slate-500 text-xs">Production push</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions / Mini Control Deck -->
+<div class="bg-gradient-to-br from-primary/20 to-surface-dark border border-primary/30 rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-white font-bold mb-4">Emergency Protocol</h3>
+<div class="flex items-center justify-between bg-black/40 p-4 rounded-xl backdrop-blur-sm border border-white/5 mb-4">
+<span class="text-sm text-slate-300">System Lockdown</span>
+<button class="bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/50 rounded-lg px-3 py-1 text-xs font-bold uppercase transition-all tracking-wider">
+                                Activate
+                            </button>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">info</span>
+                            Will terminate all active sessions immediately.
+                        </div>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/30 rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+<!-- Floating Widgets Section -->
+<div class="mt-8">
+<h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">widgets</span>
+                Environment Variables
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Variable Card 1 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:shadow-primary/5">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-background-dark p-2 rounded-lg">
+<span class="material-symbols-outlined text-slate-400">globe_uk</span>
+</div>
+<span class="text-xs font-mono text-slate-500">GLB_REGION</span>
+</div>
+<p class="text-slate-400 text-sm mb-1">Server Region</p>
+<p class="text-white font-bold text-lg">Europe (Frankfurt)</p>
+<div class="w-full bg-surface-hover h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-3/4"></div>
+</div>
+</div>
+<!-- Variable Card 2 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:shadow-primary/5">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-background-dark p-2 rounded-lg">
+<span class="material-symbols-outlined text-slate-400">database</span>
+</div>
+<span class="text-xs font-mono text-slate-500">DB_SHARD</span>
+</div>
+<p class="text-slate-400 text-sm mb-1">Database Sharding</p>
+<p class="text-white font-bold text-lg">Auto-Scale</p>
+<div class="w-full bg-surface-hover h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-blue-500 h-full w-1/2"></div>
+</div>
+</div>
+<!-- Variable Card 3 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:shadow-primary/5">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-background-dark p-2 rounded-lg">
+<span class="material-symbols-outlined text-slate-400">api</span>
+</div>
+<span class="text-xs font-mono text-slate-500">API_RATE</span>
+</div>
+<p class="text-slate-400 text-sm mb-1">API Rate Limit</p>
+<p class="text-white font-bold text-lg">10k / min</p>
+<div class="w-full bg-surface-hover h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-orange-500 h-full w-[85%]"></div>
+</div>
+</div>
+<!-- Variable Card 4 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:shadow-primary/5 border-dashed border-2 bg-transparent flex flex-col items-center justify-center gap-2 min-h-[160px]">
+<span class="material-symbols-outlined text-slate-600 text-3xl">add_circle</span>
+<p class="text-slate-500 font-medium">Add Widget</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-border-dark bg-[#111318] px-10 py-6 mt-12">
+<div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+<p>© 2024 LuxVerse Systems Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Documentation</a>
+<a class="hover:text-white transition-colors" href="#">Support</a>
+<a class="hover:text-white transition-colors" href="#">Status</a>
+</div>
+</div>
+</footer>
+</body></html>

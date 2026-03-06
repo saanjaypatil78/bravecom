@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Integrity &amp; Ledger Audit Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f46a",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#111813",
+                        "surface-dark": "#1b271f",
+                        "border-dark": "#28392e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Noto Sans Mono", "monospace"], // Fallback for hashes
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for the terminal feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111813; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #28392e; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5443; 
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .glowing-text {
+            text-shadow: 0 0 10px rgba(37, 244, 106, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-6 py-3 bg-surface-dark/50 backdrop-blur-sm z-20 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 bg-primary/20 rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">System Integrity Portal</h2>
+<div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse-slow"></span>
+<span>v4.2.0-stable</span>
+<span class="text-border-dark">|</span>
+<span>Env: PROD-MUM-01</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="hidden md:flex items-center px-3 py-1.5 bg-background-dark border border-border-dark rounded text-xs font-mono text-primary gap-2">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>ROOT ACCESS GRANTED</span>
+</div>
+<button class="flex items-center justify-center rounded-lg size-10 bg-border-dark text-white hover:bg-border-dark/80 transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-surface-dark"></span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-border-dark text-white hover:bg-border-dark/80 transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold hover:bg-primary/90 transition-colors">
+<span>Admin Logout</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Column: Metrics & Ledger -->
+<div class="flex-1 flex flex-col overflow-y-auto min-w-0 border-r border-border-dark">
+<!-- Quick Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 border-b border-border-dark bg-background-dark/50">
+<!-- Stat 1 -->
+<div class="flex flex-col gap-1 p-4 rounded-lg border border-border-dark bg-surface-dark relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Total AUM</p>
+<span class="material-symbols-outlined text-primary/50 text-[20px]">account_balance_wallet</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight glowing-text">₹ 111.4 Cr</p>
+<div class="flex items-center gap-1 text-primary text-xs font-bold mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+2.4% vs 24h</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="flex flex-col gap-1 p-4 rounded-lg border border-border-dark bg-surface-dark relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Redis Latency</p>
+<span class="material-symbols-outlined text-primary/50 text-[20px]">bolt</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight">12ms</p>
+<p class="text-slate-500 text-xs mt-1">p99 &lt; 20ms</p>
+</div>
+<!-- Stat 3 -->
+<div class="flex flex-col gap-1 p-4 rounded-lg border border-border-dark bg-surface-dark relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">BullMQ Depth</p>
+<span class="material-symbols-outlined text-primary/50 text-[20px]">layers</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight">0</p>
+<div class="flex items-center gap-1 text-primary text-xs font-bold mt-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>All jobs processed</span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="flex flex-col gap-1 p-4 rounded-lg border border-border-dark bg-surface-dark relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Ledger Integrity</p>
+<span class="material-symbols-outlined text-primary/50 text-[20px]">verified_user</span>
+</div>
+<p class="text-white text-2xl font-bold tracking-tight text-primary">100% Verified</p>
+<p class="text-slate-500 text-xs mt-1">Block Height: #8,940,211</p>
+</div>
+</div>
+<!-- Ledger Table Section -->
+<div class="flex flex-col flex-1 p-6 gap-4 min-h-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<h2 class="text-white text-xl font-bold">Immutable Ledger Audit</h2>
+<div class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider">Live Stream</div>
+</div>
+<div class="flex gap-2">
+<div class="relative">
+<input class="bg-background-dark border border-border-dark text-slate-300 text-sm rounded-lg focus:ring-primary focus:border-primary block w-64 pl-9 p-2 placeholder-slate-600" placeholder="Search Hash / TXID" type="text"/>
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</div>
+</div>
+<button class="p-2 bg-surface-dark border border-border-dark rounded-lg text-slate-400 hover:text-white hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-hidden rounded-lg border border-border-dark bg-surface-dark flex flex-col">
+<!-- Table Header -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark bg-background-dark/50 text-xs font-semibold text-slate-400 uppercase tracking-wider sticky top-0">
+<div>Transaction Hash</div>
+<div>Timestamp (UTC)</div>
+<div>Action Type</div>
+<div class="text-right">Amount</div>
+<div>Prev. Block Hash</div>
+<div class="text-center">Integrity</div>
+</div>
+<!-- Table Body (Scrollable) -->
+<div class="overflow-y-auto flex-1 custom-scrollbar">
+<!-- Row 1 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate" title="0x7f8a92b1c4d5e6f7a8b9c0d1e2f3a4b5">0x7f8a...3a4b5</div>
+<div class="text-slate-300">2023-10-27 14:02:45</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">INVESTMENT</span></div>
+<div class="text-right font-mono text-white">₹ 50,000.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x9a2b...c1d2</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]" title="Cryptographically Valid">verified_user</span></div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0x3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8</div>
+<div class="text-slate-300">2023-10-27 14:02:12</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">REFERRAL_PAYOUT</span></div>
+<div class="text-right font-mono text-white">₹ 1,200.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x1e2f...3a4b</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 3 (Treasury Overflow) -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 bg-yellow-500/5 hover:bg-yellow-500/10 transition-colors items-center text-sm group">
+<div class="font-mono text-yellow-400 truncate">0x5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0</div>
+<div class="text-slate-300">2023-10-27 14:01:55</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">TREASURY_OVERFLOW</span></div>
+<div class="text-right font-mono text-white">₹ 15,400.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x8b9c...0d1e</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6</div>
+<div class="text-slate-300">2023-10-27 14:01:30</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">INVESTMENT</span></div>
+<div class="text-right font-mono text-white">₹ 100,000.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x7a8b...9c0d</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0xd1e2f3a4b5c6d7e8f9a0b1c2d3e4f5</div>
+<div class="text-slate-300">2023-10-27 14:01:10</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">WITHDRAWAL</span></div>
+<div class="text-right font-mono text-white">₹ 25,000.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x3c4d...5e6f</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0x9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e</div>
+<div class="text-slate-300">2023-10-27 14:00:45</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">INVESTMENT</span></div>
+<div class="text-right font-mono text-white">₹ 10,000.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x1a2b...3c4d</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 7 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0x3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c</div>
+<div class="text-slate-300">2023-10-27 14:00:22</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">REFERRAL_PAYOUT</span></div>
+<div class="text-right font-mono text-white">₹ 800.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x9c0d...1e2f</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+<!-- Row 8 -->
+<div class="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_100px] gap-4 px-6 py-3 border-b border-border-dark/50 hover:bg-white/5 transition-colors items-center text-sm group">
+<div class="font-mono text-primary/90 truncate">0x3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c</div>
+<div class="text-slate-300">2023-10-27 13:59:58</div>
+<div><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">REFERRAL_PAYOUT</span></div>
+<div class="text-right font-mono text-white">₹ 450.00</div>
+<div class="font-mono text-slate-500 text-xs truncate">0x9c0d...1e2f</div>
+<div class="flex justify-center"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Panel: System Logs (Terminal) -->
+<div class="h-48 border-t border-border-dark bg-black p-4 font-mono text-xs overflow-y-auto">
+<div class="flex items-center justify-between mb-2 sticky top-0 bg-black pb-2 border-b border-white/10">
+<span class="text-slate-400 font-bold uppercase">System Stdout Stream</span>
+<span class="text-primary animate-pulse">● LIVE</span>
+</div>
+<div class="space-y-1 text-slate-400">
+<p><span class="text-slate-600">[14:02:45]</span> <span class="text-blue-400">INFO</span>  Processing block #8940211 - 14 transactions verified.</p>
+<p><span class="text-slate-600">[14:02:44]</span> <span class="text-primary">SUCCESS</span> Worker Node 02 completed job 44921 in 12ms.</p>
+<p><span class="text-slate-600">[14:02:42]</span> <span class="text-blue-400">INFO</span>  Snapshot saved to S3 bucket region ap-south-1.</p>
+<p><span class="text-slate-600">[14:02:30]</span> <span class="text-yellow-400">WARN</span>  Treasury Overflow Monitor: Referral depth &gt; 6 detected on user_id:8821. Routing excess to Treasury SVC.</p>
+<p><span class="text-slate-600">[14:02:29]</span> <span class="text-blue-400">INFO</span>  Redis connection pool refreshed. Active connections: 42.</p>
+<p><span class="text-slate-600">[14:02:15]</span> <span class="text-primary">SUCCESS</span> Integrity Check passed for Block #8940210. Merkle Root matches.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Mesh Status & Treasury -->
+<div class="w-96 border-l border-border-dark bg-surface-dark/30 flex flex-col overflow-y-auto">
+<!-- Agentic Mesh Visualizer -->
+<div class="p-6 border-b border-border-dark">
+<h3 class="text-white text-base font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">hub</span>
+                    Distributed Agentic Mesh
+                </h3>
+<div class="grid grid-cols-1 gap-3">
+<!-- Worker Node 1 -->
+<div class="bg-surface-dark border border-border-dark p-3 rounded-lg">
+<div class="flex justify-between items-center mb-2">
+<span class="text-white text-sm font-bold">Worker Node 01</span>
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-slate-400">
+<span>CPU Load</span>
+<span class="text-primary">12%</span>
+</div>
+<div class="h-1 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-400">
+<span>Memory</span>
+<span class="text-slate-300">2.1GB / 8GB</span>
+</div>
+<div class="h-1 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-500 w-[26%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Worker Node 2 -->
+<div class="bg-surface-dark border border-border-dark p-3 rounded-lg">
+<div class="flex justify-between items-center mb-2">
+<span class="text-white text-sm font-bold">Worker Node 02</span>
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-slate-400">
+<span>CPU Load</span>
+<span class="text-yellow-400">45%</span>
+</div>
+<div class="h-1 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-yellow-400 w-[45%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-400">
+<span>Memory</span>
+<span class="text-slate-300">3.8GB / 8GB</span>
+</div>
+<div class="h-1 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-500 w-[45%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Worker Node 3 -->
+<div class="bg-surface-dark border border-border-dark p-3 rounded-lg opacity-70">
+<div class="flex justify-between items-center mb-2">
+<span class="text-slate-300 text-sm font-bold">Worker Node 03</span>
+<span class="flex h-2 w-2 rounded-full bg-slate-500"></span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">bedtime</span>
+<span>Idle - Waiting for jobs</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Treasury Overflow Monitor -->
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-white text-base font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-400">account_tree</span>
+                    Treasury Overflow Monitor
+                </h3>
+<div class="bg-background-dark border border-border-dark rounded-xl p-4 flex flex-col gap-4 relative overflow-hidden">
+<!-- Abstract Background Pattern -->
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-yellow-500/5 rounded-full blur-2xl"></div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-400 text-xs font-medium uppercase">Routing Protocol</span>
+<div class="text-white text-sm font-bold leading-tight">Referral Level &gt; 6 <br/><span class="text-primary">→ Treasury Svc</span></div>
+</div>
+<div class="flex items-center justify-between py-2 border-t border-white/5 mt-2">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs">Overflow Events (24h)</span>
+<span class="text-white text-lg font-bold">142</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+</div>
+<div class="bg-surface-dark rounded-lg p-3 border border-border-dark mt-auto">
+<span class="text-slate-400 text-xs block mb-1">Total Routed to Treasury</span>
+<div class="text-2xl font-mono text-primary font-bold">₹ 1,240,500</div>
+<div class="w-full bg-background-dark h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-blue-500 h-full w-[65%] rounded-full relative">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-white/50 animate-pulse"></div>
+</div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+<span>0%</span>
+<span>Target Cap: 20L</span>
+</div>
+</div>
+</div>
+<!-- Compliance Alert Box -->
+<div class="mt-4 p-3 rounded-lg border border-blue-500/30 bg-blue-500/5 flex gap-3 items-start">
+<span class="material-symbols-outlined text-blue-400 mt-0.5">info</span>
+<div>
+<h4 class="text-blue-200 text-xs font-bold uppercase mb-1">SEBI Compliance Note</h4>
+<p class="text-blue-200/70 text-xs leading-relaxed">
+                            Segregated portfolio funds are reconciled every 4 hours. Ensure Treasury Service Microservice #4 is reachable.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

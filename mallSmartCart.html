@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Mall - Smart Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111818",
+                        "surface-dark": "#1b2727",
+                        "surface-darker": "#151f1f",
+                        "accent-teal": "#283939",
+                        "text-subtle": "#9cbaba"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-accent-teal px-6 py-4 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Sovereign Mall</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-subtle flex border-none bg-slate-100 dark:bg-accent-teal items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 24px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-accent-teal focus:border-none h-full placeholder:text-text-subtle px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search assets..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-8">
+<a class="dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Investments</a>
+<a class="dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Community</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark hover:bg-primary/90 transition-colors text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(37,244,244,0.3)]">
+<span class="truncate">Checkout</span>
+</button>
+<button class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-200 dark:bg-accent-teal text-slate-700 dark:text-white hover:bg-slate-300 dark:hover:bg-accent-teal/80 transition-colors gap-2 text-sm font-bold px-2.5">
+<span class="material-symbols-outlined" style="font-size: 20px;">notifications</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-200 dark:bg-accent-teal text-slate-700 dark:text-white hover:bg-slate-300 dark:hover:bg-accent-teal/80 transition-colors gap-2 text-sm font-bold px-2.5 relative">
+<span class="material-symbols-outlined" style="font-size: 20px;">shopping_cart</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-primary rounded-full"></span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar showing a stylized digital face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHGRWUicHoXxgOaatsMtfb_Qj_iQYxa6RndAJaS0tu8FdcEzmYg4CMi4WKiexmnV2Bu7Q0npE1FDCmqxkHOc1YV193Ld3bKj-tlwehnplAcZbUOqgPJ1V1stIy2SQ4YTl5DRK2URuAhnmQ5xxOFbWgVp6lA_rq65SEpKXVcrYhMZCsfaVPDltDGq4W6tVYPyQflBlF7yFyj0DRqYHzxSEI5O5DhMzvsqJGhIo_QRfvsrsAimpr4XAKyLhkNlKuNYdO5m6xRvpybV1C");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 md:px-10 py-8 lg:px-40 lg:py-12 w-full max-w-[1440px] mx-auto">
+<!-- Page Title -->
+<div class="flex flex-wrap justify-between items-end gap-4 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-tight dark:text-white">Your Smart Cart</h1>
+<p class="text-text-subtle text-lg font-normal max-w-2xl">Review your luxury selections and investment potential. Your current cart qualifies for Tier 2 rewards.</p>
+</div>
+<div class="flex items-center gap-2 text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+<span class="material-symbols-outlined">verified</span>
+<span class="text-sm font-bold">Secure Transaction Environment</span>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Cart Items List -->
+<div class="flex flex-col gap-6 w-full lg:w-2/3">
+<!-- Item 1 -->
+<div class="group relative flex flex-col sm:flex-row items-stretch gap-6 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-lg hover:shadow-[0_0_20px_rgba(37,244,244,0.15)] transition-all duration-300 border border-slate-200 dark:border-accent-teal hover:border-primary/50">
+<div class="w-full sm:w-48 aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden relative" data-alt="Luxury gold watch with intricate mechanical details" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzkA03dfYiu8bAg1wdQWs9qajOLK_LTS9sQw5y4kwoWx14vVN_KySFHATwiv-PUN3VkGVrJxVY1SaSs1msN7DD1tU-anGywGNUTmmHcxkAv0Te2g_nFFIM7Eu0AS3K28RZLI1kNk6gkL85CU9QZ7hi3OQ9cEtlHFlnMrkfv4-w4_tq11zQLhnAhJ1YZz0oi-_1Id2DcEukxCjXpnzvuBKNKDEQG3uMwT5rHGfjw9uppcfjA4UqUeeItyQrE79JwZmMKN4QmrizoMkT");'>
+<div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs font-medium text-white border border-white/10">Only 2 left</div>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-xl font-bold dark:text-white group-hover:text-primary transition-colors">Limited Edition Chronograph</h3>
+<span class="text-lg font-bold dark:text-white">$45,000</span>
+</div>
+<p class="text-text-subtle text-sm font-medium mb-4">Luxury Watches • Ref: 8992-X</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">Authenticity Verified</span>
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">Insured Shipping</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4 sm:mt-0">
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark rounded-lg p-1 border border-slate-200 dark:border-accent-teal">
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<span class="text-sm font-bold dark:text-white w-4 text-center">1</span>
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+<button class="flex items-center gap-1 text-red-400 hover:text-red-300 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-red-400/10">
+<span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+<span class="hidden sm:inline">Remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group relative flex flex-col sm:flex-row items-stretch gap-6 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-lg hover:shadow-[0_0_20px_rgba(37,244,244,0.15)] transition-all duration-300 border border-slate-200 dark:border-accent-teal hover:border-primary/50">
+<div class="w-full sm:w-48 aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden relative" data-alt="Abstract digital landscape representing virtual real estate" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdrCNvInJExbJdmka2tM4DhYz--yKfYmbYC8_GOe5LHUESJggJ2moBpn7q50jpIs0jPxWQZPAkKuYfuXn6bSv_nEVjEBZo2PS-zq2HMX1c38OGIECdd-w6N1BXLgO1FslQJ221TnZaIGbqpowpazZYa4wQtGDGMK4utICLxievsfv45zP9rcZhQCHRT6jrUl2RKY1L0jhbDoSBrBX1rPRPTIfwoCrFEKaG0zuqjDU6I0bbS7koY6taJS0tNO6qk12z4cRN7FQ8G5Cn");'>
+<div class="absolute top-2 left-2 bg-primary/80 backdrop-blur-md px-2 py-1 rounded text-xs font-bold text-black">Trending Asset</div>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-xl font-bold dark:text-white group-hover:text-primary transition-colors">Virtual Estate Parcel #402</h3>
+<span class="text-lg font-bold dark:text-white">$12,500</span>
+</div>
+<p class="text-text-subtle text-sm font-medium mb-4">Digital Assets • Prime District</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">NFT Certificate</span>
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">Instant Transfer</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4 sm:mt-0">
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark rounded-lg p-1 border border-slate-200 dark:border-accent-teal">
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<span class="text-sm font-bold dark:text-white w-4 text-center">1</span>
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+<button class="flex items-center gap-1 text-red-400 hover:text-red-300 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-red-400/10">
+<span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+<span class="hidden sm:inline">Remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group relative flex flex-col sm:flex-row items-stretch gap-6 rounded-xl bg-white dark:bg-surface-dark p-4 shadow-lg hover:shadow-[0_0_20px_rgba(37,244,244,0.15)] transition-all duration-300 border border-slate-200 dark:border-accent-teal hover:border-primary/50">
+<div class="w-full sm:w-48 aspect-video sm:aspect-square bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden relative" data-alt="High-tech secure hardware wallet with diamond accents" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKGM18HOdM3cHybfLslJcjxsEaQbMYR_VTZLkKbMXIk_qaos9G8bJOCfCo8goibPI_8diM-xal_Xi8U6NPb9MoreQYNGJz4l4T4wqhAsogOAPScHZjKzFjlHLrcamPaW-UvJ4Jk7zDKi6sMobm3eubmcc1L0Gtu3Kj_WGtdYSPUIjnumJx_jGkVnsDp_c1_bsSKcqV9rC6sq06SPVEq3DxXdmhVefarGqpQRUlR-vz_zRJcIe8xPXu6TUtOGczypQSuF5Vw99vkRAw");'>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div>
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-xl font-bold dark:text-white group-hover:text-primary transition-colors">Diamond Encrusted Ledger</h3>
+<span class="text-lg font-bold dark:text-white">$8,200</span>
+</div>
+<p class="text-text-subtle text-sm font-medium mb-4">Hardware Wallets • Custom Order</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">Pre-Order</span>
+<span class="px-2 py-1 bg-background-light dark:bg-background-dark rounded text-xs text-text-subtle border border-slate-200 dark:border-slate-700">White Glove Delivery</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4 sm:mt-0">
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark rounded-lg p-1 border border-slate-200 dark:border-accent-teal">
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">remove</span>
+</button>
+<span class="text-sm font-bold dark:text-white w-4 text-center">1</span>
+<button class="size-8 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-accent-teal text-text-subtle transition-colors">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+</button>
+</div>
+<button class="flex items-center gap-1 text-red-400 hover:text-red-300 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-red-400/10">
+<span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+<span class="hidden sm:inline">Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Summary Sidebar -->
+<div class="w-full lg:w-1/3 flex flex-col gap-6 sticky top-8">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-xl border border-slate-200 dark:border-accent-teal">
+<h3 class="text-xl font-bold dark:text-white mb-6">Order Summary</h3>
+<div class="space-y-4 mb-6 border-b border-slate-200 dark:border-accent-teal pb-6">
+<div class="flex justify-between text-slate-600 dark:text-text-subtle">
+<span>Subtotal</span>
+<span class="dark:text-white font-medium">$65,700.00</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-text-subtle">
+<span>Processing Fees</span>
+<span class="dark:text-white font-medium">$125.00</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-text-subtle">
+<span>Shipping Estimate</span>
+<span class="text-primary font-medium">Free</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-text-subtle pt-2">
+<span class="flex items-center gap-1">Estimated Tax <span class="material-symbols-outlined text-xs cursor-help" title="Calculated based on your region">help</span></span>
+<span class="dark:text-white font-medium">$3,285.00</span>
+</div>
+</div>
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="block text-sm text-text-subtle mb-1">Total Due</span>
+<span class="text-3xl font-black dark:text-white tracking-tight">$69,110.00</span>
+</div>
+<span class="text-sm font-medium text-text-subtle mb-1.5">USD</span>
+</div>
+<button class="w-full py-4 bg-primary hover:bg-primary/90 text-background-dark font-bold text-lg rounded-lg shadow-[0_4px_14px_0_rgba(37,244,244,0.39)] transition-all hover:scale-[1.02] active:scale-[0.98] mb-4">
+                            Proceed to Checkout
+                        </button>
+<a class="block w-full text-center py-3 border border-slate-200 dark:border-accent-teal hover:border-primary/50 text-slate-700 dark:text-white font-bold rounded-lg transition-colors" href="#">
+                            Continue Shopping
+                        </a>
+</div>
+<!-- Ecosystem Contribution Card -->
+<div class="bg-gradient-to-br from-surface-dark to-accent-teal rounded-xl p-6 border border-primary/20 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-700"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined">eco</span>
+<span class="text-sm font-bold uppercase tracking-wider">Ecosystem Contribution</span>
+</div>
+<p class="text-text-subtle text-sm mb-4">
+                                By completing this purchase, you're contributing to the community pool.
+                            </p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white">+ 245</span>
+<span class="text-sm font-medium text-primary mb-1.5">GOV Tokens</span>
+</div>
+<div class="mt-4 w-full bg-black/20 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-3/4"></div>
+</div>
+<p class="text-xs text-text-subtle mt-2 text-right">75% to next tier reward</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUM Modification Audit Log</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a1f2e",
+                        "surface-darker": "#151925",
+                        "border-dark": "#2a3140",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table container */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1a1f2e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2a3140;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b4354;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-border-dark bg-surface-darker">
+<div class="flex items-center justify-between whitespace-nowrap px-6 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">InvestSaaS Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Users</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">AUM Audit</a>
+<a class="text-slate-400 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex w-64 items-center rounded-lg bg-surface-dark border border-border-dark focus-within:border-primary transition-colors">
+<div class="flex h-full items-center justify-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none py-2 pl-2 pr-4 text-sm text-white placeholder-slate-500 focus:ring-0" placeholder="Search logs..."/>
+</div>
+<div class="flex items-center gap-3 border-l border-border-dark pl-4">
+<button class="relative text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-surface-darker"></span>
+</button>
+<div aria-label="User Avatar" class="size-9 rounded-full bg-surface-dark overflow-hidden border border-border-dark" role="img">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1CXGFcCSKLNlkJww4bZrB7iOsC6ywEktCNzV6FlXfssNvaQus9s4B0Ox-SDwIJBZxqeuvfLGVCttweR8J9z2mj3dlq4JBP95Lp5_S-9G0rgZMdEzoXOj0DBY927aiqQL_zrgJVtdJwJrF2w7D5REZkJIxmrgrejZFpKpWjvGQpuAnDFaFGPT0hUwysmBtpm5LpbWuBiZqVF4Mr-W5iq_3UbMzEKOVcntIC5T6kqm4yfVfSuaAI7dBjddYI0bseazzFYttKLxn2fvL"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+<!-- Header Section -->
+<div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-sm text-slate-400 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-white">AUM Audit Log</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">AUM Modification Audit Log</h1>
+<p class="text-slate-400 max-w-2xl text-base">Immutable record of all manual corpus adjustments and system interventions. Verified on-chain.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-dark border border-border-dark hover:border-slate-500 rounded-lg text-white font-medium text-sm transition-all group">
+<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">download</span>
+                   Export CSV
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-blue-600 rounded-lg text-white font-medium text-sm transition-all shadow-lg shadow-primary/20 group">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+                    Verify Ledger
+                </button>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="p-6 rounded-xl bg-surface-dark border border-border-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">currency_rupee</span>
+</div>
+<div class="flex flex-col gap-1 z-10 relative">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Total Manual Adjustments</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-3xl font-bold text-white font-mono tracking-tight">₹45,20,000</h3>
+<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-xs font-bold border border-emerald-500/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                            12%
+                        </span>
+</div>
+<p class="text-slate-500 text-xs mt-2">Cumulative value of all manual interventions this fiscal year.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-6 rounded-xl bg-surface-dark border border-border-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-blue-400">history</span>
+</div>
+<div class="flex flex-col gap-1 z-10 relative">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Most Recent Corpus Shift</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-3xl font-bold text-white font-mono tracking-tight">+ ₹2,00,000</h3>
+<span class="text-slate-400 text-sm">2 mins ago</span>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<div class="size-5 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[12px]">person</span>
+</div>
+<span class="text-slate-400 text-xs">by System Admin (ID: 882)</span>
+</div>
+</div>
+</div>
+<!-- Card 3 (Optional extra context) -->
+<div class="hidden lg:block p-6 rounded-xl bg-surface-dark border border-border-dark relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-purple-400">lock</span>
+</div>
+<div class="flex flex-col gap-1 z-10 relative">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Audit Integrity</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-3xl font-bold text-white tracking-tight">100%</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20 flex items-center gap-1">
+                            Verified
+                        </span>
+</div>
+<p class="text-slate-500 text-xs mt-2">All 1,240 blocks synced with immutable ledger.</p>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="rounded-xl border border-border-dark bg-surface-dark overflow-hidden flex flex-col">
+<!-- Table Controls -->
+<div class="flex flex-wrap items-center justify-between gap-4 p-4 border-b border-border-dark bg-surface-darker/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">filter_list</span>
+<span class="text-sm font-medium text-slate-300">Filter by:</span>
+<select class="bg-surface-dark border border-border-dark text-slate-300 text-sm rounded-md py-1.5 px-3 focus:ring-1 focus:ring-primary focus:border-primary">
+<option>All Admins</option>
+<option>System Admin</option>
+<option>Senior Analyst</option>
+</select>
+<select class="bg-surface-dark border border-border-dark text-slate-300 text-sm rounded-md py-1.5 px-3 focus:ring-1 focus:ring-primary focus:border-primary">
+<option>Past 30 Days</option>
+<option>Past 7 Days</option>
+<option>Last 24 Hours</option>
+</select>
+</div>
+<div class="text-sm text-slate-400">
+                    Showing <span class="text-white font-bold">1-5</span> of <span class="text-white font-bold">142</span> entries
+                </div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-darker text-xs uppercase text-slate-400 font-semibold tracking-wider">
+<tr>
+<th class="px-6 py-4 min-w-[240px]">Admin ID &amp; Profile</th>
+<th class="px-6 py-4 min-w-[180px]">Timestamp</th>
+<th class="px-6 py-4 text-right min-w-[160px]">Previous Value (₹)</th>
+<th class="px-6 py-4 text-right min-w-[160px]">New Value (₹)</th>
+<th class="px-6 py-4 text-center min-w-[160px]">Net Delta (₹)</th>
+<th class="px-6 py-4 min-w-[240px]">Reason/Justification</th>
+<th class="px-6 py-4 min-w-[140px]">Proof of Hash</th>
+<th class="px-4 py-4 w-[60px]"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark text-sm">
+<!-- Row 1 -->
+<tr class="group hover:bg-surface-darker/50 transition-colors cursor-pointer" onclick="document.getElementById('details-1').classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180');">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">
+                                        SA
+                                    </div>
+<div>
+<p class="text-white font-medium">System Admin</p>
+<p class="text-slate-500 text-xs">ID: 882</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-400 font-mono">Oct 24, 14:30 UTC</td>
+<td class="px-6 py-4 text-right text-slate-400 font-mono">1,00,00,000</td>
+<td class="px-6 py-4 text-right text-white font-medium font-mono">1,02,00,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-bold w-fit mx-auto">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                    2,00,000
+                                </div>
+</td>
+<td class="px-6 py-4 text-slate-300">Correction of Q3 Dividend Inflow</td>
+<td class="px-6 py-4">
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-xs font-mono border border-primary/20 transition-colors w-fit">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                    0x7d...a9
+                                </button>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="material-symbols-outlined text-slate-500 arrow-icon transition-transform duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Details Row 1 -->
+<tr class="hidden bg-surface-darker/30" id="details-1">
+<td class="p-0" colspan="8">
+<div class="p-6 border-y border-border-dark/50 bg-surface-darker/50">
+<div class="flex flex-col gap-4">
+<h4 class="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">balance</span>
+                                            Impact Analysis: Before vs After
+                                        </h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Profit Pool Impact -->
+<div class="rounded-lg bg-surface-dark border border-border-dark p-4">
+<div class="flex justify-between items-center mb-3">
+<span class="text-white font-medium">15% Profit Pool</span>
+<span class="text-xs text-emerald-400 font-medium">+ ₹30,000 impact</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<div class="flex-1">
+<p class="text-slate-500 mb-1">Before</p>
+<p class="text-slate-300 font-mono">₹15,00,000</p>
+</div>
+<span class="material-symbols-outlined text-slate-600">arrow_right_alt</span>
+<div class="flex-1">
+<p class="text-slate-500 mb-1">After</p>
+<p class="text-white font-mono font-bold">₹15,30,000</p>
+</div>
+</div>
+<div class="mt-3 w-full bg-slate-700/30 rounded-full h-1.5 overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full w-[100%]"></div>
+</div>
+</div>
+<!-- Referral Impact -->
+<div class="rounded-lg bg-surface-dark border border-border-dark p-4">
+<div class="flex justify-between items-center mb-3">
+<span class="text-white font-medium">Referral L1 (5%) Distribution</span>
+<span class="text-xs text-emerald-400 font-medium">+ ₹10,000 impact</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<div class="flex-1">
+<p class="text-slate-500 mb-1">Before</p>
+<p class="text-slate-300 font-mono">₹5,00,000</p>
+</div>
+<span class="material-symbols-outlined text-slate-600">arrow_right_alt</span>
+<div class="flex-1">
+<p class="text-slate-500 mb-1">After</p>
+<p class="text-white font-mono font-bold">₹5,10,000</p>
+</div>
+</div>
+<div class="mt-3 w-full bg-slate-700/30 rounded-full h-1.5 overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full w-[100%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-surface-darker/50 transition-colors cursor-pointer" onclick="document.getElementById('details-2').classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180');">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xs">
+                                        MG
+                                    </div>
+<div>
+<p class="text-white font-medium">Manager</p>
+<p class="text-slate-500 text-xs">ID: 441</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-400 font-mono">Oct 23, 09:15 UTC</td>
+<td class="px-6 py-4 text-right text-slate-400 font-mono">98,50,000</td>
+<td class="px-6 py-4 text-right text-white font-medium font-mono">1,00,00,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-bold w-fit mx-auto">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                    1,50,000
+                                </div>
+</td>
+<td class="px-6 py-4 text-slate-300">External Deposit Verification</td>
+<td class="px-6 py-4">
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-xs font-mono border border-primary/20 transition-colors w-fit">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                    0x3f...b2
+                                </button>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="material-symbols-outlined text-slate-500 arrow-icon transition-transform duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Details Row 2 -->
+<tr class="hidden bg-surface-darker/30" id="details-2">
+<td class="p-0" colspan="8">
+<div class="p-6 border-y border-border-dark/50 bg-surface-darker/50 text-center text-slate-400">
+                                    Details view would load here...
+                                </div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-surface-darker/50 transition-colors cursor-pointer" onclick="document.getElementById('details-3').classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180');">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">
+                                        SA
+                                    </div>
+<div>
+<p class="text-white font-medium">System Admin</p>
+<p class="text-slate-500 text-xs">ID: 882</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-400 font-mono">Oct 22, 18:00 UTC</td>
+<td class="px-6 py-4 text-right text-slate-400 font-mono">99,00,000</td>
+<td class="px-6 py-4 text-right text-white font-medium font-mono">98,50,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 px-3 py-1 rounded-md bg-red-500/10 border border-red-500/20 text-red-400 font-mono font-bold w-fit mx-auto">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+                                    50,000
+                                </div>
+</td>
+<td class="px-6 py-4 text-slate-300">Adjustment for Withdrawal #9921</td>
+<td class="px-6 py-4">
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-xs font-mono border border-primary/20 transition-colors w-fit">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                    0x1a...c4
+                                </button>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="material-symbols-outlined text-slate-500 arrow-icon transition-transform duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Details Row 3 -->
+<tr class="hidden bg-surface-darker/30" id="details-3">
+<td class="p-0" colspan="8">
+<div class="p-6 border-y border-border-dark/50 bg-surface-darker/50 text-center text-slate-400">
+                                     Details view would load here...
+                                 </div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-surface-darker/50 transition-colors cursor-pointer" onclick="document.getElementById('details-4').classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180');">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-bold text-xs">
+                                        SR
+                                    </div>
+<div>
+<p class="text-white font-medium">Senior Analyst</p>
+<p class="text-slate-500 text-xs">ID: 102</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-400 font-mono">Oct 21, 11:45 UTC</td>
+<td class="px-6 py-4 text-right text-slate-400 font-mono">95,00,000</td>
+<td class="px-6 py-4 text-right text-white font-medium font-mono">99,00,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-bold w-fit mx-auto">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                    4,00,000
+                                </div>
+</td>
+<td class="px-6 py-4 text-slate-300">Quarterly Profit Injection</td>
+<td class="px-6 py-4">
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-xs font-mono border border-primary/20 transition-colors w-fit">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                    0x9e...d1
+                                </button>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="material-symbols-outlined text-slate-500 arrow-icon transition-transform duration-200">expand_more</span>
+</td>
+</tr>
+<tr class="hidden bg-surface-darker/30" id="details-4"><td class="p-0" colspan="8"></td></tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-surface-darker/50 transition-colors cursor-pointer" onclick="document.getElementById('details-5').classList.toggle('hidden'); this.querySelector('.arrow-icon').classList.toggle('rotate-180');">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">
+                                        SA
+                                    </div>
+<div>
+<p class="text-white font-medium">System Admin</p>
+<p class="text-slate-500 text-xs">ID: 882</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-slate-400 font-mono">Oct 20, 16:20 UTC</td>
+<td class="px-6 py-4 text-right text-slate-400 font-mono">94,80,000</td>
+<td class="px-6 py-4 text-right text-white font-medium font-mono">95,00,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-end gap-1 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono font-bold w-fit mx-auto">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                    20,000
+                                </div>
+</td>
+<td class="px-6 py-4 text-slate-300">Rounding Correction</td>
+<td class="px-6 py-4">
+<button class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/20 text-primary text-xs font-mono border border-primary/20 transition-colors w-fit">
+<span class="material-symbols-outlined text-[14px]">link</span>
+                                    0x5c...e8
+                                </button>
+</td>
+<td class="px-4 py-4 text-center">
+<span class="material-symbols-outlined text-slate-500 arrow-icon transition-transform duration-200">expand_more</span>
+</td>
+</tr>
+<tr class="hidden bg-surface-darker/30" id="details-5"><td class="p-0" colspan="8"></td></tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Pagination -->
+<div class="flex items-center justify-between p-4 border-t border-border-dark bg-surface-darker/50">
+<button class="px-4 py-2 text-sm font-medium text-slate-400 bg-surface-dark border border-border-dark rounded-lg hover:bg-surface-darker hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    Previous
+                </button>
+<div class="flex items-center gap-2">
+<button class="size-8 flex items-center justify-center text-sm font-medium rounded-lg bg-primary text-white">1</button>
+<button class="size-8 flex items-center justify-center text-sm font-medium rounded-lg text-slate-400 hover:bg-surface-dark transition-colors">2</button>
+<button class="size-8 flex items-center justify-center text-sm font-medium rounded-lg text-slate-400 hover:bg-surface-dark transition-colors">3</button>
+<span class="text-slate-500">...</span>
+<button class="size-8 flex items-center justify-center text-sm font-medium rounded-lg text-slate-400 hover:bg-surface-dark transition-colors">12</button>
+</div>
+<button class="px-4 py-2 text-sm font-medium text-slate-400 bg-surface-dark border border-border-dark rounded-lg hover:bg-surface-darker hover:text-white transition-colors">
+                    Next
+                </button>
+</div>
+</div>
+</main>
+</body></html>

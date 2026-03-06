@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InvestSaaS - Smart Status &amp; Investment Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a47c2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 min-h-screen flex flex-col">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-background-light dark:bg-[#111318] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">InvestSaaS</h2>
+</div>
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-500 flex border-none bg-slate-100 dark:bg-[#282e39] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-[#282e39] focus:border-none h-full placeholder:text-slate-500 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search accounts..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-900 dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Referrals</a>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-blue-700 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30">
+<span class="truncate">Invest Now</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-slate-200 dark:ring-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACi6F0zMxXWIxQHKA2Vn9QsY_GgcFTJzy7hJzRtNW_9PcKyjcYhKXVmUdLU-jN8KJY7jxxsxED4XFPH3IyNSg2JOe_jq4DrTC2rPBcT94CG-VLutJNJGzlEpERI2wtRiLzP7_vjejPY4Qh7GOEzHlGg85Yws9IzVaYJ_FeIKVH_wGBb3iTOG4qBaVaTjHixk-r0nw0gLGYB4UZ15P4sNp6B8dKIieaZyVPEnDIbdpQ1Py9Ch1yUBdKWPbZ1_G94cf4_7wQBjvtJQ3U");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-40">
+<div class="flex flex-col max-w-[1200px] flex-1 gap-8">
+<!-- Header Section -->
+<div class="flex flex-wrap items-end justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Investment Dashboard</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Track your status, deadlines, and payout schedules.</p>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<span class="text-primary text-sm font-medium">Color Protocol Active</span>
+</div>
+</div>
+<!-- Status & Countdown Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Status Card (Dynamic Color Logic) -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-red-600 to-red-800 p-1 shadow-xl shadow-red-900/20 group h-full">
+<!-- Glow Effect -->
+<div class="absolute -top-20 -right-20 w-40 h-40 bg-white/20 blur-3xl rounded-full"></div>
+<div class="bg-[#111318] h-full rounded-lg p-6 relative z-10 flex flex-col justify-between gap-6 border border-red-500/30">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col gap-1">
+<p class="text-red-400 text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+</span>
+                                                Current Status
+                                            </p>
+<h2 class="text-white text-3xl font-bold leading-tight mt-2">Non-Invested <span class="text-red-500">(RED)</span></h2>
+</div>
+<div class="bg-red-500/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-red-500 text-3xl">warning</span>
+</div>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                        Your account is currently inactive. You are missing out on daily payouts. 
+                                        Refer a client to unlock <span class="text-orange-400 font-bold">ORANGE</span> status or invest now to reach <span class="text-emerald-400 font-bold">GREEN</span> status.
+                                    </p>
+</div>
+<div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
+<div class="flex justify-between items-center mb-2">
+<span class="text-slate-300 text-xs font-semibold uppercase">Progress to Orange</span>
+<span class="text-slate-300 text-xs">0/1 Referral</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-2">
+<div class="bg-orange-500 h-2 rounded-full w-[0%]" style="width: 5%"></div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg text-sm font-bold transition-all shadow-lg shadow-red-900/40">
+                                        Invest Now
+                                    </button>
+<button class="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 px-4 rounded-lg text-sm font-medium transition-all">
+                                        Refer Client
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Countdown Timer -->
+<div class="lg:col-span-7 flex flex-col">
+<div class="bg-white dark:bg-[#1c222e] rounded-xl p-8 h-full border border-slate-200 dark:border-slate-800 flex flex-col justify-center items-center text-center shadow-sm">
+<h3 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-widest mb-6">Investment Deadline Countdown</h3>
+<div class="flex flex-wrap gap-4 md:gap-6 justify-center w-full mb-6">
+<div class="flex flex-col gap-2">
+<div class="flex w-20 h-24 md:w-24 md:h-32 items-center justify-center rounded-xl bg-slate-100 dark:bg-[#111318] border border-slate-200 dark:border-slate-800 shadow-inner">
+<p class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tabular-nums">02</p>
+</div>
+<span class="text-slate-500 text-xs uppercase font-bold">Days</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex w-20 h-24 md:w-24 md:h-32 items-center justify-center rounded-xl bg-slate-100 dark:bg-[#111318] border border-slate-200 dark:border-slate-800 shadow-inner">
+<p class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tabular-nums">14</p>
+</div>
+<span class="text-slate-500 text-xs uppercase font-bold">Hours</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex w-20 h-24 md:w-24 md:h-32 items-center justify-center rounded-xl bg-slate-100 dark:bg-[#111318] border border-slate-200 dark:border-slate-800 shadow-inner">
+<p class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black tabular-nums">30</p>
+</div>
+<span class="text-slate-500 text-xs uppercase font-bold">Minutes</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex w-20 h-24 md:w-24 md:h-32 items-center justify-center rounded-xl bg-slate-100 dark:bg-[#111318] border border-slate-200 dark:border-slate-800 shadow-inner relative overflow-hidden">
+<div class="absolute inset-0 bg-red-500/5 dark:bg-red-500/10 animate-pulse"></div>
+<p class="text-red-600 dark:text-red-500 text-4xl md:text-5xl font-black tabular-nums relative z-10">45</p>
+</div>
+<span class="text-slate-500 text-xs uppercase font-bold">Seconds</span>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 max-w-md mx-auto text-sm">
+                                Complete your investment or refer a client before the timer expires to upgrade your status and secure your position in the matrix.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Financial Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-[#1c222e] rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex items-center gap-4 shadow-sm group hover:border-primary/50 transition-colors">
+<div class="size-12 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Invested Amount</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">$0.00</p>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1c222e] rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex items-center gap-4 shadow-sm group hover:border-purple-500/50 transition-colors">
+<div class="size-12 rounded-full bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Affiliate Amount</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">$1,240.00</p>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1c222e] rounded-xl p-6 border border-slate-200 dark:border-slate-800 flex items-center gap-4 shadow-sm group hover:border-emerald-500/50 transition-colors">
+<div class="size-12 rounded-full bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Paid Payouts</p>
+<p class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">0</p>
+</div>
+</div>
+</div>
+<!-- Payout Schedule -->
+<div class="bg-white dark:bg-[#1c222e] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/30">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold">Upcoming Payout Schedule</h3>
+<div class="text-xs font-medium px-2 py-1 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                            Based on 45-day initial logic
+                        </div>
+</div>
+<div class="p-6">
+<div class="relative">
+<!-- Timeline Line -->
+<div class="absolute left-[27px] top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-700"></div>
+<!-- Payout Item 1 (Locked) -->
+<div class="relative flex items-start gap-6 mb-8 opacity-50">
+<div class="relative z-10 flex items-center justify-center size-14 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-[#1c222e] text-slate-400 shrink-0">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="flex-1 bg-slate-50 dark:bg-[#111318] rounded-lg p-4 border border-slate-200 dark:border-slate-800">
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">1st Payout (45 Days)</p>
+<p class="text-slate-900 dark:text-white text-lg font-bold">Unlock Investment First</p>
+</div>
+<div class="text-right">
+<p class="text-slate-400 text-sm">Expected Date</p>
+<p class="text-slate-500 font-mono">--/--/----</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Payout Item 2 (Active Demo) -->
+<div class="relative flex items-start gap-6 mb-8">
+<div class="relative z-10 flex items-center justify-center size-14 rounded-full bg-primary/10 border-4 border-white dark:border-[#1c222e] text-primary shrink-0 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">event</span>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1c222e] rounded-lg p-4 border border-primary/30 shadow-lg shadow-primary/5">
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-wider mb-1">Next Payout Cycle</p>
+<p class="text-slate-900 dark:text-white text-lg font-bold">Standard 30-Day Cycle</p>
+</div>
+<div class="text-right">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Projected Date</p>
+<p class="text-slate-900 dark:text-white font-mono font-medium">Nov 12, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Payout Item 3 -->
+<div class="relative flex items-start gap-6">
+<div class="relative z-10 flex items-center justify-center size-14 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-[#1c222e] text-slate-400 shrink-0">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div class="flex-1 bg-slate-50 dark:bg-[#111318] rounded-lg p-4 border border-slate-200 dark:border-slate-800">
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">Subsequent Payout</p>
+<p class="text-slate-900 dark:text-white text-lg font-bold">30-Day Recurring</p>
+</div>
+<div class="text-right">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Projected Date</p>
+<p class="text-slate-900 dark:text-white font-mono font-medium">Dec 12, 2023</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

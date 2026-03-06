@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brave Ecom - Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25f4f4",
+              "background-light": "#f5f8f8",
+              "background-dark": "#102222",
+              "surface-dark": "#162a2a",
+              "surface-light": "#ffffff",
+              "text-primary-dark": "#ffffff",
+              "text-secondary-dark": "#9cbaba",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "sans": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem", 
+              "lg": "0.5rem", 
+              "xl": "0.75rem", 
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom isometric utilities for the "3D" feel requested */
+        .iso-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .iso-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(37, 244, 244, 0.15), 0 10px 10px -5px rgba(37, 244, 244, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-text-primary-dark font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-[#283939] bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="px-6 lg:px-12 py-4 flex items-center justify-between gap-8">
+<!-- Logo Area -->
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Brave Ecom</h1>
+</div>
+<!-- Search Bar (Desktop) -->
+<div class="hidden md:flex flex-1 max-w-md mx-4">
+<div class="relative w-full group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 rounded-xl border-none bg-slate-200 dark:bg-surface-dark text-sm placeholder-slate-500 dark:placeholder-text-secondary-dark focus:ring-2 focus:ring-primary focus:bg-white dark:focus:bg-[#1c3333] transition-all" placeholder="Search categories, items, or collections..." type="text"/>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Invest</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Auctions</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-[#283939] pl-6">
+<button class="bg-primary hover:bg-primary/90 text-background-dark px-4 py-2 rounded-lg text-sm font-bold transition-colors">
+                        Connect Wallet
+                    </button>
+<button class="p-2 rounded-lg hover:bg-surface-dark transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-dark transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="size-10 rounded-full bg-surface-dark overflow-hidden border border-[#283939]">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Abstract gradient user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSGJwDkRcfPYqUMUx_FmiDa57GCNyBMApa-HlnwF4Qy8FrGjEPxn4bBjcLaOXb7qMDeF0xpjAioxMY6Yy2L2VzPkWa3eoRIcS1lMT1aBn1rMaTj4XWWiMfqkrbTbf81SFuICzr61xvly_9Solo2UhTzF7ELM2U-t4RjbYl5IUG-6LX0VB_OJuFPgue43n0UNBfv1oPLZDzJvctsHD8J5H3uWRtljpxfCScUAavjA4wzilB5CIl2kicpwQUkJwagZK6IPtUh01-YoD0"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-6 md:p-12">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="space-y-4 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Live Drops
+                </div>
+<h2 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                    Explore Sovereign <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-teal-400">Luxury Categories</span>
+</h2>
+<p class="text-lg text-slate-600 dark:text-text-secondary-dark max-w-xl">
+                    Discover exclusive assets, from vintage watches to digital art. Invest in the future of luxury commerce with verified ownership.
+                </p>
+</div>
+<!-- Quick Filter Chips -->
+<div class="flex flex-wrap gap-3 justify-end">
+<button class="bg-primary text-background-dark px-5 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all">All Categories</button>
+<button class="bg-surface-dark border border-[#283939] hover:border-primary/50 text-slate-300 px-5 py-2.5 rounded-full text-sm font-medium transition-all">Trending</button>
+<button class="bg-surface-dark border border-[#283939] hover:border-primary/50 text-slate-300 px-5 py-2.5 rounded-full text-sm font-medium transition-all">New Arrivals</button>
+</div>
+</section>
+<!-- Categories Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+<!-- Category Card 1: Drop Shipping -->
+<div class="group relative h-96 w-full rounded-2xl overflow-hidden iso-card cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Abstract geometric shapes representing shipping logistics" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRnFGfoTDn998X8bwM6nhJJu8TgSyHG2Jc41jZDFoGksK_mz43-R9ZigTDX701S2slP14rz8uoDiF4XyHpOsEZWpTO328ZmH0IhaT7Utopdwbpdqz2q0jd5X6A21vgeqsS3urACdTi7ag8X_TgSzt5Kr7bfGRzACRxIldNSWYkwWNNQTyoCv5CfFGXQO0EHkYl4_ME5F3sjgVXhROMF8x74I2DP_FXyBPgI2Nppss-sjhMLM3uoec6mMfgnUrtlWiyzHoKyHcSmaIN');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 z-10 flex flex-col items-start gap-2">
+<div class="p-3 bg-primary/20 backdrop-blur-sm rounded-xl mb-2 text-primary">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h3 class="text-2xl font-bold text-white group-hover:text-primary transition-colors">Drop Shipping</h3>
+<p class="text-sm text-gray-300 line-clamp-2">High-margin products ready for global distribution. Automated fulfillment included.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        Explore Collection <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- 3D Effect overlay border -->
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-primary/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Category Card 2: Sovereign Luxury -->
+<div class="group relative h-96 w-full rounded-2xl overflow-hidden iso-card cursor-pointer lg:col-span-2">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Golden textures and dark marble representing luxury" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCRs886XdWv954XI9N4dEKvxAWX4vLTGsXo2QpOe0q1Q6KPSppoqQ-ctV0Ts7cr4g2JBtEoZ5wWIIuTETUJAtvLhQ1Ax0-hDJrTBiB-ngQA3DYeIec4xOVMj4olYWKJDAsuUAt2hnO0VNTmTflqvW348LZVKqabOtvDIJqiKwFkMeHwBVl5UuSmWmkbaVewuCCUVpTwpwphAMyRtch6jHDvcB3qcJdYE7nrVyxJ-ZpdJNEKwC98y64Vy7ou9l8SIgFCjMo_r6nm55aZ');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/40 to-transparent opacity-80"></div>
+<div class="absolute top-6 right-6 bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 backdrop-blur-md">
+                    PREMIUM
+                </div>
+<div class="absolute bottom-0 left-0 w-full p-8 z-10 flex flex-col items-start gap-3">
+<div class="p-3 bg-yellow-500/20 backdrop-blur-sm rounded-xl mb-2 text-yellow-300">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h3 class="text-3xl font-bold text-white group-hover:text-yellow-300 transition-colors">Sovereign Luxury</h3>
+<p class="text-base text-gray-200 max-w-md">The pinnacle of asset classes. Exclusive access to limited edition items, royal warrants, and heritage pieces.</p>
+<div class="mt-4 flex items-center gap-2 text-yellow-300 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        View Exclusive Items <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-yellow-500/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Category Card 3: Vintage Watches -->
+<div class="group relative h-96 w-full rounded-2xl overflow-hidden iso-card cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Macro shot of watch gears and mechanism" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd8-XF2Dr_OIxCkm-iaGQv7e--Fy25y_wPvQXfUwN4Xs_TCRpx2qYDY_AXF_4aTx8iy__Qp7KGWppJ2c5XvgVIGKVByCh__QMv14DK9AFixRnKiiQPdMsKjBtF0YevEjLek1rxcmELgqzlqQ-26r_lRd4eKi3dMT5cQDySMNIfVm5T15IwzvvawtPvlVXRiEmUUCB4N8Ss6VgKGPfLhfCWF3EZGiUXRB6eN7ugLrZLzI5I8PT_OEK977pl3RwGpxj966kwA0G6ODN6');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 z-10 flex flex-col items-start gap-2">
+<div class="p-3 bg-blue-500/20 backdrop-blur-sm rounded-xl mb-2 text-blue-300">
+<span class="material-symbols-outlined text-3xl">watch</span>
+</div>
+<h3 class="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors">Vintage Watches</h3>
+<p class="text-sm text-gray-300 line-clamp-2">Timeless pieces from Rolex, Patek Philippe, and more.</p>
+<div class="mt-4 flex items-center gap-2 text-blue-300 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        Browse Timepieces <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-blue-400/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Row 2 -->
+<!-- Category Card 4: Limited Sneakers -->
+<div class="group relative h-80 w-full rounded-2xl overflow-hidden iso-card cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Colorful street art style sneaker pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsnO-IuqOl6U0r3i73CwmCppsJqh_toYAcznkpaoHU-c37jJYHT4Q8Ar3A-TRIbZrbB1Lo-1NBRwqpDNysMLedVxpAE53Q_AaxmworrCmSiqloisicvfugKQnvOy-5rUj13jJ1Td9nlGJc22ugpO-y0a4-n1K4rTKzb1budD4iPoI14ZEvb6UZQTqtF56sMYPKOU8GxDgJAhi04YD1IQR4QQGdDsi1r3-RQvRUd7MJ4XNZtkHzhWTyBdGFC644IV8K8Lq7W97PXVdR');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 z-10 flex flex-col items-start gap-2">
+<div class="p-3 bg-purple-500/20 backdrop-blur-sm rounded-xl mb-2 text-purple-300">
+<span class="material-symbols-outlined text-3xl">steps</span>
+</div>
+<h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">Sneakers</h3>
+<p class="text-xs text-gray-300">Deadstock &amp; limited runs.</p>
+</div>
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-purple-400/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Category Card 5: Digital Art & NFTs -->
+<div class="group relative h-80 w-full rounded-2xl overflow-hidden iso-card cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Neon cyberpunk digital cityscape" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBv8kNJrrMeCjDGDz950DGJmJtf5Zh9KRsgQqH3HoiW-NZsET_S7wMYGIeHLVh_1KhnC4QdxXwt08ag1FxJYrOc138V8IQvOJbOh75PR3xmeJdREtziBElAJ5J1foXJykEEesYL7cuQ9AuwqNhkInrkGP3psGf4WVDFaY2NzzODMphS9z8512NI2WOW28sEDeyq8l3sbqGgaDs-HWTvFAF4PeSINXmNFxvVeO9pLdbIgqg74E0ttcLYkSGzgcW_z_qhUI5Po7l8KvJk');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 z-10 flex flex-col items-start gap-2">
+<div class="p-3 bg-pink-500/20 backdrop-blur-sm rounded-xl mb-2 text-pink-300">
+<span class="material-symbols-outlined text-3xl">palette</span>
+</div>
+<h3 class="text-xl font-bold text-white group-hover:text-pink-300 transition-colors">Digital Art</h3>
+<p class="text-xs text-gray-300">Verified digital ownership.</p>
+</div>
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-pink-400/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Category Card 6: Real Estate -->
+<div class="group relative h-80 w-full rounded-2xl overflow-hidden iso-card cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Modern architectural glass building facade" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXw7YK1Rb4Naj3-CmR_k4XeJjRnDBLo5M6HyTaBb4YpXy0XSuc3Y7dUnuuUVMvz3rhSRziOV9SuomKXDJaKJ_CxPmtk-PHDOHETnFv5CdWSfd1upEtnHL6uH_GJb3Ygz3EN30KHnGpyRXy1-7kUkLFOsKVNT8otk9sUbre41S_joNEoFhp_2cr_SyZKzy8QKuQ64kE3ObTMzo0oEmVscwrfYM50kUGVw65daNupp_ZzxIRAcqzF_Th7aHjvcHDQiay0szrJZpg2UP5');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent opacity-90"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 z-10 flex flex-col items-start gap-2">
+<div class="p-3 bg-green-500/20 backdrop-blur-sm rounded-xl mb-2 text-green-300">
+<span class="material-symbols-outlined text-3xl">apartment</span>
+</div>
+<h3 class="text-xl font-bold text-white group-hover:text-green-300 transition-colors">Real Estate</h3>
+<p class="text-xs text-gray-300">Fractional property shares.</p>
+</div>
+<div class="absolute inset-0 border border-white/10 rounded-2xl group-hover:border-green-400/50 transition-colors pointer-events-none"></div>
+</div>
+<!-- Category Card 7: Coming Soon -->
+<div class="group relative h-80 w-full rounded-2xl overflow-hidden border border-dashed border-[#283939] bg-surface-dark flex flex-col items-center justify-center cursor-not-allowed opacity-60 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-slate-500 mb-2">lock_clock</span>
+<h3 class="text-lg font-bold text-slate-400">Wine &amp; Spirits</h3>
+<p class="text-xs text-slate-500">Coming Q4 2024</p>
+</div>
+</section>
+<!-- Promotional Banner / Featured Drop -->
+<section class="relative w-full rounded-3xl overflow-hidden bg-surface-dark border border-[#283939] flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 p-8 md:p-12 z-10 flex flex-col gap-6">
+<div class="inline-block px-4 py-1.5 rounded-full bg-primary text-background-dark font-bold text-xs uppercase w-fit">Featured Drop</div>
+<h2 class="text-3xl md:text-5xl font-black text-white leading-tight">The "Future Classic" <br/>Sneaker Collection</h2>
+<p class="text-text-secondary-dark text-lg">Curated by top street-wear analysts. This collection features 50 pairs of highly sought-after prototypes.</p>
+<div class="flex flex-wrap gap-4 mt-2">
+<button class="bg-white text-background-dark px-6 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">
+                        View Collection
+                    </button>
+<button class="bg-transparent border border-white/20 text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span> Watch Trailer
+                    </button>
+</div>
+<div class="flex items-center gap-8 mt-4 pt-6 border-t border-white/10">
+<div>
+<p class="text-xs text-text-secondary-dark uppercase tracking-widest">Floor Price</p>
+<p class="text-xl font-bold text-primary">2.4 ETH</p>
+</div>
+<div>
+<p class="text-xs text-text-secondary-dark uppercase tracking-widest">Items</p>
+<p class="text-xl font-bold text-white">50</p>
+</div>
+<div>
+<p class="text-xs text-text-secondary-dark uppercase tracking-widest">Ends In</p>
+<p class="text-xl font-bold text-white">04h 23m</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-auto md:absolute md:right-0 md:top-0 md:bottom-0 bg-cover bg-center" data-alt="Abstract dynamic fluid shapes in blue and purple representing sneaker motion" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVoG_cY8YIe_LHR_kGzuSC4YBliFIcoqR_nVqyaNQvfmJ_DZjzeR_VH9zQlfPN8q3ecKm2hyg15KZsav60NkpUmv1h4ZkA2vAtPzqF8llEIOfthLKyX5rf_9HENRAnO7k1Z27KEaglJCZ-ZPDLpWsSWUiA15obVueIDq8G9hupntk-7ugEOdoqVHt6loEZVyAgMz84W1GCdPk6VA27GAf0BRLsOc-1LYz70IwYNQzOtEZri132NBgcWf-N-TKvwlsJhPpuFmrlY7Yq');">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-dark to-transparent md:w-1/2"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent md:hidden"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="border-t border-[#283939] bg-background-dark mt-12 py-12 px-6 lg:px-12">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-text-secondary-dark text-sm">© 2024 Brave Ecom. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-text-secondary-dark hover:text-primary transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-text-secondary-dark hover:text-primary transition-colors text-sm" href="#">Terms of Service</a>
+<a class="text-text-secondary-dark hover:text-primary transition-colors text-sm" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

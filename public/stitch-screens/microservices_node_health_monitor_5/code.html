@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Franchise Regional Commander Console</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "navy-dark": "#05101a",
+              "navy-card": "#0f2035",
+              "navy-lighter": "#1a324b",
+              "gold-primary": "#d4af37",
+              "gold-light": "#f3e5ab",
+              "gold-dim": "#8a7018",
+              "text-main": "#e2e8f0",
+              "success": "#10b981",
+              "warning": "#f59e0b",
+              "danger": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Cinzel", "serif"],
+              "body": ["Lato", "sans-serif"],
+            },
+            boxShadow: {
+                "gold-glow": "0 0 15px rgba(212, 175, 55, 0.15)",
+                "gold-glow-strong": "0 0 20px rgba(212, 175, 55, 0.3)",
+            },
+            backgroundImage: {
+                "gold-gradient": "linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #b4941f 100%)",
+                "navy-gradient": "linear-gradient(180deg, #0f2035 0%, #05101a 100%)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-color: #05101a;
+            color: #e2e8f0;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: "Cinzel", serif;
+        }::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05101a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a324b; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37; 
+        }@keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 20s linear infinite;
+        }@keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .gold-text-shimmer {
+            background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        .glass-panel {
+            background: rgba(15, 32, 53, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-gold-dim/30 bg-navy-dark px-8 py-4 sticky top-0 z-50 shadow-gold-glow">
+<div class="flex items-center gap-5">
+<div class="size-10 flex items-center justify-center bg-gradient-to-br from-gold-primary to-gold-dim rounded text-navy-dark shadow-lg">
+<span class="material-symbols-outlined text-2xl font-bold">shield_person</span>
+</div>
+<div>
+<h2 class="text-gold-light text-xl font-bold leading-tight tracking-wider uppercase brand-font">
+                Regional Commander // Console
+                <span class="text-[10px] bg-gold-primary/20 text-gold-primary px-2 py-0.5 rounded ml-2 border border-gold-primary/30 tracking-widest font-sans">Diamond Tier</span>
+</h2>
+<div class="text-xs text-slate-400 font-sans mt-0.5 flex gap-3 uppercase tracking-wider">
+<span>Net Revenue: <span class="text-success font-bold">₹ 11.11 Cr</span></span>
+<span class="text-gold-dim">|</span>
+<span>Region: Mumbai-HQ</span>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 bg-navy-lighter/50 px-4 py-2 rounded border border-gold-dim/20">
+<span class="material-symbols-outlined text-xs text-gold-primary">calendar_month</span>
+<span class="text-sm font-bold text-slate-300">Q4 FY24</span>
+</div>
+<button class="flex items-center justify-center rounded px-4 bg-gold-primary/10 text-gold-primary border border-gold-primary/30 hover:bg-gold-primary/20 transition-all text-sm font-bold tracking-wide gap-2 uppercase">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span>Rewards</span>
+</button>
+<button class="flex items-center justify-center rounded w-10 h-10 bg-navy-lighter text-gold-light hover:bg-navy-lighter/80 border border-gold-dim/20 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full border border-navy-dark"></span>
+</button>
+<div class="w-10 h-10 rounded bg-cover bg-center border border-gold-primary/50 shadow-gold-glow" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCL9-Q51rpstrKd61-NEX3IksfNaXtrQJeG9fitpMIq2dwNcOvvnId6FphJ5A2xw_lnzqj5T6e1_rtb5JcBSC95S5mVJe90mm7HXmTtH8_6078Wshprg9vNtr0xnEaBIN-aWWTDJsd5579AORmSHjmciIB32DxDAO7WwTfJI17suganU1CHf5A8ntq9rI_D8Y-PZ8bRMJh5vM3b7MJvlNunsqiAA4OLHBI7PZ54aT6EJVqhpZSAsD1aCleniqgGbf3aC6xNSxZDVEXf');"></div>
+</div>
+</header>
+<main class="flex-1 p-8 gap-8 grid grid-cols-12 max-w-[1920px] mx-auto w-full">
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group relative bg-navy-card border border-gold-dim/30 rounded-xl overflow-hidden hover:border-gold-primary/60 transition-all duration-300 shadow-lg cursor-pointer h-40 flex flex-col justify-between">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-gold-primary">account_tree</span>
+</div>
+<div class="p-6 pb-2 relative z-10">
+<div class="flex items-center gap-2 text-gold-dim text-xs uppercase tracking-widest font-bold mb-1">
+<span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                    Network Active
+                </div>
+<h3 class="text-2xl text-white font-display font-bold group-hover:text-gold-light transition-colors">Audit Downline</h3>
+</div>
+<div class="mt-auto border-t border-gold-dim/20 bg-navy-lighter/30 backdrop-blur-sm py-2 px-4">
+<div class="ticker-wrap">
+<div class="ticker-content text-xs font-mono text-slate-400">
+<span class="text-success">▲ New Bronze Partner (Pune)</span>   •••   
+                        <span class="text-gold-primary">★ Gold Upgrade (Thane)</span>   •••   
+                        <span class="text-slate-300">⚠ Compliance Check (Nashik)</span>   •••  
+                        <span class="text-success">▲ New Silver Partner (Mumbai)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative bg-navy-card border border-gold-dim/30 rounded-xl overflow-hidden hover:border-gold-primary/60 transition-all duration-300 shadow-lg cursor-pointer h-40 flex flex-col justify-between">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-gold-primary">payments</span>
+</div>
+<div class="p-6 relative z-10">
+<div class="flex items-center gap-2 text-gold-dim text-xs uppercase tracking-widest font-bold mb-1">
+                    Pending Payout
+                </div>
+<h3 class="text-2xl text-white font-display font-bold group-hover:text-gold-light transition-colors">Settlements</h3>
+<div class="mt-3 flex items-baseline gap-1">
+<span class="text-lg text-gold-dim font-serif">₹</span>
+<span class="text-4xl text-white font-bold tracking-tight">4,50,450</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 h-1 bg-gold-primary w-[75%]"></div>
+</div>
+<div class="group relative bg-gradient-to-br from-navy-card to-navy-lighter border-2 border-gold-primary/40 rounded-xl overflow-hidden hover:border-gold-primary hover:shadow-gold-glow-strong transition-all duration-300 cursor-pointer h-40 flex flex-col items-center justify-center text-center">
+<div class="absolute inset-1 border border-gold-dim/20 rounded-lg pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-primary border border-gold-primary/30 mb-1 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">person_add</span>
+</div>
+<h3 class="text-xl text-white font-display font-bold tracking-wide uppercase">Invite Partner</h3>
+<span class="text-xs text-gold-dim font-bold tracking-widest uppercase">High Priority Action</span>
+</div>
+<div class="absolute inset-0 bg-gold-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-6">
+<section class="bg-navy-card border border-gold-dim/30 rounded-xl p-6 relative overflow-hidden">
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div>
+<span class="text-gold-primary text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[16px]">emoji_events</span>
+                        Performance Tracker
+                    </span>
+<h3 class="text-white font-display text-2xl font-bold">Royalty Milestone: Diamond</h3>
+</div>
+<div class="text-right">
+<div class="text-xs text-slate-400 uppercase tracking-wide">Current Volume</div>
+<div class="text-2xl font-display font-bold text-white">₹ 75 Cr <span class="text-sm text-slate-500 font-sans">/ 100 Cr</span></div>
+</div>
+</div>
+<div class="relative h-12 bg-navy-dark rounded border border-gold-dim/20 mb-2 p-1">
+<div class="h-full bg-gold-gradient rounded shadow-gold-glow relative overflow-hidden" style="width: 75%">
+<div class="absolute inset-0 bg-white/20 skew-x-[-20deg] translate-x-[-100%] animate-[shimmer_2s_infinite]"></div>
+</div>
+<div class="absolute top-0 bottom-0 left-[25%] w-px bg-navy-card/50 border-r border-gold-dim/50 z-20 flex flex-col justify-end pb-12">
+<span class="text-[10px] text-slate-400 font-bold -ml-3 absolute -top-6">25Cr</span>
+</div>
+<div class="absolute top-0 bottom-0 left-[50%] w-px bg-navy-card/50 border-r border-gold-dim/50 z-20">
+<span class="text-[10px] text-slate-400 font-bold -ml-3 absolute -top-6">50Cr</span>
+</div>
+<div class="absolute top-0 bottom-0 left-[75%] w-px bg-navy-card/50 border-r border-white/50 z-20">
+<span class="text-[10px] text-gold-light font-bold -ml-3 absolute -top-6 drop-shadow-md">75Cr</span>
+<div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gold-primary shadow-lg z-30"></div>
+</div>
+</div>
+<div class="flex justify-between text-xs text-slate-500 font-bold tracking-widest uppercase mt-4">
+<span>Start: Apr 1</span>
+<span>Target: Ambassador (100 Cr)</span>
+</div>
+</section>
+<section class="flex-1 flex flex-col min-h-[400px]">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-display font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-gold-primary">hub</span>
+                    Referral Network Activity
+                </h2>
+<div class="flex gap-2">
+<span class="bg-navy-lighter text-xs font-bold text-gold-light px-3 py-1.5 rounded border border-gold-dim/30 uppercase tracking-wider">L1 - L15 View</span>
+<span class="bg-navy-lighter text-xs font-bold text-slate-300 px-3 py-1.5 rounded border border-gold-dim/30 uppercase tracking-wider">Total Partners: 482</span>
+</div>
+</div>
+<div class="bg-navy-card border border-gold-dim/30 rounded-xl flex-1 p-0 overflow-hidden relative shadow-lg">
+<div class="w-full">
+<div class="grid grid-cols-12 bg-navy-dark border-b border-gold-dim/30 py-3 px-6 text-xs text-gold-dim font-bold uppercase tracking-widest">
+<div class="col-span-5">Partner Name / ID</div>
+<div class="col-span-3 text-center">Referral Ray</div>
+<div class="col-span-2 text-right">Investment</div>
+<div class="col-span-2 text-right">Status</div>
+</div>
+<div class="divide-y divide-gold-dim/10">
+<div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-white/5 transition-colors group">
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-serif border border-slate-600">R</div>
+<div>
+<div class="text-sm font-bold text-white group-hover:text-gold-light">Roshan Karnekar</div>
+<div class="text-[10px] text-slate-500 uppercase tracking-wide">ID: #FR-8821</div>
+</div>
+</div>
+<div class="col-span-3 flex justify-center">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">Level 14</span>
+</div>
+<div class="col-span-2 text-right font-mono text-sm text-slate-300">₹ 7,50,00,000</div>
+<div class="col-span-2 flex justify-end">
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-[10px] font-bold text-success border border-success/20 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span> Active
+                                </div>
+</div>
+</div>
+<div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-white/5 transition-colors group">
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-serif border border-slate-600">M</div>
+<div>
+<div class="text-sm font-bold text-white group-hover:text-gold-light">Milind Patil</div>
+<div class="text-[10px] text-slate-500 uppercase tracking-wide">ID: #FR-4921</div>
+</div>
+</div>
+<div class="col-span-3 flex justify-center">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Level 13</span>
+</div>
+<div class="col-span-2 text-right font-mono text-sm text-slate-300">₹ 5,30,00,000</div>
+<div class="col-span-2 flex justify-end">
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-[10px] font-bold text-success border border-success/20 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span> Active
+                                </div>
+</div>
+</div>
+<div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-white/5 transition-colors group">
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-serif border border-slate-600">S</div>
+<div>
+<div class="text-sm font-bold text-white group-hover:text-gold-light">Sandeep Wagh</div>
+<div class="text-[10px] text-slate-500 uppercase tracking-wide">ID: #FR-1029</div>
+</div>
+</div>
+<div class="col-span-3 flex justify-center">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-gold-primary/20 text-gold-primary border border-gold-primary/30">Level 02</span>
+</div>
+<div class="col-span-2 text-right font-mono text-sm text-slate-300">₹ 27,00,000</div>
+<div class="col-span-2 flex justify-end">
+<div class="flex items-center gap-1.5 bg-warning/10 px-2 py-1 rounded text-[10px] font-bold text-warning border border-warning/20 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-warning"></span> Pending
+                                </div>
+</div>
+</div>
+<div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-white/5 transition-colors group">
+<div class="col-span-5 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-serif border border-slate-600">V</div>
+<div>
+<div class="text-sm font-bold text-white group-hover:text-gold-light">Vikram Singh</div>
+<div class="text-[10px] text-slate-500 uppercase tracking-wide">ID: #FR-9912</div>
+</div>
+</div>
+<div class="col-span-3 flex justify-center">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">Level 05</span>
+</div>
+<div class="col-span-2 text-right font-mono text-sm text-slate-300">₹ 2,50,00,000</div>
+<div class="col-span-2 flex justify-end">
+<div class="flex items-center gap-1.5 bg-danger/10 px-2 py-1 rounded text-[10px] font-bold text-danger border border-danger/20 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-danger"></span> Expiring
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-navy-dark border-t border-gold-dim/20 p-3 flex justify-center">
+<button class="text-xs text-gold-primary hover:text-white uppercase tracking-widest font-bold flex items-center gap-1 transition-colors">
+                        View Full Downline <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-6">
+<section>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-display font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-gold-primary">pie_chart</span>
+                    Returns Tracker
+                </h2>
+</div>
+<div class="bg-navy-card border border-gold-dim/30 rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden shadow-lg">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-gold-dim uppercase tracking-wider font-bold">Total Returns</span>
+<span class="text-2xl font-bold text-white font-display gold-text-shimmer">25<span class="text-sm text-slate-500">%</span></span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-xs text-slate-400 uppercase tracking-wider">Target Royalty</span>
+<span class="text-xl font-bold text-success font-display">3<span class="text-sm text-slate-500">%</span></span>
+</div>
+</div>
+<div class="relative h-4 bg-navy-dark rounded-full overflow-hidden border border-slate-800">
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-blue-600 to-gold-primary w-[25%] rounded-full shadow-[0_0_10px_rgba(212,175,55,0.4)]"></div>
+<div class="absolute left-[25%] top-0 bottom-0 w-0.5 bg-black/40 z-10"></div>
+<div class="absolute left-[50%] top-0 bottom-0 w-0.5 bg-black/40"></div>
+<div class="absolute left-[75%] top-0 bottom-0 w-0.5 bg-black/40"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-navy-lighter/30 p-3 rounded-lg border border-gold-dim/10">
+<div class="text-[10px] text-slate-400 uppercase mb-1 font-bold">Yearly Gifts</div>
+<div class="text-lg font-display font-bold text-white">Flexible</div>
+</div>
+<div class="bg-navy-lighter/30 p-3 rounded-lg border border-gold-dim/10">
+<div class="text-[10px] text-slate-400 uppercase mb-1 font-bold">Office Expense</div>
+<div class="text-lg font-display font-bold text-gold-primary">3%</div>
+</div>
+</div>
+</div>
+</section>
+<section class="flex-1 flex flex-col">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-display font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-gold-primary">share_location</span>
+                    Franchise Map
+                </h2>
+<span class="text-[10px] text-gold-primary bg-gold-primary/10 border border-gold-primary/20 px-2 py-1 rounded animate-pulse font-bold tracking-widest uppercase">Live Data</span>
+</div>
+<div class="bg-navy-card border border-gold-dim/30 rounded-xl flex-1 min-h-[360px] p-0 relative overflow-hidden flex flex-col shadow-lg">
+<div class="absolute inset-0 bg-[#0a1520] opacity-80">
+<div class="w-full h-full opacity-10" style="background-image: linear-gradient(#d4af37 1px, transparent 1px), linear-gradient(90deg, #d4af37 1px, transparent 1px); background-size: 50px 50px;"></div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="w-20 h-20 rounded-full bg-navy-dark border-2 border-gold-primary flex items-center justify-center relative shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+<span class="material-symbols-outlined text-4xl text-gold-primary">apartment</span>
+<div class="absolute w-full h-full animate-[spin_8s_linear_infinite] rounded-full border border-dashed border-slate-600"></div>
+</div>
+<span class="mt-2 text-xs font-bold text-white uppercase tracking-widest bg-navy-dark/80 px-2 rounded">HQ: Mumbai</span>
+</div>
+<div class="absolute top-[20%] left-[20%] flex flex-col items-center z-10">
+<div class="w-3 h-3 bg-success rounded-full shadow-[0_0_10px_#10b981]"></div>
+<span class="text-[9px] text-slate-400 mt-1 uppercase">Pune</span>
+<svg class="absolute top-1.5 left-1.5 w-[140px] h-[100px] pointer-events-none -z-10 overflow-visible">
+<line stroke="#1e293b" stroke-width="1" x1="0" x2="140" y1="0" y2="100"></line>
+<circle fill="#d4af37" r="2">
+<animateMotion dur="3s" path="M 0 0 L 140 100" repeatCount="indefinite"></animateMotion>
+</circle>
+</svg>
+</div>
+<div class="absolute bottom-[25%] right-[20%] flex flex-col items-center z-10">
+<div class="w-3 h-3 bg-warning rounded-full shadow-[0_0_10px_#f59e0b]"></div>
+<span class="text-[9px] text-slate-400 mt-1 uppercase">Nagpur</span>
+<svg class="absolute bottom-1.5 right-1.5 w-[120px] h-[100px] pointer-events-none -z-10 overflow-visible transform rotate-180">
+<line stroke="#1e293b" stroke-width="1" x1="0" x2="120" y1="0" y2="100"></line>
+<circle fill="#d4af37" r="2">
+<animateMotion dur="4s" path="M 0 0 L 120 100" repeatCount="indefinite"></animateMotion>
+</circle>
+</svg>
+</div>
+<div class="absolute top-[30%] right-[25%] flex flex-col items-center z-10">
+<div class="w-3 h-3 bg-success rounded-full shadow-[0_0_10px_#10b981]"></div>
+<span class="text-[9px] text-slate-400 mt-1 uppercase">Nashik</span>
+</div>
+<div class="absolute bottom-[20%] left-[30%] flex flex-col items-center z-10">
+<div class="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div>
+<span class="text-[9px] text-slate-400 mt-1 uppercase">Goa</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 bg-navy-lighter/90 backdrop-blur-sm border-t border-gold-dim/20 p-4 flex justify-between text-xs font-mono">
+<span class="text-slate-400">Total Partners: <span class="text-white font-bold">482</span></span>
+<span class="text-slate-400">Active: <span class="text-success font-bold">465</span></span>
+</div>
+</div>
+</section>
+</div>
+<div class="col-span-12 mt-2">
+<div class="bg-black/80 rounded-lg border border-gold-dim/20 p-4 font-mono text-xs md:text-sm text-slate-300 h-40 overflow-hidden relative shadow-inner">
+<div class="absolute top-2 right-2 flex gap-2">
+<span class="text-[10px] text-slate-500 uppercase border border-slate-800 px-1 rounded">Live Feed</span>
+</div>
+<div class="flex flex-col gap-2 opacity-90">
+<div class="flex gap-3 border-l-2 border-success pl-3">
+<span class="text-slate-500">[14:32:05]</span>
+<span class="text-success font-bold">COMMISSION</span>
+<span>Level 3 Commission (₹ 3,75,000) credited to Wallet #FR-8821</span>
+</div>
+<div class="flex gap-3 border-l-2 border-gold-primary pl-3">
+<span class="text-slate-500">[14:32:04]</span>
+<span class="text-gold-primary font-bold">SIGNUP</span>
+<span>New Partner "Amit Deshmukh" joined under Level 2 (Direct)</span>
+</div>
+<div class="flex gap-3 border-l-2 border-blue-500 pl-3">
+<span class="text-slate-500">[14:32:03]</span>
+<span class="text-blue-400 font-bold">ADMIN</span>
+<span>Monthly Maintenance Deduction (₹ 45,045) processed for Node A</span>
+</div>
+<div class="flex gap-3 border-l-2 border-slate-600 pl-3 opacity-75">
+<span class="text-slate-500">[14:32:01]</span>
+<span class="text-slate-400 font-bold">SYSTEM</span>
+<span>Daily Profit Calculation initialized for 15% bracket</span>
+</div>
+<div class="flex gap-3 border-l-2 border-slate-700 pl-3 opacity-50">
+<span class="text-slate-500">[14:32:00]</span>
+<span class="text-slate-500 font-bold">LOG</span>
+<span>Admin charges (10%) transferred to HQ treasury</span>
+</div>
+</div>
+<div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black via-transparent to-transparent"></div>
+</div>
+</div>
+</main>
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-40" style="background: radial-gradient(circle at 50% 0%, #0f2035 0%, transparent 60%);"></div>
+
+</body></html>

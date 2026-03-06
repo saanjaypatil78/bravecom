@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investor Portfolio &amp; Referrals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ea5e9", // Sky blue for a clean financial look
+                        "background-light": "#f3f4f6", // Slate-100
+                        "background-dark": "#0f172a", // Slate-900
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e293b", // Slate-800
+                        "text-light": "#1e293b",
+                        "text-dark": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-200 min-h-screen flex flex-col md:flex-row">
+<aside class="w-full md:w-64 bg-card-light dark:bg-card-dark border-r border-gray-200 dark:border-gray-700 flex-shrink-0 hidden md:flex flex-col h-screen fixed">
+<div class="p-6 flex items-center space-x-2 border-b border-gray-100 dark:border-gray-800">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">I</div>
+<span class="text-xl font-bold tracking-tight">Invest<span class="text-primary">SaaS</span></span>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+<a class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<span class="material-icons-outlined mr-3 text-xl group-hover:text-primary">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg bg-primary/10 text-primary dark:text-sky-400 group transition-colors" href="#">
+<span class="material-icons-outlined mr-3 text-xl">account_balance_wallet</span>
+                My Portfolio
+            </a>
+<a class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<span class="material-icons-outlined mr-3 text-xl group-hover:text-primary">people_alt</span>
+                Referral Network
+            </a>
+<a class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<span class="material-icons-outlined mr-3 text-xl group-hover:text-primary">bar_chart</span>
+                Analytics
+            </a>
+<a class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 group transition-colors" href="#">
+<span class="material-icons-outlined mr-3 text-xl group-hover:text-primary">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="p-4 border-t border-gray-200 dark:border-gray-700">
+<div class="flex items-center space-x-3">
+<img alt="User Profile" class="w-9 h-9 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeqV6uNYMN7ASrYxod2Juo4j7OVxi_npJeob83THibH16MUWYn20lINa6c1CqkQLvoo8hVQnbdg-yzQmbFCpI4Uy9sDvc1yiMJhaDlyp9n-IcGjXa5dxhBp-kX7j1jyLzzSdzcdD_2JyWJBZwZjaP37cGJSHyErQDFp3LgRS0QjWBegrGh5sXSu93WAZcZPkobnuOiIidickk4lzxRz4WAVqzD2yGtxCsFFKTk8zbTik188eLG3RMx8sVgz495qD1GQSb0cJcMd1wN"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Alex Morgan</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 truncate">L4 Investor</p>
+</div>
+</div>
+</div>
+</aside>
+<header class="md:hidden bg-card-light dark:bg-card-dark border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between sticky top-0 z-20">
+<span class="text-lg font-bold">Invest<span class="text-primary">SaaS</span></span>
+<button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+<span class="material-icons-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 md:ml-64 p-4 md:p-8 overflow-y-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Portfolio Overview</h1>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Welcome back! Here is your investment performance summary.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+<span class="material-icons-outlined text-lg mr-2">download</span>
+                    Report
+                </button>
+<button class="flex items-center px-5 py-2 bg-primary hover:bg-sky-600 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-primary/25">
+<span class="material-icons-outlined text-lg mr-2">add_circle</span>
+                    Invest More
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-card-light dark:bg-card-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Investment</span>
+<span class="p-1.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg material-icons-outlined text-lg">payments</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 dark:text-white">₹ 1,10,00,000</div>
+<div class="text-xs text-green-600 dark:text-green-400 mt-1 font-medium flex items-center">
+<span class="material-icons-outlined text-xs mr-1">trending_up</span>
+                    Level 4 Status
+                </div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Total Profit (15%)</span>
+<span class="p-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg material-icons-outlined text-lg">savings</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 dark:text-white">₹ 16,50,000</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                    Based on 12-month agreement
+                </div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Referral Commission</span>
+<span class="p-1.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg material-icons-outlined text-lg">group_add</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 dark:text-white">₹ 28,31,250</div>
+<div class="text-xs text-purple-600 dark:text-purple-400 mt-1 font-medium flex items-center">
+                    From 6 active levels
+                </div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Net Payout</span>
+<span class="p-1.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg material-icons-outlined text-lg">account_balance</span>
+</div>
+<div class="text-2xl font-bold text-gray-900 dark:text-white">₹ 25,48,125</div>
+<div class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                    After 10% admin charges
+                </div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-card-light dark:bg-card-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
+<h3 class="font-semibold text-gray-900 dark:text-white">Investment Levels &amp; Commission Breakdown</h3>
+<span class="text-xs text-gray-500 bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Annual View</span>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-sm text-left">
+<thead class="text-xs text-gray-500 uppercase bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+<tr>
+<th class="px-4 py-3 sticky left-0 bg-gray-50 dark:bg-gray-800 z-10" scope="col">Level</th>
+<th class="px-4 py-3" scope="col">Investment</th>
+<th class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400" scope="col">Profit (15%)</th>
+<th class="px-4 py-3 text-right" scope="col">Lvl 1 (10%)</th>
+<th class="px-4 py-3 text-right" scope="col">Lvl 2 (7%)</th>
+<th class="px-4 py-3 text-right" scope="col">Lvl 3 (5%)</th>
+<th class="px-4 py-3 text-right" scope="col">Lvl 4 (2%)</th>
+<th class="px-4 py-3 text-right" scope="col">Lvl 5 (1%)</th>
+<th class="px-4 py-3 text-right font-bold text-gray-900 dark:text-white" scope="col">Total Comm.</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+<tr class="bg-primary/5 dark:bg-primary/10 border-l-4 border-l-primary">
+<td class="px-4 py-3 font-bold text-primary sticky left-0 bg-sky-50 dark:bg-slate-800/80 backdrop-blur-sm">L4</td>
+<td class="px-4 py-3 font-medium">₹ 1,10,00,000</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400 font-medium">16,50,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">16,50,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">11,55,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">30,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">60,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300">22,500</td>
+<td class="px-4 py-3 text-right font-bold text-gray-900 dark:text-white">28,31,250</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-card-light dark:bg-card-dark">L1</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400">₹ 51,111</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400">7,667</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">40,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">55,650</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">82,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">75,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,65,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300">4,50,450</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-card-light dark:bg-card-dark">L2</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400">₹ 10,60,000</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400">1,59,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">79,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,15,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,87,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">3,30,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">45,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300">8,38,500</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-card-light dark:bg-card-dark">L3</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400">₹ 27,00,000</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400">4,05,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,65,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">2,62,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">8,25,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">90,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">12,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300">15,13,500</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors opacity-70">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-card-light dark:bg-card-dark">L5</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400">₹ 2,50,00,000</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400">37,50,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">4,50,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">84,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">56,250</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">67,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">9,00,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300">48,57,750</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors opacity-50">
+<td class="px-4 py-3 font-medium text-gray-900 dark:text-white sticky left-0 bg-card-light dark:bg-card-dark">L6</td>
+<td class="px-4 py-3 text-gray-500 dark:text-gray-400">₹ 11,00,00,000</td>
+<td class="px-4 py-3 text-right text-emerald-600 dark:text-emerald-400">1,65,00,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,20,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">78,750</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">1,68,750</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">18,00,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400">2,25,000</td>
+<td class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300">32,92,500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-gray-200 dark:border-gray-700 text-center">
+<button class="text-sm text-primary hover:text-sky-600 font-medium">View All 15 Levels</button>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-5">
+<h3 class="font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+<span class="material-icons-outlined mr-2 text-yellow-500">emoji_events</span>
+                        Direct Target Royalty
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-amber-700/10 flex items-center justify-center text-amber-700 dark:text-amber-500 font-bold text-xs">BZ</div>
+<div>
+<p class="font-medium text-sm">Bronze</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Target: 50 Lakh</p>
+</div>
+</div>
+<span class="font-bold text-primary">1.00%</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-primary/5 w-3/4 z-0"></div> 
+<div class="flex items-center space-x-3 z-10 relative">
+<div class="w-10 h-10 rounded-full bg-slate-300/20 flex items-center justify-center text-slate-500 dark:text-slate-300 font-bold text-xs">SV</div>
+<div>
+<p class="font-medium text-sm">Silver</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Target: 1 Crore</p>
+</div>
+</div>
+<span class="font-bold text-primary z-10">0.75%</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 opacity-60">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center text-yellow-600 dark:text-yellow-400 font-bold text-xs">GD</div>
+<div>
+<p class="font-medium text-sm">Gold</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Target: 5 Crore</p>
+</div>
+</div>
+<span class="font-bold text-gray-400">0.50%</span>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-5">
+<h3 class="font-semibold text-gray-900 dark:text-white mb-4">Allocations &amp; Expenses</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-800">
+<span class="text-gray-500 dark:text-gray-400">Total Returns (Static)</span>
+<span class="font-medium text-gray-900 dark:text-white">25%</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-800">
+<span class="text-gray-500 dark:text-gray-400">Marketing Expense</span>
+<span class="font-medium text-gray-900 dark:text-white">10%</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-800">
+<span class="text-gray-500 dark:text-gray-400">Company Expansion</span>
+<span class="font-medium text-gray-900 dark:text-white">10%</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-800">
+<span class="text-gray-500 dark:text-gray-400">Yearly Gifts (Flexible)</span>
+<span class="font-medium text-gray-900 dark:text-white">3%</span>
+</div>
+<div class="pt-2 mt-2">
+<div class="flex justify-between items-center">
+<span class="text-gray-900 dark:text-white font-bold">Total Allocation</span>
+<span class="font-bold text-primary">70%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple logic for theme toggle just for demonstration
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = "fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg z-50 hover:bg-sky-600 transition-all";
+        toggleBtn.innerHTML = '<span class="material-icons-outlined">dark_mode</span>';
+        document.body.appendChild(toggleBtn);
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                toggleBtn.innerHTML = '<span class="material-icons-outlined">light_mode</span>';
+            } else {
+                toggleBtn.innerHTML = '<span class="material-icons-outlined">dark_mode</span>';
+            }
+        });
+    </script>
+
+</body></html>

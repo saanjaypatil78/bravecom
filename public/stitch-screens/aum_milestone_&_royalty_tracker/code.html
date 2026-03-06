@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUM Milestone &amp; Royalty Tracker</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f46a",
+                        "primary-dark": "#1bc954",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102216",
+                        "card-dark": "#1a2c20",
+                        "card-border": "#28392e",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(37, 244, 106, 0.35)',
+                        'glow-sm': '0 0 10px rgba(37, 244, 106, 0.25)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102216; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #28392e; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5443; 
+        }
+        
+        .metallic-text {
+            background: linear-gradient(to bottom, #ffffff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .bronze-gradient { background: linear-gradient(135deg, #7a482b 0%, #cd7f32 100%); }
+        .silver-gradient { background: linear-gradient(135deg, #757575 0%, #c0c0c0 100%); }
+        .gold-gradient { background: linear-gradient(135deg, #b8860b 0%, #ffd700 100%); }
+        .platinum-gradient { background: linear-gradient(135deg, #4b4b4b 0%, #a0a0a0 100%); }
+        .diamond-gradient { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); }
+        .ambassador-gradient { background: linear-gradient(135deg, #222 0%, #e74c3c 100%); }
+
+        .progress-stripe {
+            background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+            background-size: 1rem 1rem;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-card-border bg-background-dark/95 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-white">AUM<span class="text-primary">Tracker</span></span>
+</div>
+<!-- Right Nav Items -->
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 text-sm text-slate-400">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+<span>Wallet: ₹45,200</span>
+</div>
+<button class="relative p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-card-border">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-white">Arjun K.</p>
+<p class="text-xs text-primary">Silver Tier</p>
+</div>
+<div class="h-9 w-9 rounded-full bg-cover bg-center border-2 border-primary/30" data-alt="User profile picture of a professional man in a suit" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRv6QMrLTC5IoR3ynK8cXLW9MtffNtkllgjVUm73NNI9N7clqCsr4JjqVW447H3ytxAYLtmdvFB1SkH5JossCRRpD35k__gQwH0at2ds-9FdWHSUV1xZJ0qDNhzPYkK0a1NQ1owS8MbmeS0YQRWo9m2JLz3-zSjqy_osEVebLtpee23DdobnwDXwgDKRfe-XND0pe8vQXy9m_TlXxokwdyxZAxCfXQSYiIeRZ8MLr-SkWfFSo0XBOsTKkPkhoZVEILSYoMl6DXeqC2");'>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full space-y-8">
+<!-- Hero Section: Overall Progress -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">AUM Milestone Progress</h1>
+<p class="text-slate-400 max-w-2xl">Track your journey towards the <span class="text-white font-semibold">₹111 Cr</span> goal. Your current performance unlocks direct target royalties.</p>
+</div>
+<div class="text-right">
+<div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Global Rank</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700">
+<span class="material-symbols-outlined text-yellow-500 text-sm">emoji_events</span>
+<span class="font-bold text-white">#142 <span class="text-xs font-normal text-slate-400">/ 12,450</span></span>
+</div>
+</div>
+</div>
+<!-- Big Progress Bar Card -->
+<div class="relative w-full rounded-2xl bg-card-dark border border-card-border p-6 md:p-8 shadow-xl overflow-hidden group">
+<!-- Background decorative glow -->
+<div class="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-wrap items-end justify-between gap-4 mb-4">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-400 mb-1">Current AUM</span>
+<span class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">₹12.00 <span class="text-2xl text-slate-500 font-normal">Cr</span></span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-sm font-medium text-slate-400 mb-1">Target Goal</span>
+<span class="text-2xl md:text-3xl font-bold text-slate-300">₹111.00 <span class="text-lg text-slate-500 font-normal">Cr</span></span>
+</div>
+</div>
+<!-- Main Progress Bar -->
+<div class="relative h-6 md:h-8 w-full bg-background-dark rounded-full overflow-hidden border border-white/5 shadow-inner">
+<div class="absolute top-0 left-0 h-full bg-primary shadow-glow progress-stripe animate-pulse" style="width: 10.8%"></div>
+<!-- Markers -->
+<div class="absolute top-0 bottom-0 left-[45%] w-px bg-white/20"></div> <!-- 50 Cr Marker -->
+<div class="absolute top-0 bottom-0 left-[90%] w-px bg-white/20"></div> <!-- 100 Cr Marker -->
+</div>
+<div class="flex justify-between mt-3 text-xs md:text-sm font-medium text-slate-500">
+<span>₹0</span>
+<span class="hidden sm:inline">₹50 Cr</span>
+<span class="hidden sm:inline">₹100 Cr</span>
+<span>₹111 Cr</span>
+</div>
+<!-- Status Message -->
+<div class="mt-6 flex items-start gap-3 bg-primary/10 border border-primary/20 rounded-lg p-4">
+<span class="material-symbols-outlined text-primary mt-0.5">rocket_launch</span>
+<div>
+<p class="text-white font-medium">Next Reward Unlocks at ₹1 Cr (Silver)</p>
+<p class="text-slate-400 text-sm mt-0.5">You are <span class="text-white font-bold">₹88L</span> away from leveling up! Keep pushing your network.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Overview -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-card-dark border border-card-border p-5 rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-blue-500/10 rounded-lg text-blue-400">
+<span class="material-symbols-outlined text-xl">group</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Total Investors</span>
+</div>
+<p class="text-2xl font-bold text-white">1,248</p>
+<div class="flex items-center gap-1 mt-1 text-xs text-primary">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>12 this week</span>
+</div>
+</div>
+<div class="bg-card-dark border border-card-border p-5 rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+<span class="material-symbols-outlined text-xl">hub</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Sun Ray Depth</span>
+</div>
+<p class="text-2xl font-bold text-white">Level 5</p>
+<p class="text-xs text-slate-500 mt-1">Max depth reached</p>
+</div>
+<div class="bg-card-dark border border-card-border p-5 rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-orange-500/10 rounded-lg text-orange-400">
+<span class="material-symbols-outlined text-xl">payments</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Total Royalty Earned</span>
+</div>
+<p class="text-2xl font-bold text-white">₹4.2 Lakhs</p>
+<div class="flex items-center gap-1 mt-1 text-xs text-primary">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>₹12k this month</span>
+</div>
+</div>
+<div class="bg-card-dark border border-card-border p-5 rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-xl">percent</span>
+</div>
+<span class="text-slate-400 text-sm font-medium">Avg. Yield</span>
+</div>
+<p class="text-2xl font-bold text-white">14.2%</p>
+<p class="text-xs text-slate-500 mt-1">Across all portfolios</p>
+</div>
+</section>
+<!-- Milestones Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">stars</span>
+                    Direct Target Royalty Levels
+                </h2>
+<div class="hidden sm:flex items-center gap-2 text-sm text-slate-400">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary shadow-glow-sm"></span> Active</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-600"></span> Locked</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- BRONZE (Achieved) -->
+<div class="bg-card-dark border border-primary/30 rounded-xl p-0 overflow-hidden relative shadow-glow-sm group hover:border-primary/50 transition-all duration-300">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<div class="h-1.5 w-full bg-primary shadow-glow"></div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full bronze-gradient flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-xl">military_tech</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors">Bronze</h3>
+<p class="text-xs text-primary font-medium uppercase tracking-wide">Achieved</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Target</span>
+<span class="text-white font-bold">₹50 Lakhs</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Royalty</span>
+<span class="text-primary font-bold bg-primary/10 px-2 py-0.5 rounded text-xs">+0.5%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Investors</span>
+<span class="text-white">142</span>
+</div>
+<div class="pt-2">
+<div class="flex justify-between text-xs text-slate-400 mb-1">
+<span>Progress</span>
+<span class="text-primary">100%</span>
+</div>
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SILVER (In Progress) -->
+<div class="bg-card-dark border-2 border-primary rounded-xl p-0 overflow-hidden relative shadow-glow transform scale-[1.02] sm:scale-100 lg:scale-[1.02] z-10">
+<div class="absolute top-0 right-0 p-3 animate-pulse">
+<span class="bg-primary text-black text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Current Focus</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full silver-gradient flex items-center justify-center shadow-lg ring-2 ring-primary ring-offset-2 ring-offset-card-dark">
+<span class="material-symbols-outlined text-slate-800 text-xl">workspace_premium</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Silver</h3>
+<p class="text-xs text-primary font-medium uppercase tracking-wide">In Progress</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Target</span>
+<span class="text-white font-bold">₹1 Cr</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Royalty</span>
+<span class="text-primary font-bold bg-primary/10 px-2 py-0.5 rounded text-xs">+0.75%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400">Investors</span>
+<span class="text-white">12</span>
+</div>
+<div class="pt-2">
+<div class="flex justify-between text-xs text-slate-400 mb-1">
+<span>Progress</span>
+<span class="text-primary font-bold">12%</span>
+</div>
+<div class="h-3 w-full bg-background-dark rounded-full overflow-hidden border border-white/10">
+<div class="h-full bg-primary shadow-glow w-[12%] relative"></div>
+</div>
+<p class="text-[10px] text-center mt-2 text-slate-400">₹12L / ₹1Cr Achieved</p>
+</div>
+</div>
+</div>
+</div>
+<!-- GOLD (Locked) -->
+<div class="bg-card-dark border border-card-border rounded-xl p-0 overflow-hidden relative opacity-75 hover:opacity-100 hover:border-slate-600 transition-all duration-300">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-slate-600">lock</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center shadow-lg opacity-80 grayscale-[0.3]">
+<span class="material-symbols-outlined text-white text-xl">stars</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-300">Gold</h3>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Locked</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Target</span>
+<span class="text-slate-300 font-semibold">₹5 Cr</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Royalty</span>
+<span class="text-slate-300 font-bold bg-slate-800 px-2 py-0.5 rounded text-xs">+1.0%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Investors</span>
+<span class="text-slate-300">-</span>
+</div>
+<div class="pt-2">
+<div class="flex justify-between text-xs text-slate-500 mb-1">
+<span>Progress</span>
+<span>0%</span>
+</div>
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-700 w-0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PLATINUM (Locked) -->
+<div class="bg-card-dark border border-card-border rounded-xl p-0 overflow-hidden relative opacity-60 hover:opacity-90 hover:border-slate-600 transition-all duration-300">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-slate-600">lock</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full platinum-gradient flex items-center justify-center shadow-lg opacity-80 grayscale-[0.5]">
+<span class="material-symbols-outlined text-white text-xl">diamond</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-400">Platinum</h3>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Locked</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Target</span>
+<span class="text-slate-400 font-semibold">₹25 Cr</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Royalty</span>
+<span class="text-slate-400 font-bold bg-slate-800 px-2 py-0.5 rounded text-xs">+1.5%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Investors</span>
+<span class="text-slate-400">-</span>
+</div>
+<div class="pt-2">
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-700 w-0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- DIAMOND (Locked) -->
+<div class="bg-card-dark border border-card-border rounded-xl p-0 overflow-hidden relative opacity-60 hover:opacity-90 hover:border-slate-600 transition-all duration-300">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-slate-600">lock</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full diamond-gradient flex items-center justify-center shadow-lg opacity-80 grayscale-[0.5]">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-400">Diamond</h3>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Locked</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Target</span>
+<span class="text-slate-400 font-semibold">₹75 Cr</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Royalty</span>
+<span class="text-slate-400 font-bold bg-slate-800 px-2 py-0.5 rounded text-xs">+2.0%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Investors</span>
+<span class="text-slate-400">-</span>
+</div>
+<div class="pt-2">
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-700 w-0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AMBASSADOR (Locked) -->
+<div class="bg-card-dark border border-card-border rounded-xl p-0 overflow-hidden relative opacity-60 hover:opacity-90 hover:border-slate-600 transition-all duration-300">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-slate-600">lock</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-5">
+<div class="w-12 h-12 rounded-full ambassador-gradient flex items-center justify-center shadow-lg opacity-80 grayscale-[0.5]">
+<span class="material-symbols-outlined text-white text-xl">crown</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-400">Ambassador</h3>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wide">Locked</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Target</span>
+<span class="text-slate-400 font-semibold">₹100 Cr</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Royalty</span>
+<span class="text-slate-400 font-bold bg-slate-800 px-2 py-0.5 rounded text-xs">+2.5%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Investors</span>
+<span class="text-slate-400">-</span>
+</div>
+<div class="pt-2">
+<div class="h-2 w-full bg-background-dark rounded-full overflow-hidden">
+<div class="h-full bg-slate-700 w-0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sun Ray Hierarchy Tree (Simplified Visual) -->
+<section class="border-t border-card-border pt-8 mt-4">
+<h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                Recent Sun Ray Additions
+            </h2>
+<div class="bg-card-dark rounded-xl border border-card-border p-4 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs text-slate-500 uppercase border-b border-card-border">
+<th class="px-4 py-3 font-medium">Investor</th>
+<th class="px-4 py-3 font-medium">Level</th>
+<th class="px-4 py-3 font-medium">Date Added</th>
+<th class="px-4 py-3 font-medium">AUM Contribution</th>
+<th class="px-4 py-3 font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="group hover:bg-slate-800/50 transition-colors">
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 bg-cover" data-alt="Profile picture of Sarah" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD24OoMN_zwYDxkiPrcaEoUia3mzHN0h_qb79Hd6wDfM3bJSk9u5v7bQBGtOV6GExaRkf7PnUCnLHqh6mrdemgXMTPdaVjlghdFzCl8-9frdrx42RPdCEixTqkYZ_AqIRsZqpDJNK2Sj3UmoxwMWZlUQJ6-jHJyl5gHL2GhhRIW5eNFa2h8FRLvvDW_i7q7NUrpYpKV4x4z9anpIEMh1RstIGZSFuAel2TaUQlPynzhrm4cAX__1XbZ0HpEGH24ROkbuooKM0GWnJek");'></div>
+<span class="font-medium text-white">Sarah Jenkins</span>
+</div>
+</td>
+<td class="px-4 py-3 text-slate-300">Level 2</td>
+<td class="px-4 py-3 text-slate-400">Oct 24, 2023</td>
+<td class="px-4 py-3 text-primary font-medium">₹25,00,000</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">Active</span></td>
+</tr>
+<tr class="group hover:bg-slate-800/50 transition-colors border-t border-card-border/50">
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 bg-cover" data-alt="Profile picture of Raj" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZtHGbekUDGDEe_fKTNqmdecBMDpt6-oi6LmU1FSno7zfAPQSRBCM8aq5PDwXa2wkGzutyZIdQgvab14NAkpDNbfxFyWgt2iw2pR6BpAybWI7eutmjwvk54Pb_c68jqdvDOKDcY9IhpiG6jD5LMk7ZFltd4WlPLise85BT4uYHZfgDFU_MwC6PCrF5B3kLaaqfkc_Yt06THn3-IvBbRyEvtqPxYdXZEmvm8k6kOisKoTXVPTeBOVjN8GtFPhyarxDZ3ffkCma-JALw");'></div>
+<span class="font-medium text-white">Raj Patel</span>
+</div>
+</td>
+<td class="px-4 py-3 text-slate-300">Level 1</td>
+<td class="px-4 py-3 text-slate-400">Oct 22, 2023</td>
+<td class="px-4 py-3 text-primary font-medium">₹5,00,000</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">Active</span></td>
+</tr>
+<tr class="group hover:bg-slate-800/50 transition-colors border-t border-card-border/50">
+<td class="px-4 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs text-slate-300">MK</div>
+<span class="font-medium text-white">Michael Kim</span>
+</div>
+</td>
+<td class="px-4 py-3 text-slate-300">Level 3</td>
+<td class="px-4 py-3 text-slate-400">Oct 20, 2023</td>
+<td class="px-4 py-3 text-primary font-medium">₹12,50,000</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">Pending</span></td>
+</tr>
+</tbody>
+</table>
+<div class="p-3 text-center border-t border-card-border mt-2">
+<button class="text-sm text-primary hover:text-white transition-colors font-medium">View Full Sun Ray Tree →</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

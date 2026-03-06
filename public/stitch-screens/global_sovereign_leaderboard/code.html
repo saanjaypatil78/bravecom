@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Sovereign Leaderboard - Brave Ecom</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the ranking list */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(244, 192, 37, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(244, 192, 37, 0.3);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-primary/20 px-10 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Marketplace</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Vault</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Network</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Concierge</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-64 rounded-lg border-none bg-slate-100 dark:bg-primary/10 py-2.5 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search partners..." type="text"/>
+</div>
+<button class="relative">
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/30" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoFgXgbCeSRwM9dLdxEtP7j1bcSZl-fTYHIAYv8rwm5uuts3sJ4ZS52Gr8MVsPuOqNvRZy3xZ00POlf07HFyUl_QU2cuHsk4FNT-SMyBYkvzIXW3YnMS1SKV9eYaV2wDeWfihLmrMmziADDkyQRbKvuSefnKYnLlJ5uX-1_0WDySqefx--CIzTbhX2mDBGV2weQndyjFOt5qzvufcERoV3r9wMM_JtER4hBX0Cf7L9wLuCeWbbwHEOmTIOM1Pw36RkoSPxEPQG2C16");'></div>
+<div class="absolute bottom-0 right-0 size-3 rounded-full bg-green-500 border-2 border-background-dark"></div>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1400px] mx-auto p-6 md:p-8 lg:p-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-medium text-sm tracking-widest uppercase">
+<span class="material-symbols-outlined text-lg">hotel_class</span>
+<span>Elite Tier</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white">Global Sovereign Leaderboard</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">Compete with elite franchise partners. Elevate your status and unlock exclusive sovereign network privileges.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 dark:bg-primary/10 hover:bg-slate-300 dark:hover:bg-primary/20 text-slate-700 dark:text-primary transition-colors text-sm font-semibold">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                    This Month
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-background-dark transition-colors text-sm font-bold shadow-[0_0_15px_rgba(244,192,37,0.3)]">
+<span class="material-symbols-outlined text-[20px] fill-1">download</span>
+                    Export Report
+                </button>
+</div>
+</div>
+<!-- Metrics Cards (Sun Ray Power) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Card 1 -->
+<div class="relative overflow-hidden rounded-xl bg-white dark:bg-[#2a261a] border border-slate-200 dark:border-primary/10 p-6 group hover:border-primary/40 transition-colors duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">groups</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-1">Total Referrals</p>
+<h3 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">142</h3>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<span class="flex items-center text-green-500 bg-green-500/10 px-2 py-0.5 rounded text-sm font-bold">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                            +12%
+                        </span>
+<span class="text-slate-400 text-sm">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative overflow-hidden rounded-xl bg-white dark:bg-[#2a261a] border border-slate-200 dark:border-primary/10 p-6 group hover:border-primary/40 transition-colors duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">monetization_on</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-wider mb-1">Network Value</p>
+<h3 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">$28.5M</h3>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<span class="flex items-center text-green-500 bg-green-500/10 px-2 py-0.5 rounded text-sm font-bold">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                            +5.2%
+                        </span>
+<span class="text-slate-400 text-sm">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-transparent dark:from-primary/10 dark:to-[#2a261a] border border-primary/30 p-6 group hover:border-primary/60 transition-colors duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-30 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">trophy</span>
+</div>
+<div class="flex flex-col h-full justify-between relative z-10">
+<div>
+<p class="text-primary/80 dark:text-primary text-sm font-semibold uppercase tracking-wider mb-1">Your Global Rank</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">#4</h3>
+<span class="text-sm text-slate-500 dark:text-slate-400">Top 1%</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<span class="flex items-center text-green-500 bg-green-500/10 px-2 py-0.5 rounded text-sm font-bold">
+<span class="material-symbols-outlined text-sm mr-0.5">arrow_upward</span>
+                            +1 Position
+                        </span>
+<span class="text-slate-400 text-sm">this week</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Podium Section (Takes up larger portion on desktop) -->
+<div class="lg:col-span-7 flex flex-col">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">podium</span>
+                    Top Performers
+                </h3>
+<div class="flex-1 min-h-[400px] bg-slate-50 dark:bg-[#2a261a]/40 border border-slate-200 dark:border-primary/10 rounded-xl relative flex items-end justify-center p-8 pb-0 overflow-hidden">
+<!-- Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-3xl rounded-full pointer-events-none"></div>
+<!-- 2nd Place -->
+<div class="flex flex-col items-center z-10 mx-2 md:mx-4 translate-y-4 hover:-translate-y-2 transition-transform duration-500 group">
+<div class="relative mb-4">
+<div class="size-20 md:size-24 rounded-full border-4 border-slate-300 dark:border-slate-600 shadow-xl bg-cover bg-center" data-alt="Profile picture of Lady V" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcMlK_LeVg1XkDI0elrn1XxgjMBMcwN_2qtotJSxmHUi_W-wT9nR9ZU-HV_4BbDXvGuTuozmvE71_A2K8V_yl3bjA36QKTQp3nkF2wBBF9J6unB-EAtj-nrIdsRIdXCfp_EH_fcq90M28sBofj-ubouk2vnQqvGLDG8RtxbzEF33X1huWU8aQZ7NeWOza8_XEBNNTDdBZlrnHNwW7VBvfoj4VuAT7ThVoHVw6YicR04pBrdzUrSw29Kxm2knkdVDTPzuHd-8jFdNWw");'></div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-300 dark:bg-slate-600 text-slate-900 font-bold text-xs px-2 py-0.5 rounded-full shadow-lg">#2</div>
+</div>
+<div class="text-center mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white text-lg leading-tight">Lady V.</h4>
+<p class="text-primary text-sm font-medium">1,240 Pts</p>
+</div>
+<div class="w-24 md:w-32 h-40 bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-700 dark:to-slate-600 rounded-t-lg shadow-inner relative group-hover:brightness-110 transition-all">
+<div class="absolute top-0 w-full h-1 bg-white/20"></div>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="flex flex-col items-center z-20 mx-2 md:mx-4 -translate-y-2 hover:-translate-y-6 transition-transform duration-500 group">
+<div class="relative mb-4">
+<span class="absolute -top-10 text-4xl text-primary animate-bounce">👑</span>
+<div class="size-24 md:size-32 rounded-full border-4 border-primary shadow-[0_0_30px_rgba(244,192,37,0.4)] bg-cover bg-center" data-alt="Profile picture of Lord Harrington" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAY2u-8jg8BDA7LJW2WSAaZHKsYC90GVnMPTV-lx0j-r_BbjyXvZx1O5NxsOEE-CyNwayyECdTBPiEUG3vJGxBEeLzV4malFYDwQVatltOcz24veA1T7Cgc4UETGEhViD-XKAGYZQK3UZ0ogz377tUIVlHg6dNjep8F0XHj_-9cpGNckxPvTj8eRRUCGVktwdplhg6e_vCPVyr_oBXDUDj_xARV7UYIvuDlT0WLKlb_CzheGfujNvovqkjV5-xezcb8MSP-VNdfMpnB");'></div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-primary text-background-dark font-bold text-sm px-3 py-0.5 rounded-full shadow-lg border border-white/20">#1</div>
+</div>
+<div class="text-center mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white text-xl leading-tight">Lord Harrington</h4>
+<p class="text-primary text-sm font-bold">1,892 Pts</p>
+</div>
+<div class="w-28 md:w-40 h-56 bg-gradient-to-t from-primary/80 to-primary rounded-t-lg shadow-[0_-4px_20px_rgba(244,192,37,0.3)] relative group-hover:brightness-110 transition-all flex justify-center pt-4">
+<div class="absolute top-0 w-full h-1 bg-white/30"></div>
+<span class="material-symbols-outlined text-background-dark/30 text-6xl">emoji_events</span>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="flex flex-col items-center z-10 mx-2 md:mx-4 translate-y-8 hover:translate-y-4 transition-transform duration-500 group">
+<div class="relative mb-4">
+<div class="size-20 md:size-24 rounded-full border-4 border-orange-700/60 dark:border-[#CD7F32] shadow-xl bg-cover bg-center" data-alt="Profile picture of Duke A" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQxgRt4qABZYs7PsuLKks644MzEXl6pwB1dMRKwhImJwOza5LEaQCw18GBuPKxl7HTL7JHHvarr9RxlnOHE52kiebAxfY1xSrB-Q3lmBQzcAJjVevY1HPCJrSka0IEjn99y_4PpfHs44qZiV5HkOxmJwIKt8ZMLaPowad5AIsNQjo78esf2l08aadVkXwL6Oaz7ZsJzDJz-n0neWe03Ln-cINm1-k4l8VKhDoTX3NJ4MYCtVAKRkFGosGGbYMVPLTsVgFxz8WTZOTG");'></div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-orange-700/80 dark:bg-[#CD7F32] text-white font-bold text-xs px-2 py-0.5 rounded-full shadow-lg">#3</div>
+</div>
+<div class="text-center mb-2">
+<h4 class="font-bold text-slate-900 dark:text-white text-lg leading-tight">Duke A.</h4>
+<p class="text-primary text-sm font-medium">980 Pts</p>
+</div>
+<div class="w-24 md:w-32 h-32 bg-gradient-to-t from-orange-900 to-orange-700/60 dark:from-[#8B4513] dark:to-[#CD7F32] rounded-t-lg shadow-inner relative group-hover:brightness-110 transition-all">
+<div class="absolute top-0 w-full h-1 bg-white/20"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Rankings List Section -->
+<div class="lg:col-span-5 flex flex-col h-full">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">format_list_numbered</span>
+                        Global Rankings
+                    </h3>
+<button class="text-sm text-primary hover:text-primary/80 font-medium">View All</button>
+</div>
+<div class="flex-1 bg-white dark:bg-[#2a261a] border border-slate-200 dark:border-primary/10 rounded-xl overflow-hidden flex flex-col shadow-sm">
+<!-- List Header -->
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 border-b border-slate-200 dark:border-primary/10 bg-slate-50 dark:bg-primary/5 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+<div class="text-center">Rank</div>
+<div>Partner</div>
+<div class="text-right">Growth</div>
+<div class="text-right">Score</div>
+</div>
+<!-- Scrolling List -->
+<div class="overflow-y-auto max-h-[450px] custom-scrollbar">
+<!-- User Row (Sticky or Highlighted) -->
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center bg-primary/10 border-l-4 border-l-primary hover:bg-primary/20 transition-colors">
+<div class="text-center font-bold text-primary">#4</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Current user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2paXZRs7R00BO760vDTzMx8QPQNhhYxojbbgmTVwV1T6sE0aOe18DIi9Cw4kp9Pj1ldB3MaHtJnRyzqI_Bk57fRXLaNkVjMWzWM5-O1k70F4NLq_0dyDjOY3VZgl-V2uFp7I47-7awPEPCDhqGoF_svsDPKeN-BtvgP9ZZLbkvFhtQehyIbLyGcDP-qAXflVS6mJmx4MkrtaHt17gNHsA4MfxE0Q5KWtOs0DWPoOz17mHO0Ec0ChBua3FAESjxiQgKBWf5sX4fFFH");'></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">You</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">London, UK</p>
+</div>
+</div>
+<div class="text-right text-green-500 font-medium text-sm">+12%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">856</div>
+</div>
+<!-- Other Rows -->
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="text-center font-medium text-slate-500 dark:text-slate-400">#5</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center bg-slate-700 text-white flex items-center justify-center text-xs font-bold" data-alt="Initials avatar">JS</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">James S.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">New York, USA</p>
+</div>
+</div>
+<div class="text-right text-green-500 font-medium text-sm">+8%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">842</div>
+</div>
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="text-center font-medium text-slate-500 dark:text-slate-400">#6</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Profile picture of Sarah M" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAotKCM34_zZx_nvy4o6gnRS0xiqwOVH47iucT3y6yqOaojXhJ3b8qsW5EItL4KI7i328qhRaKubNep9N4yNA1yy3s8QVI8QA39Z8ph7Qod8Y-6pb08pFvgPGNMqDdPSVy4rjlz4Zy1_7GP6d_OYo0GE84p9pF-60q47eDQ8TS90JCo-49ldvBKTMBmkYlwos8R9X83IKbtNYa0J87PrmICx4Q2U9pnhkU3OZShzlmufZX4Gin8RdF81tgpSyb3EionqnU8xc53RL3x");'></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">Sarah M.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Berlin, DE</p>
+</div>
+</div>
+<div class="text-right text-red-400 font-medium text-sm">-2%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">810</div>
+</div>
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="text-center font-medium text-slate-500 dark:text-slate-400">#7</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Profile picture of Baron K" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaVqNBkGwBDhSXj3CnEOqUMyf3hiCogDL-UozxIkFdGmZvp2eA27UqSWmt_67VBwOYvi-uIs1m6Ihhtxct_Ny8NHbRGPzmphX814JnLx-smX6IXJ2ytOMysSMVJ5ouL0lFP9k-ATxV6y2Q1C4qfWrMzzrsq2PJqy164z1eVm3F2FhAiwFyvZZdjaeLR-_Bm_prta8AK8JBBnL45ZwNPW85OrKYBEsYuOAlzPkpu_hi3wQXH0V5evCUyyvKaxg019y-GMo463vqFtRt");'></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">Baron K.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Paris, FR</p>
+</div>
+</div>
+<div class="text-right text-green-500 font-medium text-sm">+4%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">795</div>
+</div>
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="text-center font-medium text-slate-500 dark:text-slate-400">#8</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Profile picture of Elena R" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxUYj44f0n-XarHJEx7noEMJ150Y2JMewKpTz2foze3GQpLetAPWFYqnhoKWRqyC-dwrlW7wU_-H-WnOaMW8ggESp7IrH7ASQx2-E_vVnhK61ng4I40UaKQDQzd-ZJF7hsItZwGNg_h15x-FXyhZeHClSqAdsbMLOUJ-6Lx7KDSeOluuNpTvlJAunaybpvUYNErfsxSVS0GIVEhG9NZnod8vJBtPp30ceSaCGlmxTWUdPVLUjMUM4hLK2Q_kGOztkel-fnrkLUtqcc");'></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">Elena R.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Milan, IT</p>
+</div>
+</div>
+<div class="text-right text-green-500 font-medium text-sm">+1%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">760</div>
+</div>
+<div class="grid grid-cols-[3rem_1fr_4rem_5rem] gap-4 p-4 items-center border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+<div class="text-center font-medium text-slate-500 dark:text-slate-400">#9</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Profile picture of Tech Mogul" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAz6QIccWhbyfaulQ_OZkb1J0TWVANPKt2txSgTTrf-mIAqwL0pyKN2tgmFbl8yr8lj8H0AgzC8JakBLzdy9buvwK8mLMqXfb3QppVH-tC-tWHBbQ65qz7WOK7H1Gy8MyfSX53HJ7Z5_rJiM65b5OWNlJCAyJyiZvgLoAcyx5xKV12fcLcE3fOgv5553V5AD1zNVFeap6PHkWC0JpsbxRw00dZAaBEckJWaHEl-rXchVMLTleXsF2gq-nCfBOGBlk1qZMLE6dCKA4bO");'></div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white text-sm">Alex T.</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">San Fran, USA</p>
+</div>
+</div>
+<div class="text-right text-green-500 font-medium text-sm">+15%</div>
+<div class="text-right font-bold text-slate-900 dark:text-white">744</div>
+</div>
+</div>
+<!-- Footer of List -->
+<div class="p-3 border-t border-slate-200 dark:border-primary/10 bg-slate-50 dark:bg-primary/5 text-center text-xs text-slate-500 dark:text-slate-400">
+                        Rankings updated every 24h
+                    </div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Mall: Master Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25f4f4",
+              "background-light": "#f5f8f8",
+              "background-dark": "#102222",
+              "surface-dark": "#1b2727",
+              "surface-border": "#283939",
+              "text-muted": "#9cbaba",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            backgroundImage: {
+              'digital-silk': "linear-gradient(to bottom right, rgba(16, 34, 34, 0.95), rgba(27, 39, 39, 0.98)), url('https://placeholder.pics/svg/1920x1080')",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      /* Custom scrollbar for the horizontal list */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-surface-border bg-background-dark/95 backdrop-blur-md px-10 py-3">
+<div class="flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-4 text-white hover:opacity-80 transition-opacity" href="#">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-3xl">diamond</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Sovereign Mall</h2>
+</a>
+<!-- Search Bar -->
+<label class="hidden lg:flex flex-col min-w-40 !h-10 w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-surface-border bg-surface-dark group-focus-within:border-primary transition-colors">
+<div class="text-text-muted flex items-center justify-center pl-4 pr-2">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-text-muted px-2 text-sm font-normal leading-normal" placeholder="Search assets, silk, or collections..." value=""/>
+</div>
+</label>
+</div>
+<!-- Nav Links & Actions -->
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden xl:flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Investments</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Digital Silk</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Concierge</a>
+</div>
+<div class="flex gap-3 items-center">
+<button class="hidden sm:flex h-10 px-4 bg-primary hover:bg-primary/90 text-background-dark rounded-lg items-center justify-center gap-2 text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+<span>Cart</span>
+</button>
+<button class="h-10 px-4 bg-surface-border hover:bg-surface-border/80 text-white rounded-lg items-center justify-center text-sm font-bold transition-colors">
+                        Sign In
+                    </button>
+<button class="h-10 w-10 bg-surface-border hover:bg-surface-border/80 text-white rounded-lg flex items-center justify-center transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="h-10 w-10 bg-surface-border hover:bg-surface-border/80 text-white rounded-lg flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section with "Digital Silk" Parallax Feel -->
+<section class="relative w-full h-[600px] overflow-hidden">
+<!-- Abstract background representing digital silk -->
+<div class="absolute inset-0 bg-digital-silk bg-cover bg-center" data-alt="Abstract flowing digital silk waves in dark teal and cyan"></div>
+<div class="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+<div class="space-y-6 max-w-4xl mx-auto backdrop-blur-sm bg-background-dark/30 p-8 rounded-2xl border border-white/5 shadow-2xl">
+<h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] drop-shadow-lg">
+                        Experience <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Digital Luxury</span>
+</h1>
+<p class="text-slate-200 text-lg md:text-xl font-light max-w-2xl mx-auto">
+                        Immerse yourself in the Sovereign Mall collection. Where physical assets meet digital permanence.
+                    </p>
+<div class="flex flex-wrap gap-4 justify-center pt-4">
+<button class="h-12 px-8 bg-primary hover:bg-cyan-400 text-background-dark rounded-lg text-base font-bold shadow-[0_0_20px_rgba(37,244,244,0.3)] transition-all transform hover:scale-105">
+                            Explore Collection
+                        </button>
+<button class="h-12 px-8 bg-surface-border/80 hover:bg-surface-border text-white border border-white/10 rounded-lg text-base font-bold backdrop-blur-md transition-all">
+                            View Investments
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Fade -->
+<div class="absolute bottom-0 w-full h-32 bg-gradient-to-t from-background-dark to-transparent z-10"></div>
+</section>
+<!-- Progress Banner -->
+<section class="w-full px-4 sm:px-10 -mt-10 relative z-20">
+<div class="max-w-7xl mx-auto bg-surface-dark border border-surface-border rounded-xl p-6 shadow-xl flex flex-col md:flex-row items-center gap-6 justify-between">
+<div class="flex-1 w-full">
+<div class="flex justify-between items-end mb-2">
+<div class="flex flex-col">
+<h3 class="text-text-muted text-sm font-medium uppercase tracking-wider">Total Asset Value Locked</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-white text-3xl font-bold">₹111 Cr</span>
+<span class="text-emerald-400 text-xs font-bold bg-emerald-400/10 px-2 py-0.5 rounded">+12% this week</span>
+</div>
+</div>
+<span class="text-text-muted text-sm">Target: ₹150 Cr</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-3 overflow-hidden border border-surface-border">
+<div class="bg-gradient-to-r from-primary to-emerald-500 h-3 rounded-full" style="width: 74%"></div>
+</div>
+</div>
+<div class="hidden md:block h-12 w-[1px] bg-surface-border"></div>
+<div class="flex items-center gap-4 min-w-fit">
+<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">token</span>
+</div>
+<div class="flex flex-col">
+<p class="text-white font-medium">Sovereign Movement</p>
+<p class="text-text-muted text-sm">Join 12,405 investors</p>
+</div>
+<button class="ml-4 text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3D Pedestals / Top Tier Items -->
+<section class="w-full px-4 sm:px-10 py-16">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex items-center justify-between mb-8 px-2">
+<div>
+<h2 class="text-white text-3xl font-bold leading-tight">Top-Tier Pedestals</h2>
+<p class="text-text-muted mt-1">Curated luxury assets available for immediate acquisition.</p>
+</div>
+<div class="flex gap-2">
+<button class="h-10 w-10 rounded-full border border-surface-border hover:border-primary text-text-muted hover:text-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="h-10 w-10 rounded-full border border-surface-border hover:border-primary text-text-muted hover:text-primary flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex overflow-x-auto no-scrollbar pb-10 -mx-4 px-4 sm:mx-0 sm:px-0 gap-6 snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="snap-center shrink-0 w-[300px] md:w-[360px] flex flex-col bg-surface-dark border border-surface-border rounded-xl overflow-hidden group hover:border-primary/50 transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(37,244,244,0.15)] hover:-translate-y-2">
+<div class="relative h-[400px] w-full bg-[#151f1f] flex items-center justify-center overflow-hidden">
+<!-- Radial gradient to simulate pedestal light -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50"></div>
+<div class="relative z-10 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Luxury gold watch floating on a dark pedestal background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKsSRmTmFgGUJB-eKIrsTwS-Af-0zeyFMrhkvpYJpS3uDcxRu1xYqEnIWXMxOyisoJKKcpxAALDVPMyhJ3LZD_OZc3WhhkFdiTFjwewF3TtYBJfUleDZTsQG88lFxD1LYSte2aDs-R58rUssH361b56OzYh2zmQCzsGrEwDHQZaDeYO_ONogiyv7BkwLtv5uE53xUWRKxqrs_8QpwfAmC0mTeluxGWVmMmuCFb-pysJ9qlFd5OMtJj0UqPcRHEHT3b5ra7YfHmYmxV');">
+</div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 z-20">
+<span class="text-xs font-bold text-primary">LIVE</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 bg-surface-dark relative z-20">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white text-xl font-bold">Chronos Gold</h3>
+<p class="text-text-muted text-sm mt-1">Limited Edition Series</p>
+</div>
+<div class="text-right">
+<p class="text-text-muted text-xs">Current Bid</p>
+<p class="text-primary text-lg font-bold">₹50L</p>
+</div>
+</div>
+<div class="h-[1px] bg-surface-border w-full"></div>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-dark bg-slate-700" data-alt="User avatar 1"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-dark bg-slate-600" data-alt="User avatar 2"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-dark bg-slate-500 flex items-center justify-center text-[10px] text-white font-bold">+4</div>
+</div>
+<button class="bg-primary hover:bg-cyan-400 text-background-dark font-bold py-2 px-6 rounded-lg text-sm transition-colors">
+                                    Bid Now
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center shrink-0 w-[300px] md:w-[360px] flex flex-col bg-surface-dark border border-surface-border rounded-xl overflow-hidden group hover:border-primary/50 transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(37,244,244,0.15)] hover:-translate-y-2">
+<div class="relative h-[400px] w-full bg-[#151f1f] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50"></div>
+<div class="relative z-10 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Diamond pendant necklace glowing on a dark stand" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBS_IrAGj1N2ed97vE3Eb5gDE9ofMgCg9Md2X9NKcKF9PhCBu1LbZuLAFUbPRZTW28vumQ3MyCV2wJHAGEY12Gh5waFD2hL7L3iXtYe66OqPrZPEPwQKfbipKFc2_d9esqVC2PKf7i124PNeGc9D0GTno3Tfxa8T2cMiQccEQKnjRwOMrJo_EruIohsevkEHYJ4qOUUEIDAKI0rePMwbK-30g7qHKzCFpN7UulbhUeEVCc5UOCeqiaKqOCwX4B76kHwot8HqN-y1FS3');">
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 bg-surface-dark relative z-20">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white text-xl font-bold">Starlight Pendant</h3>
+<p class="text-text-muted text-sm mt-1">Rare Gem Collection</p>
+</div>
+<div class="text-right">
+<p class="text-text-muted text-xs">Asset Value</p>
+<p class="text-primary text-lg font-bold">₹1.2 Cr</p>
+</div>
+</div>
+<div class="h-[1px] bg-surface-border w-full"></div>
+<div class="flex justify-between items-center">
+<div class="text-xs text-text-muted">Closing in <span class="text-white font-medium">4h 23m</span></div>
+<button class="bg-surface-border hover:bg-white hover:text-background-dark text-white font-bold py-2 px-6 rounded-lg text-sm transition-colors border border-transparent hover:border-white">
+                                    View Asset
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center shrink-0 w-[300px] md:w-[360px] flex flex-col bg-surface-dark border border-surface-border rounded-xl overflow-hidden group hover:border-primary/50 transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(37,244,244,0.15)] hover:-translate-y-2">
+<div class="relative h-[400px] w-full bg-[#151f1f] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50"></div>
+<div class="relative z-10 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Abstract digital NFT artifact spinning in 3D space" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjmFl6YU9hpJ6tqTLwZo_rjEXBnVLttF0kcLVYkqKB6d4byDstyhTRDUf_fPxEo_xoYBzYr01ud0-E_GyHkGyRsh1YWW_s50rZRcmYqbmM6K2oMjvsx2r1qoQ7-JS7OjTlRhhLNICBbe4WABgs7qeIx7sQtB_fxGPsxdlwV3Upo9UHIN2XNdMN70k9mDYHkG3ZjigB4P7lR6d4yRbogI4ebLeoMYq8pgrM7cnFhEo-tSaq6qfKaAGaXSfsdg9UOp_670U1EGBbvtmX');">
+</div>
+<div class="absolute top-4 right-4 bg-purple-500/20 backdrop-blur-md px-3 py-1 rounded-full border border-purple-500/50 z-20">
+<span class="text-xs font-bold text-purple-300">DIGITAL ONLY</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 bg-surface-dark relative z-20">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white text-xl font-bold">Ether Artifact</h3>
+<p class="text-text-muted text-sm mt-1">Gen-1 Digital Asset</p>
+</div>
+<div class="text-right">
+<p class="text-text-muted text-xs">Floor Price</p>
+<p class="text-primary text-lg font-bold">₹25L</p>
+</div>
+</div>
+<div class="h-[1px] bg-surface-border w-full"></div>
+<div class="flex justify-between items-center">
+<div class="text-xs text-text-muted">Owners <span class="text-white font-medium">12</span></div>
+<button class="bg-primary hover:bg-cyan-400 text-background-dark font-bold py-2 px-6 rounded-lg text-sm transition-colors">
+                                    Acquire
+                                </button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="snap-center shrink-0 w-[300px] md:w-[360px] flex flex-col bg-surface-dark border border-surface-border rounded-xl overflow-hidden group hover:border-primary/50 transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(37,244,244,0.15)] hover:-translate-y-2">
+<div class="relative h-[400px] w-full bg-[#151f1f] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50"></div>
+<div class="relative z-10 w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Vintage leather handbag on a podium" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6DYPOPaOT8kvktmEq47Ex-Ynj00lnIMyMme4YbxEynOvr9c7sXu4B1Wgs8v3_juppwKvcbBnX4V9mqSRwxySbiABr2gi4gs6AQOmooqLq9g-6M8LnQXIbI9NsE-u65JTyz3HuIOh0Rd8AFCT8j1qDkSfhXaKNfAO-Y6xQHz7UfAYnhTfZvWuoeYHc-j4cCDhm8ikHNobZH4ITxZqpucYCVpv1kp_0uJY80ThtQiOkE1iwl7UUwXJGcagpIxaSmjIYIgSsfgx5wDSo');">
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 bg-surface-dark relative z-20">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white text-xl font-bold">Heritage Leather</h3>
+<p class="text-text-muted text-sm mt-1">1980 Vintage</p>
+</div>
+<div class="text-right">
+<p class="text-text-muted text-xs">Valuation</p>
+<p class="text-primary text-lg font-bold">₹80L</p>
+</div>
+</div>
+<div class="h-[1px] bg-surface-border w-full"></div>
+<div class="flex justify-between items-center">
+<div class="text-xs text-text-muted">Condition <span class="text-emerald-400 font-medium">Mint</span></div>
+<button class="bg-primary hover:bg-cyan-400 text-background-dark font-bold py-2 px-6 rounded-lg text-sm transition-colors">
+                                    Bid Now
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories / Quick Access Grid -->
+<section class="w-full px-4 sm:px-10 pb-20 bg-background-dark">
+<div class="max-w-[1440px] mx-auto">
+<h2 class="text-white text-2xl font-bold mb-6">Explore Dimensions</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<a class="group relative h-48 rounded-xl overflow-hidden cursor-pointer" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract painting detail texture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBv7NGXvRFFDsIanPNpag09fhbCnqSKAAEIYPG4zdWI582Z0x7woExzvVN_v9MB9ETftpWKRbgCkrQ2Jz67o4VYGlwWcINKjSBjrbo_tVRXUNZbOmKJlvP_92RLMFDuDQtbgPEIjj1YrA058L8SFW_1DhbTsUpAu73R0fjtzgR0zkKaT3exXQ9qd4rOwS_Zv-Pv2Fe2_FRvoJXcAMrclaX1dJKrqw95nINW1yC_gQuuVuN1Ste81x84E4hVDt7_nzswa4T6bgD1iNsM');"></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+                                Fine Art
+                                <span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">arrow_forward</span>
+</h3>
+</div>
+</a>
+<a class="group relative h-48 rounded-xl overflow-hidden cursor-pointer" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern architectural building facade" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWM164Jt-5zyMwxtR6T28EWDoHxKy-3TyqIwE-6N-tL9C90E0Id63IWvZlhvV7VZaNUTouGumWCvo3P9IINsCePkAPEWqglkeARdJI8dDrG4kTVwhcHVao6NwUp1Hrl8XyKhIJtJlq-YUz_Z8S6VNgZ9ZQwC_U1Luxy4vmLJ_bHgsuDYQKxmRaLAY7Awv_NacgMwv50vBDqLWtVfcdw6UCZzLS1vBo_tA9UZLoH2Yj1MXmNP14-iIaCcxZilJR4Bpuj08ZTzEoT5bU');"></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+                                Real Estate
+                                <span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">arrow_forward</span>
+</h3>
+</div>
+</a>
+<a class="group relative h-48 rounded-xl overflow-hidden cursor-pointer" href="#">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Digital mesh network visualization" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0CYXSrRArPUQZ_2CXhY1sN2244eQSPUe3GxLE-fdIuawhbHIwEUswevxRflhHFZOv05DeRmuldtHSVdvQeQM4WZSgBXWETx3BdbNKiAzpVDpFHZYSjr6-xA2JprObpRuCut28a5m9NUJwrcmvF5TdJNPbrNpQ3n5-n6wyFOKC8xaH_i3vKjdrewtwpZqfRjUhC-zmShC66cjFSZJA9p-xoGu-nKhPFk2k_D3hQlOi0FeW9RiNj7qnMaTN5OSHqnHapKnmDOXBmkJ5');"></div>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+                                Crypto Assets
+                                <span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">arrow_forward</span>
+</h3>
+</div>
+</a>
+<a class="group relative h-48 rounded-xl overflow-hidden cursor-pointer" href="#">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-dark to-surface-border flex flex-col items-center justify-center border border-dashed border-white/20 hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-4xl text-text-muted group-hover:text-primary mb-2 transition-colors">apps</span>
+<span class="text-text-muted group-hover:text-white font-medium transition-colors">View All Categories</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Simplified -->
+<footer class="border-t border-surface-border py-8 px-10 bg-surface-dark">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-primary">diamond</span>
+<span class="font-bold">Sovereign Mall</span>
+</div>
+<p class="text-text-muted text-sm">© 2024 Sovereign Mall. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

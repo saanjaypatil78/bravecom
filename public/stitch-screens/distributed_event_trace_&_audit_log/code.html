@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Distributed Event Trace &amp; Audit Log</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1c2a30",
+                        "border-dark": "#2a3b42",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(13, 185, 242, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .code-block {
+            font-family: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", monospace;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(13, 185, 242, 0.5);
+        }
+        .glow-border {
+            box-shadow: 0 0 10px rgba(13, 185, 242, 0.2), inset 0 0 5px rgba(13, 185, 242, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-6 py-3 bg-surface-dark/50 backdrop-blur-md z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary flex items-center justify-center rounded bg-primary/10">
+<span class="material-symbols-outlined text-2xl">hub</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">AuditLog Pro</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-primary hover:text-primary transition-colors text-sm font-medium flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">timeline</span>
+                    Traces
+                </a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Service Map</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined text-[20px]">search</span>
+<input class="bg-surface-dark border border-border-dark text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-64 pl-10 p-2 placeholder-slate-500" placeholder="Search Trace ID or Hash..."/>
+</div>
+<div class="h-8 w-[1px] bg-border-dark mx-2"></div>
+<button class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-8 rounded-full bg-gradient-to-br from-primary to-blue-600 p-[1px]">
+<div class="size-full rounded-full bg-surface-dark flex items-center justify-center text-xs font-bold text-primary">JD</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Context & Timeline -->
+<main class="flex-1 flex flex-col min-w-0 border-r border-border-dark overflow-hidden bg-background-dark/50 relative">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 z-0 opacity-[0.03]" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Trace Header -->
+<div class="p-6 border-b border-border-dark z-10 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-start justify-between mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30">Trace ID</span>
+<h1 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                                txn_883_x99
+                                <button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</h1>
+</div>
+<div class="flex items-center gap-4 text-sm text-slate-400 mt-2">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">person</span> investors@hni.com</span>
+<span class="w-1 h-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1.5 text-slate-200"><span class="material-symbols-outlined text-[16px]">payments</span> ₹51,111.00</span>
+<span class="w-1 h-1 rounded-full bg-slate-600"></span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">schedule</span> Oct 24, 14:32:01</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+<span class="material-symbols-outlined text-[18px] animate-pulse">check_circle</span>
+                            Committed &amp; Hashed
+                        </div>
+<div class="flex gap-4 text-xs font-mono text-slate-500">
+<span>LATENCY: <span class="text-white">345ms</span></span>
+<span>NODES: <span class="text-white">6</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Scroll Area -->
+<div class="flex-1 overflow-y-auto p-6 scrollbar-hide z-10 relative">
+<div class="max-w-3xl mx-auto space-y-0">
+<!-- Step 1: Auth Service -->
+<div class="relative pl-8 pb-10 border-l border-border-dark group">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:shadow-[0_0_10px_rgba(13,185,242,0.4)] transition-all z-10"></div>
+<div class="flex flex-col gap-3 p-4 rounded-lg bg-surface-dark border border-border-dark hover:border-primary/40 transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded bg-slate-800 text-primary">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Auth Service</h3>
+<p class="text-xs text-slate-400">Token Validation</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-mono text-slate-400">14:32:01.002</div>
+<div class="text-xs font-bold text-primary">45ms</div>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-2 text-xs">
+<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Status: Valid</span>
+<span class="px-2 py-0.5 rounded bg-surface-dark text-slate-400 border border-slate-700">v1.2.4</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Ingestion -->
+<div class="relative pl-8 pb-10 border-l border-border-dark group">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:shadow-[0_0_10px_rgba(13,185,242,0.4)] transition-all z-10"></div>
+<div class="flex flex-col gap-3 p-4 rounded-lg bg-surface-dark border border-border-dark hover:border-primary/40 transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded bg-slate-800 text-primary">
+<span class="material-symbols-outlined text-[20px]">input</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Investment Gateway</h3>
+<p class="text-xs text-slate-400">Ingestion</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-mono text-slate-400">14:32:01.047</div>
+<div class="text-xs font-bold text-primary">12ms</div>
+</div>
+</div>
+<!-- Collapsible Payload -->
+<div class="mt-2">
+<details class="group/details">
+<summary class="cursor-pointer text-xs font-medium text-slate-400 hover:text-white flex items-center gap-1 select-none">
+<span class="material-symbols-outlined text-[16px] transition-transform group-open/details:rotate-90">chevron_right</span>
+                                        View Payload
+                                    </summary>
+<div class="mt-2 p-3 rounded bg-black/40 border border-border-dark code-block text-xs text-slate-300 overflow-x-auto">
+{
+  "amt": 51111,
+  "currency": "INR",
+  "source": "mobile_app",
+  "client_ip": "192.168.1.104"
+}
+                                    </div>
+</details>
+</div>
+</div>
+</div>
+<!-- Step 3: Commission Engine -->
+<div class="relative pl-8 pb-10 border-l border-border-dark group">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:shadow-[0_0_10px_rgba(13,185,242,0.4)] transition-all z-10"></div>
+<div class="flex flex-col gap-3 p-4 rounded-lg bg-surface-dark border border-border-dark hover:border-primary/40 transition-colors relative overflow-hidden">
+<!-- Visual accent for processing -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded bg-slate-800 text-primary">
+<span class="material-symbols-outlined text-[20px]">calculate</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Commission Engine</h3>
+<p class="text-xs text-slate-400">6-Level Split Calculation</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-mono text-slate-400">14:32:01.059</div>
+<div class="text-xs font-bold text-primary">120ms</div>
+</div>
+</div>
+<!-- Nested Splits Visualization -->
+<div class="mt-3 pl-3 border-l-2 border-slate-700 space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-300">L1: Direct Agent (5%)</span>
+<span class="font-mono text-white">₹2,555.55</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-300">L2: Regional Head (1.2%)</span>
+<span class="font-mono text-white">₹613.33</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-300">Platform Fee (0.2%)</span>
+<span class="font-mono text-white">₹102.22</span>
+</div>
+<div class="flex justify-between items-center text-xs pt-1 border-t border-slate-700/50">
+<span class="text-slate-400 italic">+3 more distributions hidden</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 4: Ledger Service -->
+<div class="relative pl-8 pb-4 border-l border-transparent group">
+<!-- Glow effect on the final node -->
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-primary border-2 border-white shadow-[0_0_15px_rgba(13,185,242,0.8)] z-10 animate-pulse"></div>
+<div class="flex flex-col gap-3 p-4 rounded-lg bg-surface-dark border border-primary/30 shadow-[0_0_15px_rgba(13,185,242,0.1)] hover:border-primary/60 transition-colors">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-white">Ledger Service</h3>
+<p class="text-xs text-slate-400">Immutable Hashing</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs font-mono text-slate-400">14:32:01.179</div>
+<div class="text-xs font-bold text-primary">200ms</div>
+</div>
+</div>
+<div class="mt-3 p-3 rounded bg-black/40 border border-primary/20 flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Merkle Root Hash</span>
+<span class="flex items-center gap-1 text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified
+                                    </span>
+</div>
+<div class="flex items-center gap-2">
+<code class="text-xs font-mono text-slate-300 break-all">0x7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069</code>
+<button class="text-slate-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Panel: Service Map -->
+<aside class="w-[500px] hidden xl:flex flex-col bg-[#0b1215] border-l border-border-dark relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0b1215] to-[#0b1215] z-0"></div>
+<div class="p-4 border-b border-border-dark z-10 flex justify-between items-center bg-[#0b1215]/80 backdrop-blur-sm">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">hub</span>
+                    Service Topology
+                </h3>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_5px_rgba(13,185,242,0.8)]"></span>
+<span class="text-xs text-slate-300">Active Path</span>
+</div>
+</div>
+</div>
+<div class="flex-1 relative overflow-hidden flex items-center justify-center p-8 z-0">
+<!-- SVG Visualization of the Service Map -->
+<!-- The SVG handles the lines, nodes are positioned via CSS for HTML content overlay if needed, but SVG is cleaner for connectors -->
+<svg class="absolute inset-0 pointer-events-none" height="100%" viewbox="0 0 400 600" width="100%">
+<defs>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="2"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+<lineargradient id="lineGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#0db9f2;stop-opacity:0.2"></stop>
+<stop offset="50%" style="stop-color:#0db9f2;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#0db9f2;stop-opacity:0.2"></stop>
+</lineargradient>
+</defs>
+<!-- Connection Lines (Dimmed) -->
+<path d="M200 80 L 320 200" fill="none" stroke="#334155" stroke-width="1"></path>
+<path d="M200 80 L 80 200" fill="none" stroke="#334155" stroke-width="1"></path>
+<!-- Active Path (Glowing) -->
+<path d="M200 80 L 200 180" fill="none" filter="url(#glow)" stroke="url(#lineGradient)" stroke-width="2"></path>
+<path d="M200 230 L 200 330" fill="none" filter="url(#glow)" stroke="url(#lineGradient)" stroke-width="2"></path>
+<path d="M200 380 L 200 480" fill="none" filter="url(#glow)" stroke="url(#lineGradient)" stroke-width="2"></path>
+<!-- Animated particle on path -->
+<circle fill="#ffffff" r="3">
+<animatemotion dur="2s" path="M200 80 L 200 480" repeatcount="indefinite"></animatemotion>
+</circle>
+</svg>
+<!-- HTML Nodes positioned absolutely -->
+<div class="w-full h-full relative">
+<!-- Node 1: Auth (Top Center) -->
+<div class="absolute top-[30px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-dark border border-primary text-primary shadow-[0_0_15px_rgba(13,185,242,0.3)] flex items-center justify-center">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<span class="text-xs font-bold text-white bg-background-dark/80 px-2 py-0.5 rounded">Auth</span>
+</div>
+<!-- Node 2: Gateway (Center Top) -->
+<div class="absolute top-[180px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-dark border border-primary text-primary shadow-[0_0_15px_rgba(13,185,242,0.3)] flex items-center justify-center">
+<span class="material-symbols-outlined">input</span>
+</div>
+<span class="text-xs font-bold text-white bg-background-dark/80 px-2 py-0.5 rounded">Gateway</span>
+</div>
+<!-- Node 3: Commission Engine (Center) -->
+<div class="absolute top-[330px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-dark border border-primary text-primary shadow-[0_0_15px_rgba(13,185,242,0.3)] flex items-center justify-center">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<span class="text-xs font-bold text-white bg-background-dark/80 px-2 py-0.5 rounded">Engine</span>
+</div>
+<!-- Node 4: Ledger (Bottom Center) -->
+<div class="absolute top-[480px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+<div class="w-12 h-12 rounded-xl bg-surface-dark border border-primary text-primary shadow-[0_0_15px_rgba(13,185,242,0.3)] flex items-center justify-center">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="text-xs font-bold text-white bg-background-dark/80 px-2 py-0.5 rounded">Ledger</span>
+</div>
+<!-- Node 5: Treasury (Inactive Side Node) -->
+<div class="absolute top-[330px] left-[15%] flex flex-col items-center gap-2 z-10 opacity-40 grayscale">
+<div class="w-10 h-10 rounded-xl bg-surface-dark border border-slate-600 text-slate-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">account_balance</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Treasury</span>
+</div>
+<!-- Node 6: Notifications (Inactive Side Node) -->
+<div class="absolute top-[330px] right-[15%] flex flex-col items-center gap-2 z-10 opacity-40 grayscale">
+<div class="w-10 h-10 rounded-xl bg-surface-dark border border-slate-600 text-slate-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">mail</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Notify</span>
+</div>
+</div>
+</div>
+<!-- Map Legend/Status -->
+<div class="p-4 border-t border-border-dark bg-[#0b1215] z-10">
+<div class="flex items-center justify-between text-xs text-slate-400">
+<span>Region: <span class="text-white">ap-south-1</span></span>
+<span>Cluster Status: <span class="text-emerald-400">Healthy</span></span>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

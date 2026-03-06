@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SEBI Compliance &amp; IPO Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25d1f4",
+                        "primary-glow": "rgba(37, 209, 244, 0.5)",
+                        "gold": "#ffd700",
+                        "background-light": "#f5f8f8", // Not really used in dark mode but good for fallback
+                        "background-dark": "#050b14", // Deep space blue
+                        "surface-dark": "#0a131e", // Slightly lighter for cards
+                        "surface-border": "#1e2f45",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1e2f45 1px, transparent 1px), linear-gradient(to bottom, #1e2f45 1px, transparent 1px)",
+                        'glow-radial': "radial-gradient(circle at center, rgba(37, 209, 244, 0.15) 0%, transparent 70%)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050b14; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e2f45; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25d1f4; 
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(37, 209, 244, 0.5);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(37, 209, 244, 0.2);
+        }
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Animation for current stage pulse */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 209, 244, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 209, 244, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 209, 244, 0); }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden min-h-screen flex flex-col relative">
+<!-- Background Grid Effect -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-10" style="background-size: 40px 40px; background-image: linear-gradient(to right, #25d1f4 1px, transparent 1px), linear-gradient(to bottom, #25d1f4 1px, transparent 1px);"></div>
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Top Navigation -->
+<header class="relative z-20 flex items-center justify-between border-b border-surface-border bg-surface-dark/80 backdrop-blur-md px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">token</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">InvestTech Pro <span class="text-primary text-xs font-normal align-top px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20">BETA</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Portfolio</a>
+<a class="text-white text-sm font-medium border-b-2 border-primary pb-0.5" href="#">Compliance</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-9 rounded-full bg-surface-border border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4zQtqD8XX8XwZiQWADUoIlGiR9MaHTXMxrDFjeotMgRUvtQ2yliOznnNwDUCM6NtiY38mZbJRDmf21pJ15wVeyuFl64_fbGvlBC2XDeiAMs0GRAjQocWLM34CGpvYBcMpxwpk1ZJ4rvs5blkgjHqWbUePQcD50sgO2z9IypxDZ7LsfMPqt8yRDjcEv434qE2U8x_P7GqrFljKkbJF1QUoqgDotxtj8SuH5CdSugLlONbjFG6zMpqdX_k5pRHwZc8JLOqOweE9AaGw"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="relative z-10 flex-1 flex flex-col p-4 lg:p-8 max-w-[1400px] mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-primary text-sm font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined !text-sm">security</span>
+<span>Regulatory Framework</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">SEBI Compliance &amp; <br class="hidden md:block"/>IPO Roadmap</h1>
+<p class="text-slate-400 max-w-xl text-lg">Tracking our journey towards SEBI registration and public listing with real-time financial milestones.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-end gap-1 px-6 py-3 rounded-lg bg-surface-dark border border-surface-border neon-border">
+<span class="text-slate-400 text-xs font-medium uppercase">Total Capital Raised</span>
+<span class="text-3xl font-bold text-white tracking-tight">₹89.4 <span class="text-primary">Cr</span></span>
+<div class="flex items-center gap-1 text-emerald-400 text-xs font-bold">
+<span class="material-symbols-outlined !text-sm">trending_up</span>
+<span>+12.5% this month</span>
+</div>
+</div>
+</div>
+</div>
+<!-- High-Level Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+<div class="group relative overflow-hidden rounded-xl border border-surface-border bg-surface-dark/50 p-6 hover:border-primary/50 transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary !text-4xl">target</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Current Target</p>
+<p class="text-white text-3xl font-bold neon-text">₹111 Cr</p>
+<div class="w-full bg-slate-800 h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[80%] shadow-[0_0_10px_#25d1f4]"></div>
+</div>
+<p class="text-primary text-xs mt-2 text-right">80% Achieved</p>
+</div>
+<div class="group relative overflow-hidden rounded-xl border border-surface-border bg-surface-dark/50 p-6 hover:border-primary/50 transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white !text-4xl">shield</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Buffer Threshold</p>
+<p class="text-white text-3xl font-bold">₹144.3 Cr</p>
+<p class="text-slate-500 text-sm mt-2">Compliance Trigger Pending</p>
+</div>
+<div class="group relative overflow-hidden rounded-xl border border-gold/30 bg-surface-dark/50 p-6 hover:border-gold/60 transition-all duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-gold !text-4xl">rocket_launch</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Projected IPO Valuation</p>
+<p class="text-white text-3xl font-bold gold-glow text-gold">₹500 Cr+</p>
+<p class="text-slate-500 text-sm mt-2">Estimated Launch: Q4 2025</p>
+</div>
+</div>
+<!-- Horizontal Interactive Timeline -->
+<section class="relative mb-20 py-8 overflow-x-auto pb-12">
+<!-- Connecting Line -->
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-border -translate-y-1/2 z-0 min-w-[1000px]"></div>
+<div class="absolute top-1/2 left-0 w-[25%] h-1 bg-gradient-to-r from-transparent via-primary to-primary -translate-y-1/2 z-0 min-w-[1000px] shadow-[0_0_15px_#25d1f4]"></div>
+<div class="relative z-10 flex justify-between items-center min-w-[1000px] px-10">
+<!-- Milestone 1: Active -->
+<div class="flex flex-col items-center gap-6 group cursor-pointer relative">
+<!-- Top Card -->
+<div class="absolute bottom-16 opacity-100 translate-y-0 transition-all duration-300 w-64">
+<div class="bg-surface-dark/90 backdrop-blur border border-primary p-4 rounded-xl shadow-[0_0_30px_rgba(37,209,244,0.15)] text-center relative">
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-dark border-b border-r border-primary rotate-45"></div>
+<span class="bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase absolute -top-3 left-1/2 -translate-x-1/2 shadow-[0_0_10px_#25d1f4]">Current Stage</span>
+<h3 class="text-white font-bold text-lg mb-1">Pre-IPO Phase</h3>
+<p class="text-primary font-bold text-xl mb-2">₹111 Cr Target</p>
+<p class="text-slate-400 text-xs leading-relaxed">Active fundraising rounds engaged. Angel investor onboarding in progress.</p>
+</div>
+</div>
+<!-- Node -->
+<div class="relative size-6 rounded-full bg-primary shadow-[0_0_20px_#25d1f4] z-20 animate-pulse-ring">
+<div class="absolute inset-0 bg-white rounded-full animate-ping opacity-20"></div>
+</div>
+<!-- Bottom Label -->
+<div class="absolute top-12 text-center w-40">
+<span class="text-primary text-sm font-bold uppercase tracking-wider">Milestone 01</span>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex flex-col items-center gap-6 group cursor-pointer relative">
+<div class="absolute bottom-16 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-64 pointer-events-none group-hover:pointer-events-auto z-30">
+<div class="bg-surface-dark/90 backdrop-blur border border-surface-border p-4 rounded-xl text-center relative">
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-dark border-b border-r border-surface-border rotate-45"></div>
+<h3 class="text-white font-bold text-lg mb-1">The 30% Buffer</h3>
+<p class="text-white font-bold text-xl mb-2">₹144.3 Cr</p>
+<p class="text-slate-400 text-xs leading-relaxed">Liquidity reserve allocation triggered. Preparing compliance documents.</p>
+</div>
+</div>
+<div class="size-4 rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:bg-primary transition-colors z-20 shadow-[0_0_0_4px_#050b14]"></div>
+<div class="absolute top-12 text-center w-40">
+<span class="text-slate-500 group-hover:text-primary transition-colors text-sm font-bold uppercase tracking-wider">Milestone 02</span>
+<div class="mt-2 text-slate-400 text-xs hidden group-hover:block transition-all">Compliance Trigger</div>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="flex flex-col items-center gap-6 group cursor-pointer relative">
+<div class="absolute bottom-16 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-64 pointer-events-none group-hover:pointer-events-auto z-30">
+<div class="bg-surface-dark/90 backdrop-blur border border-surface-border p-4 rounded-xl text-center relative">
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-dark border-b border-r border-surface-border rotate-45"></div>
+<div class="mb-2 text-primary flex justify-center"><span class="material-symbols-outlined">verified</span></div>
+<h3 class="text-white font-bold text-lg mb-1">SEBI Registration</h3>
+<p class="text-slate-400 text-xs leading-relaxed">Filing Draft Red Herring Prospectus (DRHP). Regulatory scrutiny phase.</p>
+</div>
+</div>
+<div class="size-4 rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:bg-primary transition-colors z-20 shadow-[0_0_0_4px_#050b14]"></div>
+<div class="absolute top-12 text-center w-40">
+<span class="text-slate-500 group-hover:text-primary transition-colors text-sm font-bold uppercase tracking-wider">Milestone 03</span>
+<div class="mt-2 text-slate-400 text-xs hidden group-hover:block transition-all">Official Badge</div>
+</div>
+</div>
+<!-- Milestone 4 -->
+<div class="flex flex-col items-center gap-6 group cursor-pointer relative">
+<div class="absolute bottom-16 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-64 pointer-events-none group-hover:pointer-events-auto z-30">
+<div class="bg-surface-dark/90 backdrop-blur border border-surface-border p-4 rounded-xl text-center relative">
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-dark border-b border-r border-surface-border rotate-45"></div>
+<h3 class="text-white font-bold text-lg mb-1">Bank Authorization</h3>
+<div class="flex justify-center gap-2 my-2 opacity-70 grayscale group-hover:grayscale-0 transition-all">
+<div class="size-6 bg-white/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">account_balance</span></div>
+<div class="size-6 bg-white/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">currency_rupee</span></div>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed">Escrow setup &amp; institutional underwriting with nationalized partners.</p>
+</div>
+</div>
+<div class="size-4 rounded-full bg-surface-dark border-2 border-slate-600 group-hover:border-primary group-hover:bg-primary transition-colors z-20 shadow-[0_0_0_4px_#050b14]"></div>
+<div class="absolute top-12 text-center w-40">
+<span class="text-slate-500 group-hover:text-primary transition-colors text-sm font-bold uppercase tracking-wider">Milestone 04</span>
+<div class="mt-2 text-slate-400 text-xs hidden group-hover:block transition-all">Institutional Partners</div>
+</div>
+</div>
+<!-- Milestone 5 -->
+<div class="flex flex-col items-center gap-6 group cursor-pointer relative">
+<div class="absolute bottom-16 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 w-64 pointer-events-none group-hover:pointer-events-auto z-30">
+<div class="bg-surface-dark/90 backdrop-blur border border-gold/50 p-4 rounded-xl text-center relative">
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface-dark border-b border-r border-gold/50 rotate-45"></div>
+<div class="mb-2 text-gold flex justify-center"><span class="material-symbols-outlined">rocket_launch</span></div>
+<h3 class="text-white font-bold text-lg mb-1">IPO Launch</h3>
+<p class="text-gold font-bold text-xl mb-2">Corporate Identity</p>
+<p class="text-slate-400 text-xs leading-relaxed">Name change finalized. Ticker symbol launch. Public listing.</p>
+</div>
+</div>
+<div class="size-6 rounded-full bg-surface-dark border-2 border-gold text-gold flex items-center justify-center z-20 shadow-[0_0_15px_rgba(255,215,0,0.3)] group-hover:bg-gold group-hover:text-black transition-colors">
+<span class="material-symbols-outlined !text-[14px]">star</span>
+</div>
+<div class="absolute top-12 text-center w-40">
+<span class="text-gold text-sm font-bold uppercase tracking-wider">Milestone 05</span>
+<div class="mt-2 text-slate-400 text-xs hidden group-hover:block transition-all">Transition Complete</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Action Grid -->
+<section class="mt-8">
+<div class="flex items-center gap-4 mb-8">
+<div class="h-px bg-surface-border flex-1"></div>
+<h2 class="text-2xl font-bold text-white tracking-tight">Key Compliance Actions</h2>
+<div class="h-px bg-surface-border flex-1"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="p-6 rounded-xl border border-surface-border bg-surface-dark hover:bg-surface-dark/80 transition-colors flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-xs font-mono text-primary px-2 py-1 rounded border border-primary/20 bg-primary/5">ACTIVE</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Fundraising Goals</h3>
+<p class="text-slate-400 text-sm leading-relaxed">Secure initial tranche of ₹50 Cr from angel investors to meet the Pre-IPO phase requirements.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-surface-border flex justify-between items-center text-xs text-slate-500">
+<span>Due: Oct 30, 2024</span>
+<span class="flex items-center gap-1 text-slate-300">Details <span class="material-symbols-outlined !text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-6 rounded-xl border border-surface-border bg-surface-dark hover:bg-surface-dark/80 transition-colors flex flex-col gap-4 opacity-75 hover:opacity-100">
+<div class="flex items-center justify-between">
+<div class="size-10 rounded-lg bg-surface-border flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<span class="text-xs font-mono text-slate-500 px-2 py-1 rounded border border-surface-border bg-surface-dark">PENDING</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Legal Structuring</h3>
+<p class="text-slate-400 text-sm leading-relaxed">Finalize entity conversion to Public Limited Company. Draft updated Articles of Association.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-surface-border flex justify-between items-center text-xs text-slate-500">
+<span>Est: Nov 15, 2024</span>
+<span class="flex items-center gap-1 text-slate-300">Details <span class="material-symbols-outlined !text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-6 rounded-xl border border-surface-border bg-surface-dark hover:bg-surface-dark/80 transition-colors flex flex-col gap-4 opacity-75 hover:opacity-100">
+<div class="flex items-center justify-between">
+<div class="size-10 rounded-lg bg-surface-border flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="text-xs font-mono text-slate-500 px-2 py-1 rounded border border-surface-border bg-surface-dark">PENDING</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Auditor Appointment</h3>
+<p class="text-slate-400 text-sm leading-relaxed">Onboard Big 4 auditor for financial transparency and initial audit reports for SEBI.</p>
+</div>
+<div class="mt-auto pt-4 border-t border-surface-border flex justify-between items-center text-xs text-slate-500">
+<span>Est: Dec 01, 2024</span>
+<span class="flex items-center gap-1 text-slate-300">Details <span class="material-symbols-outlined !text-[14px]">arrow_forward</span></span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

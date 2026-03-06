@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Green Status Activation Celebration</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+              "accent-green": "#0f3923",
+              "deep-navy": "#0a1410", // Adapted slightly to match the theme's forest undertone
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            backgroundImage: {
+              'glow-gradient': 'radial-gradient(circle at center, rgba(19, 236, 91, 0.15) 0%, rgba(16, 34, 22, 0) 70%)',
+              'grid-pattern': 'linear-gradient(rgba(19, 236, 91, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(19, 236, 91, 0.05) 1px, transparent 1px)',
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            animation: {
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom styles for activity lines that are hard to do with pure utility classes */
+        .activity-lines {
+            background-size: 50px 50px;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="w-full border-b border-primary/10 bg-background-light/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">Brave Ecom</h2>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Investments</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="#">Community</a>
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border border-primary/30">JD</div>
+</div>
+</nav>
+<!-- Mobile Menu Icon -->
+<div class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center relative w-full overflow-hidden py-12">
+<!-- Background Effects -->
+<div class="absolute inset-0 z-0 bg-grid-pattern activity-lines opacity-30 pointer-events-none"></div>
+<div class="absolute inset-0 z-0 bg-glow-gradient pointer-events-none"></div>
+<!-- Digital Confetti (Abstracted) -->
+<div class="absolute top-10 left-10 text-primary/20 animate-float" style="animation-delay: 0s;">₹</div>
+<div class="absolute top-20 right-20 text-primary/20 animate-float" style="animation-delay: 1.5s;">₹</div>
+<div class="absolute bottom-32 left-1/4 text-primary/10 animate-float" style="animation-delay: 3s;">₹</div>
+<div class="absolute top-1/3 right-10 text-primary/10 animate-float" style="animation-delay: 2s;">₹</div>
+<div class="layout-content-container flex flex-col max-w-[960px] w-full items-center relative z-10 px-4">
+<!-- Badge Container -->
+<div class="relative mb-10 group cursor-default">
+<div class="absolute inset-0 bg-primary/30 rounded-full blur-[60px] animate-pulse-slow"></div>
+<div class="relative size-64 md:size-80 flex items-center justify-center">
+<!-- 3D Badge Image Placeholder -->
+<div class="w-full h-full bg-contain bg-center bg-no-repeat drop-shadow-[0_0_35px_rgba(19,236,91,0.6)] animate-float" data-alt="3D animated glowing emerald green shield badge with gold accents representing elite status" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7Ovbv-zmfJ_8RrDWZBHiDnmidzXwsvjPj7V6I_WH40LTcYWbDOcTCoZfWYxCEQMYcFGLbRQLcrgF2-nhvogjZawzaBfBxF19It7efZd26SFRLi9nBn6WPp3Yp0iTUFNSJiVAB9OgSmYfIlBGRwgzxabkOnz20Jb6x1JDkj4NXJmypadlJmMkhL2sc102AEfCPKIo1cdyXwryD92jegDNYN4ZzEeS2nNcjc_TGe0YYYmi_KAaD78dB9LQ3ksqX1utVa7i1MsiCVE1v');">
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="flex flex-col items-center gap-4 text-center mb-10 max-w-2xl mx-auto">
+<h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-white drop-shadow-sm tracking-tight leading-tight">
+                    YOUR ID IS NOW GREEN
+                </h1>
+<div class="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 my-2"></div>
+<p class="text-slate-300 text-lg md:text-xl font-medium leading-relaxed">
+                    Welcome to the Sovereign circle. Your <span class="text-primary font-bold">₹51,111</span> investment is verified. 
+                    Your 45-day payout cycle has officially begun.
+                </p>
+<!-- Status Pill -->
+<div class="mt-2 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 shadow-[0_0_15px_rgba(19,236,91,0.15)]">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="text-primary text-sm font-bold tracking-wide uppercase">Active ROI: 15% Growth</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
+<button class="flex-1 h-14 px-8 bg-primary hover:bg-[#0fd650] text-background-dark text-base font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(19,236,91,0.4)] hover:shadow-[0_0_30px_rgba(19,236,91,0.6)] hover:-translate-y-1 flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">calendar_month</span>
+                    View Payout Calendar
+                </button>
+<button class="flex-1 h-14 px-8 bg-accent-green/50 hover:bg-accent-green text-white border border-primary/30 hover:border-primary text-base font-bold rounded-xl transition-all flex items-center justify-center gap-2 group backdrop-blur-sm">
+<span class="material-symbols-outlined text-[20px] text-primary group-hover:scale-110 transition-transform">share</span>
+                    Referral Sun-Link
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-primary/10 py-8 bg-background-dark relative z-20">
+<div class="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">© 2024 Brave Ecom Ecosystem. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Terms</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

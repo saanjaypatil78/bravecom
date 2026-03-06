@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>3D Portfolio Performance Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1ff968",
+                        "primary-dim": "#158f40",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0f1612",
+                        "surface-dark": "#1a261e",
+                        "surface-glass": "rgba(26, 38, 30, 0.7)",
+                        "text-main": "#e2e8f0",
+                        "text-muted": "#94a3b8",
+                        "accent-neon": "#39ff14", 
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2e25 1px, transparent 1px), linear-gradient(to bottom, #1f2e25 1px, transparent 1px)",
+                        'landscape-gradient': "linear-gradient(180deg, rgba(31,249,104,0) 0%, rgba(31,249,104,0.1) 50%, rgba(31,249,104,0.05) 100%)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1612; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273a2d; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1ff968; 
+        }
+        
+        .glass-panel {
+            background: rgba(26, 38, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(31, 249, 104, 0.3);
+        }
+        
+        /* Simulating 3D grid floor */
+        .perspective-grid {
+            transform: perspective(1000px) rotateX(60deg) translateY(-100px) scale(2);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-text-main min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 glass-panel border-b border-[#273a2d] px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">LuxeInvest</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-white text-sm font-medium hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-text-muted text-sm font-medium hover:text-white transition-colors" href="#">Marketplace</a>
+<a class="text-text-muted text-sm font-medium hover:text-white transition-colors" href="#">Analytics</a>
+<a class="text-text-muted text-sm font-medium hover:text-white transition-colors" href="#">Concierge</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-dark/50 rounded-xl px-3 py-2 border border-[#273a2d] focus-within:border-primary transition-colors w-64">
+<span class="material-symbols-outlined text-text-muted">search</span>
+<input class="bg-transparent border-none text-sm text-white focus:ring-0 w-full placeholder:text-text-muted" placeholder="Search assets..." type="text"/>
+</div>
+<button class="bg-primary hover:bg-primary-dim text-background-dark px-5 py-2 rounded-xl text-sm font-bold transition-all transform hover:scale-105 neon-glow">
+                    Invest Now
+                </button>
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-cover rounded-full size-10 ring-2 ring-[#273a2d] group-hover:ring-primary transition-all" data-alt="User profile photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFHqGY4ync38Tfr97Q4mMEW0HgUl8XgT062Z3qsNaw1aAjz2BklPR8ntT1lvmQ5CRZDJpTMXlwfwjodrO8Rv4HlquPgMyZAipZmdHmLMPuBZuLjDD93IJMPzUhCHp5i7xW30foPT9vyY0vWfPrfP6rnD0FdYYu6cQyj9klcGF624ms_fFmg5y2pnd9UTld9QznVr-Jry6IG7HRLqD9YaLALJyfv21uZxzGTW3SlX4BODJtQ_hvWL1AocIdkO2Y6uKQDxJH4CXRbc9N");'></div>
+<div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-background-dark"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full p-6 lg:p-10 flex flex-col gap-8 relative">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 z-10">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-primary font-medium text-sm">
+<span class="material-symbols-outlined text-lg">landscape</span>
+<span>Performance Lab</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                    Your Wealth Landscape
+                </h1>
+<p class="text-text-muted max-w-xl text-lg">
+                    Visualize your 15% ROI growth as a living terrain. Simulate future earnings and track referral downpours.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark border border-[#273a2d] hover:bg-[#273a2d] text-white text-sm transition-colors">
+<span class="material-symbols-outlined text-base">ios_share</span>
+                    Export Report
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark border border-[#273a2d] hover:bg-[#273a2d] text-white text-sm transition-colors">
+<span class="material-symbols-outlined text-base">tune</span>
+                    Customize View
+                </button>
+</div>
+</div>
+<!-- Main Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+<!-- Left Column: Stats & Controls -->
+<div class="lg:col-span-3 flex flex-col gap-6 z-10">
+<!-- Current Stats Card -->
+<div class="glass-panel p-6 rounded-2xl flex flex-col gap-6">
+<div>
+<p class="text-text-muted text-sm font-medium mb-1">Total Portfolio Value</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-white">₹12,45,000</h3>
+<span class="text-primary text-sm font-bold bg-primary/10 px-2 py-0.5 rounded">+15.2%</span>
+</div>
+</div>
+<div class="h-px bg-[#273a2d]"></div>
+<div class="grid grid-cols-1 gap-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-text-muted text-sm">Real Estate</span>
+</div>
+<span class="text-white font-medium">65%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-blue-400"></span>
+<span class="text-text-muted text-sm">Luxury Goods</span>
+</div>
+<span class="text-white font-medium">25%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-purple-400"></span>
+<span class="text-text-muted text-sm">Crypto</span>
+</div>
+<span class="text-white font-medium">10%</span>
+</div>
+</div>
+</div>
+<!-- Referral Rain Card -->
+<div class="glass-panel p-6 rounded-2xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">water_drop</span>
+<h4 class="text-white font-bold">Referral Rain</h4>
+</div>
+<div class="flex items-end justify-between mb-2">
+<div>
+<p class="text-2xl font-bold text-white">₹45,200</p>
+<p class="text-text-muted text-xs">Commission earned this month</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-lg">+12</p>
+<p class="text-text-muted text-xs">New users</p>
+</div>
+</div>
+<!-- Progress visual -->
+<div class="w-full bg-[#273a2d] rounded-full h-1.5 mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[70%] shadow-[0_0_10px_rgba(31,249,104,0.5)]"></div>
+</div>
+<p class="text-xs text-text-muted mt-2 text-right">Target: ₹65,000</p>
+</div>
+</div>
+<!-- Simulation Controls -->
+<div class="glass-panel p-6 rounded-2xl flex-1 flex flex-col justify-center">
+<h4 class="text-white font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">science</span>
+                        ROI Simulation
+                    </h4>
+<div class="space-y-6">
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-text-muted">Investment Period</span>
+<span class="text-white font-medium">3 Years</span>
+</div>
+<input class="w-full h-2 bg-[#273a2d] rounded-lg appearance-none cursor-pointer accent-primary" max="10" min="1" type="range" value="3"/>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-text-muted">Monthly Contribution</span>
+<span class="text-white font-medium">₹50k</span>
+</div>
+<input class="w-full h-2 bg-[#273a2d] rounded-lg appearance-none cursor-pointer accent-primary" max="200" min="10" type="range" value="50"/>
+</div>
+<div class="pt-4 border-t border-[#273a2d]">
+<div class="flex justify-between items-center">
+<span class="text-text-muted text-sm">Projected Value</span>
+<span class="text-xl font-bold text-primary">₹28.4L</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle/Right Column: 3D Visualization Area -->
+<div class="lg:col-span-9 relative flex flex-col">
+<!-- 3D Viewport Container -->
+<div class="relative w-full h-[600px] lg:h-full rounded-3xl overflow-hidden border border-[#273a2d] bg-[#0a0f0c] shadow-2xl">
+<!-- Background Grid Effect (Simulating 3D space) -->
+<div class="absolute inset-0 w-full h-full perspective-grid bg-[size:40px_40px] bg-grid-pattern pointer-events-none"></div>
+<!-- Abstract Landscape (CSS Art / Gradient Mesh representation) -->
+<div class="absolute bottom-0 left-0 right-0 h-[80%] flex items-end justify-center pointer-events-none">
+<!-- Back Mountain -->
+<div class="w-[120%] h-[60%] bg-gradient-to-t from-[#1a261e] via-[#273a2d] to-transparent opacity-60 rounded-t-[100%] blur-3xl transform -translate-x-20"></div>
+<!-- Middle Mountain - The main data visualization -->
+<div class="absolute bottom-0 w-[90%] h-[70%]">
+<!-- This represents the 3D mesh -->
+<svg class="w-full h-full overflow-visible drop-shadow-[0_0_30px_rgba(31,249,104,0.2)]" viewbox="0 0 1000 500">
+<defs>
+<lineargradient id="meshGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1ff968;stop-opacity:0.8"></stop>
+<stop offset="50%" style="stop-color:#158f40;stop-opacity:0.4"></stop>
+<stop offset="100%" style="stop-color:#0f1612;stop-opacity:0.1"></stop>
+</lineargradient>
+<filter id="glow">
+<fegaussianblur result="coloredBlur" stddeviation="4"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Grid Lines on the mountain -->
+<path d="M0,500 C200,400 300,200 500,150 C700,100 800,300 1000,400 L1000,500 L0,500 Z" fill="url(#meshGradient)" stroke="rgba(31,249,104,0.5)" stroke-width="2"></path>
+<path d="M100,500 Q300,250 500,150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"></path>
+<path d="M200,500 Q400,200 500,150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"></path>
+<path d="M900,500 Q700,250 500,150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"></path>
+<path d="M800,500 Q600,200 500,150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"></path>
+<!-- Peak Indicator -->
+<circle cx="500" cy="150" fill="#fff" filter="url(#glow)" r="6"></circle>
+<g transform="translate(500, 130)">
+<rect fill="#1ff968" height="24" rx="4" width="80" x="-40" y="-30"></rect>
+<text fill="#0f1612" font-family="Space Grotesk" font-size="12" font-weight="bold" text-anchor="middle" x="0" y="-14">₹12.45L</text>
+<path d="M0,0 L-5,-6 L5,-6 Z" fill="#1ff968" transform="translate(0, -6) rotate(180)"></path>
+</g>
+</svg>
+</div>
+</div>
+<!-- "Rain" Particles (Simulated) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<!-- Falling Rupees -->
+<div class="absolute top-[10%] left-[20%] text-primary/40 animate-pulse text-xs">₹</div>
+<div class="absolute top-[25%] left-[25%] text-primary/60 text-sm">₹</div>
+<div class="absolute top-[15%] left-[70%] text-primary/30 text-xs">₹</div>
+<div class="absolute top-[40%] left-[60%] text-primary/50 text-xl font-bold" style="filter: drop-shadow(0 0 5px #1ff968);">₹</div>
+<div class="absolute top-[30%] left-[45%] text-primary/20 text-xs">₹</div>
+<div class="absolute top-[20%] left-[80%] text-primary/40 text-sm">₹</div>
+<div class="absolute top-[50%] left-[50%] text-primary/70 text-lg font-bold" style="opacity: 0.6; transform: translateY(20px);">₹</div>
+</div>
+<!-- Interactive Controls Overlay -->
+<div class="absolute top-6 right-6 flex flex-col gap-3">
+<button class="size-10 rounded-xl bg-surface-dark/80 backdrop-blur border border-[#273a2d] text-white hover:text-primary flex items-center justify-center transition-all hover:scale-110 shadow-lg" title="Reset View">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+<button class="size-10 rounded-xl bg-surface-dark/80 backdrop-blur border border-[#273a2d] text-white hover:text-primary flex items-center justify-center transition-all hover:scale-110 shadow-lg" title="Zoom In">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 rounded-xl bg-surface-dark/80 backdrop-blur border border-[#273a2d] text-white hover:text-primary flex items-center justify-center transition-all hover:scale-110 shadow-lg" title="Zoom Out">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<div class="absolute bottom-6 left-6 right-6 flex justify-center">
+<div class="bg-surface-dark/80 backdrop-blur px-6 py-2 rounded-full border border-[#273a2d] flex items-center gap-8 shadow-xl">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">3d_rotation</span>
+<span class="text-[10px] text-text-muted uppercase tracking-wider font-bold">Rotate</span>
+</button>
+<div class="w-px h-8 bg-[#273a2d]"></div>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">history</span>
+<span class="text-[10px] text-text-muted uppercase tracking-wider font-bold">History</span>
+</button>
+<div class="w-px h-8 bg-[#273a2d]"></div>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">view_in_ar</span>
+<span class="text-[10px] text-text-muted uppercase tracking-wider font-bold">AR View</span>
+</button>
+</div>
+</div>
+<!-- Time Scale Slider floating at bottom -->
+<div class="absolute bottom-6 left-6 hidden lg:block">
+<div class="glass-panel px-4 py-2 rounded-lg flex items-center gap-3">
+<span class="text-xs font-bold text-primary uppercase">Timeline</span>
+<div class="flex gap-2">
+<button class="text-xs text-text-muted hover:text-white px-2 py-1 rounded hover:bg-white/10 transition-colors">1M</button>
+<button class="text-xs text-background-dark bg-primary font-bold px-2 py-1 rounded transition-colors">6M</button>
+<button class="text-xs text-text-muted hover:text-white px-2 py-1 rounded hover:bg-white/10 transition-colors">1Y</button>
+<button class="text-xs text-text-muted hover:text-white px-2 py-1 rounded hover:bg-white/10 transition-colors">ALL</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Insights Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pb-6">
+<div class="glass-panel p-5 rounded-2xl border-l-4 border-l-primary flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-text-muted text-sm font-medium">Growth Velocity</h5>
+<span class="material-symbols-outlined text-primary text-lg">trending_up</span>
+</div>
+<p class="text-xl font-bold text-white">Top 5%</p>
+</div>
+<p class="text-xs text-text-muted mt-2">Your portfolio is growing faster than 95% of investors.</p>
+</div>
+<div class="glass-panel p-5 rounded-2xl border-l-4 border-l-blue-400 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-text-muted text-sm font-medium">Market Sentiment</h5>
+<span class="material-symbols-outlined text-blue-400 text-lg">psychology</span>
+</div>
+<p class="text-xl font-bold text-white">Bullish</p>
+</div>
+<p class="text-xs text-text-muted mt-2">Luxury goods demand is projected to rise by 8%.</p>
+</div>
+<div class="glass-panel p-5 rounded-2xl border-l-4 border-l-purple-400 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-text-muted text-sm font-medium">Diversification Score</h5>
+<span class="material-symbols-outlined text-purple-400 text-lg">pie_chart</span>
+</div>
+<p class="text-xl font-bold text-white">8.4/10</p>
+</div>
+<p class="text-xs text-text-muted mt-2">Excellent balance across high-yield asset classes.</p>
+</div>
+<div class="glass-panel p-5 rounded-2xl border-l-4 border-l-orange-400 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h5 class="text-text-muted text-sm font-medium">Next Milestone</h5>
+<span class="material-symbols-outlined text-orange-400 text-lg">flag</span>
+</div>
+<p class="text-xl font-bold text-white">₹15 Lakh</p>
+</div>
+<div class="w-full bg-[#273a2d] h-1.5 rounded-full mt-3">
+<div class="bg-orange-400 h-1.5 rounded-full w-[85%]"></div>
+</div>
+<p class="text-xs text-text-muted mt-1 text-right">85% Complete</p>
+</div>
+</div>
+</main>
+</body></html>

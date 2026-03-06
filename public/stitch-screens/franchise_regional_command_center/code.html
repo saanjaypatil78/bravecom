@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Franchise Regional Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "primary-dark": "#0a9acb",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1a262b",
+                        "surface-darker": "#151f23",
+                        "success": "#0bda57",
+                        "warning": "#fa5f38",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101e22; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283539; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4e54; 
+        }
+        .glass-effect {
+            background: rgba(26, 38, 43, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 glass-effect border-b border-white/5 px-6 py-4">
+<div class="max-w-[1400px] mx-auto flex items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-tight tracking-tight">Franchise Command Center</h1>
+<p class="text-slate-400 text-xs font-medium tracking-wide">LEVEL 4 REGIONAL MASTER</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end items-center gap-6">
+<!-- Search -->
+<div class="hidden md:flex relative group w-full max-w-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border-none rounded-lg bg-surface-darker text-sm text-white placeholder-slate-500 focus:ring-1 focus:ring-primary focus:bg-surface-dark transition-all duration-200" placeholder="Search franchise network, users, or reports..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="relative p-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-warning rounded-full border-2 border-background-dark"></span>
+</button>
+<button class="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-lg text-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Export Report</span>
+</button>
+<div class="h-8 w-px bg-white/10 mx-1"></div>
+<button class="flex items-center gap-3 pl-2 pr-1 rounded-full hover:bg-surface-dark transition-colors group">
+<div class="text-right hidden lg:block">
+<p class="text-sm font-semibold text-white">Arjun Mehta</p>
+<p class="text-xs text-slate-400">Regional Manager</p>
+</div>
+<div class="size-10 rounded-full bg-surface-darker border border-white/10 overflow-hidden relative">
+<img alt="User profile picture of Arjun Mehta" class="object-cover w-full h-full" data-alt="Professional headshot of a man in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjst6T8jV_KlHUlKNHEXYvOpHOhYhfri-5MQ5SIY5WAyppbrqNHbYuPbd7fLmcSOgosmBwoYmJ1hNRjbIFqPZhtnVwq93NaFrLQ_ukeWpqNX_VhuusMIGQHIkslkKR6RcvypVzSAxkSVy3zWcx4Usj0tdBEmi0c32vO_RT85B7bcShnVIOJcOUmO2zAjsQPYthxbN2DqKhAegWFP6H0WXSV825MoCLJVD8bcluIv-9ajSxoKGGRnXoz1mugym_q3UeEdB15eJasydU"/>
+</div>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1400px] mx-auto p-6 md:p-8 space-y-8">
+<!-- Header & Date Filter -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-2">Regional Overview</h2>
+<p class="text-slate-400 text-base max-w-2xl">Monitoring Level 4 Franchise Network Performance &amp; Health for North Zone.</p>
+</div>
+<div class="flex items-center bg-surface-dark rounded-lg p-1 border border-white/5 self-start">
+<button class="px-4 py-1.5 text-sm font-medium text-slate-400 hover:text-white rounded-md transition-colors">Weekly</button>
+<button class="px-4 py-1.5 text-sm font-medium bg-primary text-background-dark shadow-lg shadow-primary/25 rounded-md font-bold">Monthly</button>
+<button class="px-4 py-1.5 text-sm font-medium text-slate-400 hover:text-white rounded-md transition-colors">Quarterly</button>
+</div>
+</div>
+<!-- Massive KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Total Network AUM -->
+<div class="bg-surface-dark rounded-xl p-6 border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all duration-300 shadow-xl shadow-black/20">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-primary">account_balance</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between gap-4">
+<div class="flex justify-between items-start">
+<p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Total Network AUM</p>
+<span class="bg-success/10 text-success text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12.4%
+                        </span>
+</div>
+<div>
+<h3 class="text-4xl lg:text-5xl font-black text-white tracking-tight mb-1">₹ 45.2 <span class="text-2xl text-slate-400 font-bold">Cr</span></h3>
+<p class="text-slate-500 text-sm">Target: ₹ 111 Cr (40.7% Achieved)</p>
+</div>
+<div class="w-full bg-surface-darker rounded-full h-1.5 mt-2">
+<div class="bg-primary h-1.5 rounded-full" style="width: 40.7%"></div>
+</div>
+</div>
+</div>
+<!-- Total Franchise Royalty -->
+<div class="bg-surface-dark rounded-xl p-6 border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all duration-300 shadow-xl shadow-black/20">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-purple-500">payments</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between gap-4">
+<div class="flex justify-between items-start">
+<p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Total Franchise Royalty</p>
+<span class="bg-success/10 text-success text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> 5.2%
+                        </span>
+</div>
+<div>
+<h3 class="text-4xl lg:text-5xl font-black text-white tracking-tight mb-1">₹ 8.45 <span class="text-2xl text-slate-400 font-bold">L</span></h3>
+<p class="text-slate-500 text-sm">Accumulated Earnings (This Month)</p>
+</div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all mt-2 group/btn">
+                        View Payout History <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Active User Ratio -->
+<div class="bg-surface-dark rounded-xl p-6 border border-white/5 relative overflow-hidden group hover:border-primary/30 transition-all duration-300 shadow-xl shadow-black/20 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Active User Ratio</p>
+<span class="bg-warning/10 text-warning text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> 2.1%
+                    </span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Simple CSS Donut Chart -->
+<div class="relative size-24 shrink-0">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Background Circle -->
+<path class="text-surface-darker" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<!-- Progress Circle -->
+<path class="text-warning drop-shadow-[0_0_10px_rgba(250,95,56,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="88, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xl font-bold text-white">88%</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 w-full">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-300 flex items-center gap-2"><span class="size-2 rounded-full bg-success"></span>Active</span>
+<span class="text-white font-bold">1,420</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-300 flex items-center gap-2"><span class="size-2 rounded-full bg-warning"></span>Inactive</span>
+<span class="text-white font-bold">194</span>
+</div>
+<p class="text-xs text-slate-500 mt-1">12 users near 60-day limit</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Target Royalty Roadmap -->
+<div class="bg-surface-dark rounded-xl border border-white/5 p-6 md:p-8 shadow-lg">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">flag</span>
+                        Target Royalty Roadmap
+                    </h3>
+<p class="text-slate-400 text-sm mt-1">Progress towards next tier milestone</p>
+</div>
+<div class="bg-surface-darker px-4 py-2 rounded-lg border border-white/5">
+<p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Current Tier</p>
+<p class="text-primary font-bold text-lg">Silver Partner</p>
+</div>
+</div>
+<div class="relative pt-6 pb-2">
+<!-- Progress Bar Background -->
+<div class="h-3 bg-surface-darker rounded-full w-full overflow-hidden flex">
+<!-- Progress Fill -->
+<div class="h-full bg-gradient-to-r from-primary/50 to-primary relative w-[45%] shadow-[0_0_20px_rgba(13,185,242,0.4)]">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-white/50 animate-pulse"></div>
+</div>
+</div>
+<!-- Markers -->
+<div class="absolute top-0 left-0 w-full flex justify-between transform -translate-y-1/2 mt-1.5 px-[2px]">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3">
+<div class="size-4 rounded-full bg-primary border-4 border-surface-dark shadow-[0_0_0_2px_rgba(13,185,242,0.3)]"></div>
+<div class="text-center w-24">
+<p class="text-xs font-bold text-primary">Bronze</p>
+<p class="text-[10px] text-slate-400">₹ 50L</p>
+</div>
+</div>
+<!-- Step 2 (Current) -->
+<div class="flex flex-col items-center gap-3 relative left-[-10%]"> <!-- Adjusted position slightly for visual spacing -->
+<div class="size-6 rounded-full bg-primary border-4 border-surface-dark shadow-[0_0_0_4px_rgba(13,185,242,0.2)] flex items-center justify-center">
+<div class="size-1.5 bg-white rounded-full"></div>
+</div>
+<div class="text-center w-32 bg-surface-darker/80 backdrop-blur-sm p-1 rounded border border-primary/20 -mt-1">
+<p class="text-xs font-bold text-white">Current: ₹ 1.2 Cr</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3">
+<div class="size-4 rounded-full bg-surface-darker border-4 border-surface-dark ring-2 ring-slate-700"></div>
+<div class="text-center w-24">
+<p class="text-xs font-bold text-slate-300">Gold</p>
+<p class="text-[10px] text-slate-500">₹ 5 Cr</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-3">
+<div class="size-4 rounded-full bg-surface-darker border-4 border-surface-dark ring-2 ring-slate-700"></div>
+<div class="text-center w-24">
+<p class="text-xs font-bold text-slate-300">Platinum</p>
+<p class="text-[10px] text-slate-500">₹ 25 Cr</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-3">
+<div class="size-4 rounded-full bg-surface-darker border-4 border-surface-dark ring-2 ring-slate-700"></div>
+<div class="text-center w-24">
+<p class="text-xs font-bold text-slate-300">Ambassador</p>
+<p class="text-[10px] text-slate-500">₹ 111 Cr</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Layout: Ledger + Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+<!-- Downline Health Ledger -->
+<div class="lg:col-span-3 flex flex-col gap-4">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+                        Downline Health Ledger
+                    </h3>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-lg">filter_alt</span>
+<select class="pl-9 pr-8 py-2 bg-surface-dark border border-white/5 rounded-lg text-sm text-slate-300 focus:ring-primary focus:border-primary">
+<option>All Statuses</option>
+<option>Critical (Inactivity)</option>
+<option>High Performers</option>
+</select>
+</div>
+<button class="p-2 bg-surface-dark border border-white/5 rounded-lg text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl border border-white/5 overflow-hidden shadow-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-darker text-slate-400 text-xs uppercase tracking-wider border-b border-white/5">
+<th class="p-4 font-semibold">Franchisee Name</th>
+<th class="p-4 font-semibold">Tier Level</th>
+<th class="p-4 font-semibold text-right">AUM Contribution</th>
+<th class="p-4 font-semibold text-center">Inactivity</th>
+<th class="p-4 font-semibold text-center">Status</th>
+<th class="p-4 font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-sm">
+<!-- Critical Row -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">RK</div>
+<div>
+<p class="font-medium text-white">Rahul Kumar</p>
+<p class="text-xs text-slate-500">ID: #FR-4921</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-slate-300">Level 2</td>
+<td class="p-4 text-right font-mono text-white">₹ 5,00,000</td>
+<td class="p-4 text-center">
+<span class="text-warning font-bold">58 Days</span>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-warning/10 text-warning border border-warning/20">
+<span class="size-1.5 rounded-full bg-warning animate-pulse"></span> Critical
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="px-3 py-1.5 bg-warning text-background-dark font-bold text-xs rounded hover:bg-orange-400 transition-colors">
+                                            Alert
+                                        </button>
+</td>
+</tr>
+<!-- Warning Row -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-darker border border-white/10 flex items-center justify-center text-slate-400 text-xs font-bold">AS</div>
+<div>
+<p class="font-medium text-white">Amit Singh</p>
+<p class="text-xs text-slate-500">ID: #FR-3302</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-slate-300">Level 3</td>
+<td class="p-4 text-right font-mono text-white">₹ 12,50,000</td>
+<td class="p-4 text-center">
+<span class="text-orange-300 font-medium">45 Days</span>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20">
+<span class="size-1.5 rounded-full bg-orange-400"></span> Warning
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="px-3 py-1.5 bg-surface-darker border border-white/10 text-white font-medium text-xs rounded hover:bg-white/5 transition-colors">
+                                            Nudge
+                                        </button>
+</td>
+</tr>
+<!-- Healthy Row -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-darker border border-white/10 flex items-center justify-center text-slate-400 text-xs font-bold">PS</div>
+<div>
+<p class="font-medium text-white">Priya Sharma</p>
+<p class="text-xs text-slate-500">ID: #FR-1109</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-slate-300">Level 1</td>
+<td class="p-4 text-right font-mono text-white">₹ 42,00,000</td>
+<td class="p-4 text-center">
+<span class="text-slate-500">2 Days</span>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20">
+<span class="size-1.5 rounded-full bg-success"></span> Active
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Healthy Row 2 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-darker border border-white/10 flex items-center justify-center text-slate-400 text-xs font-bold">VK</div>
+<div>
+<p class="font-medium text-white">Vikram K.</p>
+<p class="text-xs text-slate-500">ID: #FR-8821</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-slate-300">Level 2</td>
+<td class="p-4 text-right font-mono text-white">₹ 8,20,000</td>
+<td class="p-4 text-center">
+<span class="text-slate-500">5 Days</span>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20">
+<span class="size-1.5 rounded-full bg-success"></span> Active
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-white/5 bg-surface-darker/50 flex justify-center">
+<button class="text-xs font-medium text-slate-400 hover:text-primary transition-colors flex items-center gap-1">
+                            View All 1,420 Users <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Actions Sidebar -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Action Card -->
+<div class="bg-surface-dark rounded-xl p-6 border border-white/5 shadow-lg">
+<h4 class="text-white font-bold mb-4">Quick Actions</h4>
+<div class="space-y-3">
+<button class="w-full flex items-center gap-3 p-3 rounded-lg bg-primary text-background-dark font-bold hover:bg-primary-dark transition-all shadow-[0_4px_14px_0_rgba(13,185,242,0.39)]">
+<span class="material-symbols-outlined">person_add</span>
+                            Invite Franchisee
+                        </button>
+<button class="w-full flex items-center gap-3 p-3 rounded-lg bg-surface-darker border border-white/10 text-white font-medium hover:bg-white/5 transition-all group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">description</span>
+                            Generate Report
+                        </button>
+<button class="w-full flex items-center gap-3 p-3 rounded-lg bg-surface-darker border border-white/10 text-white font-medium hover:bg-white/5 transition-all group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-success transition-colors">account_balance_wallet</span>
+                            Request Payout
+                        </button>
+</div>
+</div>
+<!-- Mini Insight -->
+<div class="bg-gradient-to-br from-surface-dark to-slate-900 rounded-xl p-6 border border-white/5 relative overflow-hidden">
+<div class="absolute -right-6 -top-6 bg-primary/20 blur-3xl size-32 rounded-full pointer-events-none"></div>
+<h4 class="text-white font-bold mb-2 relative z-10">Referral Leaderboard</h4>
+<p class="text-xs text-slate-400 mb-4 relative z-10">Top performers this week</p>
+<ul class="space-y-4 relative z-10">
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-yellow-500 w-4">01</span>
+<span class="text-sm text-slate-200">Sneha R.</span>
+</div>
+<span class="text-xs font-mono text-success">+₹22L</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-slate-400 w-4">02</span>
+<span class="text-sm text-slate-200">Arun V.</span>
+</div>
+<span class="text-xs font-mono text-success">+₹18L</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-orange-700 w-4">03</span>
+<span class="text-sm text-slate-200">Mike T.</span>
+</div>
+<span class="text-xs font-mono text-success">+₹15L</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+</body></html>

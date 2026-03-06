@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Governance Audit &amp; Treasury Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1269e2",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                        "surface-dark": "#1c2431",
+                        "surface-darker": "#161e29",
+                        "border-dark": "#282f39",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Governance Audit</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Compliance</a>
+<a class="text-white text-sm font-bold leading-normal border-b-2 border-primary pb-5 -mb-5" href="#">Audit Logs</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Treasury</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden md:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-surface-dark focus:border-none h-full placeholder:text-slate-500 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search logs, hashes..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-4">
+<button class="relative text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border border-background-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-border-dark" data-alt="User Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAQzkqmvRiL04m52ubDp3YQy-C0V2Qe2482nQpaPmvMx_KptQ28zmTz0fSoDUgJ8rSSSKAbZVXxXC0IQDCPsZFabHc7GexCFL55uLFqHhRrSuS26Or4yM6w5v72zi70oWUnQETApMhUwhARBEZq3VwzjGTyyPbyNOcriKnlnlNDSR5bI5kdNBwnp46MHUeraHIz6eFtCajQNYLhZoMSYHdzdXDDU23Nv1kZSPJPEOf0g8yfIit3wvRxroQoIPMiBpVe6NQ6kCV0bTx");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 sm:px-8 lg:px-12 w-full max-w-[1440px] mx-auto">
+<!-- Page Header -->
+<div class="w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-white mb-2">Advanced RBAC &amp; Admin Audit</h1>
+<p class="text-slate-400 max-w-2xl">SEBI Regulatory Oversight Module - Track system modifications and treasury disbursements with immutable ledger verification.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-dark hover:bg-surface-darker text-slate-300 rounded-lg border border-border-dark transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-dark hover:bg-surface-darker text-slate-300 rounded-lg border border-border-dark transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                        Configure Rules
+                    </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="p-6 rounded-xl bg-surface-dark border border-border-dark flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">history</span>
+</div>
+<p class="text-slate-400 text-sm font-medium">24h Modifications</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white">142</h3>
+<span class="text-emerald-500 text-sm font-medium mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<div class="p-6 rounded-xl bg-surface-dark border border-border-dark flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-orange-500">warning</span>
+</div>
+<p class="text-slate-400 text-sm font-medium">Pending Justifications</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white">8</h3>
+<span class="text-orange-500 text-sm font-medium mb-1 flex items-center">
+                            Action Required
+                        </span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-orange-500 h-full w-[25%]"></div>
+</div>
+</div>
+<div class="p-6 rounded-xl bg-surface-dark border border-border-dark flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-emerald-500">account_balance</span>
+</div>
+<p class="text-slate-400 text-sm font-medium">Treasury Overflow Balance</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white">₹ 12,45,000</h3>
+<span class="text-slate-500 text-sm font-medium mb-1">
+                            Level 6+ Pool
+                        </span>
+</div>
+<div class="w-full bg-border-dark h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Treasury & Audit -->
+<div class="w-full flex flex-col xl:flex-row gap-8">
+<!-- Left Column: Treasury Management (Sticky on large screens) -->
+<div class="w-full xl:w-1/3 flex flex-col gap-6">
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6 xl:sticky xl:top-24">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Treasury Disbursement</h3>
+<p class="text-xs text-slate-400">Allocate rewards from overflow pool</p>
+</div>
+</div>
+<div class="bg-background-dark/50 rounded-lg p-4 mb-6 border border-border-dark/50">
+<div class="flex justify-between items-center mb-2">
+<span class="text-slate-400 text-sm">Available for Allocation</span>
+<span class="text-emerald-400 text-xs bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">Verified</span>
+</div>
+<div class="text-2xl font-bold text-white tracking-tight">₹ 12,45,000.00</div>
+<div class="text-xs text-slate-500 mt-1">Last sync: 2 mins ago via Ledger Node #4</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-slate-300 mb-2">Hierarchy Level</label>
+<div class="relative">
+<select class="w-full bg-background-dark border border-border-dark text-white rounded-lg px-4 py-3 appearance-none focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>Level 6 (Senior Director)</option>
+<option>Level 7 (VP)</option>
+<option>Level 8 (C-Suite)</option>
+</select>
+<div class="absolute right-4 top-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-300 mb-2">Disbursement Amount (₹)</label>
+<input class="w-full bg-background-dark border border-border-dark text-white rounded-lg px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none font-mono" placeholder="0.00" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-300 mb-2">Reason for Disbursement</label>
+<textarea class="w-full bg-background-dark border border-border-dark text-white rounded-lg px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none resize-none h-24" placeholder="Enter justification for SEBI audit..."></textarea>
+</div>
+<div class="pt-2">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">gavel</span>
+                                    Authorize Disbursement
+                                </button>
+<p class="text-center text-xs text-slate-500 mt-3 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                    Action will be recorded on immutable ledger
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Audit Log -->
+<div class="w-full xl:w-2/3 flex flex-col gap-6">
+<div class="bg-surface-dark border border-border-dark rounded-xl flex flex-col h-full min-h-[600px]">
+<!-- Toolbar -->
+<div class="p-4 border-b border-border-dark flex flex-col sm:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<h3 class="text-lg font-bold text-white mr-2">System Modifications</h3>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-xs border border-primary/20">Live Stream</span>
+</div>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<div class="relative flex-1 sm:flex-none">
+<span class="absolute left-3 top-2 text-slate-500 material-symbols-outlined text-[18px]">filter_list</span>
+<select class="bg-background-dark border border-border-dark text-slate-300 text-sm rounded-lg pl-9 pr-8 py-2 w-full focus:outline-none focus:border-primary">
+<option>All Actions</option>
+<option>Critical</option>
+<option>Warning</option>
+</select>
+</div>
+<div class="relative flex-1 sm:flex-none">
+<span class="absolute left-3 top-2 text-slate-500 material-symbols-outlined text-[18px]">calendar_today</span>
+<input class="bg-background-dark border border-border-dark text-slate-300 text-sm rounded-lg pl-9 pr-4 py-2 w-full focus:outline-none focus:border-primary" placeholder="Filter Date" type="text"/>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-dark bg-background-dark/50 text-xs uppercase tracking-wider text-slate-400">
+<th class="p-4 font-medium">Timestamp</th>
+<th class="p-4 font-medium">Admin</th>
+<th class="p-4 font-medium">Entity &amp; Action</th>
+<th class="p-4 font-medium">Justification</th>
+<th class="p-4 font-medium">Ledger Hash</th>
+<th class="p-4 font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-border-dark">
+<!-- Row 1 -->
+<tr class="group hover:bg-surface-darker transition-colors">
+<td class="p-4 text-slate-400 whitespace-nowrap font-mono text-xs">Oct 24, 14:32:05</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Admin User" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCu6JDHA-3wVNBBJWLk8997F0JmTJP1-tJCMmtQXuWVB5nSOePH3zNo3Hw2KbOdcZJR5s3xF-fLQzR3glYrRa-zEoMWLZ61sbryGnstBoim5ncJvm07ui8WzEm-FI_4TO1XONtt-kOuCHVbs07uvuPcpvK2ACiN7AYv2taKbvQVGs7wG191YS3bs11-Mq1Pj2oN5fszPQSkq1fmPalxj0tSYqBmSOIu8V6fAwsyOUtuNeozXX7eA7HhqKWVpksB6dPMDVjFxO56qkV_')"></div>
+<span class="text-white font-medium">ID: ADM-094</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-white font-medium">User: USR-9921</span>
+<span class="text-slate-400 text-xs">KYC_PENDING → <span class="text-emerald-400">KYC_APPROVED</span></span>
+</div>
+</td>
+<td class="p-4 text-slate-300 max-w-[200px] truncate" title="Manual verification of physical Aadhaar card">
+                                            Manual verification of physical Aadhaar...
+                                        </td>
+<td class="p-4">
+<a class="flex items-center gap-1 text-primary hover:text-primary/80 font-mono text-xs bg-primary/10 px-2 py-1 rounded border border-primary/20 w-fit" href="#">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                                                0x7f...3a9
+                                            </a>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                Verified
+                                            </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-surface-darker transition-colors">
+<td class="p-4 text-slate-400 whitespace-nowrap font-mono text-xs">Oct 24, 14:15:22</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Admin User" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDh2ANh-XSKGj9LPEQyh4B_l1kAksDD1l744jghGDv1ijP71YzA3TdZQhy3jnPSRT7J7R2FP-umSYWWenAfqngox1gkfcX9DEDdnunROblG5xzJ6zP_lKUkkrVBhCWPPitZaCoTyiPhN5pt8yIWxlkm59NXnlz-LooxS3NuMBY6jSh8CQ4R3S6J8jbw7lwOEThWZLUHcEA_FdKggFfgFurrqiIXY-Uf2UTZOpw31e1RLCRnObbtrS3n2abYK0ogUEoat-Z7V77MFrR8')"></div>
+<span class="text-white font-medium">ID: ADM-112</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-white font-medium">Treasury: POOL_L6</span>
+<span class="text-slate-400 text-xs">DISBURSE → <span class="text-white">₹ 50,000</span></span>
+</div>
+</td>
+<td class="p-4 text-slate-300 max-w-[200px] truncate text-orange-400 italic">
+                                            Pending Justification...
+                                        </td>
+<td class="p-4">
+<span class="text-slate-600 font-mono text-xs italic">Generating...</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-500/10 text-orange-500 border border-orange-500/20">
+<span class="size-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+                                                Pending
+                                            </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-surface-darker transition-colors bg-red-500/5">
+<td class="p-4 text-slate-400 whitespace-nowrap font-mono text-xs">Oct 24, 13:45:10</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Admin User" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCuWtfrtBIiTMampequdKuz0h3S1G156FeoS1CSBY-C64BI9TApuVcV6ak21Gnf7SxZv3jxh4doT4cSzrexDGJVGPBjCa4S8CMTquTCBiO0DWovOVrLyIOFu5x8Wod_koc8O4W_m-YB-ZGAn8CUTYG3cNi5EdIOMPa8KjcGJy-XteImxjcmvvleft_eqNGJ9vxM_wFytD4HITyq51xbSJgiOZrj4GWRlsflWkH5xZybMdZK6iNgvduu8KFLRMi0KViu-V5xoGB8w-0')"></div>
+<span class="text-white font-medium">ID: ADM-003</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-white font-medium">System: FIREWALL</span>
+<span class="text-slate-400 text-xs">RULE_ADD → <span class="text-red-400">IP_BLOCK</span></span>
+</div>
+</td>
+<td class="p-4 text-slate-300 max-w-[200px] truncate" title="Blocked suspicious IP range 192.168.x.x due to multiple failed login attempts">
+                                            Blocked suspicious IP range...
+                                        </td>
+<td class="p-4">
+<a class="flex items-center gap-1 text-primary hover:text-primary/80 font-mono text-xs bg-primary/10 px-2 py-1 rounded border border-primary/20 w-fit" href="#">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                                                0x8b...2c1
+                                            </a>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-500/10 text-red-500 border border-red-500/20">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+                                                Flagged
+                                            </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-surface-darker transition-colors">
+<td class="p-4 text-slate-400 whitespace-nowrap font-mono text-xs">Oct 24, 12:20:00</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Admin User" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4cHE4CWgK04yYPUxcWYyUTtUVXxWOlxZRv0LHixM3UtX7nm99s3aDV7YzB1ZTx3EOACduyaPLaGfrXtnO4XlSe3hGxU6U6pbZsLTvHXydypR-HKYbyNJxLO0lLJxKatr6tAF8kIUv8Rh-_AbR9hWvLI9XbvvNzs82_apWWZgCIkUwnZnueHu4Kc_uXbBkEP-1g3aFPLeB00La7-5cF_pX8KhS_2azGF4UqbwJcW701a0WnSbiXRcNCllyDora-YT24KrYksNUVfPL')"></div>
+<span class="text-white font-medium">ID: ADM-055</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-white font-medium">User: USR-8842</span>
+<span class="text-slate-400 text-xs">EMAIL_UPDATE → <span class="text-white">Confirmed</span></span>
+</div>
+</td>
+<td class="p-4 text-slate-300 max-w-[200px] truncate" title="User requested update via support ticket #5002">
+                                            User requested update via ticket...
+                                        </td>
+<td class="p-4">
+<a class="flex items-center gap-1 text-primary hover:text-primary/80 font-mono text-xs bg-primary/10 px-2 py-1 rounded border border-primary/20 w-fit" href="#">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                                                0x3d...9f0
+                                            </a>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                Verified
+                                            </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-surface-darker transition-colors">
+<td class="p-4 text-slate-400 whitespace-nowrap font-mono text-xs">Oct 24, 11:10:45</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Admin User" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACu5WI1xtG3KvmQiCHyZPmiZKZDATCrPv6BQYdismXtDigfyH3c6J_FYt10JHG1AVWrm0or4WbciB_dRd4UK2dhYk6ujT7X-6c7PrGwqIvplrq7LY5HBWnyaDjJN4H9esi2LAz-A9P3l5WZp5ZF75WVWXyb7I-u_xoC8L2N8ealukVKnRbUafQ-w_oZo7_TL8H_oMfKwoQEbdlq6LFltX6eRnmpI1FbU5sEthKyXSX1etaiADUhzUJoyDrvHIKWnf2kR_g9D2Kef8G')"></div>
+<span class="text-white font-medium">ID: ADM-094</span>
+</div>
+</td>
+<td class="p-4">
+<div class="flex flex-col">
+<span class="text-white font-medium">Role: MODERATOR</span>
+<span class="text-slate-400 text-xs">PERMISSION → <span class="text-emerald-400">GRANT_ALL</span></span>
+</div>
+</td>
+<td class="p-4 text-slate-300 max-w-[200px] truncate" title="Temporary elevation for system maintenance">
+                                            Temporary elevation for maint...
+                                        </td>
+<td class="p-4">
+<a class="flex items-center gap-1 text-primary hover:text-primary/80 font-mono text-xs bg-primary/10 px-2 py-1 rounded border border-primary/20 w-fit" href="#">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                                                0x1a...5b2
+                                            </a>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                Verified
+                                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-border-dark flex justify-between items-center mt-auto">
+<span class="text-xs text-slate-500">Showing 1-5 of 142 items</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-background-dark border border-border-dark rounded text-slate-400 hover:text-white disabled:opacity-50 text-sm">Prev</button>
+<button class="px-3 py-1 bg-background-dark border border-border-dark rounded text-slate-400 hover:text-white text-sm">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Microservices Node Health Monitor</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0db9f2",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f1214",
+              "surface-dark": "#182023",
+              "surface-lighter": "#202a2e",
+              "success": "#0bda57",
+              "warning": "#fbbf24",
+              "danger": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .mono-text {
+            font-family: "JetBrains Mono", monospace;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111618; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283539; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4e54; 
+        }
+
+        /* Subtle pulse animation for indicators */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(13, 185, 242, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(13, 185, 242, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 185, 242, 0); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#283539] bg-surface-dark px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+                    System Architecture // Node Monitor V.2.0
+                    <span class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded uppercase tracking-wider font-bold">Live</span>
+</h2>
+<div class="text-xs text-slate-400 font-mono mt-0.5 flex gap-3">
+<span>SEBI Audit Logging: <span class="text-success">ACTIVE</span></span>
+<span class="text-[#3b4e54]">|</span>
+<span>Region: ap-south-1</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center gap-2 bg-[#1e2629] px-3 py-1.5 rounded-lg border border-[#283539]">
+<span class="material-symbols-outlined text-xs text-slate-400">schedule</span>
+<span class="text-sm font-mono text-primary">14:32:05 UTC</span>
+</div>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-danger/10 text-danger border border-danger/20 hover:bg-danger/20 transition-colors text-sm font-bold tracking-[0.015em] gap-2">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Lockdown Mode</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-[#283539] text-white hover:bg-[#3b4e54] transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full border border-[#283539]"></span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-[#283539] text-white hover:bg-[#3b4e54] transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 w-9 bg-[#283539] text-white hover:bg-[#3b4e54] transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-6 gap-6 grid grid-cols-12 max-w-[1920px] mx-auto w-full">
+<!-- Left Column: Service Health Grid -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-6">
+<!-- Service Cards Row 1 -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                        Microservice Mesh
+                    </h2>
+<div class="text-xs text-slate-400 font-mono">
+                        Global Uptime: <span class="text-success">99.98%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Auth Service Card -->
+<div class="bg-surface-dark border border-[#283539] rounded-xl p-5 hover:border-primary/30 transition-colors group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">verified_user</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-wider mb-1">Critical</span>
+<h3 class="text-white font-bold text-lg">Auth Service</h3>
+</div>
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-xs font-mono text-success border border-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div>
+                                Healthy
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4 relative z-10">
+<div>
+<div class="text-xs text-slate-500 mb-1">CPU Usage</div>
+<div class="text-xl font-mono font-bold text-white">12<span class="text-sm text-slate-500">%</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary w-[12%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="text-xs text-slate-500 mb-1">RAM Alloc</div>
+<div class="text-xl font-mono font-bold text-white">400<span class="text-sm text-slate-500">MB</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[25%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-[#283539] relative z-10">
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="font-mono">99.99%</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span class="font-mono">Pod-x82</span>
+</div>
+</div>
+</div>
+<!-- Commission Engine Card -->
+<div class="bg-surface-dark border border-[#283539] rounded-xl p-5 hover:border-warning/30 transition-colors group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">calculate</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-wider mb-1">Core</span>
+<h3 class="text-white font-bold text-lg">Commission Engine</h3>
+</div>
+<div class="flex items-center gap-1.5 bg-warning/10 px-2 py-1 rounded text-xs font-mono text-warning border border-warning/20">
+<div class="w-1.5 h-1.5 rounded-full bg-warning"></div>
+                                High Load
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4 relative z-10">
+<div>
+<div class="text-xs text-slate-500 mb-1">CPU Usage</div>
+<div class="text-xl font-mono font-bold text-warning">45<span class="text-sm text-slate-500">%</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-warning w-[45%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="text-xs text-slate-500 mb-1">RAM Alloc</div>
+<div class="text-xl font-mono font-bold text-white">2.1<span class="text-sm text-slate-500">GB</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[60%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-[#283539] relative z-10">
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="font-mono">99.95%</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span class="font-mono">Pod-c12</span>
+</div>
+</div>
+</div>
+<!-- Treasury Service Card -->
+<div class="bg-surface-dark border border-[#283539] rounded-xl p-5 hover:border-primary/30 transition-colors group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">account_balance</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-wider mb-1">Financial</span>
+<h3 class="text-white font-bold text-lg">Treasury Service</h3>
+</div>
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-xs font-mono text-success border border-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div>
+                                Healthy
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4 relative z-10">
+<div>
+<div class="text-xs text-slate-500 mb-1">CPU Usage</div>
+<div class="text-xl font-mono font-bold text-white">8<span class="text-sm text-slate-500">%</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary w-[8%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="text-xs text-slate-500 mb-1">RAM Alloc</div>
+<div class="text-xl font-mono font-bold text-white">1.2<span class="text-sm text-slate-500">GB</span></div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-[#283539] relative z-10">
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="font-mono">100.00%</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span class="font-mono">Pod-t04</span>
+</div>
+</div>
+</div>
+<!-- Ledger Service Card -->
+<div class="bg-surface-dark border border-[#283539] rounded-xl p-5 hover:border-primary/30 transition-colors group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">receipt_long</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-wider mb-1">Storage</span>
+<h3 class="text-white font-bold text-lg">Ledger Service</h3>
+</div>
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-xs font-mono text-success border border-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div>
+                                Healthy
+                            </div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-4 relative z-10">
+<div>
+<div class="text-xs text-slate-500 mb-1">WebSockets</div>
+<div class="text-xl font-mono font-bold text-white">1.2k</div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full animate-pulse"></div>
+</div>
+</div>
+<div>
+<div class="text-xs text-slate-500 mb-1">Write Ops/s</div>
+<div class="text-xl font-mono font-bold text-white">342</div>
+<div class="h-1 w-full bg-[#283539] rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-emerald-500 w-[50%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-[#283539] relative z-10">
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="font-mono">99.98%</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">enhanced_encryption</span>
+<span class="font-mono text-[10px] uppercase">AES-256</span>
+</div>
+</div>
+</div>
+<!-- Audit Agent Mesh -->
+<div class="md:col-span-2 bg-gradient-to-br from-surface-dark to-surface-lighter border border-[#283539] rounded-xl p-5 hover:border-primary/40 transition-colors group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">policy</span>
+</div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="flex flex-col">
+<span class="text-primary text-xs font-mono uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">security</span>
+                                    Compliance Mesh
+                                </span>
+<h3 class="text-white font-bold text-lg">Audit Agent Mesh</h3>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<div class="text-xs text-slate-400">Jobs/sec</div>
+<div class="text-xl font-mono font-bold text-primary">450</div>
+</div>
+<div class="h-8 w-[1px] bg-[#283539]"></div>
+<div class="flex items-center gap-1.5 bg-success/10 px-2 py-1 rounded text-xs font-mono text-success border border-success/20">
+<div class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></div>
+                                    Syncing
+                                </div>
+</div>
+</div>
+<!-- Mini Histogram Visualization -->
+<div class="flex items-end gap-1 h-16 w-full mb-2 relative z-10">
+<div class="flex-1 bg-primary/20 rounded-sm h-[30%] hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-primary/20 rounded-sm h-[45%] hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-primary/20 rounded-sm h-[35%] hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-primary/20 rounded-sm h-[60%] hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-primary/30 rounded-sm h-[80%] hover:bg-primary/50 transition-all"></div>
+<div class="flex-1 bg-primary/30 rounded-sm h-[75%] hover:bg-primary/50 transition-all"></div>
+<div class="flex-1 bg-primary/40 rounded-sm h-[50%] hover:bg-primary/60 transition-all"></div>
+<div class="flex-1 bg-primary/40 rounded-sm h-[65%] hover:bg-primary/60 transition-all"></div>
+<div class="flex-1 bg-primary/50 rounded-sm h-[90%] hover:bg-primary/70 transition-all"></div>
+<div class="flex-1 bg-primary/60 rounded-sm h-[100%] hover:bg-primary/80 transition-all relative group/bar">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark border border-slate-700 text-xs text-white px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap z-20">Peak: 480/s</div>
+</div>
+<div class="flex-1 bg-primary/50 rounded-sm h-[85%] hover:bg-primary/70 transition-all"></div>
+<div class="flex-1 bg-primary/40 rounded-sm h-[70%] hover:bg-primary/60 transition-all"></div>
+<div class="flex-1 bg-primary/30 rounded-sm h-[55%] hover:bg-primary/50 transition-all"></div>
+<div class="flex-1 bg-primary/20 rounded-sm h-[40%] hover:bg-primary/40 transition-all"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono text-slate-500 uppercase tracking-widest relative z-10">
+<span>-60s</span>
+<span>Live</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BullMQ Worker Status -->
+<section class="flex-1 flex flex-col min-h-[300px]">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">checklist</span>
+                        Supreme Audit Agent (BullMQ Worker)
+                    </h2>
+<div class="flex gap-2">
+<span class="bg-[#1e2629] text-xs font-mono text-slate-400 px-2 py-1 rounded border border-[#283539]">Queue: Default</span>
+<span class="bg-[#1e2629] text-xs font-mono text-slate-400 px-2 py-1 rounded border border-[#283539]">Workers: 12</span>
+</div>
+</div>
+<div class="bg-surface-dark border border-[#283539] rounded-xl flex-1 p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 relative overflow-hidden">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Throughput Chart -->
+<div class="flex flex-col gap-4 relative z-10">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-slate-400 text-sm font-medium mb-1">Job Throughput (Jobs/min)</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-white text-3xl font-bold tracking-tight">12,402</h3>
+<span class="text-success text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                        +5.2%
+                                    </span>
+</div>
+</div>
+<div class="p-2 bg-[#202a2e] rounded-lg">
+<span class="material-symbols-outlined text-slate-400">bar_chart</span>
+</div>
+</div>
+<!-- Chart Placeholder -->
+<div class="flex-1 min-h-[160px] bg-[#1a2225] rounded-lg border border-[#283539] p-4 flex items-end justify-between gap-2">
+<!-- Generating random bars for visual -->
+<div class="w-full bg-[#283539] h-[40%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[55%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/30 hover:bg-primary/50 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[45%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/20 hover:bg-primary/40 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[70%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/50 hover:bg-primary/70 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[60%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/40 hover:bg-primary/60 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[85%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/70 hover:bg-primary/90 transition-colors"></div>
+</div>
+<div class="w-full bg-[#283539] h-[95%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary hover:bg-primary/80 transition-colors shadow-[0_0_15px_rgba(13,185,242,0.3)]"></div>
+</div>
+<div class="w-full bg-[#283539] h-[75%] rounded-t-sm relative group">
+<div class="absolute inset-0 bg-primary/60 hover:bg-primary/80 transition-colors"></div>
+</div>
+</div>
+<div class="flex justify-between text-xs text-slate-500 font-mono">
+<span>10:00</span>
+<span>10:15</span>
+<span>10:30</span>
+<span>10:45</span>
+</div>
+</div>
+<!-- Success Rate Donut -->
+<div class="flex flex-col gap-4 border-t lg:border-t-0 lg:border-l border-[#283539] lg:pl-8 pt-6 lg:pt-0 relative z-10">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-slate-400 text-sm font-medium mb-1">Success vs Failure Rate</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-white text-3xl font-bold tracking-tight">0.01%</h3>
+<span class="text-slate-500 text-sm font-medium">Failures</span>
+</div>
+</div>
+<div class="p-2 bg-[#202a2e] rounded-lg">
+<span class="material-symbols-outlined text-slate-400">pie_chart</span>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Custom SVG Donut Chart -->
+<svg class="transform -rotate-90" height="180" viewbox="0 0 180 180" width="180">
+<!-- Background Circle -->
+<circle cx="90" cy="90" fill="transparent" r="70" stroke="#283539" stroke-width="12"></circle>
+<!-- Progress Circle (Success) -->
+<circle cx="90" cy="90" fill="transparent" r="70" stroke="#0db9f2" stroke-dasharray="439.8" stroke-dashoffset="1" stroke-linecap="round" stroke-width="12"></circle>
+<!-- Small Failure blip -->
+<circle class="opacity-80" cx="90" cy="90" fill="transparent" r="70" stroke="#ef4444" stroke-dasharray="439.8" stroke-dashoffset="438" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-bold text-white tracking-tight">99.9%</span>
+<span class="text-xs text-slate-400 uppercase tracking-widest">Success</span>
+</div>
+</div>
+<div class="flex justify-center gap-6 mt-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(13,185,242,0.5)]"></div>
+<span class="text-xs text-slate-300">Completed</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-danger"></div>
+<span class="text-xs text-slate-300">Failed</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-warning"></div>
+<span class="text-xs text-slate-300">Retrying</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Infrastructure & Event Bus -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-6">
+<!-- Redis Health -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">storage</span>
+                        Redis Cluster
+                    </h2>
+</div>
+<div class="bg-surface-dark border border-[#283539] rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase tracking-wider">Memory Usage</span>
+<span class="text-2xl font-bold text-white font-mono">64<span class="text-sm text-slate-500">%</span></span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-xs text-slate-400 uppercase tracking-wider">Fragmentation</span>
+<span class="text-2xl font-bold text-success font-mono">2<span class="text-sm text-slate-500">%</span></span>
+</div>
+</div>
+<!-- Gauge Visualization -->
+<div class="relative h-4 bg-[#202a2e] rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-primary w-[64%] rounded-full shadow-[0_0_10px_rgba(13,185,242,0.4)]"></div>
+<!-- Tick marks -->
+<div class="absolute left-[25%] top-0 bottom-0 w-0.5 bg-black/20"></div>
+<div class="absolute left-[50%] top-0 bottom-0 w-0.5 bg-black/20"></div>
+<div class="absolute left-[75%] top-0 bottom-0 w-0.5 bg-black/20"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-[#202a2e] p-3 rounded-lg border border-[#283539]">
+<div class="text-[10px] text-slate-400 uppercase mb-1">Hit Rate</div>
+<div class="text-lg font-mono font-bold text-white">99.8%</div>
+</div>
+<div class="bg-[#202a2e] p-3 rounded-lg border border-[#283539]">
+<div class="text-[10px] text-slate-400 uppercase mb-1">Evicted Keys</div>
+<div class="text-lg font-mono font-bold text-slate-300">0</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Event Bus Visualizer -->
+<section class="flex-1 flex flex-col">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-white tracking-tight text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">compare_arrows</span>
+                        Event Bus
+                    </h2>
+<span class="text-xs text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded animate-pulse">Live Traffic</span>
+</div>
+<div class="bg-surface-dark border border-[#283539] rounded-xl flex-1 min-h-[360px] p-0 relative overflow-hidden flex flex-col">
+<!-- Abstract Visualization using CSS/SVG -->
+<div class="absolute inset-0 bg-[#0f1214]">
+<!-- Grid lines -->
+<div class="w-full h-full opacity-10" style="background-image: linear-gradient(#283539 1px, transparent 1px), linear-gradient(90deg, #283539 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+</div>
+<!-- Nodes -->
+<div class="relative z-10 w-full h-full p-6 flex flex-col justify-between">
+<!-- Top Nodes -->
+<div class="flex justify-around">
+<div class="flex flex-col items-center gap-2 z-20">
+<div class="w-10 h-10 rounded-lg bg-[#202a2e] border border-primary/40 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(13,185,242,0.2)]">
+<span class="material-symbols-outlined">api</span>
+</div>
+<span class="text-[10px] text-slate-400 uppercase font-mono">Gateway</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-20">
+<div class="w-10 h-10 rounded-lg bg-[#202a2e] border border-slate-600 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-[10px] text-slate-400 uppercase font-mono">Billing</span>
+</div>
+</div>
+<!-- Central Hub -->
+<div class="flex justify-center my-8">
+<div class="w-16 h-16 rounded-full bg-[#1e2629] border-2 border-primary flex items-center justify-center relative z-20 shadow-[0_0_30px_rgba(13,185,242,0.15)]">
+<span class="material-symbols-outlined text-3xl text-primary animate-pulse">hub</span>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-[#1e2629]"></div>
+</div>
+</div>
+<!-- Bottom Nodes -->
+<div class="flex justify-around">
+<div class="flex flex-col items-center gap-2 z-20">
+<div class="w-10 h-10 rounded-lg bg-[#202a2e] border border-slate-600 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">database</span>
+</div>
+<span class="text-[10px] text-slate-400 uppercase font-mono">DB Write</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-20">
+<div class="w-10 h-10 rounded-lg bg-[#202a2e] border border-slate-600 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">mark_email_read</span>
+</div>
+<span class="text-[10px] text-slate-400 uppercase font-mono">Notify</span>
+</div>
+<div class="flex flex-col items-center gap-2 z-20">
+<div class="w-10 h-10 rounded-lg bg-[#202a2e] border border-slate-600 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<span class="text-[10px] text-slate-400 uppercase font-mono">Audit</span>
+</div>
+</div>
+<!-- Connecting Lines (SVG Overlay) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0">
+<!-- Paths -->
+<path d="M100 80 L 190 180" fill="none" stroke="#283539" stroke-width="2"></path>
+<path d="M280 80 L 190 180" fill="none" stroke="#283539" stroke-width="2"></path>
+<path d="M190 240 L 100 340" fill="none" stroke="#283539" stroke-width="2"></path>
+<path d="M190 240 L 190 340" fill="none" stroke="#283539" stroke-width="2"></path>
+<path d="M190 240 L 280 340" fill="none" stroke="#283539" stroke-width="2"></path>
+<!-- Animated Particles -->
+<circle fill="#0db9f2" r="3">
+<animatemotion dur="2s" path="M100 80 L 190 180" repeatcount="indefinite"></animatemotion>
+</circle>
+<circle fill="#0db9f2" r="3">
+<animatemotion dur="3s" path="M280 80 L 190 180" repeatcount="indefinite"></animatemotion>
+</circle>
+<circle fill="#0db9f2" r="3">
+<animatemotion dur="1.5s" path="M190 240 L 100 340" repeatcount="indefinite"></animatemotion>
+</circle>
+<circle fill="#0bda57" r="3">
+<animatemotion dur="2.5s" path="M190 240 L 280 340" repeatcount="indefinite"></animatemotion>
+</circle>
+</svg>
+</div>
+<!-- Stats overlay -->
+<div class="absolute bottom-0 left-0 right-0 bg-surface-dark/90 backdrop-blur-sm border-t border-[#283539] p-3 flex justify-between text-xs font-mono">
+<span class="text-slate-400">Msg/s: <span class="text-white">8,421</span></span>
+<span class="text-slate-400">Latency: <span class="text-success">12ms</span></span>
+</div>
+</div>
+</section>
+</div>
+<!-- Full Width Log Stream Footer -->
+<div class="col-span-12 mt-2">
+<div class="bg-black rounded-lg border border-[#283539] p-4 font-mono text-xs md:text-sm text-slate-300 h-40 overflow-hidden relative">
+<div class="absolute top-2 right-2 flex gap-2">
+<span class="text-[10px] text-slate-500 uppercase border border-slate-800 px-1 rounded">stdout</span>
+<span class="text-[10px] text-slate-500 uppercase border border-slate-800 px-1 rounded">stderr</span>
+</div>
+<div class="flex flex-col gap-1.5 opacity-90">
+<div class="flex gap-3">
+<span class="text-slate-500">[14:32:05]</span>
+<span class="text-primary">INFO</span>
+<span>Audit Agent sync completed for Block #492812</span>
+</div>
+<div class="flex gap-3">
+<span class="text-slate-500">[14:32:04]</span>
+<span class="text-success">SUCCESS</span>
+<span>Treasury reconciliation batch processed (245 items)</span>
+</div>
+<div class="flex gap-3">
+<span class="text-slate-500">[14:32:03]</span>
+<span class="text-warning">WARN</span>
+<span>Commission Engine high CPU load detected (45%) - Scaling up pod...</span>
+</div>
+<div class="flex gap-3">
+<span class="text-slate-500">[14:32:01]</span>
+<span class="text-primary">INFO</span>
+<span>WebSocket connection pool refreshed. Active: 1,204</span>
+</div>
+<div class="flex gap-3 opacity-50">
+<span class="text-slate-500">[14:32:00]</span>
+<span class="text-primary">INFO</span>
+<span>Health check ping received from Load Balancer</span>
+</div>
+</div>
+<!-- Scanline effect overlay -->
+<div class="absolute inset-0 crt-overlay"></div>
+</div>
+</div>
+</main>
+<!-- Background decorative elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-30" style="background: radial-gradient(circle at 50% 0%, #1a2c33 0%, transparent 40%);"></div>
+</body></html>

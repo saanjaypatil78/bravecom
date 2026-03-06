@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Master Governance Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111618",
+                        "surface-dark": "#1a2327",
+                        "surface-highlight": "#253035",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for modern feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111618;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283539;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0db9f2;
+        }
+
+        /* Glowing effect classes */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(13, 185, 242, 0.5);
+        }
+        .glow-box {
+            box-shadow: 0 0 15px rgba(13, 185, 242, 0.15);
+        }
+        .glow-border {
+            border: 1px solid rgba(13, 185, 242, 0.3);
+            box-shadow: 0 0 8px rgba(13, 185, 242, 0.2) inset;
+        }
+        
+        /* Radial Gauge Background */
+        .radial-bg {
+            background: conic-gradient(
+                #0db9f2 0% 10.8%, 
+                #1a2327 10.8% 100%
+            );
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-72 h-full bg-[#111618] border-r border-[#283539]">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center text-white font-bold">
+<span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold tracking-tight">Master Gov</h1>
+<p class="text-[#9cb2ba] text-xs font-mono">v4.0.1 // Admin</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 border border-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Command Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#9cb2ba] hover:bg-[#1a2327] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#9cb2ba] hover:bg-[#1a2327] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Payout Portal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#9cb2ba] hover:bg-[#1a2327] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span class="text-sm font-medium">Audit Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#9cb2ba] hover:bg-[#1a2327] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">System Config</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="bg-[#1a2327] rounded-lg p-4 border border-[#283539]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs text-[#9cb2ba] uppercase tracking-wider">Server Time</span>
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+</div>
+<p class="text-white font-mono text-sm">14:32:01 UTC</p>
+<p class="text-[#586c75] text-[10px] mt-1 font-mono break-all">Ledger: 0x7f...3a2</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto relative">
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 bg-[#111618] border-b border-[#283539]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">admin_panel_settings</span>
+<span class="font-bold text-white">Master Gov</span>
+</div>
+<button class="text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Top Stats Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 border-b border-[#283539] bg-[#111618]/95 backdrop-blur sticky top-0 z-20">
+<div class="md:col-span-1 flex items-center gap-3">
+<h2 class="text-xl font-bold text-white tracking-tight">Dashboard Overview</h2>
+</div>
+<div class="md:col-span-3 flex justify-end items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-xs text-[#9cb2ba] uppercase">Current Active Cycle</span>
+<span class="text-sm font-bold text-white">Q3 Investment Phase</span>
+</div>
+<div class="h-8 w-px bg-[#283539]"></div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 bg-[#283539] hover:bg-[#35454b] text-white px-3 py-1.5 rounded text-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">notifications</span>
+<span class="bg-red-500 text-white text-[10px] font-bold px-1.5 rounded-full">3</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-cover bg-center border border-[#283539]" data-alt="Admin user profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvcGtlWHZxuCWlB3zjSD0b5XdHhE0QpexWNJTH0UxCMMDECJPc6DxIp6p4JCqdJqtG85NWBeHagOe1CDlREAnA42oEGopfM9jNVg171S18TBRl5ZtlMW4mdB4Q35imgGSO_KP_1rCFLkdte1KMo-raV3ANkRiyvm9o27CZqbwKQNcaKMVMWRpXYfogYvwdUSfm9Xaxxb4iJ1JFtKMOgZiQ_mHkvgq-1V8LAa8pC0zq9BhOAprA2N7U0gWm48aKz5QZEJ_qK79f4tzt');"></div>
+</div>
+</div>
+</div>
+<!-- Content Container -->
+<div class="p-6 md:p-8 space-y-8 max-w-[1600px] mx-auto w-full">
+<!-- Main KPI Section: The "Brain" -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Central Radial Gauge (The Core Metric) -->
+<div class="lg:col-span-8 flex flex-col">
+<div class="relative bg-[#1a2327] border border-[#283539] rounded-xl p-8 overflow-hidden min-h-[400px] flex flex-col justify-between glow-box">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<h3 class="text-[#9cb2ba] text-sm font-medium uppercase tracking-widest mb-1">Pre-IPO Corpus Progress</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl md:text-5xl font-bold text-white tracking-tighter">₹12,00,00,000</span>
+<span class="text-lg text-[#9cb2ba]">/ ₹111 Cr</span>
+</div>
+</div>
+<div class="bg-primary/10 border border-primary/20 px-3 py-1 rounded text-primary text-xs font-mono font-bold uppercase tracking-wider animate-pulse">
+                                    Live Inflow
+                                </div>
+</div>
+<div class="flex-1 flex items-center justify-center py-8 relative z-10">
+<!-- Semi Circle Gauge Visualization -->
+<div class="relative w-[280px] h-[140px] md:w-[360px] md:h-[180px] flex justify-center items-end overflow-hidden">
+<div class="absolute bottom-0 w-full h-[200%] rounded-full radial-bg mask-image-b-fade" style="transform: rotate(-90deg);"></div>
+<!-- Inner Circle Mask -->
+<div class="absolute bottom-0 w-[80%] h-[160%] bg-[#1a2327] rounded-full z-10 flex items-end justify-center pb-2">
+<div class="text-center mb-8">
+<span class="block text-5xl md:text-6xl font-bold text-white glow-text">10.8%</span>
+<span class="text-sm text-primary uppercase tracking-widest font-medium">Goal Met</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 relative z-10 border-t border-[#283539] pt-6 mt-2">
+<div>
+<p class="text-[#586c75] text-xs uppercase mb-1">24h Inflow</p>
+<p class="text-emerald-400 font-bold text-lg">+₹45.2L</p>
+</div>
+<div>
+<p class="text-[#586c75] text-xs uppercase mb-1">Total Contributors</p>
+<p class="text-white font-bold text-lg">1,248</p>
+</div>
+<div>
+<p class="text-[#586c75] text-xs uppercase mb-1">Avg Ticket Size</p>
+<p class="text-white font-bold text-lg">₹96,153</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Widgets -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- System Integrity -->
+<div class="bg-[#1a2327] border border-[#283539] rounded-xl p-6 relative overflow-hidden group">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+                                    System Integrity
+                                </h3>
+<span class="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded border border-emerald-500/20">99.9% Uptime</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="h-16 w-16 rounded-full border-4 border-[#283539] border-t-emerald-500 border-r-emerald-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500">check</span>
+</div>
+<div>
+<p class="text-sm text-[#9cb2ba]">Immutable Ledger</p>
+<p class="text-white font-bold">Health: Optimal</p>
+<p class="text-[10px] text-[#586c75] mt-1">Last check: 2s ago</p>
+</div>
+</div>
+<div class="w-full bg-[#283539] h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[98%] shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+</div>
+</div>
+<!-- Treasury Overflow -->
+<div class="bg-[#1a2327] border border-[#283539] rounded-xl p-6 relative flex-1 flex flex-col justify-center">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/30 text-[48px]">account_balance</span>
+</div>
+<h3 class="text-[#9cb2ba] text-xs font-medium uppercase tracking-widest mb-2">Treasury Overflow</h3>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-3xl font-bold text-white tracking-tight">₹45,20,000</span>
+<span class="text-emerald-400 text-sm font-medium mb-1 flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 12%
+                                </span>
+</div>
+<p class="text-xs text-[#586c75]">Excess funds reserved for operations &amp; emergency liquidity.</p>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 bg-[#283539] hover:bg-[#35454b] text-white text-xs py-2 rounded transition-colors border border-[#3b4e54]">View Ledger</button>
+<button class="flex-1 bg-primary/10 hover:bg-primary/20 text-primary text-xs py-2 rounded transition-colors border border-primary/20">Allocate</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Row: Charts & Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Ecosystem Growth Chart -->
+<div class="lg:col-span-2 bg-[#1a2327] border border-[#283539] rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-white font-bold text-lg">Ecosystem Growth</h3>
+<p class="text-xs text-[#9cb2ba]">AUM Growth vs 15% ROI Target</p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 text-xs text-white bg-[#283539] rounded cursor-pointer">1W</span>
+<span class="px-2 py-1 text-xs text-[#111618] bg-primary font-bold rounded cursor-pointer">1M</span>
+<span class="px-2 py-1 text-xs text-white bg-[#283539] rounded cursor-pointer">3M</span>
+</div>
+</div>
+<!-- CSS-only Chart Simulation -->
+<div class="h-64 w-full flex items-end justify-between gap-1 relative pt-10">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-8">
+<div class="w-full h-px bg-[#283539] border-t border-dashed border-[#586c75]/30"></div>
+<div class="w-full h-px bg-[#283539] border-t border-dashed border-[#586c75]/30"></div>
+<div class="w-full h-px bg-[#283539] border-t border-dashed border-[#586c75]/30"></div>
+<div class="w-full h-px bg-[#283539] border-t border-dashed border-[#586c75]/30"></div>
+<div class="w-full h-px bg-[#283539]"></div>
+</div>
+<!-- ROI Target Line -->
+<div class="absolute top-[30%] left-0 w-full h-px bg-emerald-500/50 z-0">
+<span class="absolute -top-3 right-0 text-[10px] text-emerald-400 bg-[#1a2327] px-1">Target ROI (15%)</span>
+</div>
+<!-- Bar/Area Representation -->
+<div class="w-full flex items-end justify-between gap-2 z-10 h-full pb-8 px-2">
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[20%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹1.2Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[35%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹2.8Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[28%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹2.1Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[45%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹4.2Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[52%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹5.1Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[60%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹6.8Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[58%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹6.5Cr</div></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t h-[72%] transition-all duration-300 relative group"><div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded">₹8.9Cr</div></div>
+<div class="w-full bg-gradient-to-t from-primary/60 to-primary rounded-t h-[85%] shadow-[0_0_15px_rgba(13,185,242,0.4)] relative group">
+<div class="hidden group-hover:block absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-[#111618] font-bold text-xs px-2 py-1 rounded">₹12.0Cr</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions & Referrals -->
+<div class="flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-[#1a2327] border border-[#283539] rounded-xl p-6">
+<h3 class="text-white font-bold mb-4 flex justify-between items-center">
+                                Action Required 
+                                <span class="bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">45</span>
+</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded bg-[#283539] border-l-2 border-primary hover:bg-[#35454b] cursor-pointer transition-colors group">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded text-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div>
+<p class="text-sm text-white font-medium">Pending Payouts</p>
+<p class="text-xs text-[#9cb2ba]">42 users waiting</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#586c75] text-[18px]">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded bg-[#283539] border-l-2 border-emerald-500 hover:bg-[#35454b] cursor-pointer transition-colors group">
+<div class="flex items-center gap-3">
+<div class="bg-emerald-500/10 p-2 rounded text-emerald-500 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</div>
+<div>
+<p class="text-sm text-white font-medium">KYC Approvals</p>
+<p class="text-xs text-[#9cb2ba]">3 high-value users</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#586c75] text-[18px]">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- 6-Level Referral Breakdown -->
+<div class="bg-[#1a2327] border border-[#283539] rounded-xl p-6 flex-1">
+<h3 class="text-white font-bold mb-4">Referral Levels (Active)</h3>
+<div class="flex flex-col gap-2">
+<!-- Level 1 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 1</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">85%</span>
+</div>
+<!-- Level 2 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 2</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary/80 w-[65%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">65%</span>
+</div>
+<!-- Level 3 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 3</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary/60 w-[45%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">45%</span>
+</div>
+<!-- Level 4 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 4</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 w-[30%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">30%</span>
+</div>
+<!-- Level 5 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 5</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary/30 w-[15%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">15%</span>
+</div>
+<!-- Level 6 -->
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-[#586c75] w-8">Lvl 6</span>
+<div class="flex-1 h-2 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary/20 w-[5%]"></div>
+</div>
+<span class="text-xs text-white w-8 text-right">5%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table -->
+<div class="bg-[#1a2327] border border-[#283539] rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-[#283539] flex justify-between items-center">
+<h3 class="text-white font-bold text-lg">Live Ledger Feed</h3>
+<button class="text-xs text-primary hover:text-white transition-colors">View All Transactions</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-[#9cb2ba]">
+<thead class="bg-[#283539] text-xs uppercase font-medium text-white">
+<tr>
+<th class="px-6 py-3">Transaction ID</th>
+<th class="px-6 py-3">User</th>
+<th class="px-6 py-3">Type</th>
+<th class="px-6 py-3">Amount</th>
+<th class="px-6 py-3">Status</th>
+<th class="px-6 py-3 text-right">Time</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#283539]">
+<tr class="hover:bg-[#283539]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs">0x8a...2b9</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-600" data-alt="User avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAd2e13b7LeipJ9I1-sI1qfTxuXhcVFB7NKOavLpiGx8wb_HwHJI_MsvV9-vSWW-SlpjpCr9hrM0tXeJNawvIg8NiRNgfFhgM-TNqdwQ4ABQd6W4SKsMKBpj6wnjc0E_h02ey_7drpyx72MQlljC_AzkIsTd1JcrgClUlelrk_Zc1RnmKF2FIBjSocLp3IHIyZ2W041TqYAgl4RFhe4JwQcM1XHkw1C3m9GMzrdLnHK4UNGhErBRoAx5RwBcWVKtIlOdBbtVj6t02FO'); background-size: cover;"></div>
+<span class="text-white font-medium">Vikram S.</span>
+</td>
+<td class="px-6 py-4">Deposit (Level 1)</td>
+<td class="px-6 py-4 text-white font-bold">₹5,00,000</td>
+<td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded text-xs border border-emerald-500/20">Confirmed</span></td>
+<td class="px-6 py-4 text-right font-mono text-xs">2m ago</td>
+</tr>
+<tr class="hover:bg-[#283539]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs">0x4c...9d1</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-600" data-alt="User avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDi1wXWEl5HOK6MB_TUnLbMnbOmIQdxgi0ijmRa2Kv-Aq5w-qCnL2pT4OvvoJFtkRAypHAQVNIcZt-Nd6dFyL7ldPWEpfFwWxwmMLGvOLSeZfV4ZYZfHez4zErF_eWVlhWa_kKrb4SUrEDtY2W2sTb9kh3uz0oOVy5yBEzYm-a1A6H64SI6-8fXdP2bqoS_mDwS13oSemJTgQThKqwhP2BBdgnIo_svS5tD6b6dftdhW6emyafAoqtX340O6-TT7JwiBaa_fM3OzBHb'); background-size: cover;"></div>
+<span class="text-white font-medium">Ananya M.</span>
+</td>
+<td class="px-6 py-4">Deposit (Level 3)</td>
+<td class="px-6 py-4 text-white font-bold">₹2,50,000</td>
+<td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded text-xs border border-emerald-500/20">Confirmed</span></td>
+<td class="px-6 py-4 text-right font-mono text-xs">8m ago</td>
+</tr>
+<tr class="hover:bg-[#283539]/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs">0x1e...5f4</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-600" data-alt="User avatar 3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0kpv-7clZxJk4cYD0fhiZC32wK0-EzaSb6yFRAvMTX9UPooICF5V_BjCGCw0jNrpDGtz36mCFfW2qXYADE_gpELQZISPuuH0calVtdzYzgqA5yMgLoXkQxuceDrjG7ctrxuzbIdoXCwm7GC0vJJWxg0x3eRkP3KLglzgDlGEKhbNeZQzqEEfKkNnbdCMIv3Q8TN16XoWh8DREgUV9c3MWJl8AHEFFMbhXESrVkd-tgexAYPSQvHECcPXjMUB4h0m4BtWNrIldAkn'); background-size: cover;"></div>
+<span class="text-white font-medium">Rahul K.</span>
+</td>
+<td class="px-6 py-4">Referral Bonus</td>
+<td class="px-6 py-4 text-white font-bold">₹12,500</td>
+<td class="px-6 py-4"><span class="bg-yellow-500/10 text-yellow-400 px-2 py-1 rounded text-xs border border-yellow-500/20">Pending</span></td>
+<td class="px-6 py-4 text-right font-mono text-xs">15m ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

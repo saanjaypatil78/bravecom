@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investment Tiers &amp; Multipliers Master Table</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4754;
+            border-radius: 10px;
+        }
+        .table-sticky-column {
+            position: sticky;
+            left: 0;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">account_balance</span>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">InvestSaaS</h2>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-bold text-primary border-b-2 border-primary pb-5 pt-5" href="#">Tiers</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Partners</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors" href="#">Reports</a>
+</div>
+</div>
+<div class="flex flex-1 max-w-md items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-transparent focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-500 text-slate-900 dark:text-white" placeholder="Search tiers, amounts, or rules..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-800 mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold dark:text-white">Admin User</p>
+<p class="text-[10px] text-slate-500">Master Access</p>
+</div>
+<img alt="User Profile Image" class="w-9 h-9 rounded-full border border-slate-200 dark:border-slate-700" data-alt="Professional portrait of a male administrative user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCicCR8P9duFSHDMRbg9CKI4eKEF9k23Gs9tP4fbzCMUp-LA0iL7HPY0_gs7tqNh7_8-GW23TLANmzGdtuR_v7cyxOZIupyfPHpoSVYu0IsHSasf6pRGTdGcbh-j9_P-USo7zUxMZUGp3nNN-BrElMC7TCVm_SVOmrmCYa0kDm6ASsOmjAZw8DimgjaCI-rLgPkKaY06BwUsDlEl8sLmu8v0i8xGyR1bI5daNaFhQ4ySf1u73F6wDO3o_LdYfM1a29R-_1dsZy5dhdu"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-8">
+<!-- Header Section -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+<div class="space-y-2">
+<nav class="flex items-center gap-2 text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">
+<span>Investment Management</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary">Master Table</span>
+</nav>
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+                    Investment Tiers &amp; Multipliers Master Table
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl text-base">
+                    Manage the 15-tier progression and 6-level referral commission structure targeting <span class="text-primary font-bold">111 Cr AUM</span>.
+                </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-2.5 px-5 rounded-lg transition-colors text-sm">
+<span class="material-symbols-outlined text-lg">analytics</span>
+                    View Analytics
+                </button>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-2.5 px-5 rounded-lg transition-all shadow-lg shadow-primary/20 text-sm">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                    Export as PDF
+                </button>
+</div>
+</div>
+<!-- KPI Summary -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<p class="text-slate-500 text-sm font-medium mb-1 uppercase tracking-tighter">AUM Target</p>
+<div class="flex items-end justify-between">
+<h3 class="text-2xl font-black dark:text-white">111.00 Cr</h3>
+<span class="text-emerald-500 text-xs font-bold mb-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12.5%
+                    </span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full w-[65%]" data-alt="Progress bar showing 65% completion"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<p class="text-slate-500 text-sm font-medium mb-1 uppercase tracking-tighter">Base Investment</p>
+<h3 class="text-2xl font-black dark:text-white">₹51,111</h3>
+<p class="text-slate-400 text-xs mt-1">Tier 1 Entry Threshold</p>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<p class="text-slate-500 text-sm font-medium mb-1 uppercase tracking-tighter">Active Tiers</p>
+<h3 class="text-2xl font-black dark:text-white">09 / 15</h3>
+<p class="text-slate-400 text-xs mt-1">6 Locked Tiers remaining</p>
+</div>
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<p class="text-slate-500 text-sm font-medium mb-1 uppercase tracking-tighter">Avg. Referral Pay</p>
+<h3 class="text-2xl font-black dark:text-white">4.65%</h3>
+<p class="text-emerald-500 text-xs mt-1 font-bold">Optimized for 111 Cr</p>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-xl">
+<!-- Table Header / Filters -->
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/20">
+<div class="flex items-center gap-1 bg-white dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
+<button class="px-4 py-1.5 text-xs font-bold bg-primary text-white rounded-md shadow-sm">All Tiers</button>
+<button class="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Active</button>
+<button class="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Commission Rules</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg flex items-center gap-2 text-sm font-medium border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                        Filter
+                    </button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg flex items-center gap-2 text-sm font-medium border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<span class="material-symbols-outlined text-lg">view_column</span>
+                        Columns
+                    </button>
+<div class="h-6 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+<button class="flex items-center gap-2 bg-primary/10 text-primary hover:bg-primary/20 font-bold py-2 px-4 rounded-lg transition-colors text-xs">
+<span class="material-symbols-outlined text-base">add_box</span>
+                        Add New Tier
+                    </button>
+</div>
+</div>
+<!-- Spreadsheet View -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[1200px]">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/40 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+<th class="table-sticky-column bg-slate-50 dark:bg-slate-800 p-4 border-b border-r border-slate-200 dark:border-slate-800">Tier Level</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800">Multiplier</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800">Min. Investment (INR)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L1 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L2 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L3 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L4 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L5 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-center bg-primary/5 dark:bg-primary/5">L6 (%)</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800">Monthly ROI</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800">Partner Override</th>
+<th class="p-4 border-b border-slate-200 dark:border-slate-800 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Row 1: Active -->
+<tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors border-b border-slate-100 dark:border-slate-800 bg-primary/10 dark:bg-primary/5">
+<td class="table-sticky-column bg-white dark:bg-slate-900 p-4 font-black text-primary border-r border-slate-200 dark:border-slate-800">Tier 01</td>
+<td class="p-4 font-medium text-slate-900 dark:text-white">1.0x</td>
+<td class="p-4 font-mono font-bold">51,111.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">10.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">7.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">5.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">3.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">2.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">1.00</td>
+<td class="p-4 text-emerald-500 font-bold">12.5%</td>
+<td class="p-4 text-slate-600 dark:text-slate-400">2.5%</td>
+<td class="p-4 text-right">
+<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-1 rounded text-[10px] font-black uppercase">Active</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors border-b border-slate-100 dark:border-slate-800">
+<td class="table-sticky-column bg-white dark:bg-slate-900 p-4 font-black border-r border-slate-200 dark:border-slate-800">Tier 02</td>
+<td class="p-4 font-medium text-slate-900 dark:text-white">1.5x</td>
+<td class="p-4 font-mono font-bold">76,666.50</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">10.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">7.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">5.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">3.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">2.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">1.00</td>
+<td class="p-4 text-emerald-500 font-bold">13.0%</td>
+<td class="p-4 text-slate-600 dark:text-slate-400">2.5%</td>
+<td class="p-4 text-right">
+<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-1 rounded text-[10px] font-black uppercase">Active</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors border-b border-slate-100 dark:border-slate-800">
+<td class="table-sticky-column bg-white dark:bg-slate-900 p-4 font-black border-r border-slate-200 dark:border-slate-800">Tier 03</td>
+<td class="p-4 font-medium text-slate-900 dark:text-white">2.2x</td>
+<td class="p-4 font-mono font-bold">112,444.20</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">11.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">8.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">5.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">3.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">2.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">1.00</td>
+<td class="p-4 text-emerald-500 font-bold">13.5%</td>
+<td class="p-4 text-slate-600 dark:text-slate-400">3.0%</td>
+<td class="p-4 text-right">
+<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-1 rounded text-[10px] font-black uppercase">Active</span>
+</td>
+</tr>
+<!-- Tier 10 Example -->
+<tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors border-b border-slate-100 dark:border-slate-800 opacity-60">
+<td class="table-sticky-column bg-white dark:bg-slate-900 p-4 font-black border-r border-slate-200 dark:border-slate-800">Tier 10</td>
+<td class="p-4 font-medium text-slate-900 dark:text-white">150x</td>
+<td class="p-4 font-mono font-bold">7,666,650.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">15.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">10.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">7.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">5.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">3.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">2.00</td>
+<td class="p-4 text-emerald-500 font-bold">18.0%</td>
+<td class="p-4 text-slate-600 dark:text-slate-400">5.0%</td>
+<td class="p-4 text-right">
+<span class="bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-500 px-2 py-1 rounded text-[10px] font-black uppercase tracking-tight">Locked</span>
+</td>
+</tr>
+<!-- Final Tier Target -->
+<tr class="hover:bg-primary/5 dark:hover:bg-primary/5 transition-colors border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 border-t-2 border-primary/20">
+<td class="table-sticky-column bg-slate-100 dark:bg-slate-800 p-4 font-black border-r border-slate-200 dark:border-slate-800">Tier 15</td>
+<td class="p-4 font-medium text-slate-900 dark:text-white">2000x</td>
+<td class="p-4 font-mono font-black text-primary">1,110,000,000.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">18.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">12.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">8.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">6.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">4.00</td>
+<td class="p-4 text-center font-bold text-slate-700 dark:text-slate-300">3.00</td>
+<td class="p-4 text-emerald-500 font-black">22.0%</td>
+<td class="p-4 text-slate-600 dark:text-slate-400 font-bold">8.0%</td>
+<td class="p-4 text-right">
+<span class="bg-primary/20 text-primary px-2 py-1 rounded text-[10px] font-black uppercase">Goal Target</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="p-4 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-medium text-slate-500">
+<div class="flex items-center gap-4">
+<p>Total Tiers: <span class="text-slate-900 dark:text-white font-bold">15</span></p>
+<p>Referral Pool Max: <span class="text-slate-900 dark:text-white font-bold">51.0%</span></p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<div class="px-2">Page <span class="text-slate-900 dark:text-white font-bold">1</span> of 1</div>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- System Notes -->
+<div class="mt-8 bg-primary/5 rounded-xl border border-primary/20 p-6 flex gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">info</span>
+<div class="space-y-1">
+<h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">Admin Note: Commission Calculation</h4>
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
+                    All multipliers are calculated based on the base entry investment of ₹51,111. Referral commissions are deducted from the gross ROI spread. 
+                    The Franchise Partner's override is calculated separately on the total net profit of the referred AUM. Any modifications to Tier 15 require Master Admin approval as it hits the final 111 Cr milestone.
+                </p>
+</div>
+</div>
+</main>
+<footer class="max-w-[1440px] mx-auto px-6 py-12 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-xs text-slate-400">© 2024 InvestSaaS Platform. All rights reserved. Tier structure V4.2.0</p>
+</footer>
+</body></html>

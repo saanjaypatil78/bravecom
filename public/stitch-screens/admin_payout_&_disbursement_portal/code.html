@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Payout &amp; Disbursement Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-dark": "#25cf5e",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2bee6c;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #2bee6c;
+        }
+        
+        /* Tabular nums for currency */
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased selection:bg-primary/30">
+<div class="flex min-h-screen w-full flex-row overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden w-64 flex-col border-r border-slate-200 bg-surface-light dark:border-slate-800 dark:bg-surface-dark lg:flex">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-2">
+<div class="size-10 rounded-full bg-slate-100 bg-center bg-cover" data-alt="Abstract green finance logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGYpIXXhFmAJXLJgdrVrLupYm7ssVc7Nlb8fxnR34gEK45N56Ml_YqWlzsgv-mK7og7gHK-Gn9YIyewu5J59nAW9UTpHKz3ms03jnj_L-U3IluQabeECvXEuW9Ama2OaqaWHPX7SGBIENfOGwjN21OABCxuMT37SnVKZXYbtVb37G9-AEc5edOS0XOm4yBBOA1vRUY3AjlsUzXlVbamJYisItz0YFzawGz5QmH4LvjjBPWSOSzYeiH5utFFUFJonyFNQhEJ5nTVgmi");'></div>
+<div class="flex flex-col">
+<h1 class="text-base font-semibold text-slate-900 dark:text-white">Admin Portal</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400">Investment SaaS</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">donut_small</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">monetization_on</span>
+<span class="text-sm font-medium">Investments</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-primary/10 px-3 py-2.5 text-emerald-800 dark:bg-primary/20 dark:text-emerald-100 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary-dark dark:text-primary">account_balance</span>
+<span class="text-sm font-medium">Payout Portal</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="px-2">
+<div class="flex items-center gap-3 rounded-lg bg-slate-50 p-3 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-center rounded-full bg-orange-100 p-2 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 dark:text-white">Audit Required</span>
+<span class="text-[10px] text-slate-500 dark:text-slate-400">3 flagged transactions</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex flex-1 flex-col overflow-y-auto bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-surface-light px-6 dark:border-slate-800 dark:bg-surface-dark/90 backdrop-blur-sm">
+<div class="flex items-center gap-4">
+<button class="lg:hidden text-slate-500 hover:text-slate-700 dark:text-slate-400">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span>Admin</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Financials</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-medium text-slate-900 dark:text-white">Payout Portal</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center rounded-lg bg-slate-100 px-3 py-1.5 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 placeholder:text-slate-400 text-slate-900 dark:text-white w-64" placeholder="Search user ID or name..." type="text"/>
+</div>
+<button class="relative rounded-full p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 bg-cover bg-center" data-alt="Admin user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_Hl-ymADWRlPBQSeVyc7CnHLTRAiE7kWhEBnplnfQB9W3cOAjPMY5m8xqeTNy2pjTRyUNabdFQJCOw1NHkixANwq1T4XywZGhOnAHxEEWuSernRkvuNx9ePx8MkBA9eki4SyQ1OuGl7BBMkVo4Ujv8sAgAFDYssGHuBXszlkBVlBhGF83ytJpoAOtnnsc8dD-_7eJ6-NHPRyxP7SAhaldZBRRieu5NRNUs9MZmlABCZ4a92vDvjvVibfed75-2wmKFQCte0e-Ti7v");'></div>
+</div>
+</header>
+<div class="p-6 md:p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+<!-- Page Title Area -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Payout &amp; Disbursement</h1>
+<p class="mt-2 text-slate-500 dark:text-slate-400 max-w-2xl">Manage financial disbursements and generate batch reports. Ensure all flagged items are reviewed before processing.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-4 py-2 bg-white dark:bg-surface-dark rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-end">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Wallet Balance</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white tabular-nums">₹ 24,50,000.00</span>
+</div>
+</div>
+</div>
+<!-- Control Panel: Cycle & Reports -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Date Range & Generate Report -->
+<div class="lg:col-span-12 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-5">
+<div class="flex flex-col lg:flex-row items-start lg:items-end gap-5">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full lg:w-auto">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Cycle Start Date</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">calendar_today</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 bg-white text-slate-900 focus:border-primary focus:ring-primary sm:text-sm dark:bg-slate-800 dark:border-slate-600 dark:text-white" placeholder="Select date" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Cycle End Date</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">event</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 bg-white text-slate-900 focus:border-primary focus:ring-primary sm:text-sm dark:bg-slate-800 dark:border-slate-600 dark:text-white" placeholder="Select date" type="date"/>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3 mt-2 lg:mt-0 lg:ml-auto w-full lg:w-auto">
+<button class="flex-1 lg:flex-none inline-flex justify-center items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                                    Export CSV
+                                </button>
+<button class="flex-1 lg:flex-none inline-flex justify-center items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors">
+<span class="material-symbols-outlined text-[20px]">description</span>
+                                    Generate Batch Report
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col">
+<!-- Table Header Controls -->
+<div class="px-5 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<h2 class="text-lg font-semibold text-slate-900 dark:text-white">Current Cycle Payouts</h2>
+<span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">
+                                48 Records
+                            </span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="text-slate-500 dark:text-slate-400">Filter by status:</span>
+<select class="rounded-lg border-slate-300 py-1.5 text-sm focus:border-primary focus:ring-primary dark:bg-slate-800 dark:border-slate-600 dark:text-white">
+<option>All Statuses</option>
+<option>Approved</option>
+<option>Pending Review</option>
+<option>On Hold</option>
+</select>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto custom-scrollbar rounded-b-xl">
+<table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400" scope="col">User Details</th>
+<th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400" scope="col">Earnings (₹)</th>
+<th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400" scope="col">Disbursed (₹)</th>
+<th class="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 bg-slate-100/50 dark:bg-slate-800" scope="col">Net Payable (₹)</th>
+<th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400" scope="col">Status</th>
+<th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400" scope="col">Approve</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 bg-white dark:divide-slate-700 dark:bg-surface-dark">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="whitespace-nowrap px-6 py-4">
+<div class="flex items-center">
+<div class="h-9 w-9 flex-shrink-0 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs">
+                                                RS
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Rahul Sharma</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 font-mono">ID: INV-8832</div>
+</div>
+</div>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        1,45,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        1,20,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-bold text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-800/20 tabular-nums">
+                                        25,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                            Pending
+                                        </span>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle1">
+<input class="sr-only peer" id="toggle1" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="whitespace-nowrap px-6 py-4">
+<div class="flex items-center">
+<div class="h-9 w-9 flex-shrink-0 rounded-full bg-pink-100 flex items-center justify-center text-pink-700 font-bold text-xs">
+                                                PK
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Priya Kapoor</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 font-mono">ID: INV-9921</div>
+</div>
+</div>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        8,50,200.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        8,00,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-bold text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-800/20 tabular-nums">
+                                        50,200.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                            Approved
+                                        </span>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle2">
+<input checked="" class="sr-only peer" id="toggle2" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="whitespace-nowrap px-6 py-4">
+<div class="flex items-center">
+<div class="h-9 w-9 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">
+                                                AM
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Arjun Mehta</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 font-mono">ID: INV-1045</div>
+</div>
+</div>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        2,10,000.50
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        0.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-bold text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-800/20 tabular-nums">
+                                        2,10,000.50
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<span class="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800 dark:bg-red-900/30 dark:text-red-400">
+                                            On Hold
+                                        </span>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle3">
+<input class="sr-only peer" id="toggle3" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="whitespace-nowrap px-6 py-4">
+<div class="flex items-center">
+<div class="h-9 w-9 flex-shrink-0 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">
+                                                SJ
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Sneha Joshi</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 font-mono">ID: INV-7722</div>
+</div>
+</div>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        55,400.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        15,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-bold text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-800/20 tabular-nums">
+                                        40,400.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                            Approved
+                                        </span>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle4">
+<input checked="" class="sr-only peer" id="toggle4" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="whitespace-nowrap px-6 py-4">
+<div class="flex items-center">
+<div class="h-9 w-9 flex-shrink-0 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xs">
+                                                VK
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Vikram Khanna</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 font-mono">ID: INV-3391</div>
+</div>
+</div>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        3,20,500.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm text-slate-500 dark:text-slate-400 tabular-nums">
+                                        3,00,000.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-bold text-slate-900 dark:text-white bg-slate-50/50 dark:bg-slate-800/20 tabular-nums">
+                                        20,500.00
+                                    </td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                            Pending
+                                        </span>
+</td>
+<td class="whitespace-nowrap px-6 py-4 text-center">
+<label class="flex items-center justify-center cursor-pointer relative" for="toggle5">
+<input class="sr-only peer" id="toggle5" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-slate-200 dark:border-slate-700 bg-white px-4 py-3 sm:px-6 dark:bg-surface-dark rounded-b-xl">
+<div class="flex flex-1 justify-between sm:hidden">
+<a class="relative inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-600 dark:text-white" href="#">Previous</a>
+<a class="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-600 dark:text-white" href="#">Next</a>
+</div>
+<div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-slate-700 dark:text-slate-400">
+                                    Showing <span class="font-medium text-slate-900 dark:text-white">1</span> to <span class="font-medium text-slate-900 dark:text-white">5</span> of <span class="font-medium text-slate-900 dark:text-white">48</span> results
+                                </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 dark:ring-slate-600 dark:hover:bg-slate-800" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-slate-900 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 dark:text-white dark:ring-slate-600 dark:hover:bg-slate-800" href="#">2</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 dark:text-white dark:ring-slate-600 dark:hover:bg-slate-800" href="#">3</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 dark:ring-slate-600 dark:hover:bg-slate-800" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="sticky bottom-0 border-t border-slate-200 bg-white/90 p-4 dark:border-slate-800 dark:bg-surface-dark/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<div class="mx-auto flex max-w-[1400px] items-center justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+<span class="font-medium text-slate-900 dark:text-white">Selected for Disbursement:</span>
+<span class="font-bold text-primary dark:text-primary tabular-nums text-lg">₹ 90,600.00</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 ml-1">(3 Users)</span>
+</div>
+<div class="flex gap-3">
+<button class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800">
+                            Cancel
+                        </button>
+<button class="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                            Process Disbursement
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

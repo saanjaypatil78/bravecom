@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Legacy Archive - Brave Ecom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4d125",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711",
+                        "neutral-dark": "#2a281e",
+                        "neutral-light": "#393628",
+                        "text-muted": "#bab59c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom scrollbar for the archive feeling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181711;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #393628;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #54503b;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 font-display selection:bg-primary selection:text-black">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-neutral-light bg-background-dark/95 backdrop-blur-md px-6 py-4 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="flex size-8 items-center justify-center rounded bg-primary text-black">
+<span class="material-symbols-outlined text-xl">diamond</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Brave Ecom</h2>
+</div>
+<nav class="hidden items-center gap-8 lg:flex">
+<a class="text-sm font-medium text-text-muted transition-colors hover:text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium text-text-muted transition-colors hover:text-primary" href="#">Investment Cycle</a>
+<a class="text-sm font-medium text-primary" href="#">Legacy Archive</a>
+<a class="text-sm font-medium text-text-muted transition-colors hover:text-primary" href="#">Wallet</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden w-64 lg:block">
+<div class="relative flex h-10 w-full items-center overflow-hidden rounded-lg bg-neutral-light/50 focus-within:ring-1 focus-within:ring-primary">
+<div class="flex h-full items-center justify-center pl-3 text-text-muted">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="h-full w-full border-none bg-transparent px-3 text-sm text-white placeholder-text-muted focus:outline-none focus:ring-0" placeholder="Search archives..."/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full p-2 text-text-muted hover:bg-neutral-light hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-primary"></span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full border border-neutral-light bg-neutral-dark" data-alt="User profile avatar image">
+<img alt="User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjnrkbvcrLYgwMpFRP-7ZwxDJVKw36jaLIg-IcLKZb08cCwnCTRgzi8qz9ilxG9QTXR7hvojdNHyO-z-V0ZpXEdl8hIhvKgGcsTXCEQ3U9T8AYK5uxqAwVvezI1uzTpX9nWbTN3sZVq4n-uDTTEX0k1hckxNYtWeO7oF3CB2Vij5jV-lOTbVJRpVJny4d7rLIRiswdRevGh8l5vz5UhUSHqqC_Q89y73B6nk9lCByNusypowGPT14yUNF4Ny74_lbL-qYLS70MEH1N"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 flex-col px-6 py-8 lg:px-20 xl:px-40">
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-8">
+<!-- Hero Section -->
+<div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">history_edu</span>
+<span class="text-xs font-bold uppercase tracking-widest">Digital Ledger</span>
+</div>
+<h1 class="text-4xl font-bold leading-tight tracking-tighter text-white lg:text-5xl">Sovereign Legacy Archive</h1>
+<p class="max-w-xl text-lg text-text-muted">Immutable verification of past investment cycles. Decrypt compressed data cubes to view ROI history and transaction ledgers.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 rounded-lg border border-neutral-light bg-neutral-dark px-4 py-2.5 text-sm font-medium text-white transition-colors hover:border-primary/50 hover:bg-neutral-light">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter Year
+                    </button>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-primary/90">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Stats Overview -->
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+<div class="flex flex-col justify-between gap-4 rounded-xl border border-neutral-light bg-neutral-dark/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30">
+<div class="flex items-start justify-between">
+<p class="text-sm font-medium text-text-muted">Total Invested</p>
+<span class="material-symbols-outlined text-primary/50">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-white">$1.2M</p>
+<div class="mt-1 flex items-center gap-1 text-xs font-medium text-green-500">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+15% vs last year</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-4 rounded-xl border border-neutral-light bg-neutral-dark/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30">
+<div class="flex items-start justify-between">
+<p class="text-sm font-medium text-text-muted">Total Returns</p>
+<span class="material-symbols-outlined text-primary/50">savings</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-white">$1.8M</p>
+<div class="mt-1 flex items-center gap-1 text-xs font-medium text-green-500">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+48% Lifetime ROI</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-4 rounded-xl border border-neutral-light bg-neutral-dark/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30">
+<div class="flex items-start justify-between">
+<p class="text-sm font-medium text-text-muted">Active Cycles</p>
+<span class="material-symbols-outlined text-primary/50">deployed_code</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-white">12</p>
+<div class="mt-1 flex items-center gap-1 text-xs font-medium text-primary">
+<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
+<span>2 closing soon</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-4 rounded-xl border border-neutral-light bg-neutral-dark/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30">
+<div class="flex items-start justify-between">
+<p class="text-sm font-medium text-text-muted">Audit Score</p>
+<span class="material-symbols-outlined text-primary/50">verified_user</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-white">100%</p>
+<div class="mt-1 flex items-center gap-1 text-xs font-medium text-text-muted">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Fully Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3D Data Cubes / Archive Grid -->
+<div class="flex flex-col gap-6 pt-6">
+<div class="flex items-center justify-between border-b border-neutral-light pb-4">
+<h3 class="text-xl font-bold text-white">Compressed Data Cubes</h3>
+<div class="flex gap-2 text-text-muted">
+<span class="material-symbols-outlined cursor-pointer hover:text-white">grid_view</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white">list</span>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+<!-- Cube 1 -->
+<div class="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-neutral-light bg-neutral-dark transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_20px_rgba(244,209,37,0.15)]">
+<div class="relative flex-1 overflow-hidden bg-neutral-dark/80 p-6" data-alt="Abstract 3D golden cube on dark background">
+<!-- Placeholder for 3D visual using CSS gradient for effect -->
+<div class="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-light/30 via-neutral-dark to-neutral-dark group-hover:from-primary/10">
+<div class="relative h-32 w-32 transform transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 rotate-45 rounded-lg border-2 border-primary/20 bg-gradient-to-br from-neutral-light to-transparent opacity-50 backdrop-blur-sm transition-all group-hover:border-primary group-hover:opacity-100"></div>
+<div class="absolute inset-0 -rotate-12 rounded-lg border border-white/10 bg-black/20 group-hover:rotate-0 transition-all duration-500"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary opacity-50 group-hover:opacity-100 group-hover:animate-pulse">deployed_code</span>
+</div>
+</div>
+</div>
+<!-- Glitch overlay effect on hover -->
+<div class="absolute inset-0 hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDB2MUgwem0wIDEwaDQwdjFIMHptMCAxMGg0MHYxSDB6IiBmaWxsPSIjZjRkMTI1IiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')] opacity-0 mix-blend-overlay transition-opacity group-hover:opacity-100"></div>
+</div>
+<div class="flex flex-col gap-2 border-t border-neutral-light bg-neutral-dark p-4 z-10">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-white group-hover:text-primary">Cycle Alpha-01</h4>
+<span class="rounded bg-primary/20 px-2 py-0.5 text-xs font-bold text-primary">CLOSED</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-text-muted">Return</span>
+<span class="font-bold text-green-500">+18.4%</span>
+</div>
+<div class="h-0 overflow-hidden transition-all duration-300 group-hover:h-8">
+<button class="mt-2 w-full rounded border border-primary/30 bg-primary/10 py-1 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-black">
+                                    Decrypt Log
+                                </button>
+</div>
+</div>
+</div>
+<!-- Cube 2 -->
+<div class="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-neutral-light bg-neutral-dark transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_20px_rgba(244,209,37,0.15)]">
+<div class="relative flex-1 overflow-hidden bg-neutral-dark/80 p-6" data-alt="Abstract 3D data structure visualization">
+<div class="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-light/30 via-neutral-dark to-neutral-dark group-hover:from-primary/10">
+<div class="relative h-32 w-32 transform transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 rotate-45 rounded-lg border-2 border-primary/20 bg-gradient-to-br from-neutral-light to-transparent opacity-50 backdrop-blur-sm transition-all group-hover:border-primary group-hover:opacity-100"></div>
+<div class="absolute inset-0 rotate-12 rounded-lg border border-white/10 bg-black/20 group-hover:rotate-0 transition-all duration-500"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary opacity-50 group-hover:opacity-100 group-hover:animate-pulse">token</span>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDB2MUgwem0wIDEwaDQwdjFIMHptMCAxMGg0MHYxSDB6IiBmaWxsPSIjZjRkMTI1IiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')] opacity-0 mix-blend-overlay transition-opacity group-hover:opacity-100"></div>
+</div>
+<div class="flex flex-col gap-2 border-t border-neutral-light bg-neutral-dark p-4 z-10">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-white group-hover:text-primary">Cycle Beta-04</h4>
+<span class="rounded bg-primary/20 px-2 py-0.5 text-xs font-bold text-primary">CLOSED</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-text-muted">Return</span>
+<span class="font-bold text-green-500">+12.2%</span>
+</div>
+<div class="h-0 overflow-hidden transition-all duration-300 group-hover:h-8">
+<button class="mt-2 w-full rounded border border-primary/30 bg-primary/10 py-1 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-black">
+                                    Decrypt Log
+                                </button>
+</div>
+</div>
+</div>
+<!-- Cube 3 -->
+<div class="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-neutral-light bg-neutral-dark transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_20px_rgba(244,209,37,0.15)]">
+<div class="relative flex-1 overflow-hidden bg-neutral-dark/80 p-6" data-alt="Dark geometric cube with glowing edges">
+<div class="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-light/30 via-neutral-dark to-neutral-dark group-hover:from-primary/10">
+<div class="relative h-32 w-32 transform transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 rotate-45 rounded-lg border-2 border-primary/20 bg-gradient-to-br from-neutral-light to-transparent opacity-50 backdrop-blur-sm transition-all group-hover:border-primary group-hover:opacity-100"></div>
+<div class="absolute inset-0 -rotate-6 rounded-lg border border-white/10 bg-black/20 group-hover:rotate-0 transition-all duration-500"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary opacity-50 group-hover:opacity-100 group-hover:animate-pulse">folder_zip</span>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDB2MUgwem0wIDEwaDQwdjFIMHptMCAxMGg0MHYxSDB6IiBmaWxsPSIjZjRkMTI1IiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')] opacity-0 mix-blend-overlay transition-opacity group-hover:opacity-100"></div>
+</div>
+<div class="flex flex-col gap-2 border-t border-neutral-light bg-neutral-dark p-4 z-10">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-white group-hover:text-primary">Cycle Gamma-09</h4>
+<span class="rounded bg-primary/20 px-2 py-0.5 text-xs font-bold text-primary">CLOSED</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-text-muted">Return</span>
+<span class="font-bold text-green-500">+22.8%</span>
+</div>
+<div class="h-0 overflow-hidden transition-all duration-300 group-hover:h-8">
+<button class="mt-2 w-full rounded border border-primary/30 bg-primary/10 py-1 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-black">
+                                    Decrypt Log
+                                </button>
+</div>
+</div>
+</div>
+<!-- Cube 4 -->
+<div class="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-xl border border-neutral-light bg-neutral-dark transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_20px_rgba(244,209,37,0.15)]">
+<div class="relative flex-1 overflow-hidden bg-neutral-dark/80 p-6" data-alt="Abstract encrypted block visualization">
+<div class="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-light/30 via-neutral-dark to-neutral-dark group-hover:from-primary/10">
+<div class="relative h-32 w-32 transform transition-transform duration-500 group-hover:scale-110">
+<div class="absolute inset-0 rotate-45 rounded-lg border-2 border-primary/20 bg-gradient-to-br from-neutral-light to-transparent opacity-50 backdrop-blur-sm transition-all group-hover:border-primary group-hover:opacity-100"></div>
+<div class="absolute inset-0 rotate-45 rounded-lg border border-white/10 bg-black/20 group-hover:rotate-0 transition-all duration-500"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary opacity-50 group-hover:opacity-100 group-hover:animate-pulse">lock_clock</span>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBoNDB2MUgwem0wIDEwaDQwdjFIMHptMCAxMGg0MHYxSDB6IiBmaWxsPSIjZjRkMTI1IiBmaWxsLW9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYSkiLz48L3N2Zz4=')] opacity-0 mix-blend-overlay transition-opacity group-hover:opacity-100"></div>
+</div>
+<div class="flex flex-col gap-2 border-t border-neutral-light bg-neutral-dark p-4 z-10">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-white group-hover:text-primary">Cycle Delta-12</h4>
+<span class="rounded bg-neutral-light px-2 py-0.5 text-xs font-bold text-text-muted">ARCHIVED</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-text-muted">Return</span>
+<span class="font-bold text-white">Pending</span>
+</div>
+<div class="h-0 overflow-hidden transition-all duration-300 group-hover:h-8">
+<button class="mt-2 w-full rounded border border-primary/30 bg-primary/10 py-1 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-black">
+                                    Decrypt Log
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Ledger Table -->
+<div class="flex flex-col gap-4 pt-4 pb-20">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white">Recent Audit Logs</h3>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View Full Ledger</a>
+</div>
+<div class="overflow-hidden rounded-xl border border-neutral-light bg-neutral-dark/50">
+<table class="w-full text-left text-sm text-text-muted">
+<thead class="bg-neutral-light/50 text-xs uppercase text-white">
+<tr>
+<th class="px-6 py-4 font-semibold">Transaction ID</th>
+<th class="px-6 py-4 font-semibold">Date Verified</th>
+<th class="px-6 py-4 font-semibold">Asset Class</th>
+<th class="px-6 py-4 font-semibold">Amount</th>
+<th class="px-6 py-4 font-semibold text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-neutral-light/50">
+<tr class="transition-colors hover:bg-neutral-light/30">
+<td class="px-6 py-4 font-mono text-white">#TX-8829-AF</td>
+<td class="px-6 py-4">Oct 24, 2023</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+                                    Fine Art
+                                </td>
+<td class="px-6 py-4 text-white">$45,200.00</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-500">
+<span class="material-symbols-outlined text-[14px]">check</span> Verified
+                                    </span>
+</td>
+</tr>
+<tr class="transition-colors hover:bg-neutral-light/30">
+<td class="px-6 py-4 font-mono text-white">#TX-9921-BB</td>
+<td class="px-6 py-4">Oct 22, 2023</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-blue-500"></div>
+                                    Watches
+                                </td>
+<td class="px-6 py-4 text-white">$12,500.00</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-500">
+<span class="material-symbols-outlined text-[14px]">check</span> Verified
+                                    </span>
+</td>
+</tr>
+<tr class="transition-colors hover:bg-neutral-light/30">
+<td class="px-6 py-4 font-mono text-white">#TX-1002-CC</td>
+<td class="px-6 py-4">Oct 18, 2023</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-purple-500"></div>
+                                    Wine
+                                </td>
+<td class="px-6 py-4 text-white">$8,900.00</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-500">
+<span class="material-symbols-outlined text-[14px]">check</span> Verified
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

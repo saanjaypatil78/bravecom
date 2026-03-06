@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Treasury &amp; Performance Rewards</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f19e6",
+                        "primary-dark": "#5e12ab",
+                        "gold": "#FFD700",
+                        "gold-dim": "#B8860B",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191121",
+                        "card-dark": "#241a30",
+                        "border-dark": "#3c2e4d"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .text-gold-gradient {
+            background: linear-gradient(to right, #FFD700, #FDB931);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<div class="flex flex-1">
+<!-- Sidebar Navigation (Simplified for context) -->
+<aside class="hidden lg:flex w-64 flex-col border-r border-border-dark bg-[#140d1a] px-5 py-6">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-white">InvestPortal</span>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Network
+                </a>
+<div class="px-3 py-2 mt-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Finance</div>
+<a class="flex items-center gap-3 rounded-lg bg-primary/20 px-3 py-2 text-primary font-medium" href="#">
+<span class="material-symbols-outlined fill-1">account_balance</span>
+                    Treasury &amp; Rewards
+                </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-400 hover:bg-white/5 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+                    Commissions
+                </a>
+</nav>
+<div class="mt-auto">
+<div class="rounded-xl bg-gradient-to-br from-card-dark to-primary/10 p-4 border border-border-dark">
+<div class="flex items-center gap-3 mb-2">
+<div class="p-2 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+</div>
+<p class="text-sm font-semibold text-white">Admin Support</p>
+</div>
+<p class="text-xs text-slate-400">Need help with disbursements?</p>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex items-center justify-between border-b border-border-dark bg-background-dark/80 backdrop-blur-md px-8 py-4">
+<div class="flex items-center gap-4">
+<button class="lg:hidden p-2 text-slate-400 hover:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-bold text-white">Treasury Portal</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-card-dark border border-border-dark">
+<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-medium text-slate-300">System Live</span>
+</div>
+<button class="relative text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 rounded-full bg-primary"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-purple-400 p-[1px]">
+<div class="h-full w-full rounded-full bg-background-dark flex items-center justify-center">
+<span class="text-xs font-bold text-white">AD</span>
+</div>
+</div>
+</div>
+</header>
+<div class="p-6 max-w-7xl mx-auto w-full space-y-8">
+<!-- Hero Section: Treasury Status -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Balance Card -->
+<div class="lg:col-span-2 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2a1b3d] to-[#1a1225] border border-primary/30 p-8 shadow-xl shadow-primary/5">
+<div class="absolute top-0 right-0 -mt-10 -mr-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div class="flex items-start justify-between mb-8">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<h2 class="text-slate-300 font-medium">Total Treasury Fund</h2>
+<div class="group relative cursor-help">
+<span class="material-symbols-outlined text-slate-500 text-sm hover:text-primary transition-colors">info</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-black border border-border-dark rounded-lg text-xs text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
+                                                Funds accumulated from commissions generated at Level 7 and deeper, beyond the standard 6-level payout cap.
+                                            </div>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl md:text-5xl font-black tracking-tight text-white">₹1,24,50,000</span>
+<span class="text-lg font-medium text-slate-500">.00</span>
+</div>
+</div>
+<div class="p-3 bg-primary/20 rounded-xl border border-primary/30 text-primary">
+<span class="material-symbols-outlined text-3xl">savings</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-6 mt-auto">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-white/5 border border-white/5">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400">Monthly Inflow</span>
+<span class="text-lg font-bold text-green-400 flex items-center gap-1">
+                                            +₹12.5L
+                                            <span class="material-symbols-outlined text-sm">trending_up</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-white/5 border border-white/5">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400">Pending Disbursement</span>
+<span class="text-lg font-bold text-gold flex items-center gap-1">
+                                            ₹2.45L
+                                            <span class="material-symbols-outlined text-sm">pending</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Allocation Actions -->
+<div class="rounded-2xl bg-card-dark border border-border-dark p-6 flex flex-col">
+<h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">trophy</span>
+                            Reward Allocation
+                        </h3>
+<p class="text-sm text-slate-400 mb-6">Allocate treasury funds for the current cycle based on performance metrics.</p>
+<div class="space-y-4 mb-6">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-400">Budget Utilized</span>
+<span class="text-white font-medium">45%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-background-dark border border-border-dark">
+<span class="text-sm text-slate-300">Next Cycle</span>
+<span class="text-sm font-bold text-white">Oct 31, 2023</span>
+</div>
+</div>
+<button class="mt-auto w-full py-3 px-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add_card</span>
+                            Create New Bonus Pool
+                        </button>
+</div>
+</div>
+<!-- Main Content Area: Top Performers Table -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<h2 class="text-2xl font-bold text-white">Top Performers &amp; Candidates</h2>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="pl-9 pr-4 py-2 bg-card-dark border border-border-dark rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64" placeholder="Search partner..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-card-dark border border-border-dark hover:bg-border-dark text-slate-300 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                                Filters
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-card-dark border border-border-dark hover:bg-border-dark text-slate-300 rounded-lg text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                                Export
+                            </button>
+</div>
+</div>
+<div class="overflow-hidden rounded-2xl border border-border-dark bg-card-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-slate-400">
+<thead class="bg-[#1e1625] text-xs uppercase font-semibold text-slate-300">
+<tr>
+<th class="px-6 py-4" scope="col">Partner</th>
+<th class="px-6 py-4" scope="col">Rank/Tier</th>
+<th class="px-6 py-4" scope="col">
+<div class="flex items-center gap-1 cursor-pointer hover:text-white">
+                                                AUM Growth
+                                                <span class="material-symbols-outlined text-[16px]">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4" scope="col">
+<div class="flex items-center gap-1 cursor-pointer hover:text-white">
+                                                Network Depth
+                                                <span class="material-symbols-outlined text-[16px]">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4" scope="col">Recommended Reward</th>
+<th class="px-6 py-4 text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<!-- Row 1 -->
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold border border-indigo-500/30">
+                                                    RV
+                                                </div>
+<div>
+<div class="font-bold text-white">Rahul Verma</div>
+<div class="text-xs text-slate-500">ID: #FR-2023-089</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30">Franchise Partner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-400 font-medium">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                                +24%
+                                            </div>
+<span class="text-xs text-slate-500">₹4.2Cr Total AUM</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="text-white font-medium">9 Levels Deep</span>
+<div class="w-24 bg-background-dark rounded-full h-1.5">
+<div class="bg-indigo-500 h-1.5 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-gold font-bold">₹50,000</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors shadow-lg shadow-primary/10">
+                                                Disburse
+                                            </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 font-bold border border-teal-500/30">
+                                                    AS
+                                                </div>
+<div>
+<div class="font-bold text-white">Anita Sharma</div>
+<div class="text-xs text-slate-500">ID: #RP-2023-104</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/30">Referral Partner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-400 font-medium">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                                +18%
+                                            </div>
+<span class="text-xs text-slate-500">₹1.8Cr Total AUM</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="text-white font-medium">7 Levels Deep</span>
+<div class="w-24 bg-background-dark rounded-full h-1.5">
+<div class="bg-indigo-500 h-1.5 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-gold font-bold">₹25,000</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors shadow-lg shadow-primary/10">
+                                                Disburse
+                                            </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold border border-pink-500/30">
+                                                    VK
+                                                </div>
+<div>
+<div class="font-bold text-white">Vikram Kumar</div>
+<div class="text-xs text-slate-500">ID: #FR-2023-221</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30">Franchise Partner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-green-400 font-medium">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                                +31%
+                                            </div>
+<span class="text-xs text-slate-500">₹6.1Cr Total AUM</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="text-white font-medium">12 Levels Deep</span>
+<div class="w-24 bg-background-dark rounded-full h-1.5">
+<div class="bg-indigo-500 h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-gold font-bold">₹75,000</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors shadow-lg shadow-primary/10">
+                                                Disburse
+                                            </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 font-bold border border-orange-500/30">
+                                                    SM
+                                                </div>
+<div>
+<div class="font-bold text-white">Sanjay Mehta</div>
+<div class="text-xs text-slate-500">ID: #RP-2023-012</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/30">Referral Partner</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2 text-slate-400 font-medium">
+<span class="material-symbols-outlined text-sm">trending_flat</span>
+                                                +2%
+                                            </div>
+<span class="text-xs text-slate-500">₹85L Total AUM</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col gap-1">
+<span class="text-white font-medium">4 Levels Deep</span>
+<div class="w-24 bg-background-dark rounded-full h-1.5">
+<div class="bg-indigo-500 h-1.5 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-slate-500 font-medium">Not Eligible</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-xs font-bold bg-slate-700 text-slate-500 cursor-not-allowed px-4 py-2 rounded-lg" disabled="">
+                                                Disburse
+                                            </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between border-t border-border-dark px-6 py-4 bg-[#1e1625]">
+<p class="text-sm text-slate-500">Showing <span class="font-medium text-white">1</span> to <span class="font-medium text-white">4</span> of <span class="font-medium text-white">128</span> results</p>
+<div class="flex gap-2">
+<button class="rounded-lg border border-border-dark px-3 py-1 text-sm text-slate-400 hover:bg-white/5 hover:text-white disabled:opacity-50">Previous</button>
+<button class="rounded-lg border border-border-dark px-3 py-1 text-sm text-slate-400 hover:bg-white/5 hover:text-white">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Logic Explanation -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8">
+<div class="rounded-xl border border-border-dark bg-[#1e1625]/50 p-6">
+<h4 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+                            The 6-Level Logic
+                        </h4>
+<p class="text-sm text-slate-400 leading-relaxed">
+                            Our compensation model caps direct referral commissions at <strong>Level 6</strong>. Any revenue generated from Level 7 downwards flows directly into this <strong>Treasury Fund</strong>. This capital is then manually redistributed as performance bonuses to partners who demonstrate deep network stability (Level 7+ activity).
+                        </p>
+</div>
+<div class="rounded-xl border border-border-dark bg-[#1e1625]/50 p-6 flex items-center justify-between">
+<div>
+<h4 class="text-base font-bold text-white mb-1">Recent Disbursement History</h4>
+<p class="text-xs text-slate-400">Last processed 2 days ago</p>
+</div>
+<button class="text-primary text-sm font-bold hover:text-white transition-colors">View All Log</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

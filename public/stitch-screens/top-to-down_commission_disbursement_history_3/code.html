@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commission Disbursement History - Sun Ray Invest</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111318] px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl">wb_sunny</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Sun Ray Invest</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden md:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#282e39]">
+<div class="text-slate-500 dark:text-[#9da6b9] flex items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#9da6b9] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search transactions..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-white text-sm font-medium leading-normal" href="#">Investments</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Network</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Wallet</a>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-slate-200 dark:border-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBItOm3LvEam_tGpCLtxdD1lNRbtamyRTBklRIdziPNrz_wfzX-7p7ElogwqtRnBFSSbjJX13zXzd-vxu8N3ppeGsOk72tytvg78swzQLPbE1OwmfbM4Z-T2TR4LJcmtYpA-9dJgWS2Zp2DdrsWKGso2sbRYG6xQXbngQIb4CX7ebqPsMDjGq4w4L0Pd_5_zh3s-yiDgKta6YTG-YmMIhGC2uZkTKYYoquZlY6MED4hshn_T_xtIlC4cPek3_Cin0XdBOXwDok2jUhy");'></div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-5xl flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2">
+<a class="text-slate-500 dark:text-[#9da6b9] hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<span class="text-slate-400 dark:text-[#9da6b9] text-sm font-medium">/</span>
+<a class="text-slate-500 dark:text-[#9da6b9] hover:text-primary text-sm font-medium transition-colors" href="#">Investments</a>
+<span class="text-slate-400 dark:text-[#9da6b9] text-sm font-medium">/</span>
+<span class="text-slate-900 dark:text-white text-sm font-medium">Transaction #8821</span>
+</div>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Commission Disbursement History</h1>
+<p class="text-slate-500 dark:text-[#9da6b9] text-base">Tracking fund flow for Investment ID #8821</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-sm font-medium border border-emerald-200 dark:border-emerald-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Fully Disbursed
+                    </span>
+<span class="text-slate-400 dark:text-slate-600 text-sm">Oct 24, 2023 • 10:42 AM</span>
+</div>
+</div>
+<!-- Summary Metrics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Total Investment -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-blue-500">payments</span>
+</div>
+<div class="flex flex-col gap-1 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Total Investment</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">₹51,111</h3>
+<span class="text-xs text-slate-400">INR</span>
+</div>
+<div class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                            Base amount for all calculations
+                        </div>
+</div>
+</div>
+<!-- Investor ROI -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-emerald-500">trending_up</span>
+</div>
+<div class="flex flex-col gap-1 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Investor ROI (15%)</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">₹7,666.65</h3>
+</div>
+<div class="mt-2 text-xs text-emerald-600/80 dark:text-emerald-400/80 font-medium">
+                            Disbursed to Investor
+                        </div>
+</div>
+</div>
+<!-- Referral Distributed -->
+<div class="bg-white dark:bg-[#1e293b] rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-purple-500">hub</span>
+</div>
+<div class="flex flex-col gap-1 relative z-10">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Referral Distributed (~20%)</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-purple-600 dark:text-purple-400">₹10,222.20</h3>
+</div>
+<div class="mt-2 text-xs text-purple-600/80 dark:text-purple-400/80 font-medium">
+                            Split across 6 Levels
+                        </div>
+</div>
+</div>
+</div>
+<!-- Vertical Timeline (Waterfall) -->
+<div class="mt-4 relative">
+<!-- Timeline Vertical Line Background -->
+<div class="absolute left-[27px] md:left-[27px] top-8 bottom-8 w-0.5 bg-slate-200 dark:bg-slate-700 z-0"></div>
+<!-- Timeline Items -->
+<div class="flex flex-col gap-6 relative z-10">
+<!-- START: Investment Origin -->
+<div class="flex gap-4 group">
+<!-- Icon Column -->
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 rounded-full bg-blue-100 dark:bg-blue-900/30 border-4 border-white dark:border-background-dark flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm z-10">
+<span class="material-symbols-outlined">monetization_on</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-blue-200 dark:border-blue-900/50 rounded-xl p-5 shadow-sm hover:border-blue-300 dark:hover:border-blue-800 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-400/20 mb-2">Investment Source</span>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">New Investment Received</h4>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400">10:42:00 AM</span>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Investor John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjhfEh2-yuq0MmFKt3Oq6lMN9yaqo7xHycX5_WT-ilrpMV6dWSa_rpTCQNlGkkbiLccqTHuidQGlZR3lcEdYMQXntWlOhF5rcaq8YtD_nmrfl5dD3xKxIsPha_4mCbcXFaSdG-vDJeSxeUSjgwKl8Qmlw_DNN6Pil-j4orxaSvIbobM-sTvFTntKd2qw7Gvyn3-VxOxwB231yfejearYmkKJG6E5yLQis7fUHGT-mQjBCowQ0ZOkD1U4mZIKCKSjsk6dZ4OJJPef94");'></div>
+<div class="text-sm">
+<p class="font-medium text-slate-900 dark:text-white">From: John Doe</p>
+<p class="text-slate-500 dark:text-slate-400">Transaction ID: #8821</p>
+</div>
+<div class="ml-auto text-right">
+<p class="text-xl font-bold text-slate-900 dark:text-white">₹51,111</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 1: Investor ROI -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 rounded-full bg-emerald-100 dark:bg-emerald-900/30 border-4 border-white dark:border-background-dark flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm z-10">
+<span class="material-symbols-outlined">savings</span>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm hover:border-emerald-500/50 transition-colors">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+<div class="flex items-start gap-4">
+<div class="hidden sm:block size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">person</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-base font-semibold text-slate-900 dark:text-white">Investor ROI Payout</h4>
+<span class="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-600/20">Disbursed</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span>To: <span class="text-slate-700 dark:text-slate-200 font-medium">John Doe</span></span>
+<span>•</span>
+<span>Cycle A</span>
+<span>•</span>
+<span>10:42:05 AM</span>
+</div>
+</div>
+</div>
+<div class="text-left sm:text-right">
+<div class="text-sm text-slate-500 dark:text-slate-400 mb-0.5">15% of ₹51,111</div>
+<div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">₹7,666.65</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: Level 1 Referral -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 rounded-full bg-purple-100 dark:bg-purple-900/30 border-4 border-white dark:border-background-dark flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-sm z-10">
+<span class="material-symbols-outlined">diversity_3</span>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm hover:border-purple-500/50 transition-colors">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 1 Referrer Jane Smith" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBn0v-1OxCFpQVDyKywbgqsC4oyjCVnRR4iwdanQgPNVZUa0oXxN-LbW3h8teOqDjnpqpRfCalfrf8CWv9fnVyOlehtuTM_rT_Dlq5VG995MTDXSiEGCjPK6EpCM7z9hp8H5cC_zRhVR0cIbpGSu-cXKRvBVh4aBuEDHe3gxXN20TQAaMTtMb8UzbPRGjwy9kZeI3bRqRnc2-QBrg29vhUdILo22BpKC0RWxfHnqrNcDHqT0het6-VtAVk6SUS_aUajjVpQetS1PZQd");'></div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-base font-semibold text-slate-900 dark:text-white">Level 1 Commission</h4>
+<span class="inline-flex items-center rounded-md bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 text-xs font-medium text-purple-700 dark:text-purple-400 ring-1 ring-inset ring-purple-700/10">Direct Referrer</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<span>To: <span class="text-slate-700 dark:text-slate-200 font-medium">Jane Smith</span></span>
+<span>•</span>
+<span>Cycle A</span>
+<span>•</span>
+<span>10:42:10 AM</span>
+</div>
+</div>
+</div>
+<div class="text-left sm:text-right">
+<div class="text-sm text-slate-500 dark:text-slate-400 mb-0.5">10% Split</div>
+<div class="text-xl font-bold text-slate-900 dark:text-white">₹5,111.10</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Level 2 Referral -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<!-- Small dot connector for lower levels -->
+<div class="size-14 flex items-center justify-center z-10">
+<div class="size-4 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-background-dark"></div>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-primary/30 transition-colors">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 2 Referrer Michael B" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgWJ38-FRFw_FDSKH5XAoKrGYBGYUu4uDw_QsawiCig2lEFJ8aUO0FWi3tLxvDHXRrpbxVt91j8AYqF8JzE6VTpbTBBs_zROngXy4SziEMawbrgc2jBcn1wxk3nM2PwG8HXx1nvBhN1Z83hJ4sXWE8ahT94xW8j_L_BHjHfIrMck1N-PVI8hngmw_0Yg2ZEfUN8iijwwbNnXKFcNiUTDelMlyjm4voQr4glTNFOMGGH_wT5DKSACDCIR8NHpvJnQteuhcbqRe76X4a");'></div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Level 2 Commission</h4>
+<span class="text-xs text-slate-400 dark:text-slate-500">| Cycle A</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">To: Michael B. • Disbursed</p>
+</div>
+</div>
+<div class="text-left sm:text-right pl-11 sm:pl-0">
+<div class="text-xs text-slate-500 dark:text-slate-400">5% Split</div>
+<div class="text-lg font-bold text-slate-900 dark:text-white">₹2,555.55</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 4: Level 3 Referral -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 flex items-center justify-center z-10">
+<div class="size-3 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-background-dark"></div>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-primary/30 transition-colors opacity-90">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 3 Referrer Sarah C" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUM5eoekQ8kWnNrZgDipottQa831n-vKKAzRV5DtZbYQRlE8vFA6R6xblVYEWezmYaHZ5wt0y_D68mVq_xm9_ac0zf181thtlxN2n6Fq8H3MPV1Xn1m20EW_YPuoX2DXgIKwH0C2bs92JvKNOMcAjJSEz9vAaqXW8HvtPS6JacdYHK70IT-B9uhlWikItdjkWlHB_De10B0-9eLag8QnphW5n7qmLdj4OiPE6lcoIxEEM-B-bvpH76UtHK1-hCV1dNUXEeoXeylptQ");'></div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Level 3 Commission</h4>
+<span class="text-xs text-slate-400 dark:text-slate-500">| Cycle B</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">To: Sarah C. • Disbursed</p>
+</div>
+</div>
+<div class="text-left sm:text-right pl-11 sm:pl-0">
+<div class="text-xs text-slate-500 dark:text-slate-400">2% Split</div>
+<div class="text-lg font-bold text-slate-700 dark:text-slate-300">₹1,022.22</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 5: Level 4 Referral -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 flex items-center justify-center z-10">
+<div class="size-3 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-background-dark"></div>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-primary/30 transition-colors opacity-80">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 4 Referrer David R" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuw0YjSrqefguKsPx69w8JnPgJzbHhM1oxeRCH9MGcW7FvXrgphKKLD44imG5hZWJdsZ_j6bcigzLE8_P35kZJSGePXlWm3w5vDLcJf7Gx3JiIDJwJGw51STY_avaCbZE-S1SbG7AJ4ZKDqhdPbB_Hp_9nvZUVfSYz10Gykutaip7_x-vrNUILypcS0eSAosoNecmE6VblRhq8qG1E3-hi9WMoRit1qbEW3gsNxLa_jbUQl_JMrBNUT1_nzUN_CQLzqu3nYEIkYR0q");'></div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Level 4 Commission</h4>
+<span class="text-xs text-slate-400 dark:text-slate-500">| Cycle B</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">To: David R. • Disbursed</p>
+</div>
+</div>
+<div class="text-left sm:text-right pl-11 sm:pl-0">
+<div class="text-xs text-slate-500 dark:text-slate-400">1% Split</div>
+<div class="text-lg font-bold text-slate-600 dark:text-slate-400">₹511.11</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 6: Level 5 Referral -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="size-14 flex items-center justify-center z-10">
+<div class="size-3 rounded-full bg-slate-300 dark:bg-slate-600 ring-4 ring-white dark:ring-background-dark"></div>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-primary/30 transition-colors opacity-80">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 5 Referrer Emily W" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5YRWkijdx1Ub2VgLWYSiU2T3xPqWCYicwno5Hr9EEYWO9knUdEfxUewC_YlA_KYhtUAs88OXpuwI6g2a5CuoK18dBnT2jeAu5doJ9a24Iwb2ghstRlh0hU7XTnsHs0LutMO2f6OCOCXoCO-7ugB3B8LKVZKT6s26ijFIL0PzdVZpvgp24MX98GSDKdg9y9NSQkhPZOLgAwddRL7bauudMFKs6vFFyV8oz7wKm6pkzM0AurMNVDEsFSHPh-C8ZBf16B0DW88yK-8Ef");'></div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Level 5 Commission</h4>
+<span class="text-xs text-slate-400 dark:text-slate-500">| Cycle B</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">To: Emily W. • Disbursed</p>
+</div>
+</div>
+<div class="text-left sm:text-right pl-11 sm:pl-0">
+<div class="text-xs text-slate-500 dark:text-slate-400">1% Split</div>
+<div class="text-lg font-bold text-slate-600 dark:text-slate-400">₹511.11</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 7: Level 6 Referral (End) -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center min-w-[56px]">
+<!-- End dot style -->
+<div class="size-14 flex items-center justify-center z-10">
+<div class="size-3 rounded-full bg-slate-400 dark:bg-slate-500 ring-4 ring-white dark:ring-background-dark"></div>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-primary/30 transition-colors opacity-70">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center border border-slate-200 dark:border-slate-600" data-alt="Level 6 Referrer Robert T" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDDhDTun-UEx3kI8xVjnwZZpMW8mCpMfVJfHhWLvCLf16h16rdnJ2ydoERNLLSD_2dfdXBQwS_VOcxCgd94GC7FOlCs1UOyvU1W1eneQEh6YTEleAjFIz58nibsrDL7gzbMfokdm0wcs6I1DUxPaTkepRAcEefImS1CiqC29BAhya7W3L2KdqEcyyjvBFnsASSoH4k5mp7EFds5va_DTYNWwAZcdMQXrg9VGAcTYyBqkLdzPkJeZqHVjP6WfTW7Y0upXJ-EOiUwvD_");'></div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Level 6 Commission</h4>
+<span class="text-xs text-slate-400 dark:text-slate-500">| Cycle B</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">To: Robert T. • Disbursed</p>
+</div>
+</div>
+<div class="text-left sm:text-right pl-11 sm:pl-0">
+<div class="text-xs text-slate-500 dark:text-slate-400">1% Split</div>
+<div class="text-lg font-bold text-slate-600 dark:text-slate-400">₹511.11</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End of Stream Indicator -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center min-w-[56px]">
+<div class="h-8 w-0.5 bg-gradient-to-b from-slate-200 dark:from-slate-700 to-transparent"></div>
+</div>
+<div class="flex-1 py-2">
+<p class="text-xs text-center text-slate-400 dark:text-slate-600 uppercase tracking-widest font-semibold">End of Disbursement Flow</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

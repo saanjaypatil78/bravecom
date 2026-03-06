@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Disbursement &amp; Audit Log</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1a2234",
+                        "accent-gold": "#D4AF37", 
+                        "success": "#10B981",
+                        "danger": "#EF4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1a2234;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- SideNavBar -->
+<div class="hidden lg:flex flex-col w-72 bg-card-dark border-r border-slate-800 h-full shrink-0">
+<div class="flex flex-col h-full p-4">
+<div class="flex gap-3 mb-8 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 ring-2 ring-primary/50" data-alt="Admin User Profile Picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBvoWp98KvY0seZSqwdET04SlYlFGE3-_cIWs0Fc1sJ1qO6GkA3ES4-3cKkgcxE5oB72uzJ438A53RiJFxlgYuKoNmdTFDtzPpcpzAyVCUWxWqVhzwiFRVPVhOPUsQgWYblSM8XM6mNSrX4Bm9TAmDzFAn3rjFljE24qx0vsVIUSlYN3rfLt4bLJjI17Zqm-jHzzhxdSGblRBFlD8rG3LDF1pURdeBI_L5QELNqgum8bUhcYYdPtzsrSIluOeg7rpErqQqUNIya-8cp");'></div>
+<div class="flex flex-col justify-center">
+<h1 class="text-white text-base font-semibold leading-tight">Admin Portal</h1>
+<p class="text-slate-400 text-xs font-normal">Treasury View</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 grow">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white" style="font-size: 24px;">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white" style="font-size: 24px;">group</span>
+<p class="text-sm font-medium">Investors</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white" style="font-size: 24px;">storefront</span>
+<p class="text-sm font-medium">Franchise</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px; font-variation-settings: 'FILL' 1;">payments</span>
+<p class="text-sm font-semibold">Disbursements</p>
+</a>
+<div class="ml-11 flex flex-col gap-1 border-l border-slate-700 pl-3 my-1">
+<a class="text-xs text-white font-medium py-1" href="#">Audit Log</a>
+<a class="text-xs text-slate-500 hover:text-slate-300 py-1 transition-colors" href="#">Pending Validations</a>
+<a class="text-xs text-slate-500 hover:text-slate-300 py-1 transition-colors" href="#">Archives</a>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors group mt-auto" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-white" style="font-size: 24px;">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Header & Action Bar -->
+<header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 border-b border-slate-800 bg-background-dark/95 backdrop-blur z-20 sticky top-0">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-gold" style="font-size: 20px;">lock</span>
+<h2 class="text-2xl font-bold tracking-tight text-white">Disbursement Audit Log</h2>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<span>Restricted Access</span>
+<span class="w-1 h-1 rounded-full bg-slate-600"></span>
+<span>System Time: 14:32 UTC</span>
+<span class="w-1 h-1 rounded-full bg-slate-600"></span>
+<span class="text-emerald-500 font-medium">Secure Connection</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex flex-col items-end mr-4">
+<span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Current Cycle Status</span>
+<span class="text-sm text-accent-gold font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-accent-gold animate-pulse"></span>
+                            LOCKED FOR AUDIT
+                        </span>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium transition-colors border border-slate-700">
+<span class="material-symbols-outlined" style="font-size: 20px;">download</span>
+                        Export
+                    </button>
+<button class="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-bold shadow-[0_0_15px_rgba(19,91,236,0.3)] transition-all">
+<span class="material-symbols-outlined" style="font-size: 20px;">verified_user</span>
+                        Authorize Release
+                    </button>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto custom-scrollbar p-6">
+<!-- Cycle Switcher -->
+<div class="mb-8">
+<div class="inline-flex rounded-lg bg-card-dark border border-slate-700 p-1">
+<button class="flex items-center gap-2 px-6 py-2 rounded-md bg-primary text-white text-sm font-bold shadow-sm transition-all">
+                            Cycle A (1st - 14th)
+                        </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-md text-slate-400 hover:text-white hover:bg-white/5 text-sm font-medium transition-all">
+                            Cycle B (15th - End)
+                        </button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Total Volume -->
+<div class="bg-card-dark rounded-xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-size: 64px;">account_balance</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Total Disbursement Volume</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-white">₹ 4,250,000</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs">
+<span class="bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded font-medium flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                +12%
+                            </span>
+<span class="text-slate-500">vs last cycle</span>
+</div>
+</div>
+<!-- Tax Withheld -->
+<div class="bg-card-dark rounded-xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-size: 64px;">assured_workload</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Total TDS/Tax Withheld</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-white">₹ 425,000</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs">
+<span class="bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded font-medium flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+                                +5%
+                            </span>
+<span class="text-slate-500">vs last cycle</span>
+</div>
+</div>
+<!-- Net Payable -->
+<div class="bg-gradient-to-br from-card-dark to-[#1a202c] rounded-xl p-6 border border-accent-gold/30 relative overflow-hidden group shadow-[0_0_20px_rgba(212,175,55,0.05)]">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-accent-gold" style="font-size: 64px;">payments</span>
+</div>
+<p class="text-accent-gold/80 text-sm font-medium mb-1 flex items-center gap-1">
+                            Net Payable
+                            <span class="material-symbols-outlined text-accent-gold" style="font-size: 14px;">star</span>
+</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-white tracking-tight">₹ 3,825,000</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs">
+<span class="text-slate-400">Cleared for release</span>
+</div>
+</div>
+<!-- Pending Validations -->
+<div class="bg-card-dark rounded-xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-size: 64px;">pending_actions</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-1">Pending Validations</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-white">12</h3>
+<span class="text-sm text-slate-500">records</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-xs">
+<span class="bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded font-medium flex items-center gap-1">
+                                Action Required
+                            </span>
+</div>
+</div>
+</div>
+<!-- Liquidity Chart Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 bg-card-dark rounded-xl border border-slate-800 p-6">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="text-lg font-bold text-white">Liquidity: Accumulated vs Disbursed</h3>
+<p class="text-sm text-slate-500">Monitor cash flow gap over the active cycle.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs text-slate-400">Disbursed</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-accent-gold"></span>
+<span class="text-xs text-slate-400">Accumulated</span>
+</div>
+</div>
+</div>
+<!-- Chart Area Placeholder -->
+<div class="relative w-full h-64">
+<!-- SVG Chart Representation -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 300">
+<!-- Grid Lines -->
+<line stroke="#334155" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="250" y2="250"></line>
+<line stroke="#334155" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="150" y2="150"></line>
+<line stroke="#334155" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="50" y2="50"></line>
+<!-- Gradient Defs -->
+<defs>
+<lineargradient id="blueGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#135bec" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#135bec" stop-opacity="0"></stop>
+</lineargradient>
+<lineargradient id="goldGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#D4AF37" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Area 1: Accumulated (Gold) -->
+<path d="M0,250 L100,200 L200,220 L300,180 L400,160 L500,140 L600,100 L700,80 L800,50 V300 H0 Z" fill="url(#goldGradient)"></path>
+<path d="M0,250 L100,200 L200,220 L300,180 L400,160 L500,140 L600,100 L700,80 L800,50" fill="none" stroke="#D4AF37" stroke-width="3"></path>
+<!-- Area 2: Disbursed (Blue) -->
+<path d="M0,250 L100,230 L200,240 L300,210 L400,200 L500,190 L600,160 L700,150 L800,130 V300 H0 Z" fill="url(#blueGradient)"></path>
+<path d="M0,250 L100,230 L200,240 L300,210 L400,200 L500,190 L600,160 L700,150 L800,130" fill="none" stroke="#135bec" stroke-width="3"></path>
+<!-- Hover Indicator (Mock) -->
+<line stroke="#ffffff" stroke-opacity="0.2" stroke-width="1" x1="600" x2="600" y1="0" y2="300"></line>
+<circle cx="600" cy="100" fill="#D4AF37" r="4" stroke="#1a2234" stroke-width="2"></circle>
+<circle cx="600" cy="160" fill="#135bec" r="4" stroke="#1a2234" stroke-width="2"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-2 text-xs text-slate-500 font-mono">
+<span>Day 1</span>
+<span>Day 3</span>
+<span>Day 5</span>
+<span>Day 7</span>
+<span>Day 9</span>
+<span>Day 11</span>
+<span>Day 13</span>
+</div>
+</div>
+<div class="bg-card-dark rounded-xl border border-slate-800 p-6 flex flex-col">
+<h3 class="text-lg font-bold text-white mb-4">Cycle Distribution</h3>
+<div class="flex-1 flex flex-col justify-center items-center relative">
+<!-- Donut Chart Representation -->
+<div class="w-48 h-48 rounded-full border-[16px] border-slate-800 relative flex items-center justify-center" style="background: conic-gradient(#135bec 0% 65%, #D4AF37 65% 85%, #334155 85% 100%); border-radius: 50%;">
+<div class="w-32 h-32 bg-card-dark rounded-full flex flex-col items-center justify-center z-10">
+<span class="text-2xl font-bold text-white">85%</span>
+<span class="text-xs text-slate-400">Allocated</span>
+</div>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded bg-primary"></span>
+<span class="text-slate-300">Investors</span>
+</div>
+<span class="text-white font-medium">₹ 2.8M</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded bg-accent-gold"></span>
+<span class="text-slate-300">Franchise</span>
+</div>
+<span class="text-white font-medium">₹ 1.2M</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded bg-slate-600"></span>
+<span class="text-slate-300">Unclaimed</span>
+</div>
+<span class="text-white font-medium">₹ 250k</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Log Table Section -->
+<div class="bg-card-dark rounded-xl border border-slate-800 flex flex-col">
+<div class="p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h3 class="text-lg font-bold text-white">Disbursement Queue</h3>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-500" style="font-size: 20px;">search</span>
+<input class="bg-background-dark border border-slate-700 text-white text-sm rounded-lg pl-10 pr-4 py-2 w-full sm:w-64 focus:ring-primary focus:border-primary placeholder-slate-500" placeholder="Search ID, Name..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800 text-slate-300 text-sm transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">filter_list</span>
+                                Filter
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-900/50 border-b border-slate-800 text-xs text-slate-400 uppercase tracking-wider">
+<th class="px-6 py-4 font-semibold">Transaction ID</th>
+<th class="px-6 py-4 font-semibold">Role</th>
+<th class="px-6 py-4 font-semibold">Beneficiary</th>
+<th class="px-6 py-4 font-semibold text-right">Gross Amount</th>
+<th class="px-6 py-4 font-semibold text-right">Deductions</th>
+<th class="px-6 py-4 font-semibold text-right">Net Payout</th>
+<th class="px-6 py-4 font-semibold text-center">Status</th>
+<th class="px-6 py-4 font-semibold text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800 text-sm">
+<!-- Row 1 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-slate-300">TXN-883921</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                            Investor
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">AS</div>
+<span class="text-white font-medium">Arjun Sharma</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-300 font-mono">₹ 150,000</td>
+<td class="px-6 py-4 text-right text-red-400 font-mono">- ₹ 15,000</td>
+<td class="px-6 py-4 text-right text-white font-bold font-mono">₹ 135,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-500">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                            Queued
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-slate-300">TXN-883922</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                            Franchise
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">DL</div>
+<span class="text-white font-medium">Delhi Hub Main</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-300 font-mono">₹ 500,000</td>
+<td class="px-6 py-4 text-right text-red-400 font-mono">- ₹ 50,000</td>
+<td class="px-6 py-4 text-right text-white font-bold font-mono">₹ 450,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500">
+<span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span>
+                                            Disbursed
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Flagged -->
+<tr class="bg-red-500/5 hover:bg-red-500/10 transition-colors border-l-2 border-l-red-500">
+<td class="px-6 py-4 font-mono text-slate-300">TXN-883923</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                            Investor
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">MK</div>
+<span class="text-white font-medium">Meera Kapoor</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-300 font-mono">₹ 75,000</td>
+<td class="px-6 py-4 text-right text-red-400 font-mono">- ₹ 7,500</td>
+<td class="px-6 py-4 text-right text-white font-bold font-mono">₹ 67,500</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-500 animate-pulse">
+<span class="material-symbols-outlined" style="font-size: 14px;">warning</span>
+                                            Flagged
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-red-400 hover:text-red-300 transition-colors font-medium text-xs border border-red-500/30 px-2 py-1 rounded bg-red-500/10">
+                                            Review
+                                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-slate-300">TXN-883924</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                            Franchise
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">MH</div>
+<span class="text-white font-medium">Mumbai Hub South</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-300 font-mono">₹ 220,000</td>
+<td class="px-6 py-4 text-right text-red-400 font-mono">- ₹ 22,000</td>
+<td class="px-6 py-4 text-right text-white font-bold font-mono">₹ 198,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-500">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                            Queued
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-slate-300">TXN-883925</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                            Investor
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white">RV</div>
+<span class="text-white font-medium">Rahul Verma</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-300 font-mono">₹ 45,000</td>
+<td class="px-6 py-4 text-right text-red-400 font-mono">- ₹ 4,500</td>
+<td class="px-6 py-4 text-right text-white font-bold font-mono">₹ 40,500</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-500/10 text-gray-400">
+<span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                                            Accumulating
+                                        </span>
+</td>
+<td class="px-6 py-4 text-center">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-slate-800 flex items-center justify-between">
+<span class="text-sm text-slate-500">Showing <span class="text-white font-medium">1-5</span> of <span class="text-white font-medium">124</span> results</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800 text-sm disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 rounded border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800 text-sm">Next</button>
+</div>
+</div>
+</div>
+<div class="h-20"></div> <!-- Spacer for scrolling -->
+</main>
+</div>
+</div>
+</body></html>

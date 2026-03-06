@@ -1,0 +1,629 @@
+You can now design a full mobile app
+with AI. Actually install it on your
+phone without writing a single line of
+code because Google just dropped new
+connectors for Stitch, Anti-Gravity, and
+Flutter. Which [music] means that you
+can go from an idea to a working app
+just by describing what you want. And by
+the end of this video, you'll know how
+to operate agents to design your app,
+build it, and deploy it all using tools
+that you can try for free today. Let's
+get started.
+Hey, if you're new here, my name is Jay.
+I spent a decade in creative and
+marketing work and half a decade leading
+data teams and now founded our AI
+solutions group and RoboNuggets our
+education arm where we have several
+hundred members all AI practitioners
+across the globe and here our mission is
+to make creating with AI easy to learn
+regardless what your background is with
+a wealth of lessons that most people
+join for but most members stay because
+of the community that we have built. So
+what is Google Stitch? Stitch is
+Google's AI design tool that turns your
+words into complete app interfaces. You
+describe your app in a few sentences or
+give a reference website to copy the
+visuals off and it generates stunning
+fully designed screens in seconds. So if
+you want to redesign your landing page
+or build a multi-step checkout flow or
+even create a dashboard for your SAS
+company, you just describe it and Stitch
+can design it. And it's also integrated
+with Nano Banana, which is Google's best
+image generation model and probably the
+best in the world right now. So if your
+design needs custom images or
+illustrations, it can create them on the
+fly. And the best part about this is
+that Google is offering it for
+completely free for you to start with.
+And then we have anti-gravity. Now
+anti-gravity is Google's agentic coding
+platform. And in anti-gravity, you don't
+need to write code. You don't need to
+connect any nodes or modules. You just
+describe what you want and it builds it
+out for you. And there's a lot of things
+you can do with anti-gravity. And one of
+them is for you to create real mobile
+applications within anti-gravity once
+you connect it to Flutter. And Flutter
+is the third part of this equation. It
+is Google's framework or toolkit for
+building mobile apps. It's used by big
+brands like Google Pay, eBay, Alibaba,
+BMW, Toyota, the New York Times, and it
+is completely open source and free. So
+once Antiggravity knows how to use
+Flutter, it can build your mobile app
+for you from start to finish. And
+because Flutter is crossplatform, you
+can also deploy to both the Android Play
+Store or the iOS app store from a single
+codebase or build, which is why it is so
+popular. So if we put this tree
+together, Stitch will now be your
+designer. It creates the visuals for
+your app. Anti-gravity is going to be
+your mobile app developer. It takes
+those designs and turns them into real
+code. And because anti-gravity is
+equipped with a Flutter framework, it
+can package everything into a real
+mobile app, one that you can install on
+your phone, which I'll also show you how
+to do and eventually publish to the App
+Store or Play Store. And this has all
+been made possible because of some new
+releases from Google in the past few
+weeks. First is the Stitch MCP server.
+Stands for model context protocol.
+Basically, what it does is it lets
+antigravity use stitch directly. And if
+you combine that with Stitch skills,
+which was also recently released, that
+would equip Antiggravity with the
+knowledge on how to use Stitch properly.
+And the third is the Flutter MCP, which
+now lets anti-gravity use Flutter as a
+framework. So if you put them together,
+you've effectively got the full idea to
+mobile app pipeline that are all free to
+try and are all from Google. But before
+you can let antigravity use Stitch
+effectively, you first need to
+understand how Stitch works yourself. So
+let me show you the basics first. So
+here we are at Google Stitch which you
+can just access via
+stitch.withgoogle.com and this interface
+is pretty common now where you basically
+just describe whatever you want here and
+you can also choose the model that you
+wish. So if you are just trying this out
+tree flash works quite effectively and
+it gives you more generations if you are
+on the free trial plan but you can also
+use their tree pro model basically their
+thinking model if you want better
+designs from your first shot. Now,
+what's good about Stitch is that if you
+click on this plus, you can actually
+link it with a website URL so that you
+can reference the visual elements of any
+website that you want to take
+inspiration from. So, to give an example
+for this video, let's imagine that we
+are going to create an application for
+the Google Cloud Next event that's
+coming up. And what we want to do is to
+create a mobile app that is suited for
+this particular event so that attendees
+can use it and have a better experience
+while they are in this conference. So,
+if I just paste that URL in there and we
+give it a description of what do we
+want? Hey there. Can you build me a
+two-screen mobile app for Google Cloud
+Next 2026? Use the reference website.
+And what I want is basically the first
+screen to be the homepage. So have a
+place for the Google Cloud logo, the
+event name, the dates, the location, and
+also a button that says uh view
+schedule. And then the second screen,
+let's have that be the schedule uh with
+tabs for days 1, 2, and three with maybe
+session cards showing the time, the
+title, the speaker's photo, as well as
+their room. And I want you to make it
+scrollable. Uh make sure to use Google
+Cloud branding. and let's have it in
+dark mode with minimal design. So, you
+can be as detailed as that or you can
+just fire off [snorts] a more simple
+prompt if you wish because what's great
+about Google Stitch anyway is that you
+are allowed to fine-tune the designs
+from within their platform which I'll
+show in a bit. And after some time, it
+now generated those designs for us where
+you can see it was able to find not just
+the venue, not just the location, but
+also the design teams that we had on
+that original website. Now, this user
+interface is already actually really
+good. So, you can see we have
+recommended for you for the events. We
+have the featured speakers which right
+now is using Nano Banana Pro to generate
+a few images but later we'll turn those
+into the actual images of the speakers
+and also a view of the agenda which
+should take us to the schedules. So this
+is what we ask for where we have the
+three days of schedules here. And I
+believe if we take a look at the actual
+schedules from the site, it would match
+what Google Stitch also came up with
+here. So we have the opening keynote at
+9:00 a.m. on the first day. And if we go
+back to the agenda, we have the opening
+keynote here as well. Now, obviously,
+you can edit this, but this already
+gives you a really good start to the
+design of your mobile app, right? But if
+you're building for production, one
+thing that you can do is to use Stitch
+to come up with more designs so that you
+have a bit more optionality. So, let's
+say this homepage right here. If you
+select it, what we can now do is prompt
+Stitch with something like, hey, can you
+generate me three more design variations
+of this so that I can choose which one
+is best? Make them very visually
+different from each other, but I just
+want each of them to be visually
+striking. So, if we send that off and
+let's do the 3x mode now, just so that
+we can generate variations. Let me try
+out the tree flash model as well, just
+to see how different it would be. All
+right, now that it's done, it actually
+created three design variations for me,
+which is pretty useful just for you to
+get a feel of different ways that you
+can style your application. But you can
+see since I use Gemini Tree Flash, I
+think the original one with Gemini Tree
+Pro turned out a bit better. What's
+great about Stitch is that you can edit
+these designs in a variety of ways. One
+very useful tool would be if you click
+on this screen, you'll see there's a
+couple of options here. You can either
+regenerate it, create some variations,
+but a useful one for just fine-tuning it
+is to annotate it through this button.
+And from here, let's say if you zoom in
+and let's say you want to change the
+date as well as the venue, you can just
+annotate it just like what I did. And
+say for example, hey, I want to change
+the date. So it's actually May 5th to
+May 8th, 2026 now. So can you please
+update this? And if you click apply,
+whatever annotations that you made, it
+will edit those specific areas for you.
+And there you go. When it's done, it was
+able to change that specific portion of
+your application. The other useful tip
+or feature that I saw here is that you
+can actually preview this on your mobile
+device directly. So, if you show the QR
+code here and if you scan it with your
+phone, you'll be able to preview this
+design on your mobile just so you can
+check how it actually looks and feels on
+the actual device that it's meant for.
+And there you go. You can see I just
+tried it. And you can actually scroll
+through this as well. If it shows like a
+404 error for you, most likely you
+haven't just logged into your account on
+Stitch on your phone. So now, let's say
+we're satisfied with these two screens
+and we actually want to build it into a
+working mobile application that we can
+deploy on our phone. The next step now
+that you can do is to make sure to
+highlight these screens, click on
+export. And if you export them into a
+zip file, that will download a file in
+your computer. And so now if we go to
+anti-gravity, if we just open that
+folder, which would be this one for me
+after I unzipped it, and you can just
+ask it to build out this application for
+you. Hey, can you take these mobile app
+designs and turn them into a working
+Flutter application? Make sure that the
+navigation works between screens and it
+matches the design of it exactly. Then
+run it locally so that I can test it.
+And if we fire that off, gravity will
+now figure out the best way to turn this
+into an application. And by the end of
+it, it will open up your browser for you
+to give you a preview of what that would
+look like. Now, the first time that you
+do this, and if you haven't developed
+any applications before, what
+antigravity will most likely do is
+download all of the dependencies for
+you. So, that's what it did for me
+earlier. And you can see here that it
+confirmed that we installed the Flutter
+software development kit or SDK that's
+roughly around 2 GB in size. But apart
+from that framework, we also needed to
+install the Android SDK as well as this
+Java development kit. Essentially, these
+are all just dependencies that are
+needed in order to build the
+application. But the good news is they
+are entirely free and anti-gravity will
+do the heavy lifting to get that in your
+device. And the other thing is if you're
+setting this up for the first time, it
+will likely take a few minutes for it to
+build out. But after installing these,
+you'll be pretty well set and your
+process to create mobile apps will be
+much much faster. And while Angravity is
+building this out, if you found any
+value in this tutorial, consider
+subscribing because that really helps us
+a lot to put out more educational
+content like this. But now, if we go
+back to our project, you can see it now
+created this application for me. Opened
+it in my browser so that I can preview
+it. And you can see that this is now
+interactive. So you can scroll through
+it. You can see the featured speakers
+here. And of course, we will be able to
+add photos in there later. And you can
+also it linked everything through. So
+that if we click on the schedule, we'll
+be able to find the schedule within this
+preview. And this is entirely oneshotted
+by the way. So you can see with just one
+prompt, it was able to create this full
+interactive application that we can just
+improve on. But before we go any further
+and actually put it on our phones, first
+let me show how we can take this further
+and upgrade our setup with MCP and
+dedicated skills for these tools that I
+mentioned earlier. And just to recap, if
+you set up the Stitch MCP for
+Antiggravity, what that will effectively
+do is to let anti-gravity control Stitch
+directly, which is useful because
+instead of you going back and forth
+between tools where you design in
+Stitch, you export those files and then
+you import it to antigravity. Your agent
+can handle all of that. And what you
+need to do to install this MCP is to
+copy this piece of script, which I just
+included in the guide below along with
+other resources for you to set this up.
+And what you can do is just ask to set
+up this MCP. Now, for my case, since I
+already have it installed, it will
+probably tell me that. But if you don't
+have it yet, the only thing it needs in
+order to do this is going to be your API
+key. So, if I go back to Stitch and just
+go to Stitch settings, if you scroll
+down here and find this create API key,
+you'll be able to create one link to
+your account. Just copy that in. And
+when you send that key over to
+anti-gravity, what it will now do is set
+up your MCP configuration to add that
+in. And for you to confirm that MCP was
+installed, all you need to do is to
+click on this MCP servers here at the
+top. And if you click on manage MCP
+servers here, you'll be able to find the
+stitch MCP where now your anti-gravity
+has access to these actions that let it
+create projects, get projects from
+stitch and so on. So now if I ask
+anti-gravity with something like this
+where I ask it what are my stitch
+projects, it will be able to call on
+those MCP tools and actually find your
+projects for you. So without even having
+to log into Google Stitch, it's able to
+find those projects for me. And later in
+just a bit, we'll be creating projects
+from within Adigravity as well. But
+before you do that, one thing that I
+advise you to add as well is the stitch
+skills. And these skills were recently
+released by Google. And to install them
+the way you would for any skill that is
+on GitHub, which is basically sort of
+the world's Google Drive for a lot of
+these skills and code as a whole, you
+can just ask your anti-gravity agent to
+install this skill. And what it will do
+is to just copy those files over to your
+device. And once that is done
+installing, you now have these six
+skills that your antiggravity can use to
+analyze stitch projects to convert them
+into React components. But the one we're
+going to use in a bit is this stitch
+loop which would help us generate
+complete multi-page websites or
+applications from just a single prompt.
+So we're going to enrich that
+application that we just built so that
+it has a bit more application pages for
+it to be a richer experience for our
+users. But before we do that, the last
+thing that I advise you to do is to now
+install the Flutter MCP. And to install
+it, one method is to just give
+anti-gravity this documentation, which
+again I'll include in the guide below.
+And you can see this is the Flutter MCP
+server, but it's also the Dart MCP
+server. And Dart is essentially the
+coding language that Flutter runs on.
+But for our purposes, you can think of
+them as one and the same. But since both
+Flutter and Adigravity are from Google,
+what they've actually done, if you go to
+MCP servers here, is that by default,
+you would have Dart as an option here,
+which would be the Flutter MCP server.
+And if you click that, that will just
+let you immediately install it, which
+you can see I have it installed and I
+have it enabled as well. Now, most
+likely if you installed Flutter
+previously, it may send you this error
+where it says that it couldn't find it
+in its path. Basically, what that means
+is that anti-gravity doesn't just know
+yet where to find your Flutter
+installation. So, if you just ask
+anti-gravity to fix this and find my
+Flutter installation, we did earlier,
+you can just let it troubleshoot it and
+search for your recent conversations in
+order to find that for you. And once
+it's done doing that, all you need to do
+is to restart your anti-gravity. And you
+can see this is now fixed. And I have
+now confirmation that here under manage
+MCB servers, anti-gravity now has these
+actions as well, which just gives it a
+lot more context around what to do when
+it comes to building Flutter
+applications. And you can see there's 24
+actions here. It allows anti-gravity to
+immediately understand how to do a hot
+restart, how to do a hot reload, and
+several other actions, which just gives
+it more context and knowledge around
+building Flutter applications. So
+basically making your agents a bit more
+reliable. So now with all of that set
+up, what we can now do is instead of
+going to Stitch, you can just create
+your designs from within anti-gravity
+and it builds out multiple screens for
+you on its own using the stitch loop
+skill. Hey, can you build a three-creen
+mobile app for Google Cloud Next 2026?
+Let's say screen one is a merch store.
+Show like a grid of products like
+t-shirts, hoodies, and caps each with a
+photo, a price, and an add to cart
+button. Let's have screen two be like a
+food ordering in the event. So, display
+lunch options like sandwiches, salads,
+snacks, all of that uh with uh photos
+and dietary icons and also an add to
+order button. And finally, let's have
+screen tree be like a live venue map.
+So, show an interactive floor plan with
+pins for stages, food areas, merch
+boots, and restrooms. And also include a
+search bar at the top so attendees can
+find locations much easier. Uh make sure
+to use Google cloud branding a dark
+theme clean water design and uh refer to
+this URL as well for the reference site
+inspiration and make sure to use the
+stitch loop skill. So let's try that and
+see what it comes up with and
+immediately you can see that what it
+does differently is that it is going to
+call on that skill just to understand
+how to actually use this product. It
+looks at the existing screens that we've
+already built just to understand the
+design principles for those. It's now
+going to the website we gave it which is
+the Google cloud event website just to
+capture reference designs that it can
+get from that particular link. And
+finally, it uses the MCP that it has
+connected with Stitch in order to create
+those projects for us. And there you go.
+Once it's done, you can actually open
+this application again locally, which
+means you can preview it right on your
+browser. And this is the merch store.
+This design was created with Stitch and
+then antigravity was the one who made it
+real along with the ability to actually
+click on these buttons where you can
+filter for accessories, limited edition
+items and you can even add these to cart
+which within seconds I was able to do
+this just by talking to my agent. And
+you even have an interactive cart button
+that gives you the merch items that this
+attendee would want to purchase. And now
+if I go to the food screen that it did,
+it's pretty much the same thing where
+you can add items in here. And the final
+screen it did is this map feature. So,
+similar to what you would expect on a
+map, you can zoom in, you can move
+through it, you can even filter for the
+stages, food and drink, so on and so
+forth. And also, if your attendee just
+wants to find a merch store, they can
+also search through it. So, immediately
+you have a working demo that you can
+show to clients or to continue building
+out yourself because obviously what it
+put here are just placeholders. Once you
+have actual images, you can just put
+them here in your anti-gravity files and
+let anti-gravity put those into these
+cells. And just to show you how
+effective anti-gravity is with these
+tasks, if you remember in our home
+screen before, our future speakers are
+obviously not ideal because there's just
+AI generated image placeholders here. So
+if for example, the photos that you want
+to use are already hosted online. What
+you can just do is to send that into
+anti-gravity. And just ask it, hey, I
+want to update the photos of the
+speakers to reflect what is in the
+future speakers section of our website
+here. Can you see if you can do that and
+source those images for us? And just
+fire that off to see if it can actually
+source it for you. For most websites,
+this can actually work. But you can see
+here that it's having trouble because
+those speaker names and images are
+likely rendered dynamically. So what it
+decided to do for me is to actually look
+for the images of these people from the
+web. Now that's obviously an option for
+you. But in case you really want to
+force it to get these images, you can
+assist it in a bit. So if you go to
+Chrome, hit rightclick and click on
+inspect or control shift I, that's also
+an option. If you click on this button
+where you can select an element, you'll
+be able to select specifically this
+image and find it from within this
+website's source files. So that is one
+image, but we obviously want the whole
+thing. So if we just navigate to find
+that whole group of elements, we'll be
+able to find it here. Do a right click
+and just copy this element and give that
+to anti-gravity. And now you can see
+that it extracted that markup language
+for us to get those PNG image files for
+each of our speakers. And there we go.
+It now launched this preview for us and
+it also gave us the right photos of each
+of the speakers. So now you can imagine
+how you can slowly build up this
+application so that it is fine-tuned to
+whatever it is that you need instead of
+just a working demo. So now let's say
+you want to take this preview from your
+desktop into your phone. What is it now
+that you need to do? Well, what you can
+do is ask antiggravity, hey the
+application looks great. Uh what I would
+like to do now is to package it into an
+APK file so that I can preview that on
+my phone. Can you do that? And also give
+me a step by step on how I can install
+it on my phone so that I can preview it
+myself. And with that command,
+essentially this APK, think of it as
+like a zip file but for mobile
+applications. So when you put your APK
+files into your phone, your phone can
+effectively unzip it. And it will be
+able to preview that and install it as
+an app straight from your mobile device.
+And when anti-gravity finishes building,
+it will tell you that your APK is now
+ready. And it can also tell you how to
+install it on your phone. All you need
+to do really is to download that file to
+your phone. And if you click it, it will
+prompt you to sort of unzip that file
+and install the application on your
+device. And here you can see I did it
+earlier. There you go. And we have the
+speakers here as well. And you can even
+go to the schedule and find the schedule
+of events there running as a native
+application right on my phone. So we
+went from an idea to a text prompt to a
+mobile app that you can actually use on
+your phone and all using free tools that
+you can try today. And if you want to
+take this further and publish to the
+Play Store or App Store, I've got a full
+step-by-step guide for that just in the
+description. But in case you're new to
+this space, do know that for the Play
+Store, there is a onetime $25 developer
+fee in order to publish applications.
+And for the App Store, in case you don't
+know, number one, there's a developer
+account requirement, which is 99 bucks
+per year, and you actually need a Mac to
+build for iOS. And if you want to go
+deeper and learn how to actually earn
+from the AI skills that you're
+developing, then check out the Robunagus
+community. There's several courses here
+around learning and earning from AI with
+training certification, a community of
+over a thousand AI practitioners to
+build your network, and paid
+opportunities and collaborations being
+shared regularly. And also, we recently
+partnered with 500 plus of the best AI
+tools to give you deals and discounts if
+you're on the annual plan, which
+hopefully makes your investment
+worthwhile. Just see if that's for you,
+but if not, that's completely all right
+as well. That's it for this one. I'll
+see you guys next time. Thank you.
+[music]

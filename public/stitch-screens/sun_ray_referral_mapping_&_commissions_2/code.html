@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sun Ray Referral Mapping &amp; Commissions</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4af25",
+                        "primary-dark": "#d9971c",
+                        "primary-light": "#fdecd2",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table container */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+
+        /* Radial Chart CSS Simulation */
+        .radial-chart-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        /* Concentric Circles */
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(244, 175, 37, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .orbit-1 { width: 180px; height: 180px; }
+        .orbit-2 { width: 320px; height: 320px; }
+        .orbit-3 { width: 460px; height: 460px; }
+
+        /* Nodes */
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .node-sun {
+            width: 64px;
+            height: 64px;
+            background: radial-gradient(circle at 30% 30%, #f4af25, #d9971c);
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(244, 175, 37, 0.4);
+        }
+
+        .node-l1 {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: 2px solid #f4af25;
+            z-index: 5;
+        }
+
+        .node-l2 {
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border: 1.5px solid #f4af25;
+            z-index: 4;
+        }
+        
+        .node:hover {
+            transform: scale(1.1);
+            z-index: 20;
+            border-color: #181611;
+        }
+
+        /* Tooltip simulation on hover */
+        .node:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #181611;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 30;
+        }
+        
+        /* Rays - Simplified CSS lines */
+        .ray {
+            position: absolute;
+            height: 1px;
+            background: rgba(244, 175, 37, 0.2);
+            transform-origin: 0 50%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex-none bg-white dark:bg-[#2a2418] border-b border-gray-100 dark:border-gray-800 px-6 py-3 z-20">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">sunny</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Sun Ray Invest</h1>
+</div>
+<div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2"></div>
+<nav class="flex items-center gap-1 text-sm">
+<a class="text-gray-400 hover:text-primary transition-colors" href="#">Network</a>
+<span class="text-gray-300">/</span>
+<a class="text-gray-400 hover:text-primary transition-colors" href="#">Team Alpha</a>
+<span class="text-gray-300">/</span>
+<span class="font-medium text-slate-900 dark:text-white px-2 py-0.5 bg-primary/10 rounded-md">Arjun Mehta (You)</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-end flex-col">
+<span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Total Commission</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white font-mono">₹4,50,000</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-primary" data-alt="User profile picture of a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcKtbmlF02_pEYH3lxaojhdsIf3Fgvj7gIjUWCG9otZ8OapO_sxO12lyy-HihSO_kEmCVs0b29CRaZTqo-C99xgO9TzJ4ynpl1UdrzAtLo2JGGuIBUkXR2fsHnG69FUvnXcvP969LTy24nEmnDdRbBvBvj5wbYimPD4fUhbFEeyW31l9534O1nG-5fNOxjHoTRWBRtlP2pM6t-DRDHFHq4ZQIT9uN1cMNsf7lMEZ_vtrAqrlApJkmWQBSlItbsBqRlh2oU275L9VIE');"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Sidebar: Referral Tools & Filters -->
+<aside class="w-80 flex-none bg-white dark:bg-[#2a2418] border-r border-gray-100 dark:border-gray-800 flex flex-col overflow-y-auto z-10 custom-scrollbar">
+<div class="p-6 border-b border-gray-100 dark:border-gray-800">
+<h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">link</span>
+                    Referral Tools
+                </h2>
+<div class="bg-background-light dark:bg-background-dark p-4 rounded-xl mb-4">
+<label class="text-xs font-medium text-gray-500 mb-1.5 block">Your Primary Code</label>
+<div class="flex items-center gap-2 bg-white dark:bg-[#332d21] border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+<code class="flex-1 text-sm font-bold text-primary tracking-wide">SUNRAY-AM72</code>
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Copy Code">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm shadow-primary/30">
+<span class="material-symbols-outlined text-[20px]">add_link</span>
+                    Generate New Link
+                </button>
+</div>
+<div class="p-6 flex-1">
+<h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">Active Campaigns</h3>
+<div class="space-y-3">
+<!-- Campaign Card 1 -->
+<div class="group p-3 rounded-xl border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200">Social Media Blast</h4>
+<span class="text-xs text-gray-400">Created 2 days ago</span>
+</div>
+<div class="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">ACTIVE</div>
+</div>
+<div class="flex items-center justify-between text-xs text-gray-500 mt-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">ads_click</span> 124 Clicks</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person_add</span> 8 Signups</span>
+</div>
+</div>
+<!-- Campaign Card 2 -->
+<div class="group p-3 rounded-xl border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200">Email Newsletter</h4>
+<span class="text-xs text-gray-400">Created 1 week ago</span>
+</div>
+<div class="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">ACTIVE</div>
+</div>
+<div class="flex items-center justify-between text-xs text-gray-500 mt-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">ads_click</span> 450 Clicks</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person_add</span> 21 Signups</span>
+</div>
+</div>
+</div>
+<div class="mt-8 bg-gradient-to-br from-primary/10 to-transparent p-4 rounded-xl">
+<h3 class="text-sm font-semibold text-primary mb-2">Smart Mapping Logic</h3>
+<p class="text-xs text-gray-500 leading-relaxed">
+                        Users are automatically placed in your hierarchy based on entry tier. Top tier (₹50k+) referrals stick to L1.
+                    </p>
+</div>
+</div>
+</aside>
+<!-- Center: Visualization & Stats -->
+<section class="flex-1 flex flex-col min-w-0 bg-background-light dark:bg-background-dark overflow-y-auto custom-scrollbar">
+<!-- Quick Stats Row -->
+<div class="grid grid-cols-4 gap-4 p-6 pb-2">
+<div class="bg-white dark:bg-[#2a2418] p-4 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-md bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Total Network</span>
+</div>
+<div class="text-2xl font-bold text-slate-900 dark:text-white">1,240</div>
+<div class="text-xs text-green-600 font-medium mt-1 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +5% this week
+                    </div>
+</div>
+<div class="bg-white dark:bg-[#2a2418] p-4 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm border-l-4 border-l-primary">
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-md bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[18px]">flare</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Direct Rays (L1)</span>
+</div>
+<div class="text-2xl font-bold text-slate-900 dark:text-white">12</div>
+<div class="text-xs text-green-600 font-medium mt-1 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +2 new
+                    </div>
+</div>
+<div class="bg-white dark:bg-[#2a2418] p-4 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-md bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Indirect (L2-L6)</span>
+</div>
+<div class="text-2xl font-bold text-slate-900 dark:text-white">1,228</div>
+<div class="text-xs text-green-600 font-medium mt-1 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +15% growth
+                    </div>
+</div>
+<div class="bg-white dark:bg-[#2a2418] p-4 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-md bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Avg. Comm/User</span>
+</div>
+<div class="text-2xl font-bold text-slate-900 dark:text-white font-mono">₹362</div>
+<div class="text-xs text-gray-400 font-medium mt-1">
+                       Based on active users
+                    </div>
+</div>
+</div>
+<!-- Visualization Area -->
+<div class="flex-1 min-h-[500px] relative mx-6 mb-6 mt-4 bg-white dark:bg-[#2a2418] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden group/viz">
+<div class="absolute top-4 left-4 z-10 flex gap-2">
+<div class="bg-white/80 dark:bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary inline-block mr-1.5"></span> Direct (L1)
+                    </div>
+<div class="bg-white/80 dark:bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-xs font-medium text-gray-600 dark:text-gray-300 shadow-sm">
+<span class="w-2 h-2 rounded-full border border-primary bg-white inline-block mr-1.5"></span> Indirect (L2+)
+                    </div>
+</div>
+<div class="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+<button class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 shadow-sm transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 shadow-sm transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 shadow-sm transition-colors">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+<!-- Interactive Map Background -->
+<div class="radial-chart-container bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px]">
+<!-- Orbits -->
+<div class="orbit orbit-3 border-dashed border-gray-300 dark:border-gray-700"></div>
+<div class="orbit orbit-2 border-dashed border-gray-300 dark:border-gray-700"></div>
+<div class="orbit orbit-1 border-dashed border-primary/40"></div>
+<!-- Rays (Lines connecting Center to L1) -->
+<div class="ray w-[90px] rotate-[0deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[45deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[90deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[135deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[180deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[225deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[270deg] left-[50%] top-[50%]"></div>
+<div class="ray w-[90px] rotate-[315deg] left-[50%] top-[50%]"></div>
+<!-- Nodes -->
+<!-- Sun (Center) -->
+<div class="node node-sun" data-tooltip="You: Total Earned ₹4.5L">
+<span class="material-symbols-outlined text-white text-3xl">person</span>
+</div>
+<!-- L1 Nodes (Orbit 1) -->
+<div class="node node-l1 absolute" data-tooltip="Amit P. (L1) - ₹5,111 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg) translateX(90px) rotate(0deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Sarah J. (L1) - ₹2,500 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg) translateX(90px) rotate(-45deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Ravi K. (L1) - ₹5,111 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translateX(90px) rotate(-90deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Priya S. (L1) - ₹1,200 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(135deg) translateX(90px) rotate(-135deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="John D. (L1) - ₹5,111 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(180deg) translateX(90px) rotate(-180deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Lisa M. (L1) - ₹5,111 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(225deg) translateX(90px) rotate(-225deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Vikram (L1) - ₹3,000 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(270deg) translateX(90px) rotate(-270deg);"></div>
+<div class="node node-l1 absolute" data-tooltip="Tara (L1) - ₹5,111 Comm" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(315deg) translateX(90px) rotate(-315deg);"></div>
+<!-- L2 Nodes (Orbit 2 - select few for visual) -->
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(10deg) translateX(160px);"></div>
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(25deg) translateX(160px);"></div>
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(55deg) translateX(160px);"></div>
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(100deg) translateX(160px);"></div>
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(190deg) translateX(160px);"></div>
+<div class="node node-l2 absolute" data-tooltip="L2 Referral" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(300deg) translateX(160px);"></div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="px-6 pb-6">
+<div class="bg-white dark:bg-[#2a2418] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+<!-- Table Tabs -->
+<div class="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800">
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-semibold border border-transparent">
+                                Direct Rays (L1)
+                            </button>
+<button class="px-4 py-2 rounded-lg text-gray-500 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 text-sm font-medium border border-transparent transition-colors">
+                                Indirect Rays (L2-L6)
+                            </button>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-gray-400 text-[18px]">search</span>
+<input class="pl-8 pr-3 py-1.5 text-sm bg-gray-50 dark:bg-gray-800 border-none rounded-lg focus:ring-1 focus:ring-primary w-48 transition-all" placeholder="Search rays..." type="text"/>
+</div>
+<button class="p-1.5 text-gray-500 hover:text-primary transition-colors rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 dark:bg-[#332d21]/50 border-b border-gray-100 dark:border-gray-800 text-xs text-gray-500 uppercase tracking-wider">
+<th class="px-6 py-4 font-semibold">User</th>
+<th class="px-6 py-4 font-semibold">Join Date</th>
+<th class="px-6 py-4 font-semibold">Investment Tier</th>
+<th class="px-6 py-4 font-semibold">Status</th>
+<th class="px-6 py-4 font-semibold text-right">Commission (%)</th>
+<th class="px-6 py-4 font-semibold text-right">Earned (₹)</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-gray-50 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="group hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-xs">AP</div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Amit Patel</p>
+<p class="text-xs text-gray-400">ID: RAY-8832</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-gray-500">Oct 24, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                            Gold (₹51,111)
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-green-600 font-medium text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Active
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-600 dark:text-gray-300">10%</td>
+<td class="px-6 py-4 text-right font-bold text-slate-900 dark:text-white font-mono">₹5,111</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">SJ</div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Sarah Jenkins</p>
+<p class="text-xs text-gray-400">ID: RAY-9921</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-gray-500">Oct 22, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+<span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                                            Silver (₹25,000)
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-green-600 font-medium text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Active
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-600 dark:text-gray-300">10%</td>
+<td class="px-6 py-4 text-right font-bold text-slate-900 dark:text-white font-mono">₹2,500</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs">RK</div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">Ravi Kumar</p>
+<p class="text-xs text-gray-400">ID: RAY-7741</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-gray-500">Oct 20, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                            Gold (₹51,111)
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-green-600 font-medium text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Active
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-600 dark:text-gray-300">10%</td>
+<td class="px-6 py-4 text-right font-bold text-slate-900 dark:text-white font-mono">₹5,111</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">JD</div>
+<div>
+<p class="font-medium text-slate-900 dark:text-white">John Doe</p>
+<p class="text-xs text-gray-400">ID: RAY-1102</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-gray-500">Sep 15, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                            Gold (₹51,111)
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="text-gray-400 font-medium text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Pending
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right font-medium text-gray-600 dark:text-gray-300">10%</td>
+<td class="px-6 py-4 text-right font-bold text-gray-400 font-mono">₹0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gray-50/50 dark:bg-[#332d21]/30">
+<span class="text-xs text-gray-500">Showing 1-4 of 12 Direct Rays</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

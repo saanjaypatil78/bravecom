@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Commission Structure Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4F46E5", // Indigo 600
+                        "primary-hover": "#4338ca", // Indigo 700
+                        "background-light": "#F3F4F6", // Gray 100
+                        "background-dark": "#0F172A", // Slate 900
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B", // Slate 800
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }.custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+        }.sticky-col {
+            position: sticky;
+            left: 0;
+            z-index: 10;
+        }
+        .sticky-col-2 {
+            position: sticky;
+            left: 60px;z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-200">
+<nav class="bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
+<div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center gap-2">
+<span class="material-icons text-primary text-3xl">analytics</span>
+<h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Admin Portal</h1>
+</div>
+<div class="hidden md:ml-6 md:flex md:space-x-8">
+<a class="border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">Dashboard</a>
+<a class="border-primary text-gray-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">Commission Config</a>
+<a class="border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">Franchise</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons dark:hidden">dark_mode</span>
+<span class="material-icons hidden dark:block">light_mode</span>
+</button>
+<button class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded text-sm font-medium shadow-sm transition-colors flex items-center gap-2">
+<span class="material-icons text-sm">save</span>
+                        Save Changes
+                    </button>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-1 overflow-hidden h-[calc(100vh-64px)] w-full max-w-[1920px] mx-auto p-4 lg:p-6 flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white leading-tight">Commission Structure</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Configure multi-level referral commissions, admin charges, and profit distribution tiers.</p>
+</div>
+<div class="flex gap-4 items-center bg-surface-light dark:bg-surface-dark p-2 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+<div class="px-3 border-r border-gray-200 dark:border-gray-700">
+<span class="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Base Currency</span>
+<div class="font-medium text-sm">INR (₹)</div>
+</div>
+<div class="px-3">
+<span class="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Active Tiers</span>
+<div class="font-medium text-sm">15 Levels</div>
+</div>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-12 gap-6 overflow-hidden">
+<div class="col-span-12 xl:col-span-9 flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50 flex flex-wrap gap-6 items-center">
+<span class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="material-icons text-base">tune</span> Global Rates:
+                    </span>
+<div class="flex items-center gap-2">
+<label class="text-xs font-medium text-gray-500 dark:text-gray-400">Profit Base</label>
+<div class="relative rounded-md shadow-sm">
+<input class="block w-20 rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary pl-3 pr-8" placeholder="15" type="number" value="15"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+<span class="text-gray-500 sm:text-sm">%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-xs font-medium text-gray-500 dark:text-gray-400">Admin Charge</label>
+<div class="relative rounded-md shadow-sm">
+<input class="block w-20 rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-800 text-sm focus:border-primary focus:ring-primary pl-3 pr-8" placeholder="10" type="number" value="10"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+<span class="text-gray-500 sm:text-sm">%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 ml-auto">
+<button class="text-xs text-primary hover:text-primary-hover font-medium flex items-center gap-1">
+<span class="material-icons text-sm">refresh</span> Recalculate Table
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-auto custom-scrollbar relative">
+<table class="min-w-max w-full text-sm text-left">
+<thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-slate-800 dark:text-gray-300 sticky top-0 z-20 font-bold shadow-sm">
+<tr>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 sticky-col bg-gray-100 dark:bg-slate-800 w-16 text-center z-30" scope="col">LVL</th>
+<th class="px-6 py-3 border-b border-r border-gray-200 dark:border-gray-600 sticky-col-2 bg-gray-100 dark:bg-slate-800 z-30" scope="col">Investment (12mo)</th>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 text-center bg-blue-50 dark:bg-blue-900/20" colspan="2" scope="col">Profit Distribution</th>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 text-center bg-green-50 dark:bg-green-900/20" colspan="5" scope="col">Referral Level Commission</th>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 text-center" scope="col">Total Profit</th>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 text-center" scope="col">Commission</th>
+<th class="px-4 py-3 border-b border-r border-gray-200 dark:border-gray-600 text-center text-red-600 dark:text-red-400" scope="col">Admin (10%)</th>
+<th class="px-4 py-3 border-b border-gray-200 dark:border-gray-600 text-center" scope="col">Net Deduct</th>
+</tr>
+<tr class="text-[10px] leading-tight text-gray-500 dark:text-gray-400">
+<th class="border-b border-r border-gray-200 dark:border-gray-600 sticky-col bg-gray-50 dark:bg-slate-800 z-30"></th>
+<th class="border-b border-r border-gray-200 dark:border-gray-600 sticky-col-2 bg-gray-50 dark:bg-slate-800 z-30"></th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-blue-50 dark:bg-blue-900/20 text-center">
+<input class="w-12 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-blue-700 dark:text-blue-300" type="text" value="15%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-blue-50 dark:bg-blue-900/20 text-center">
+<input class="w-12 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-blue-700 dark:text-blue-300" type="text" value="20%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20 text-center">
+<input class="w-10 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-green-700 dark:text-green-300" type="text" value="10%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20 text-center">
+<input class="w-10 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-green-700 dark:text-green-300" type="text" value="7%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20 text-center">
+<input class="w-10 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-green-700 dark:text-green-300" type="text" value="5%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20 text-center">
+<input class="w-10 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-green-700 dark:text-green-300" type="text" value="2%"/>
+</th>
+<th class="px-2 py-1 border-b border-r border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20 text-center">
+<input class="w-10 text-center bg-transparent border-none p-0 focus:ring-0 text-xs font-bold text-green-700 dark:text-green-300" type="text" value="1%"/>
+</th>
+<th class="border-b border-r border-gray-200 dark:border-gray-600"></th>
+<th class="border-b border-r border-gray-200 dark:border-gray-600"></th>
+<th class="border-b border-r border-gray-200 dark:border-gray-600"></th>
+<th class="border-b border-gray-200 dark:border-gray-600"></th>
+</tr>
+</thead>
+<tbody class="bg-white dark:bg-surface-dark divide-y divide-gray-200 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+<td class="px-4 py-3 font-bold sticky-col bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L1</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">
+<input class="w-24 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-primary focus:ring-0 p-0 text-sm font-medium text-gray-900 dark:text-white" type="text" value="₹ 51,111"/>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">7,667</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">31,800</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">40,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">55,650</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">82,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">75,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">1,65,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">7,667</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">4,50,450</td>
+<td class="px-4 py-3 text-right text-red-500 border-r border-gray-100 dark:border-gray-700">4,05,405</td>
+<td class="px-4 py-3 text-right text-gray-900 dark:text-white">45,045</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors bg-gray-50/50 dark:bg-slate-800/30">
+<td class="px-4 py-3 font-bold sticky-col bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L2</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">
+<input class="w-24 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-primary focus:ring-0 p-0 text-sm font-medium text-gray-900 dark:text-white" type="text" value="₹ 10,60,000"/>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">1,59,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">81,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">79,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">1,15,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">1,87,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">3,30,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">45,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">1,59,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">8,38,500</td>
+<td class="px-4 py-3 text-right text-red-500 border-r border-gray-100 dark:border-gray-700">7,54,650</td>
+<td class="px-4 py-3 text-right text-gray-900 dark:text-white">83,850</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+<td class="px-4 py-3 font-bold sticky-col bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L3</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">
+<input class="w-24 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-primary focus:ring-0 p-0 text-sm font-medium text-gray-900 dark:text-white" type="text" value="₹ 27,00,000"/>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">4,05,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">1,59,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">1,65,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">2,62,500</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">8,25,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">90,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">12,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">4,05,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">15,13,500</td>
+<td class="px-4 py-3 text-right text-red-500 border-r border-gray-100 dark:border-gray-700">13,62,150</td>
+<td class="px-4 py-3 text-right text-gray-900 dark:text-white">1,51,350</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors bg-gray-50/50 dark:bg-slate-800/30">
+<td class="px-4 py-3 font-bold sticky-col bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L4</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">
+<input class="w-24 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-primary focus:ring-0 p-0 text-sm font-medium text-gray-900 dark:text-white" type="text" value="₹ 53,00,000"/>
+</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">7,95,000</td>
+<td class="px-4 py-3 text-right text-gray-600 dark:text-gray-300 border-r border-gray-100 dark:border-gray-700">3,30,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">3,75,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">11,55,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">2,25,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">24,000</td>
+<td class="px-4 py-3 text-right text-gray-500 dark:text-gray-400 border-r border-gray-100 dark:border-gray-700">11,250</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">7,95,000</td>
+<td class="px-4 py-3 text-right font-medium text-gray-900 dark:text-white border-r border-gray-100 dark:border-gray-700">21,20,250</td>
+<td class="px-4 py-3 text-right text-red-500 border-r border-gray-100 dark:border-gray-700">19,08,225</td>
+<td class="px-4 py-3 text-right text-gray-900 dark:text-white">2,12,025</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+<td class="px-4 py-3 font-bold sticky-col bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L5</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-white dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">₹ 1,10,00,000</td>
+<td class="px-4 py-3 text-right border-r dark:border-gray-700">16,50,000</td>
+<td class="px-4 py-3 text-right border-r dark:border-gray-700">7,50,000</td>
+<td class="px-4 py-3 text-center text-gray-400 italic bg-gray-50 dark:bg-slate-800/20 border-r dark:border-gray-700" colspan="5">... Configuration ...</td>
+<td class="px-4 py-3 text-right font-medium dark:text-white border-r dark:border-gray-700">16,50,000</td>
+<td class="px-4 py-3 text-right font-medium dark:text-white border-r dark:border-gray-700">28,31,250</td>
+<td class="px-4 py-3 text-right text-red-500 border-r dark:border-gray-700">25,48,125</td>
+<td class="px-4 py-3 text-right dark:text-white">2,83,125</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors bg-gray-50/50 dark:bg-slate-800/30">
+<td class="px-4 py-3 font-bold sticky-col bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10 text-center">L6</td>
+<td class="px-6 py-3 font-medium sticky-col-2 bg-gray-50 dark:bg-surface-dark border-r border-gray-200 dark:border-gray-700 shadow-sm z-10">₹ 2,50,00,000</td>
+<td class="px-4 py-3 text-right border-r dark:border-gray-700">37,50,000</td>
+<td class="px-4 py-3 text-right border-r dark:border-gray-700">33,00,000</td>
+<td class="px-4 py-3 text-center text-gray-400 italic bg-gray-50 dark:bg-slate-800/20 border-r dark:border-gray-700" colspan="5">... Configuration ...</td>
+<td class="px-4 py-3 text-right font-medium dark:text-white border-r dark:border-gray-700">37,50,000</td>
+<td class="px-4 py-3 text-right font-medium dark:text-white border-r dark:border-gray-700">48,57,750</td>
+<td class="px-4 py-3 text-right text-red-500 border-r dark:border-gray-700">43,71,975</td>
+<td class="px-4 py-3 text-right dark:text-white">4,85,775</td>
+</tr>
+<tr class="bg-gray-100 dark:bg-slate-800 font-bold border-t-2 border-gray-300 dark:border-gray-600">
+<td class="px-4 py-4 sticky-col bg-gray-100 dark:bg-slate-800 border-r border-gray-200 dark:border-gray-700 z-10">TOTAL</td>
+<td class="px-6 py-4 sticky-col-2 bg-gray-100 dark:bg-slate-800 border-r border-gray-200 dark:border-gray-700 z-10">₹ 1,11,11,11,111</td>
+<td class="px-4 py-4 text-center border-r border-gray-200 dark:border-gray-700" colspan="2">3,33,31,800</td>
+<td class="px-4 py-4 text-center border-r border-gray-200 dark:border-gray-700" colspan="5">---</td>
+<td class="px-4 py-4 text-right border-r border-gray-200 dark:border-gray-700">16,66,66,667</td>
+<td class="px-4 py-4 text-right border-r border-gray-200 dark:border-gray-700">7,47,45,450</td>
+<td class="px-4 py-4 text-right text-red-600 dark:text-red-400 border-r border-gray-200 dark:border-gray-700">6,72,70,905</td>
+<td class="px-4 py-4 text-right text-gray-900 dark:text-white">74,74,545</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="col-span-12 xl:col-span-3 flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50 flex justify-between items-center">
+<h3 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider">Direct Target Royalty</h3>
+<span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">Total: 3%</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-xs text-left">
+<thead class="bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-gray-400 font-semibold uppercase">
+<tr>
+<th class="px-4 py-2">Rank</th>
+<th class="px-4 py-2">Target</th>
+<th class="px-4 py-2 text-right">%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-amber-700 dark:text-amber-500">Bronze</td>
+<td class="px-4 py-2">50 Lakh</td>
+<td class="px-4 py-2 text-right">1.00%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-slate-500 dark:text-slate-400">Silver</td>
+<td class="px-4 py-2">1 Crore</td>
+<td class="px-4 py-2 text-right">0.75%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-yellow-600 dark:text-yellow-400">Gold</td>
+<td class="px-4 py-2">5 Crore</td>
+<td class="px-4 py-2 text-right">0.50%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-cyan-600 dark:text-cyan-400">Platinum</td>
+<td class="px-4 py-2">25 Crore</td>
+<td class="px-4 py-2 text-right">0.35%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-blue-600 dark:text-blue-400">Diamond</td>
+<td class="px-4 py-2">75 Crore</td>
+<td class="px-4 py-2 text-right">0.25%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2 font-medium text-purple-600 dark:text-purple-400">Ambassador</td>
+<td class="px-4 py-2">100 Crore</td>
+<td class="px-4 py-2 text-right">0.15%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex-1">
+<div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50 flex justify-between items-center">
+<h3 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider">Distribution</h3>
+<span class="text-xs bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 px-2 py-0.5 rounded-full font-bold">Total: 70%</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-xs text-left">
+<thead class="bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-gray-400 font-semibold uppercase">
+<tr>
+<th class="px-4 py-2">Category</th>
+<th class="px-4 py-2">Type</th>
+<th class="px-4 py-2 text-right">%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2">Total Returns</td>
+<td class="px-4 py-2 text-gray-500">Static</td>
+<td class="px-4 py-2 text-right font-medium">25%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2">Yearly Gifts</td>
+<td class="px-4 py-2 text-gray-500">Flexible</td>
+<td class="px-4 py-2 text-right font-medium">3%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2">Office Exp.</td>
+<td class="px-4 py-2 text-gray-500">Flexible</td>
+<td class="px-4 py-2 text-right font-medium">3%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2">Marketing</td>
+<td class="px-4 py-2 text-gray-500">Static</td>
+<td class="px-4 py-2 text-right font-medium">10%</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-slate-800/50">
+<td class="px-4 py-2">Expansion</td>
+<td class="px-4 py-2 text-gray-500">Static</td>
+<td class="px-4 py-2 text-right font-medium">10%</td>
+</tr>
+<tr class="bg-gray-50 dark:bg-slate-800 font-bold border-t border-gray-200 dark:border-gray-600">
+<td class="px-4 py-2 text-gray-900 dark:text-white">TOTAL</td>
+<td class="px-4 py-2"></td>
+<td class="px-4 py-2 text-right text-gray-900 dark:text-white">70%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Tier &amp; ROI Simulator - Brave Ecom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                        "surface-dark": "#152a2a",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for "3D tactile" feel */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #25f4f4;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 10px rgba(37, 244, 244, 0.5), inset 0 2px 4px rgba(255,255,255,0.5);
+            border: 2px solid #ffffff;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #283939;
+            border-radius: 2px;
+        }
+        
+        /* Chart grid lines */
+        .chart-grid {
+            background-image: linear-gradient(to right, #283939 1px, transparent 1px),
+                              linear-gradient(to bottom, #283939 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283939] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur px-6 lg:px-10 py-4">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Investment</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Shop</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Community</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 transition-colors text-slate-900 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Invest Now</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-200 dark:bg-[#283939] hover:bg-slate-300 dark:hover:bg-[#3b5454] transition-colors text-slate-900 dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Log Out</span>
+</button>
+</div>
+</div>
+<button class="lg:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-[1200px] flex flex-col gap-8">
+<!-- Page Title Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-2 text-primary/80 text-sm font-medium uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+<span>Wealth Simulator</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                    Sovereign Tier &amp; <span class="text-primary">ROI Simulator</span>
+</h1>
+<p class="text-slate-500 dark:text-[#9cbaba] text-lg max-w-2xl">
+                    Visualize your potential wealth velocity across our 15-tier investment ladder. Adjust the slider to see how your capital compounds over time.
+                </p>
+</div>
+<!-- Main Interactive Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+<!-- Left Column: Controls & Stats -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Slider Card -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-2xl p-6 lg:p-8 shadow-sm">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-1">Investment Tier Selection</h3>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm">Snap to Tier</p>
+</div>
+<div class="text-right">
+<span class="block text-xs text-primary font-bold uppercase tracking-wider mb-1">Current Selection</span>
+<span class="block text-2xl font-bold text-slate-900 dark:text-white">Tier 5</span>
+</div>
+</div>
+<!-- Custom Slider Implementation -->
+<div class="relative w-full h-16 flex items-center justify-center">
+<input class="w-full z-20 relative appearance-none bg-transparent focus:outline-none" max="15" min="1" type="range" value="5"/>
+<div class="absolute w-full h-2 bg-slate-200 dark:bg-[#283939] rounded-full top-1/2 transform -translate-y-1/2 overflow-hidden">
+<div class="h-full bg-primary w-[33%] rounded-full"></div>
+</div>
+<!-- Ticks -->
+<div class="absolute w-full flex justify-between px-[10px] pointer-events-none top-[60%]">
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div> <!-- 5 -->
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div> <!-- 10 -->
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div>
+<div class="w-0.5 h-2 bg-slate-300 dark:bg-[#3b5454]"></div> <!-- 15 -->
+</div>
+</div>
+<div class="flex justify-between mt-2 text-xs text-slate-400 dark:text-[#5d7d7d] font-mono">
+<span>₹51k</span>
+<span>₹111 Cr</span>
+</div>
+</div>
+<!-- Key Metrics Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Investment Amount -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-xl p-5 flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-slate-900 dark:text-white">payments</span>
+</div>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm font-medium">Investment Amount</p>
+<p class="text-slate-900 dark:text-white text-2xl lg:text-3xl font-bold tracking-tight">₹5,00,000</p>
+<div class="mt-2 text-xs px-2 py-1 bg-slate-100 dark:bg-[#1f2f2f] rounded w-fit text-slate-500 dark:text-[#9cbaba]">Base Capital</div>
+</div>
+<!-- Monthly Profit -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-xl p-5 flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">monitoring</span>
+</div>
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm font-medium">Monthly Profit</p>
+<span class="bg-[#0bda50]/10 text-[#0bda50] text-xs font-bold px-2 py-1 rounded">+15%</span>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl lg:text-3xl font-bold tracking-tight">₹75,000</p>
+<div class="mt-2 text-xs text-slate-400 dark:text-[#5d7d7d]">Recurring Monthly Income</div>
+</div>
+<!-- Referral Yield -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-xl p-5 flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-purple-400">group_add</span>
+</div>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm font-medium">Referral Yield (6 Levels)</p>
+<p class="text-slate-900 dark:text-white text-2xl lg:text-3xl font-bold tracking-tight">₹4,500</p>
+<div class="mt-2 text-xs px-2 py-1 bg-purple-500/10 dark:bg-purple-900/20 rounded w-fit text-purple-600 dark:text-purple-300">Estimated Conservative</div>
+</div>
+<!-- Admin Deduction -->
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-xl p-5 flex flex-col gap-1 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-orange-400">account_balance</span>
+</div>
+<div class="flex justify-between items-start">
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm font-medium">Admin Deduction</p>
+<span class="bg-orange-500/10 text-orange-500 text-xs font-bold px-2 py-1 rounded">10%</span>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl lg:text-3xl font-bold tracking-tight text-opacity-80">₹7,500</p>
+<div class="mt-2 text-xs text-slate-400 dark:text-[#5d7d7d]">Platform Maintenance Fee</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Wealth Velocity Chart -->
+<div class="lg:col-span-5 flex flex-col h-full">
+<div class="bg-white dark:bg-surface-dark border border-slate-200 dark:border-[#283939] rounded-2xl p-6 lg:p-8 flex-1 flex flex-col shadow-lg relative overflow-hidden">
+<!-- Header -->
+<div class="mb-6 z-10">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+                                Wealth Velocity Projection
+                            </h3>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm">Projected ROI over 12 months</p>
+</div>
+<!-- Main Big Number -->
+<div class="mb-8 z-10">
+<div class="flex items-baseline gap-2">
+<span class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight">₹12.45 L</span>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<span class="text-[#0bda50] bg-[#0bda50]/10 px-2 py-0.5 rounded text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-sm mr-1">arrow_upward</span> 149%
+                                </span>
+<span class="text-slate-400 dark:text-[#5d7d7d] text-sm">Annualized Yield</span>
+</div>
+</div>
+<!-- Chart Visual -->
+<div class="relative flex-1 min-h-[200px] w-full mt-auto chart-grid rounded-lg border border-slate-100 dark:border-[#1f2f2f] overflow-hidden">
+<!-- Gradient Area -->
+<svg class="absolute bottom-0 left-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#25f4f4; stop-opacity:0.4"></stop>
+<stop offset="100%" style="stop-color:#25f4f4; stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 100 L0 80 Q25 70 50 40 T100 10 V100 Z" fill="url(#chartGradient)"></path>
+<path d="M0 80 Q25 70 50 40 T100 10" fill="none" stroke="#25f4f4" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<!-- Interaction Dots -->
+<div class="absolute top-[10%] right-0 w-3 h-3 bg-white rounded-full border-2 border-primary shadow-[0_0_10px_rgba(37,244,244,0.8)] z-20"></div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-2 w-full flex justify-between px-2 text-[10px] text-slate-400 dark:text-[#5d7d7d] font-mono">
+<span>Start</span>
+<span>M3</span>
+<span>M6</span>
+<span>M9</span>
+<span>M12</span>
+</div>
+</div>
+<!-- CTA Area -->
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-[#283939] z-10">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-slate-900 font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-[0_4px_14px_0_rgba(37,244,244,0.39)]">
+<span>Lock Tier 5 Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<p class="text-center mt-3 text-xs text-slate-400 dark:text-[#5d7d7d]">
+                                Secure your position in the Sovereign Tier before the cycle closes.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Info / Context Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+<div class="bg-slate-50 dark:bg-[#1a2c2c] p-6 rounded-xl border border-slate-200 dark:border-[#283939]/50">
+<div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 mb-4">
+<span class="material-symbols-outlined">security</span>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-2">Secure Capital</h4>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm">Your initial capital is secured by our diversified luxury asset portfolio, ensuring minimal risk exposure.</p>
+</div>
+<div class="bg-slate-50 dark:bg-[#1a2c2c] p-6 rounded-xl border border-slate-200 dark:border-[#283939]/50">
+<div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+<span class="material-symbols-outlined">all_inclusive</span>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-2">Infinite Yield</h4>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm">Compound your earnings automatically or withdraw monthly. The choice is yours with flexible payouts.</p>
+</div>
+<div class="bg-slate-50 dark:bg-[#1a2c2c] p-6 rounded-xl border border-slate-200 dark:border-[#283939]/50">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold mb-2">Sovereign Perks</h4>
+<p class="text-slate-500 dark:text-[#9cbaba] text-sm">Higher tiers unlock exclusive access to pre-IPO luxury goods and private concierge services.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-[#283939] bg-background-light dark:bg-background-dark py-8 mt-10">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 dark:text-[#5d7d7d] text-sm">© 2024 Brave Ecom. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 dark:text-[#5d7d7d] hover:text-primary text-sm" href="#">Terms</a>
+<a class="text-slate-500 dark:text-[#5d7d7d] hover:text-primary text-sm" href="#">Privacy</a>
+<a class="text-slate-500 dark:text-[#5d7d7d] hover:text-primary text-sm" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

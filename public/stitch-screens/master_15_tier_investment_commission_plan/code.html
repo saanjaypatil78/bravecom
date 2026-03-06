@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Master Investment &amp; Commission Plan - Brave Ecom SaaS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#f2cc0d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711", 
+                        "surface-dark": "#221f10", 
+                        "surface-highlight": "#2d2a1d",
+                        "border-dark": "#393628",
+                        "text-main": "#FFFFFF",
+                        "text-muted": "#bab59c",
+                    },
+                    fontFamily: {
+                        display: ["Manrope", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-text-main min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header / Nav -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-10 py-4 bg-surface-dark sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Brave Ecom SaaS</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Investment Plan</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Commission</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Team</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Wallet</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-yellow-400 text-surface-dark text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Logout</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-border-dark" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzEH6vTjoIZUSFV8egUpmgZeXzjN62tniKOKPgsPAfcsSvipn8siTXUhevPeoTRCzloOHSwATA9mrZLpyeVgHy4DBrjxd32KNStLlZEVzvrbgOqjgR-ut8G4nsuNZfHRzirX4KI6kDrSHdJlYfEuDboaWvS0lG3dKdTNcwz57wvkYA66SPIBMqbD561hEV5Sb3U9CLzCKiF5jH1Kdm_g2ps0cTPxTx_HkzABw-6iG9qxXhCki5p8TStzowGjyyOfTZ0yOYNeTt353r");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-6 md:p-10 flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between gap-6 items-start md:items-end border-b border-border-dark pb-6">
+<div class="flex flex-col gap-3 max-w-3xl">
+<h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-transparent bg-clip-text bg-gradient-to-r from-primary to-white">
+                    Master Investment &amp; Commission Plan
+                </h1>
+<p class="text-text-muted text-lg font-normal leading-normal">
+                    Comprehensive breakdown of 15 tiers, profit margins, and 6-level referral commissions.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-highlight hover:bg-border-dark border border-border-dark text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Export PDF
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-highlight hover:bg-border-dark border border-border-dark text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+                    Share
+                </button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-dark border border-border-dark shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 rounded-lg bg-surface-highlight text-primary group-hover:bg-primary group-hover:text-surface-dark transition-colors">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Total Active Investments</p>
+<p class="text-white text-3xl font-bold leading-tight">₹12.5 Cr</p>
+<p class="text-emerald-400 text-xs mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +12% from last month
+                </p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-dark border border-border-dark shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 rounded-lg bg-surface-highlight text-primary group-hover:bg-primary group-hover:text-surface-dark transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Total Commission Paid</p>
+<p class="text-white text-3xl font-bold leading-tight">₹85.2 L</p>
+<p class="text-emerald-400 text-xs mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +8.5% from last month
+                </p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-dark border border-border-dark shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 rounded-lg bg-surface-highlight text-primary group-hover:bg-primary group-hover:text-surface-dark transition-colors">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+</div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Admin Charges Collected</p>
+<p class="text-white text-3xl font-bold leading-tight">₹12.5 L</p>
+<p class="text-emerald-400 text-xs mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                    +5% from last month
+                </p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-6 bg-surface-dark border border-border-dark shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="p-2 rounded-lg bg-surface-highlight text-primary group-hover:bg-primary group-hover:text-surface-dark transition-colors">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+</div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Next Royalty Target</p>
+<p class="text-white text-3xl font-bold leading-tight">₹50 L</p>
+<p class="text-primary text-xs mt-2 font-bold uppercase tracking-wider">Bronze Tier</p>
+</div>
+</div>
+<div class="flex flex-col xl:flex-row gap-6">
+<!-- Main Data Table -->
+<div class="flex-1 overflow-hidden rounded-xl border border-border-dark bg-surface-dark shadow-lg">
+<div class="p-4 border-b border-border-dark bg-surface-highlight/30 flex justify-between items-center">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">table_view</span>
+                        Investment &amp; Commission Breakdown
+                    </h3>
+<div class="flex gap-2">
+<span class="text-xs px-2 py-1 rounded bg-surface-highlight text-text-muted border border-border-dark">15 Tiers</span>
+<span class="text-xs px-2 py-1 rounded bg-surface-highlight text-text-muted border border-border-dark">6 Referral Levels</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-highlight text-text-muted text-xs uppercase tracking-wider font-semibold">
+<tr>
+<th class="p-4 border-b border-border-dark min-w-[60px] sticky left-0 bg-surface-highlight z-10">Tier</th>
+<th class="p-4 border-b border-border-dark min-w-[120px]">Base Inv (₹)</th>
+<th class="p-4 border-b border-border-dark min-w-[120px] text-emerald-400">15% Profit</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L1 (10%)</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L2 (7%)</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L3 (5%)</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L4 (2%)</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L5 (1%)</th>
+<th class="p-4 border-b border-border-dark min-w-[100px]">L6 (0.5%)</th>
+<th class="p-4 border-b border-border-dark min-w-[120px] bg-primary/5">Total Profit</th>
+<th class="p-4 border-b border-border-dark min-w-[120px] text-red-400">Admin (10%)</th>
+</tr>
+</thead>
+<tbody class="text-sm font-medium text-text-muted divide-y divide-border-dark">
+<!-- Tier 1 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L1</td>
+<td class="p-4 text-white">₹51,111</td>
+<td class="p-4 text-emerald-400">₹7,666</td>
+<td class="p-4">₹5,111</td>
+<td class="p-4">₹3,577</td>
+<td class="p-4">₹2,555</td>
+<td class="p-4">₹1,022</td>
+<td class="p-4">₹511</td>
+<td class="p-4">₹255</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹20,697</td>
+<td class="p-4 text-red-400">₹5,111</td>
+</tr>
+<!-- Tier 2 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L2</td>
+<td class="p-4 text-white">₹1,02,222</td>
+<td class="p-4 text-emerald-400">₹15,333</td>
+<td class="p-4">₹10,222</td>
+<td class="p-4">₹7,155</td>
+<td class="p-4">₹5,111</td>
+<td class="p-4">₹2,044</td>
+<td class="p-4">₹1,022</td>
+<td class="p-4">₹511</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹41,398</td>
+<td class="p-4 text-red-400">₹10,222</td>
+</tr>
+<!-- Tier 3 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L3</td>
+<td class="p-4 text-white">₹2,04,444</td>
+<td class="p-4 text-emerald-400">₹30,666</td>
+<td class="p-4">₹20,444</td>
+<td class="p-4">₹14,311</td>
+<td class="p-4">₹10,222</td>
+<td class="p-4">₹4,088</td>
+<td class="p-4">₹2,044</td>
+<td class="p-4">₹1,022</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹82,797</td>
+<td class="p-4 text-red-400">₹20,444</td>
+</tr>
+<!-- Tier 4 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L4</td>
+<td class="p-4 text-white">₹3,06,666</td>
+<td class="p-4 text-emerald-400">₹45,999</td>
+<td class="p-4">₹30,666</td>
+<td class="p-4">₹21,466</td>
+<td class="p-4">₹15,333</td>
+<td class="p-4">₹6,133</td>
+<td class="p-4">₹3,066</td>
+<td class="p-4">₹1,533</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹1,24,196</td>
+<td class="p-4 text-red-400">₹30,666</td>
+</tr>
+<!-- Tier 5 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L5</td>
+<td class="p-4 text-white">₹4,08,888</td>
+<td class="p-4 text-emerald-400">₹61,333</td>
+<td class="p-4">₹40,888</td>
+<td class="p-4">₹28,622</td>
+<td class="p-4">₹20,444</td>
+<td class="p-4">₹8,177</td>
+<td class="p-4">₹4,088</td>
+<td class="p-4">₹2,044</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹1,65,596</td>
+<td class="p-4 text-red-400">₹40,888</td>
+</tr>
+<!-- Tier 6 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L6</td>
+<td class="p-4 text-white">₹5,11,110</td>
+<td class="p-4 text-emerald-400">₹76,666</td>
+<td class="p-4">₹51,111</td>
+<td class="p-4">₹35,777</td>
+<td class="p-4">₹25,555</td>
+<td class="p-4">₹10,222</td>
+<td class="p-4">₹5,111</td>
+<td class="p-4">₹2,555</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹2,06,997</td>
+<td class="p-4 text-red-400">₹51,111</td>
+</tr>
+<!-- Tier 7 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L7</td>
+<td class="p-4 text-white">₹6,13,332</td>
+<td class="p-4 text-emerald-400">₹91,999</td>
+<td class="p-4">₹61,333</td>
+<td class="p-4">₹42,933</td>
+<td class="p-4">₹30,666</td>
+<td class="p-4">₹12,266</td>
+<td class="p-4">₹6,133</td>
+<td class="p-4">₹3,066</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹2,48,396</td>
+<td class="p-4 text-red-400">₹61,333</td>
+</tr>
+<!-- Tier 8 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L8</td>
+<td class="p-4 text-white">₹7,15,554</td>
+<td class="p-4 text-emerald-400">₹1,07,333</td>
+<td class="p-4">₹71,555</td>
+<td class="p-4">₹50,088</td>
+<td class="p-4">₹35,777</td>
+<td class="p-4">₹14,311</td>
+<td class="p-4">₹7,155</td>
+<td class="p-4">₹3,577</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹2,89,796</td>
+<td class="p-4 text-red-400">₹71,555</td>
+</tr>
+<!-- Tier 9 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L9</td>
+<td class="p-4 text-white">₹8,17,776</td>
+<td class="p-4 text-emerald-400">₹1,22,666</td>
+<td class="p-4">₹81,777</td>
+<td class="p-4">₹57,244</td>
+<td class="p-4">₹40,888</td>
+<td class="p-4">₹16,355</td>
+<td class="p-4">₹8,177</td>
+<td class="p-4">₹4,088</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹3,31,195</td>
+<td class="p-4 text-red-400">₹81,777</td>
+</tr>
+<!-- Tier 10 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L10</td>
+<td class="p-4 text-white">₹9,19,998</td>
+<td class="p-4 text-emerald-400">₹1,37,999</td>
+<td class="p-4">₹91,999</td>
+<td class="p-4">₹64,399</td>
+<td class="p-4">₹45,999</td>
+<td class="p-4">₹18,399</td>
+<td class="p-4">₹9,199</td>
+<td class="p-4">₹4,599</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹3,72,594</td>
+<td class="p-4 text-red-400">₹91,999</td>
+</tr>
+<!-- Tier 11 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L11</td>
+<td class="p-4 text-white">₹10,22,220</td>
+<td class="p-4 text-emerald-400">₹1,53,333</td>
+<td class="p-4">₹1,02,222</td>
+<td class="p-4">₹71,555</td>
+<td class="p-4">₹51,111</td>
+<td class="p-4">₹20,444</td>
+<td class="p-4">₹10,222</td>
+<td class="p-4">₹5,111</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹4,13,998</td>
+<td class="p-4 text-red-400">₹1,02,222</td>
+</tr>
+<!-- Tier 12 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L12</td>
+<td class="p-4 text-white">₹12,26,664</td>
+<td class="p-4 text-emerald-400">₹1,83,999</td>
+<td class="p-4">₹1,22,666</td>
+<td class="p-4">₹85,866</td>
+<td class="p-4">₹61,333</td>
+<td class="p-4">₹24,533</td>
+<td class="p-4">₹12,266</td>
+<td class="p-4">₹6,133</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹4,96,796</td>
+<td class="p-4 text-red-400">₹1,22,666</td>
+</tr>
+<!-- Tier 13 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L13</td>
+<td class="p-4 text-white">₹14,31,108</td>
+<td class="p-4 text-emerald-400">₹2,14,666</td>
+<td class="p-4">₹1,43,110</td>
+<td class="p-4">₹1,00,177</td>
+<td class="p-4">₹71,555</td>
+<td class="p-4">₹28,622</td>
+<td class="p-4">₹14,311</td>
+<td class="p-4">₹7,155</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹5,79,596</td>
+<td class="p-4 text-red-400">₹1,43,110</td>
+</tr>
+<!-- Tier 14 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors bg-surface-highlight/10">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L14</td>
+<td class="p-4 text-white">₹16,35,552</td>
+<td class="p-4 text-emerald-400">₹2,45,332</td>
+<td class="p-4">₹1,63,555</td>
+<td class="p-4">₹1,14,488</td>
+<td class="p-4">₹81,777</td>
+<td class="p-4">₹32,711</td>
+<td class="p-4">₹16,355</td>
+<td class="p-4">₹8,177</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹6,62,395</td>
+<td class="p-4 text-red-400">₹1,63,555</td>
+</tr>
+<!-- Tier 15 -->
+<tr class="hover:bg-surface-highlight/50 transition-colors">
+<td class="p-4 sticky left-0 bg-surface-dark group-hover:bg-surface-highlight/50 text-white font-bold">L15</td>
+<td class="p-4 text-white">₹18,39,996</td>
+<td class="p-4 text-emerald-400">₹2,75,999</td>
+<td class="p-4">₹1,83,999</td>
+<td class="p-4">₹1,28,799</td>
+<td class="p-4">₹91,999</td>
+<td class="p-4">₹36,799</td>
+<td class="p-4">₹18,399</td>
+<td class="p-4">₹9,199</td>
+<td class="p-4 text-primary bg-primary/5 font-bold">₹7,45,194</td>
+<td class="p-4 text-red-400">₹1,83,999</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Royalty Side Panel -->
+<div class="w-full xl:w-[360px] flex flex-col gap-6">
+<div class="rounded-xl border border-border-dark bg-surface-dark shadow-lg overflow-hidden flex flex-col h-fit">
+<div class="p-5 border-b border-border-dark bg-gradient-to-r from-surface-highlight to-surface-dark">
+<h3 class="text-xl font-bold text-white mb-1">Direct Target Royalty</h3>
+<p class="text-xs text-text-muted">Rewards based on total direct business volume</p>
+</div>
+<div class="divide-y divide-border-dark">
+<!-- Bronze -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-[#CD7F32]/20 flex items-center justify-center border border-[#CD7F32]/40 text-[#CD7F32]">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Bronze</p>
+<p class="text-text-muted text-xs">Target Reached</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹50 Lakh</p>
+<span class="text-[10px] text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-400/20">Active</span>
+</div>
+</div>
+<!-- Silver -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-[#C0C0C0]/20 flex items-center justify-center border border-[#C0C0C0]/40 text-[#C0C0C0]">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Silver</p>
+<p class="text-text-muted text-xs">Target</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹1.5 Cr</p>
+<span class="text-[10px] text-text-muted bg-surface-highlight px-2 py-0.5 rounded-full">Pending</span>
+</div>
+</div>
+<!-- Gold -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-[#FFD700]/20 flex items-center justify-center border border-[#FFD700]/40 text-[#FFD700]">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Gold</p>
+<p class="text-text-muted text-xs">Target</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹5 Cr</p>
+<span class="text-[10px] text-text-muted bg-surface-highlight px-2 py-0.5 rounded-full">Pending</span>
+</div>
+</div>
+<!-- Platinum -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-[#E5E4E2]/20 flex items-center justify-center border border-[#E5E4E2]/40 text-[#E5E4E2]">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Platinum</p>
+<p class="text-text-muted text-xs">Target</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹15 Cr</p>
+<span class="text-[10px] text-text-muted bg-surface-highlight px-2 py-0.5 rounded-full">Pending</span>
+</div>
+</div>
+<!-- Diamond -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-[#b9f2ff]/20 flex items-center justify-center border border-[#b9f2ff]/40 text-[#b9f2ff]">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Diamond</p>
+<p class="text-text-muted text-xs">Target</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹50 Cr</p>
+<span class="text-[10px] text-text-muted bg-surface-highlight px-2 py-0.5 rounded-full">Pending</span>
+</div>
+</div>
+<!-- Ambassador -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-highlight/30 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/40 text-primary">
+<span class="material-symbols-outlined">stars</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Ambassador</p>
+<p class="text-text-muted text-xs">Target</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold">₹100 Cr</p>
+<span class="text-[10px] text-text-muted bg-surface-highlight px-2 py-0.5 rounded-full">Pending</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Promo Card -->
+<div class="rounded-xl p-6 bg-gradient-to-br from-primary to-yellow-600 shadow-lg text-surface-dark relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 scale-150 group-hover:scale-125 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">rocket_launch</span>
+</div>
+<div class="relative z-10">
+<h4 class="text-lg font-extrabold mb-2 uppercase tracking-wide">Boost Your Income</h4>
+<p class="text-sm font-medium mb-4 opacity-90 max-w-[80%]">
+                            Reach the Gold Tier by end of this month to unlock an exclusive 2% extra bonus on all direct referrals.
+                        </p>
+<button class="px-4 py-2 bg-surface-dark text-white rounded-lg text-sm font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all">
+                            View Details
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

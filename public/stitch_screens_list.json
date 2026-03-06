@@ -1,0 +1,1256 @@
+{
+  "screens": [
+    {
+      "id": "3d_distributed_event_trace_monitor",
+      "name": "3d distributed event trace monitor",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/3d_distributed_event_trace_monitor/code.html",
+      "imgUrl": "/stitch-screens/3d_distributed_event_trace_monitor/screen.png"
+    },
+    {
+      "id": "3d_portfolio_performance_landscape",
+      "name": "3d portfolio performance landscape",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/3d_portfolio_performance_landscape/code.html",
+      "imgUrl": "/stitch-screens/3d_portfolio_performance_landscape/screen.png"
+    },
+    {
+      "id": "3d_pre_ipo_compliance_roadmap_animated",
+      "name": "3d pre ipo compliance roadmap animated",
+      "category": "3D Cinematic Experiences",
+      "htmlUrl": "/stitch-screens/3d_pre_ipo_compliance_roadmap_animated/code.html",
+      "imgUrl": "/stitch-screens/3d_pre_ipo_compliance_roadmap_animated/screen.png"
+    },
+    {
+      "id": "3d_system_control_rbac_deck",
+      "name": "3d system control rbac deck",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/3d_system_control_rbac_deck/code.html",
+      "imgUrl": "/stitch-screens/3d_system_control_rbac_deck/screen.png"
+    },
+    {
+      "id": "6-level_referral_network_&_earnings_detail",
+      "name": "6-level referral network & earnings detail",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/6-level_referral_network_&_earnings_detail/code.html",
+      "imgUrl": "/stitch-screens/6-level_referral_network_&_earnings_detail/screen.png"
+    },
+    {
+      "id": "6-level_referral_network_monitor",
+      "name": "6-level referral network monitor",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/6-level_referral_network_monitor/code.html",
+      "imgUrl": "/stitch-screens/6-level_referral_network_monitor/screen.png"
+    },
+    {
+      "id": "admin_disbursement_&_audit_log",
+      "name": "admin disbursement & audit log",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/admin_disbursement_&_audit_log/code.html",
+      "imgUrl": "/stitch-screens/admin_disbursement_&_audit_log/screen.png"
+    },
+    {
+      "id": "admin_payout_&_disbursement_portal",
+      "name": "admin payout & disbursement portal",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/admin_payout_&_disbursement_portal/code.html",
+      "imgUrl": "/stitch-screens/admin_payout_&_disbursement_portal/screen.png"
+    },
+    {
+      "id": "admin_referral_hierarchy_&_mapping_tool",
+      "name": "admin referral hierarchy & mapping tool",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/admin_referral_hierarchy_&_mapping_tool/code.html",
+      "imgUrl": "/stitch-screens/admin_referral_hierarchy_&_mapping_tool/screen.png"
+    },
+    {
+      "id": "admin_sun_ray_ecosystem_monitor_1",
+      "name": "admin sun ray ecosystem monitor 1",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_1/code.html",
+      "imgUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_1/screen.png"
+    },
+    {
+      "id": "admin_sun_ray_ecosystem_monitor_2",
+      "name": "admin sun ray ecosystem monitor 2",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_2/code.html",
+      "imgUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_2/screen.png"
+    },
+    {
+      "id": "aum_&_expense_structure_overview",
+      "name": "aum & expense structure overview",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/aum_&_expense_structure_overview/code.html",
+      "imgUrl": "/stitch-screens/aum_&_expense_structure_overview/screen.png"
+    },
+    {
+      "id": "aum_adjustment_&_audit_history_log",
+      "name": "aum adjustment & audit history log",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/aum_adjustment_&_audit_history_log/code.html",
+      "imgUrl": "/stitch-screens/aum_adjustment_&_audit_history_log/screen.png"
+    },
+    {
+      "id": "aum_growth_&_commission_results_dashboard_1",
+      "name": "aum growth & commission results dashboard 1",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_1/code.html",
+      "imgUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_1/screen.png"
+    },
+    {
+      "id": "aum_growth_&_commission_results_dashboard_2",
+      "name": "aum growth & commission results dashboard 2",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_2/code.html",
+      "imgUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_2/screen.png"
+    },
+    {
+      "id": "aum_milestone_&_royalty_tracker",
+      "name": "aum milestone & royalty tracker",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/aum_milestone_&_royalty_tracker/code.html",
+      "imgUrl": "/stitch-screens/aum_milestone_&_royalty_tracker/screen.png"
+    },
+    {
+      "id": "autonomous_activity_&_status_audit",
+      "name": "autonomous activity & status audit",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/autonomous_activity_&_status_audit/code.html",
+      "imgUrl": "/stitch-screens/autonomous_activity_&_status_audit/screen.png"
+    },
+    {
+      "id": "commission_structure_settings",
+      "name": "commission structure settings",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/commission_structure_settings/code.html",
+      "imgUrl": "/stitch-screens/commission_structure_settings/screen.png"
+    },
+    {
+      "id": "disbursement_history_&_receipts_(inr)",
+      "name": "disbursement history & receipts (inr)",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/disbursement_history_&_receipts_(inr)/code.html",
+      "imgUrl": "/stitch-screens/disbursement_history_&_receipts_(inr)/screen.png"
+    },
+    {
+      "id": "disbursement_logic_&_cycle_simulation",
+      "name": "disbursement logic & cycle simulation",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/disbursement_logic_&_cycle_simulation/code.html",
+      "imgUrl": "/stitch-screens/disbursement_logic_&_cycle_simulation/screen.png"
+    },
+    {
+      "id": "distributed_event_trace_&_audit_log",
+      "name": "distributed event trace & audit log",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/distributed_event_trace_&_audit_log/code.html",
+      "imgUrl": "/stitch-screens/distributed_event_trace_&_audit_log/screen.png"
+    },
+    {
+      "id": "dynamic_status_payout_dashboard",
+      "name": "dynamic status payout dashboard",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/dynamic_status_payout_dashboard/code.html",
+      "imgUrl": "/stitch-screens/dynamic_status_payout_dashboard/screen.png"
+    },
+    {
+      "id": "factrade_retirement_freedom_tracker",
+      "name": "factrade retirement freedom tracker",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/factrade_retirement_freedom_tracker/code.html",
+      "imgUrl": "/stitch-screens/factrade_retirement_freedom_tracker/screen.png"
+    },
+    {
+      "id": "franchise_management_&_regional_partners",
+      "name": "franchise management & regional partners",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_management_&_regional_partners/code.html",
+      "imgUrl": "/stitch-screens/franchise_management_&_regional_partners/screen.png"
+    },
+    {
+      "id": "franchise_network_oversight_dashboard",
+      "name": "franchise network oversight dashboard",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_network_oversight_dashboard/code.html",
+      "imgUrl": "/stitch-screens/franchise_network_oversight_dashboard/screen.png"
+    },
+    {
+      "id": "franchise_oversight_glance",
+      "name": "franchise oversight glance",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_oversight_glance/code.html",
+      "imgUrl": "/stitch-screens/franchise_oversight_glance/screen.png"
+    },
+    {
+      "id": "franchise_regional_command_center",
+      "name": "franchise regional command center",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_regional_command_center/code.html",
+      "imgUrl": "/stitch-screens/franchise_regional_command_center/screen.png"
+    },
+    {
+      "id": "franchise_regional_command_console",
+      "name": "franchise regional command console",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_regional_command_console/code.html",
+      "imgUrl": "/stitch-screens/franchise_regional_command_console/screen.png"
+    },
+    {
+      "id": "franchise_settlement_&_payout_report_1",
+      "name": "franchise settlement & payout report 1",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_1/code.html",
+      "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_1/screen.png"
+    },
+    {
+      "id": "franchise_settlement_&_payout_report_2",
+      "name": "franchise settlement & payout report 2",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_2/code.html",
+      "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_2/screen.png"
+    },
+    {
+      "id": "franchise_settlement_&_payout_report_3",
+      "name": "franchise settlement & payout report 3",
+      "category": "Franchise Operations",
+      "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_3/code.html",
+      "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_3/screen.png"
+    },
+    {
+      "id": "glitch_animated_sovereign_welcome_page",
+      "name": "glitch animated sovereign welcome page",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/glitch_animated_sovereign_welcome_page/code.html",
+      "imgUrl": "/stitch-screens/glitch_animated_sovereign_welcome_page/screen.png"
+    },
+    {
+      "id": "global_sovereign_leaderboard",
+      "name": "global sovereign leaderboard",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/global_sovereign_leaderboard/code.html",
+      "imgUrl": "/stitch-screens/global_sovereign_leaderboard/screen.png"
+    },
+    {
+      "id": "global_sovereign_price_compare",
+      "name": "global sovereign price compare",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/global_sovereign_price_compare/code.html",
+      "imgUrl": "/stitch-screens/global_sovereign_price_compare/screen.png"
+    },
+    {
+      "id": "governance_audit_&_treasury_management",
+      "name": "governance audit & treasury management",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/governance_audit_&_treasury_management/code.html",
+      "imgUrl": "/stitch-screens/governance_audit_&_treasury_management/screen.png"
+    },
+    {
+      "id": "green_status_activation_celebration",
+      "name": "green status activation celebration",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/green_status_activation_celebration/code.html",
+      "imgUrl": "/stitch-screens/green_status_activation_celebration/screen.png"
+    },
+    {
+      "id": "holographic_network_invitation_hub",
+      "name": "holographic network invitation hub",
+      "category": "3D Cinematic Experiences",
+      "htmlUrl": "/stitch-screens/holographic_network_invitation_hub/code.html",
+      "imgUrl": "/stitch-screens/holographic_network_invitation_hub/screen.png"
+    },
+    {
+      "id": "interactive_aum_&_admin_control_bar",
+      "name": "interactive aum & admin control bar",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/interactive_aum_&_admin_control_bar/code.html",
+      "imgUrl": "/stitch-screens/interactive_aum_&_admin_control_bar/screen.png"
+    },
+    {
+      "id": "interactive_sun_ray_3d_network_1",
+      "name": "interactive sun ray 3d network 1",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/interactive_sun_ray_3d_network_1/code.html",
+      "imgUrl": "/stitch-screens/interactive_sun_ray_3d_network_1/screen.png"
+    },
+    {
+      "id": "investment_saas_admin_dashboard",
+      "name": "investment saas admin dashboard",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/investment_saas_admin_dashboard/code.html",
+      "imgUrl": "/stitch-screens/investment_saas_admin_dashboard/screen.png"
+    },
+    {
+      "id": "investment_tiers_&_multipliers_master_table",
+      "name": "investment tiers & multipliers master table",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/investment_tiers_&_multipliers_master_table/code.html",
+      "imgUrl": "/stitch-screens/investment_tiers_&_multipliers_master_table/screen.png"
+    },
+    {
+      "id": "investor_performance_glance",
+      "name": "investor performance glance",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/investor_performance_glance/code.html",
+      "imgUrl": "/stitch-screens/investor_performance_glance/screen.png"
+    },
+    {
+      "id": "investor_portfolio_&_earnings_view",
+      "name": "investor portfolio & earnings view",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/investor_portfolio_&_earnings_view/code.html",
+      "imgUrl": "/stitch-screens/investor_portfolio_&_earnings_view/screen.png"
+    },
+    {
+      "id": "investor_portfolio_&_referrals_1",
+      "name": "investor portfolio & referrals 1",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/investor_portfolio_&_referrals_1/code.html",
+      "imgUrl": "/stitch-screens/investor_portfolio_&_referrals_1/screen.png"
+    },
+    {
+      "id": "investor_portfolio_&_referrals_2",
+      "name": "investor portfolio & referrals 2",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/investor_portfolio_&_referrals_2/code.html",
+      "imgUrl": "/stitch-screens/investor_portfolio_&_referrals_2/screen.png"
+    },
+    {
+      "id": "investor_wealth_&_activity_dashboard",
+      "name": "investor wealth & activity dashboard",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/investor_wealth_&_activity_dashboard/code.html",
+      "imgUrl": "/stitch-screens/investor_wealth_&_activity_dashboard/screen.png"
+    },
+    {
+      "id": "live_telemetry_&_corpus_growth_dashboard",
+      "name": "live telemetry & corpus growth dashboard",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/live_telemetry_&_corpus_growth_dashboard/code.html",
+      "imgUrl": "/stitch-screens/live_telemetry_&_corpus_growth_dashboard/screen.png"
+    },
+    {
+      "id": "marketplace_category_explorer",
+      "name": "marketplace category explorer",
+      "category": "E-Commerce Mall",
+      "htmlUrl": "/stitch-screens/marketplace_category_explorer/code.html",
+      "imgUrl": "/stitch-screens/marketplace_category_explorer/screen.png"
+    },
+    {
+      "id": "master_15_tier_investment_commission_plan",
+      "name": "master 15 tier investment commission plan",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/master_15_tier_investment_commission_plan/code.html",
+      "imgUrl": "/stitch-screens/master_15_tier_investment_commission_plan/screen.png"
+    },
+    {
+      "id": "master_admin_live_transaction_feed",
+      "name": "master admin live transaction feed",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/master_admin_live_transaction_feed/code.html",
+      "imgUrl": "/stitch-screens/master_admin_live_transaction_feed/screen.png"
+    },
+    {
+      "id": "master_admin_user_control_center",
+      "name": "master admin user control center",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/master_admin_user_control_center/code.html",
+      "imgUrl": "/stitch-screens/master_admin_user_control_center/screen.png"
+    },
+    {
+      "id": "master_governance_command_center",
+      "name": "master governance command center",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/master_governance_command_center/code.html",
+      "imgUrl": "/stitch-screens/master_governance_command_center/screen.png"
+    },
+    {
+      "id": "master_investment_&_commission_table",
+      "name": "master investment & commission table",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/master_investment_&_commission_table/code.html",
+      "imgUrl": "/stitch-screens/master_investment_&_commission_table/screen.png"
+    },
+    {
+      "id": "microservices_node_health_monitor_1",
+      "name": "microservices node health monitor 1",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/microservices_node_health_monitor_1/code.html",
+      "imgUrl": "/stitch-screens/microservices_node_health_monitor_1/screen.png"
+    },
+    {
+      "id": "microservices_node_health_monitor_4",
+      "name": "microservices node health monitor 4",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/microservices_node_health_monitor_4/code.html",
+      "imgUrl": "/stitch-screens/microservices_node_health_monitor_4/screen.png"
+    },
+    {
+      "id": "microservices_node_health_monitor_5",
+      "name": "microservices node health monitor 5",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/microservices_node_health_monitor_5/code.html",
+      "imgUrl": "/stitch-screens/microservices_node_health_monitor_5/screen.png"
+    },
+    {
+      "id": "microservices_node_health_monitor_6",
+      "name": "microservices node health monitor 6",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/microservices_node_health_monitor_6/code.html",
+      "imgUrl": "/stitch-screens/microservices_node_health_monitor_6/screen.png"
+    },
+    {
+      "id": "multi_wallet_sovereign_hub",
+      "name": "multi wallet sovereign hub",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/multi_wallet_sovereign_hub/code.html",
+      "imgUrl": "/stitch-screens/multi_wallet_sovereign_hub/screen.png"
+    },
+    {
+      "id": "newly_built_buyer_mall_dashboard",
+      "name": "newly built buyer mall dashboard",
+      "category": "E-Commerce Mall",
+      "htmlUrl": "/stitch-screens/newly_built_buyer_mall_dashboard/code.html",
+      "imgUrl": "/stitch-screens/newly_built_buyer_mall_dashboard/screen.png"
+    },
+    {
+      "id": "onboarding_smart_form_builder",
+      "name": "onboarding smart form builder",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/onboarding_smart_form_builder/code.html",
+      "imgUrl": "/stitch-screens/onboarding_smart_form_builder/screen.png"
+    },
+    {
+      "id": "personalized_wealth_escalation_advisor_2",
+      "name": "personalized wealth escalation advisor 2",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/personalized_wealth_escalation_advisor_2/code.html",
+      "imgUrl": "/stitch-screens/personalized_wealth_escalation_advisor_2/screen.png"
+    },
+    {
+      "id": "personalized_wealth_escalation_advisor_3",
+      "name": "personalized wealth escalation advisor 3",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/personalized_wealth_escalation_advisor_3/code.html",
+      "imgUrl": "/stitch-screens/personalized_wealth_escalation_advisor_3/screen.png"
+    },
+    {
+      "id": "pre-ipo_fundraising_welcome_page",
+      "name": "pre-ipo fundraising welcome page",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/pre-ipo_fundraising_welcome_page/code.html",
+      "imgUrl": "/stitch-screens/pre-ipo_fundraising_welcome_page/screen.png"
+    },
+    {
+      "id": "rbac_central_landing_portal",
+      "name": "rbac central landing portal",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/rbac_central_landing_portal/code.html",
+      "imgUrl": "/stitch-screens/rbac_central_landing_portal/screen.png"
+    },
+    {
+      "id": "re_activation_approval_notifications_email_sms",
+      "name": "re activation approval notifications email sms",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/re_activation_approval_notifications_email_sms/code.html",
+      "imgUrl": "/stitch-screens/re_activation_approval_notifications_email_sms/screen.png"
+    },
+    {
+      "id": "royalty_program_&_reward_structure",
+      "name": "royalty program & reward structure",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/royalty_program_&_reward_structure/code.html",
+      "imgUrl": "/stitch-screens/royalty_program_&_reward_structure/screen.png"
+    },
+    {
+      "id": "sebi_compliance_&_ipo_roadmap",
+      "name": "sebi compliance & ipo roadmap",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/sebi_compliance_&_ipo_roadmap/code.html",
+      "imgUrl": "/stitch-screens/sebi_compliance_&_ipo_roadmap/screen.png"
+    },
+    {
+      "id": "secure_multi_step_registration_wizard",
+      "name": "secure multi step registration wizard",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/secure_multi_step_registration_wizard/code.html",
+      "imgUrl": "/stitch-screens/secure_multi_step_registration_wizard/screen.png"
+    },
+    {
+      "id": "smart_disbursement_authorization_modal",
+      "name": "smart disbursement authorization modal",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/smart_disbursement_authorization_modal/code.html",
+      "imgUrl": "/stitch-screens/smart_disbursement_authorization_modal/screen.png"
+    },
+    {
+      "id": "smart_manual_onboarding_form",
+      "name": "smart manual onboarding form",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/smart_manual_onboarding_form/code.html",
+      "imgUrl": "/stitch-screens/smart_manual_onboarding_form/screen.png"
+    },
+    {
+      "id": "smart_profile_management_form",
+      "name": "smart profile management form",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/smart_profile_management_form/code.html",
+      "imgUrl": "/stitch-screens/smart_profile_management_form/screen.png"
+    },
+    {
+      "id": "smart_rbac_user_onboarding_modal",
+      "name": "smart rbac user onboarding modal",
+      "category": "Onboarding & Auth",
+      "htmlUrl": "/stitch-screens/smart_rbac_user_onboarding_modal/code.html",
+      "imgUrl": "/stitch-screens/smart_rbac_user_onboarding_modal/screen.png"
+    },
+    {
+      "id": "smart_referral_level_configuration",
+      "name": "smart referral level configuration",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/smart_referral_level_configuration/code.html",
+      "imgUrl": "/stitch-screens/smart_referral_level_configuration/screen.png"
+    },
+    {
+      "id": "sovereign_legacy_archive_3d",
+      "name": "sovereign legacy archive 3d",
+      "category": "3D Cinematic Experiences",
+      "htmlUrl": "/stitch-screens/sovereign_legacy_archive_3d/code.html",
+      "imgUrl": "/stitch-screens/sovereign_legacy_archive_3d/screen.png"
+    },
+    {
+      "id": "sovereign_notification_center",
+      "name": "sovereign notification center",
+      "category": "Uncategorized",
+      "htmlUrl": "/stitch-screens/sovereign_notification_center/code.html",
+      "imgUrl": "/stitch-screens/sovereign_notification_center/screen.png"
+    },
+    {
+      "id": "sovereign_product_browse_grid",
+      "name": "sovereign product browse grid",
+      "category": "E-Commerce Mall",
+      "htmlUrl": "/stitch-screens/sovereign_product_browse_grid/code.html",
+      "imgUrl": "/stitch-screens/sovereign_product_browse_grid/screen.png"
+    },
+    {
+      "id": "sovereign_secure_checkout_flow",
+      "name": "sovereign secure checkout flow",
+      "category": "E-Commerce Mall",
+      "htmlUrl": "/stitch-screens/sovereign_secure_checkout_flow/code.html",
+      "imgUrl": "/stitch-screens/sovereign_secure_checkout_flow/screen.png"
+    },
+    {
+      "id": "sovereign_tier_roi_simulator",
+      "name": "sovereign tier roi simulator",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/sovereign_tier_roi_simulator/code.html",
+      "imgUrl": "/stitch-screens/sovereign_tier_roi_simulator/screen.png"
+    },
+    {
+      "id": "sun_ray_commission_sync_sidebar",
+      "name": "sun ray commission sync sidebar",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/sun_ray_commission_sync_sidebar/code.html",
+      "imgUrl": "/stitch-screens/sun_ray_commission_sync_sidebar/screen.png"
+    },
+    {
+      "id": "sun_ray_performance_leaderboard",
+      "name": "sun ray performance leaderboard",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/sun_ray_performance_leaderboard/code.html",
+      "imgUrl": "/stitch-screens/sun_ray_performance_leaderboard/screen.png"
+    },
+    {
+      "id": "sun_ray_referral_mapping_&_commissions_1",
+      "name": "sun ray referral mapping & commissions 1",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_1/code.html",
+      "imgUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_1/screen.png"
+    },
+    {
+      "id": "sun_ray_referral_mapping_&_commissions_2",
+      "name": "sun ray referral mapping & commissions 2",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_2/code.html",
+      "imgUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_2/screen.png"
+    },
+    {
+      "id": "system_integrity_&_ledger_audit_portal",
+      "name": "system integrity & ledger audit portal",
+      "category": "Master Admin Console",
+      "htmlUrl": "/stitch-screens/system_integrity_&_ledger_audit_portal/code.html",
+      "imgUrl": "/stitch-screens/system_integrity_&_ledger_audit_portal/screen.png"
+    },
+    {
+      "id": "top-to-down_commission_disbursement_history_1",
+      "name": "top-to-down commission disbursement history 1",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_1/code.html",
+      "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_1/screen.png"
+    },
+    {
+      "id": "top-to-down_commission_disbursement_history_2",
+      "name": "top-to-down commission disbursement history 2",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_2/code.html",
+      "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_2/screen.png"
+    },
+    {
+      "id": "top-to-down_commission_disbursement_history_3",
+      "name": "top-to-down commission disbursement history 3",
+      "category": "Sun Ray Network",
+      "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_3/code.html",
+      "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_3/screen.png"
+    },
+    {
+      "id": "treasury_fund_&_performance_rewards",
+      "name": "treasury fund & performance rewards",
+      "category": "Investor Hub",
+      "htmlUrl": "/stitch-screens/treasury_fund_&_performance_rewards/code.html",
+      "imgUrl": "/stitch-screens/treasury_fund_&_performance_rewards/screen.png"
+    },
+    {
+      "id": "treasury_reward_recognition_gallery",
+      "name": "treasury reward recognition gallery",
+      "category": "Treasury & Factrade",
+      "htmlUrl": "/stitch-screens/treasury_reward_recognition_gallery/code.html",
+      "imgUrl": "/stitch-screens/treasury_reward_recognition_gallery/screen.png"
+    }
+  ],
+  "flows": {
+    "Master Admin Console": [
+      {
+        "id": "3d_distributed_event_trace_monitor",
+        "name": "3d distributed event trace monitor",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/3d_distributed_event_trace_monitor/code.html",
+        "imgUrl": "/stitch-screens/3d_distributed_event_trace_monitor/screen.png"
+      },
+      {
+        "id": "3d_system_control_rbac_deck",
+        "name": "3d system control rbac deck",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/3d_system_control_rbac_deck/code.html",
+        "imgUrl": "/stitch-screens/3d_system_control_rbac_deck/screen.png"
+      },
+      {
+        "id": "6-level_referral_network_monitor",
+        "name": "6-level referral network monitor",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/6-level_referral_network_monitor/code.html",
+        "imgUrl": "/stitch-screens/6-level_referral_network_monitor/screen.png"
+      },
+      {
+        "id": "admin_disbursement_&_audit_log",
+        "name": "admin disbursement & audit log",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/admin_disbursement_&_audit_log/code.html",
+        "imgUrl": "/stitch-screens/admin_disbursement_&_audit_log/screen.png"
+      },
+      {
+        "id": "admin_payout_&_disbursement_portal",
+        "name": "admin payout & disbursement portal",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/admin_payout_&_disbursement_portal/code.html",
+        "imgUrl": "/stitch-screens/admin_payout_&_disbursement_portal/screen.png"
+      },
+      {
+        "id": "admin_referral_hierarchy_&_mapping_tool",
+        "name": "admin referral hierarchy & mapping tool",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/admin_referral_hierarchy_&_mapping_tool/code.html",
+        "imgUrl": "/stitch-screens/admin_referral_hierarchy_&_mapping_tool/screen.png"
+      },
+      {
+        "id": "admin_sun_ray_ecosystem_monitor_1",
+        "name": "admin sun ray ecosystem monitor 1",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_1/code.html",
+        "imgUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_1/screen.png"
+      },
+      {
+        "id": "admin_sun_ray_ecosystem_monitor_2",
+        "name": "admin sun ray ecosystem monitor 2",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_2/code.html",
+        "imgUrl": "/stitch-screens/admin_sun_ray_ecosystem_monitor_2/screen.png"
+      },
+      {
+        "id": "aum_adjustment_&_audit_history_log",
+        "name": "aum adjustment & audit history log",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/aum_adjustment_&_audit_history_log/code.html",
+        "imgUrl": "/stitch-screens/aum_adjustment_&_audit_history_log/screen.png"
+      },
+      {
+        "id": "autonomous_activity_&_status_audit",
+        "name": "autonomous activity & status audit",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/autonomous_activity_&_status_audit/code.html",
+        "imgUrl": "/stitch-screens/autonomous_activity_&_status_audit/screen.png"
+      },
+      {
+        "id": "distributed_event_trace_&_audit_log",
+        "name": "distributed event trace & audit log",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/distributed_event_trace_&_audit_log/code.html",
+        "imgUrl": "/stitch-screens/distributed_event_trace_&_audit_log/screen.png"
+      },
+      {
+        "id": "governance_audit_&_treasury_management",
+        "name": "governance audit & treasury management",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/governance_audit_&_treasury_management/code.html",
+        "imgUrl": "/stitch-screens/governance_audit_&_treasury_management/screen.png"
+      },
+      {
+        "id": "interactive_aum_&_admin_control_bar",
+        "name": "interactive aum & admin control bar",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/interactive_aum_&_admin_control_bar/code.html",
+        "imgUrl": "/stitch-screens/interactive_aum_&_admin_control_bar/screen.png"
+      },
+      {
+        "id": "investment_saas_admin_dashboard",
+        "name": "investment saas admin dashboard",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/investment_saas_admin_dashboard/code.html",
+        "imgUrl": "/stitch-screens/investment_saas_admin_dashboard/screen.png"
+      },
+      {
+        "id": "master_admin_live_transaction_feed",
+        "name": "master admin live transaction feed",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/master_admin_live_transaction_feed/code.html",
+        "imgUrl": "/stitch-screens/master_admin_live_transaction_feed/screen.png"
+      },
+      {
+        "id": "master_admin_user_control_center",
+        "name": "master admin user control center",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/master_admin_user_control_center/code.html",
+        "imgUrl": "/stitch-screens/master_admin_user_control_center/screen.png"
+      },
+      {
+        "id": "master_governance_command_center",
+        "name": "master governance command center",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/master_governance_command_center/code.html",
+        "imgUrl": "/stitch-screens/master_governance_command_center/screen.png"
+      },
+      {
+        "id": "microservices_node_health_monitor_1",
+        "name": "microservices node health monitor 1",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/microservices_node_health_monitor_1/code.html",
+        "imgUrl": "/stitch-screens/microservices_node_health_monitor_1/screen.png"
+      },
+      {
+        "id": "microservices_node_health_monitor_4",
+        "name": "microservices node health monitor 4",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/microservices_node_health_monitor_4/code.html",
+        "imgUrl": "/stitch-screens/microservices_node_health_monitor_4/screen.png"
+      },
+      {
+        "id": "microservices_node_health_monitor_5",
+        "name": "microservices node health monitor 5",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/microservices_node_health_monitor_5/code.html",
+        "imgUrl": "/stitch-screens/microservices_node_health_monitor_5/screen.png"
+      },
+      {
+        "id": "microservices_node_health_monitor_6",
+        "name": "microservices node health monitor 6",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/microservices_node_health_monitor_6/code.html",
+        "imgUrl": "/stitch-screens/microservices_node_health_monitor_6/screen.png"
+      },
+      {
+        "id": "system_integrity_&_ledger_audit_portal",
+        "name": "system integrity & ledger audit portal",
+        "category": "Master Admin Console",
+        "htmlUrl": "/stitch-screens/system_integrity_&_ledger_audit_portal/code.html",
+        "imgUrl": "/stitch-screens/system_integrity_&_ledger_audit_portal/screen.png"
+      }
+    ],
+    "Investor Hub": [
+      {
+        "id": "3d_portfolio_performance_landscape",
+        "name": "3d portfolio performance landscape",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/3d_portfolio_performance_landscape/code.html",
+        "imgUrl": "/stitch-screens/3d_portfolio_performance_landscape/screen.png"
+      },
+      {
+        "id": "investor_performance_glance",
+        "name": "investor performance glance",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/investor_performance_glance/code.html",
+        "imgUrl": "/stitch-screens/investor_performance_glance/screen.png"
+      },
+      {
+        "id": "investor_portfolio_&_earnings_view",
+        "name": "investor portfolio & earnings view",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/investor_portfolio_&_earnings_view/code.html",
+        "imgUrl": "/stitch-screens/investor_portfolio_&_earnings_view/screen.png"
+      },
+      {
+        "id": "investor_portfolio_&_referrals_1",
+        "name": "investor portfolio & referrals 1",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/investor_portfolio_&_referrals_1/code.html",
+        "imgUrl": "/stitch-screens/investor_portfolio_&_referrals_1/screen.png"
+      },
+      {
+        "id": "investor_portfolio_&_referrals_2",
+        "name": "investor portfolio & referrals 2",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/investor_portfolio_&_referrals_2/code.html",
+        "imgUrl": "/stitch-screens/investor_portfolio_&_referrals_2/screen.png"
+      },
+      {
+        "id": "investor_wealth_&_activity_dashboard",
+        "name": "investor wealth & activity dashboard",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/investor_wealth_&_activity_dashboard/code.html",
+        "imgUrl": "/stitch-screens/investor_wealth_&_activity_dashboard/screen.png"
+      },
+      {
+        "id": "personalized_wealth_escalation_advisor_2",
+        "name": "personalized wealth escalation advisor 2",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/personalized_wealth_escalation_advisor_2/code.html",
+        "imgUrl": "/stitch-screens/personalized_wealth_escalation_advisor_2/screen.png"
+      },
+      {
+        "id": "personalized_wealth_escalation_advisor_3",
+        "name": "personalized wealth escalation advisor 3",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/personalized_wealth_escalation_advisor_3/code.html",
+        "imgUrl": "/stitch-screens/personalized_wealth_escalation_advisor_3/screen.png"
+      },
+      {
+        "id": "sovereign_tier_roi_simulator",
+        "name": "sovereign tier roi simulator",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/sovereign_tier_roi_simulator/code.html",
+        "imgUrl": "/stitch-screens/sovereign_tier_roi_simulator/screen.png"
+      },
+      {
+        "id": "treasury_fund_&_performance_rewards",
+        "name": "treasury fund & performance rewards",
+        "category": "Investor Hub",
+        "htmlUrl": "/stitch-screens/treasury_fund_&_performance_rewards/code.html",
+        "imgUrl": "/stitch-screens/treasury_fund_&_performance_rewards/screen.png"
+      }
+    ],
+    "3D Cinematic Experiences": [
+      {
+        "id": "3d_pre_ipo_compliance_roadmap_animated",
+        "name": "3d pre ipo compliance roadmap animated",
+        "category": "3D Cinematic Experiences",
+        "htmlUrl": "/stitch-screens/3d_pre_ipo_compliance_roadmap_animated/code.html",
+        "imgUrl": "/stitch-screens/3d_pre_ipo_compliance_roadmap_animated/screen.png"
+      },
+      {
+        "id": "holographic_network_invitation_hub",
+        "name": "holographic network invitation hub",
+        "category": "3D Cinematic Experiences",
+        "htmlUrl": "/stitch-screens/holographic_network_invitation_hub/code.html",
+        "imgUrl": "/stitch-screens/holographic_network_invitation_hub/screen.png"
+      },
+      {
+        "id": "sovereign_legacy_archive_3d",
+        "name": "sovereign legacy archive 3d",
+        "category": "3D Cinematic Experiences",
+        "htmlUrl": "/stitch-screens/sovereign_legacy_archive_3d/code.html",
+        "imgUrl": "/stitch-screens/sovereign_legacy_archive_3d/screen.png"
+      }
+    ],
+    "Sun Ray Network": [
+      {
+        "id": "6-level_referral_network_&_earnings_detail",
+        "name": "6-level referral network & earnings detail",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/6-level_referral_network_&_earnings_detail/code.html",
+        "imgUrl": "/stitch-screens/6-level_referral_network_&_earnings_detail/screen.png"
+      },
+      {
+        "id": "aum_growth_&_commission_results_dashboard_1",
+        "name": "aum growth & commission results dashboard 1",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_1/code.html",
+        "imgUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_1/screen.png"
+      },
+      {
+        "id": "aum_growth_&_commission_results_dashboard_2",
+        "name": "aum growth & commission results dashboard 2",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_2/code.html",
+        "imgUrl": "/stitch-screens/aum_growth_&_commission_results_dashboard_2/screen.png"
+      },
+      {
+        "id": "commission_structure_settings",
+        "name": "commission structure settings",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/commission_structure_settings/code.html",
+        "imgUrl": "/stitch-screens/commission_structure_settings/screen.png"
+      },
+      {
+        "id": "interactive_sun_ray_3d_network_1",
+        "name": "interactive sun ray 3d network 1",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/interactive_sun_ray_3d_network_1/code.html",
+        "imgUrl": "/stitch-screens/interactive_sun_ray_3d_network_1/screen.png"
+      },
+      {
+        "id": "master_15_tier_investment_commission_plan",
+        "name": "master 15 tier investment commission plan",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/master_15_tier_investment_commission_plan/code.html",
+        "imgUrl": "/stitch-screens/master_15_tier_investment_commission_plan/screen.png"
+      },
+      {
+        "id": "master_investment_&_commission_table",
+        "name": "master investment & commission table",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/master_investment_&_commission_table/code.html",
+        "imgUrl": "/stitch-screens/master_investment_&_commission_table/screen.png"
+      },
+      {
+        "id": "smart_referral_level_configuration",
+        "name": "smart referral level configuration",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/smart_referral_level_configuration/code.html",
+        "imgUrl": "/stitch-screens/smart_referral_level_configuration/screen.png"
+      },
+      {
+        "id": "sun_ray_commission_sync_sidebar",
+        "name": "sun ray commission sync sidebar",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/sun_ray_commission_sync_sidebar/code.html",
+        "imgUrl": "/stitch-screens/sun_ray_commission_sync_sidebar/screen.png"
+      },
+      {
+        "id": "sun_ray_performance_leaderboard",
+        "name": "sun ray performance leaderboard",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/sun_ray_performance_leaderboard/code.html",
+        "imgUrl": "/stitch-screens/sun_ray_performance_leaderboard/screen.png"
+      },
+      {
+        "id": "sun_ray_referral_mapping_&_commissions_1",
+        "name": "sun ray referral mapping & commissions 1",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_1/code.html",
+        "imgUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_1/screen.png"
+      },
+      {
+        "id": "sun_ray_referral_mapping_&_commissions_2",
+        "name": "sun ray referral mapping & commissions 2",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_2/code.html",
+        "imgUrl": "/stitch-screens/sun_ray_referral_mapping_&_commissions_2/screen.png"
+      },
+      {
+        "id": "top-to-down_commission_disbursement_history_1",
+        "name": "top-to-down commission disbursement history 1",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_1/code.html",
+        "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_1/screen.png"
+      },
+      {
+        "id": "top-to-down_commission_disbursement_history_2",
+        "name": "top-to-down commission disbursement history 2",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_2/code.html",
+        "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_2/screen.png"
+      },
+      {
+        "id": "top-to-down_commission_disbursement_history_3",
+        "name": "top-to-down commission disbursement history 3",
+        "category": "Sun Ray Network",
+        "htmlUrl": "/stitch-screens/top-to-down_commission_disbursement_history_3/code.html",
+        "imgUrl": "/stitch-screens/top-to-down_commission_disbursement_history_3/screen.png"
+      }
+    ],
+    "Uncategorized": [
+      {
+        "id": "aum_&_expense_structure_overview",
+        "name": "aum & expense structure overview",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/aum_&_expense_structure_overview/code.html",
+        "imgUrl": "/stitch-screens/aum_&_expense_structure_overview/screen.png"
+      },
+      {
+        "id": "global_sovereign_leaderboard",
+        "name": "global sovereign leaderboard",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/global_sovereign_leaderboard/code.html",
+        "imgUrl": "/stitch-screens/global_sovereign_leaderboard/screen.png"
+      },
+      {
+        "id": "global_sovereign_price_compare",
+        "name": "global sovereign price compare",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/global_sovereign_price_compare/code.html",
+        "imgUrl": "/stitch-screens/global_sovereign_price_compare/screen.png"
+      },
+      {
+        "id": "green_status_activation_celebration",
+        "name": "green status activation celebration",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/green_status_activation_celebration/code.html",
+        "imgUrl": "/stitch-screens/green_status_activation_celebration/screen.png"
+      },
+      {
+        "id": "investment_tiers_&_multipliers_master_table",
+        "name": "investment tiers & multipliers master table",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/investment_tiers_&_multipliers_master_table/code.html",
+        "imgUrl": "/stitch-screens/investment_tiers_&_multipliers_master_table/screen.png"
+      },
+      {
+        "id": "live_telemetry_&_corpus_growth_dashboard",
+        "name": "live telemetry & corpus growth dashboard",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/live_telemetry_&_corpus_growth_dashboard/code.html",
+        "imgUrl": "/stitch-screens/live_telemetry_&_corpus_growth_dashboard/screen.png"
+      },
+      {
+        "id": "multi_wallet_sovereign_hub",
+        "name": "multi wallet sovereign hub",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/multi_wallet_sovereign_hub/code.html",
+        "imgUrl": "/stitch-screens/multi_wallet_sovereign_hub/screen.png"
+      },
+      {
+        "id": "rbac_central_landing_portal",
+        "name": "rbac central landing portal",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/rbac_central_landing_portal/code.html",
+        "imgUrl": "/stitch-screens/rbac_central_landing_portal/screen.png"
+      },
+      {
+        "id": "re_activation_approval_notifications_email_sms",
+        "name": "re activation approval notifications email sms",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/re_activation_approval_notifications_email_sms/code.html",
+        "imgUrl": "/stitch-screens/re_activation_approval_notifications_email_sms/screen.png"
+      },
+      {
+        "id": "sebi_compliance_&_ipo_roadmap",
+        "name": "sebi compliance & ipo roadmap",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/sebi_compliance_&_ipo_roadmap/code.html",
+        "imgUrl": "/stitch-screens/sebi_compliance_&_ipo_roadmap/screen.png"
+      },
+      {
+        "id": "smart_profile_management_form",
+        "name": "smart profile management form",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/smart_profile_management_form/code.html",
+        "imgUrl": "/stitch-screens/smart_profile_management_form/screen.png"
+      },
+      {
+        "id": "sovereign_notification_center",
+        "name": "sovereign notification center",
+        "category": "Uncategorized",
+        "htmlUrl": "/stitch-screens/sovereign_notification_center/code.html",
+        "imgUrl": "/stitch-screens/sovereign_notification_center/screen.png"
+      }
+    ],
+    "Treasury & Factrade": [
+      {
+        "id": "aum_milestone_&_royalty_tracker",
+        "name": "aum milestone & royalty tracker",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/aum_milestone_&_royalty_tracker/code.html",
+        "imgUrl": "/stitch-screens/aum_milestone_&_royalty_tracker/screen.png"
+      },
+      {
+        "id": "disbursement_history_&_receipts_(inr)",
+        "name": "disbursement history & receipts (inr)",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/disbursement_history_&_receipts_(inr)/code.html",
+        "imgUrl": "/stitch-screens/disbursement_history_&_receipts_(inr)/screen.png"
+      },
+      {
+        "id": "disbursement_logic_&_cycle_simulation",
+        "name": "disbursement logic & cycle simulation",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/disbursement_logic_&_cycle_simulation/code.html",
+        "imgUrl": "/stitch-screens/disbursement_logic_&_cycle_simulation/screen.png"
+      },
+      {
+        "id": "dynamic_status_payout_dashboard",
+        "name": "dynamic status payout dashboard",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/dynamic_status_payout_dashboard/code.html",
+        "imgUrl": "/stitch-screens/dynamic_status_payout_dashboard/screen.png"
+      },
+      {
+        "id": "factrade_retirement_freedom_tracker",
+        "name": "factrade retirement freedom tracker",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/factrade_retirement_freedom_tracker/code.html",
+        "imgUrl": "/stitch-screens/factrade_retirement_freedom_tracker/screen.png"
+      },
+      {
+        "id": "royalty_program_&_reward_structure",
+        "name": "royalty program & reward structure",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/royalty_program_&_reward_structure/code.html",
+        "imgUrl": "/stitch-screens/royalty_program_&_reward_structure/screen.png"
+      },
+      {
+        "id": "smart_disbursement_authorization_modal",
+        "name": "smart disbursement authorization modal",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/smart_disbursement_authorization_modal/code.html",
+        "imgUrl": "/stitch-screens/smart_disbursement_authorization_modal/screen.png"
+      },
+      {
+        "id": "treasury_reward_recognition_gallery",
+        "name": "treasury reward recognition gallery",
+        "category": "Treasury & Factrade",
+        "htmlUrl": "/stitch-screens/treasury_reward_recognition_gallery/code.html",
+        "imgUrl": "/stitch-screens/treasury_reward_recognition_gallery/screen.png"
+      }
+    ],
+    "Franchise Operations": [
+      {
+        "id": "franchise_management_&_regional_partners",
+        "name": "franchise management & regional partners",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_management_&_regional_partners/code.html",
+        "imgUrl": "/stitch-screens/franchise_management_&_regional_partners/screen.png"
+      },
+      {
+        "id": "franchise_network_oversight_dashboard",
+        "name": "franchise network oversight dashboard",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_network_oversight_dashboard/code.html",
+        "imgUrl": "/stitch-screens/franchise_network_oversight_dashboard/screen.png"
+      },
+      {
+        "id": "franchise_oversight_glance",
+        "name": "franchise oversight glance",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_oversight_glance/code.html",
+        "imgUrl": "/stitch-screens/franchise_oversight_glance/screen.png"
+      },
+      {
+        "id": "franchise_regional_command_center",
+        "name": "franchise regional command center",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_regional_command_center/code.html",
+        "imgUrl": "/stitch-screens/franchise_regional_command_center/screen.png"
+      },
+      {
+        "id": "franchise_regional_command_console",
+        "name": "franchise regional command console",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_regional_command_console/code.html",
+        "imgUrl": "/stitch-screens/franchise_regional_command_console/screen.png"
+      },
+      {
+        "id": "franchise_settlement_&_payout_report_1",
+        "name": "franchise settlement & payout report 1",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_1/code.html",
+        "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_1/screen.png"
+      },
+      {
+        "id": "franchise_settlement_&_payout_report_2",
+        "name": "franchise settlement & payout report 2",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_2/code.html",
+        "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_2/screen.png"
+      },
+      {
+        "id": "franchise_settlement_&_payout_report_3",
+        "name": "franchise settlement & payout report 3",
+        "category": "Franchise Operations",
+        "htmlUrl": "/stitch-screens/franchise_settlement_&_payout_report_3/code.html",
+        "imgUrl": "/stitch-screens/franchise_settlement_&_payout_report_3/screen.png"
+      }
+    ],
+    "Onboarding & Auth": [
+      {
+        "id": "glitch_animated_sovereign_welcome_page",
+        "name": "glitch animated sovereign welcome page",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/glitch_animated_sovereign_welcome_page/code.html",
+        "imgUrl": "/stitch-screens/glitch_animated_sovereign_welcome_page/screen.png"
+      },
+      {
+        "id": "onboarding_smart_form_builder",
+        "name": "onboarding smart form builder",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/onboarding_smart_form_builder/code.html",
+        "imgUrl": "/stitch-screens/onboarding_smart_form_builder/screen.png"
+      },
+      {
+        "id": "pre-ipo_fundraising_welcome_page",
+        "name": "pre-ipo fundraising welcome page",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/pre-ipo_fundraising_welcome_page/code.html",
+        "imgUrl": "/stitch-screens/pre-ipo_fundraising_welcome_page/screen.png"
+      },
+      {
+        "id": "secure_multi_step_registration_wizard",
+        "name": "secure multi step registration wizard",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/secure_multi_step_registration_wizard/code.html",
+        "imgUrl": "/stitch-screens/secure_multi_step_registration_wizard/screen.png"
+      },
+      {
+        "id": "smart_manual_onboarding_form",
+        "name": "smart manual onboarding form",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/smart_manual_onboarding_form/code.html",
+        "imgUrl": "/stitch-screens/smart_manual_onboarding_form/screen.png"
+      },
+      {
+        "id": "smart_rbac_user_onboarding_modal",
+        "name": "smart rbac user onboarding modal",
+        "category": "Onboarding & Auth",
+        "htmlUrl": "/stitch-screens/smart_rbac_user_onboarding_modal/code.html",
+        "imgUrl": "/stitch-screens/smart_rbac_user_onboarding_modal/screen.png"
+      }
+    ],
+    "E-Commerce Mall": [
+      {
+        "id": "marketplace_category_explorer",
+        "name": "marketplace category explorer",
+        "category": "E-Commerce Mall",
+        "htmlUrl": "/stitch-screens/marketplace_category_explorer/code.html",
+        "imgUrl": "/stitch-screens/marketplace_category_explorer/screen.png"
+      },
+      {
+        "id": "newly_built_buyer_mall_dashboard",
+        "name": "newly built buyer mall dashboard",
+        "category": "E-Commerce Mall",
+        "htmlUrl": "/stitch-screens/newly_built_buyer_mall_dashboard/code.html",
+        "imgUrl": "/stitch-screens/newly_built_buyer_mall_dashboard/screen.png"
+      },
+      {
+        "id": "sovereign_product_browse_grid",
+        "name": "sovereign product browse grid",
+        "category": "E-Commerce Mall",
+        "htmlUrl": "/stitch-screens/sovereign_product_browse_grid/code.html",
+        "imgUrl": "/stitch-screens/sovereign_product_browse_grid/screen.png"
+      },
+      {
+        "id": "sovereign_secure_checkout_flow",
+        "name": "sovereign secure checkout flow",
+        "category": "E-Commerce Mall",
+        "htmlUrl": "/stitch-screens/sovereign_secure_checkout_flow/code.html",
+        "imgUrl": "/stitch-screens/sovereign_secure_checkout_flow/screen.png"
+      }
+    ]
+  }
+}

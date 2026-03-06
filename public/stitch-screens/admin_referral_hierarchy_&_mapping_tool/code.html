@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sun Ray Admin - Referral Genealogy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1e2430",
+                        "surface-highlight": "#282e39",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #282e39; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a4250; 
+        }
+
+        /* Graph node connecting lines (simulated) */
+        .node-connector-v {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: 2px;
+            height: 24px;
+            background-color: #3a4250;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        .node-connector-h {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            width: 2px;
+            height: 24px;
+            background-color: #3a4250;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        
+        .tree-connector-t {
+            position: absolute;
+            top: -1.5rem; /* -24px */
+            left: 50%;
+            width: 2px;
+            height: 1.5rem;
+            background-color: #374151;
+        }
+        
+        /* Grid background pattern */
+        .bg-grid-pattern {
+            background-image: linear-gradient(#1f2937 1px, transparent 1px), linear-gradient(90deg, #1f2937 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<div class="relative flex h-auto w-full flex-col bg-[#111318] border-b border-[#282e39]">
+<header class="flex items-center justify-between whitespace-nowrap px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Sun Ray Admin</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center gap-2 text-[#9da6b9] text-sm">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>Last Updated: Today, 14:30</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors">
+<span class="truncate">Logout</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 ring-2 ring-[#282e39]" data-alt="Admin User Profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBJqia5BHRCb8DKCZd3PQssYxUAhSmQNgRWK_rTv_mB_4goG77-gQDoQEF_OrrL9Ps9YVzYY1vZr4sKDlDlGSF4Evq4GMLufu0Gfa4VSWzxrFAf8BLbgv6MDW6XdR17vs2XSrVnBDVWwdqyo26bKAlS_BuXKA2PEGa_tpWb__27ve2Tv-SViVYL7VBtigSvxUmY7zqzDzXfuNQ8jXIq4b4H7GSPBdIMYJBzfh9PhPPp4kU-xZ2b0sF3V4jPu9hXAdDgihXz6_JrRuv");'></div>
+</div>
+</header>
+</div>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left: Graph Visualization (70%) -->
+<main class="flex-1 relative flex flex-col bg-background-dark">
+<!-- Filters & Breadcrumbs Bar -->
+<div class="absolute top-0 left-0 right-0 z-20 bg-surface-dark/90 backdrop-blur-md border-b border-surface-highlight p-4 flex flex-col gap-3 shadow-lg">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#9da6b9] hover:text-white transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">home</span> Root
+                    </a>
+<span class="text-[#515a6b]">/</span>
+<a class="text-[#9da6b9] hover:text-white transition-colors" href="#">Master Franchise</a>
+<span class="text-[#515a6b]">/</span>
+<a class="text-[#9da6b9] hover:text-white transition-colors" href="#">North Zone</a>
+<span class="text-[#515a6b]">/</span>
+<span class="text-white font-medium px-2 py-0.5 bg-primary/20 rounded text-primary border border-primary/30">Rahul K.</span>
+</div>
+<!-- Search & Filters -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3 flex-1 min-w-[300px]">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[#9da6b9]">search</span>
+<input class="w-full bg-[#282e39] border-none rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-[#9da6b9] focus:ring-2 focus:ring-primary text-sm" placeholder="Search by User ID, Name, or Referral Code" type="text"/>
+</div>
+<div class="flex items-center bg-[#282e39] rounded-lg p-1 border border-[#3a4250]">
+<button class="px-3 py-1.5 rounded text-xs font-medium bg-[#3a4250] text-white shadow-sm">All Rays</button>
+<button class="px-3 py-1.5 rounded text-xs font-medium text-[#9da6b9] hover:text-white transition-colors">Franchise</button>
+<button class="px-3 py-1.5 rounded text-xs font-medium text-[#9da6b9] hover:text-white transition-colors">Investor</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#282e39] hover:bg-[#3a4250] text-white text-sm font-medium border border-[#3a4250] transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                        </button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary text-sm font-medium border border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_link</span> Map User
+                        </button>
+</div>
+</div>
+</div>
+<!-- Graph Canvas Area -->
+<div class="flex-1 overflow-auto bg-[#101622] bg-grid-pattern relative p-10 pt-40 flex justify-center items-start min-w-[800px]">
+<!-- Graph Controls -->
+<div class="fixed bottom-6 left-6 z-20 flex flex-col gap-2">
+<button class="size-10 rounded-full bg-[#282e39] border border-[#3a4250] text-white flex items-center justify-center hover:bg-[#3a4250] shadow-lg">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 rounded-full bg-[#282e39] border border-[#3a4250] text-white flex items-center justify-center hover:bg-[#3a4250] shadow-lg">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-10 rounded-full bg-[#282e39] border border-[#3a4250] text-white flex items-center justify-center hover:bg-[#3a4250] shadow-lg mt-2" title="Fit to Screen">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+<!-- Tree Structure -->
+<div class="flex flex-col items-center gap-12 scale-100 origin-top transition-transform duration-200" id="genealogy-tree">
+<!-- Level 1 (Parent) -->
+<div class="flex flex-col items-center relative group">
+<div class="w-64 p-4 bg-[#1e2430] rounded-xl border-2 border-primary shadow-[0_0_15px_rgba(19,91,236,0.3)] relative z-10 hover:scale-105 transition-transform cursor-pointer">
+<div class="flex items-center gap-3 mb-2">
+<div class="size-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm border-2 border-[#101622]">
+                                    NZ
+                                </div>
+<div>
+<h4 class="text-white font-semibold text-sm">North Zone Head</h4>
+<p class="text-xs text-[#9da6b9]">Master Franchise</p>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs border-t border-[#282e39] pt-2 mt-2">
+<span class="text-[#9da6b9]">Vol: <span class="text-white font-medium">₹2.5 Cr</span></span>
+<span class="text-[#9da6b9]">Refs: <span class="text-white font-medium">145</span></span>
+</div>
+<!-- Connector Down -->
+<div class="absolute -bottom-12 left-1/2 w-0.5 h-12 bg-[#374151]"></div>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="flex items-start gap-16 relative">
+<!-- Horizontal connector bar -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-[calc(100%-16rem)] h-0.5 bg-[#374151]"></div>
+<!-- Node 2.1 -->
+<div class="flex flex-col items-center relative">
+<!-- Vertical connector to parent -->
+<div class="absolute -top-12 left-1/2 w-0.5 h-12 bg-[#374151]"></div>
+<div class="w-56 p-3 bg-[#1e2430] rounded-xl border border-[#3a4250] hover:border-primary/50 relative z-10 transition-all cursor-pointer group">
+<div class="flex items-center gap-3 mb-2">
+<div class="size-8 rounded-full bg-[#282e39] border border-[#3a4250] flex items-center justify-center text-[#9da6b9]">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div>
+<h4 class="text-white font-medium text-sm">Amit S.</h4>
+<p class="text-[10px] text-[#9da6b9]">Area Partner</p>
+</div>
+</div>
+<div class="flex justify-between text-[10px] text-[#9da6b9]">
+<span>ID: 8821</span>
+<span>₹45L Vol</span>
+</div>
+</div>
+</div>
+<!-- Node 2.2 (Active Path) -->
+<div class="flex flex-col items-center relative">
+<!-- Vertical connector to parent (Active) -->
+<div class="absolute -top-12 left-1/2 w-0.5 h-12 bg-primary"></div>
+<div class="w-60 p-4 bg-[#1e2430] rounded-xl border-2 border-primary shadow-lg relative z-10 cursor-pointer">
+<div class="absolute -right-2 -top-2 size-5 bg-green-500 rounded-full border-2 border-[#1e2430] flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-[12px] text-white font-bold">check</span>
+</div>
+<div class="flex items-center gap-3 mb-2">
+<img alt="Rahul K" class="size-10 rounded-full ring-2 ring-primary/50" data-alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKiH6HsbnZduIElcLYBOkwvsJFvkjvelL6l4lXhmjrSX6HK4Qrpaft9xoI5sCNCpw9ACCK68NRDfwp3J3lwt50BEnHrQ0e0-yUe6yrICX5ShQnzUdTxVgqnoqw0x9XPvh2onNd6mME1Xs9KOBAPtEqc4dJ5-dh5eu1RwmhPzWJqovy7YXoEjh_vcRpV9P0duRvegr3SzDntgkcoIvu7IZSFkIUxghkpYPcEhRhGyD22EpZ_jnYvuEzo9oCg5BOgycNOS7muQsmFRYH"/>
+<div>
+<h4 class="text-white font-bold text-sm">Rahul K.</h4>
+<p class="text-xs text-primary font-medium">Franchise Partner</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-[#282e39]">
+<div class="bg-[#282e39] rounded p-1.5 text-center">
+<p class="text-[10px] text-[#9da6b9]">Total Vol</p>
+<p class="text-xs font-bold text-white">₹50.2L</p>
+</div>
+<div class="bg-[#282e39] rounded p-1.5 text-center">
+<p class="text-[10px] text-[#9da6b9]">Directs</p>
+<p class="text-xs font-bold text-white">12</p>
+</div>
+</div>
+<!-- Connector Down (Active) -->
+<div class="absolute -bottom-12 left-1/2 w-0.5 h-12 bg-primary"></div>
+</div>
+</div>
+<!-- Node 2.3 -->
+<div class="flex flex-col items-center relative">
+<!-- Vertical connector to parent -->
+<div class="absolute -top-12 left-1/2 w-0.5 h-12 bg-[#374151]"></div>
+<div class="w-56 p-3 bg-[#1e2430] rounded-xl border border-[#3a4250] hover:border-primary/50 relative z-10 transition-all cursor-pointer opacity-70 hover:opacity-100">
+<div class="flex items-center gap-3 mb-2">
+<div class="size-8 rounded-full bg-[#282e39] border border-[#3a4250] flex items-center justify-center text-[#9da6b9]">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div>
+<h4 class="text-white font-medium text-sm">Priya M.</h4>
+<p class="text-[10px] text-[#9da6b9]">Investor</p>
+</div>
+</div>
+<div class="flex justify-between text-[10px] text-[#9da6b9]">
+<span>ID: 9901</span>
+<span>₹12L Vol</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Level 3 (Children of Rahul K.) -->
+<div class="flex items-start gap-6 relative -mt-0">
+<!-- Horizontal connector bar for Level 3 -->
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-[240px] h-0.5 bg-primary"></div>
+<!-- Child 3.1 -->
+<div class="flex flex-col items-center relative pt-12">
+<!-- Vertical connector from bar -->
+<div class="absolute -top-0 left-1/2 w-0.5 h-12 bg-primary"></div>
+<div class="w-48 p-3 bg-[#1e2430] rounded-lg border border-primary/30 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-purple-900/50 text-purple-200 border border-purple-700/50 flex items-center justify-center text-xs font-bold">INV</div>
+<div>
+<h4 class="text-white font-medium text-sm">Vikram S.</h4>
+<p class="text-[10px] text-[#9da6b9]">Investor Ray</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Child 3.2 -->
+<div class="flex flex-col items-center relative pt-12">
+<!-- Vertical connector from bar -->
+<div class="absolute -top-0 left-1/2 w-0.5 h-12 bg-primary"></div>
+<div class="w-48 p-3 bg-[#1e2430] rounded-lg border border-primary/30 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-amber-900/50 text-amber-200 border border-amber-700/50 flex items-center justify-center text-xs font-bold">FRA</div>
+<div>
+<h4 class="text-white font-medium text-sm">TechCorp</h4>
+<p class="text-[10px] text-[#9da6b9]">Franchise Ray</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Child 3.3 (Ghost Node for Drop Target) -->
+<div class="flex flex-col items-center relative pt-12 opacity-50 border-dashed border-2 border-[#3a4250] rounded-lg bg-transparent hover:border-primary hover:bg-primary/5 cursor-move">
+<div class="absolute -top-0 left-1/2 w-0.5 h-12 bg-[#3a4250] border-l border-dashed border-[#515a6b] bg-transparent"></div>
+<div class="w-48 h-[60px] flex items-center justify-center text-[#515a6b] text-xs font-medium">
+<span class="material-symbols-outlined mr-1 text-sm">add_circle</span> Drop to Map
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right: Code Mapping & Details Panel (30%) -->
+<aside class="w-[400px] bg-[#111318] border-l border-[#282e39] flex flex-col z-30 shadow-2xl">
+<div class="p-5 border-b border-[#282e39] flex items-center justify-between">
+<h3 class="text-white font-bold text-lg">Code Mapping &amp; Details</h3>
+<button class="text-[#9da6b9] hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-5">
+<!-- Selected Entity Card -->
+<div class="bg-[#1e2430] rounded-xl p-4 border border-[#282e39] mb-6">
+<div class="flex items-start gap-4">
+<img alt="Rahul K" class="size-14 rounded-full border-2 border-primary" data-alt="User Avatar Large" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ8fzRFtxqPe1N3B4HWsM8z0CSwv43DixMTPamGkZKyqrpQ0dQbD9v0xVUOUELwyPXtfCq_KXW9YJ8c5P76Ln5A4XcwqHdnPfcbz8gk4EdHVe-1H59ooeJ9ESosniUmhbUtQb_j0ha68IbVm7ObZUR8G4Bw2MOLS9TpWGTVb9AlrHibcfRxi4-nWnqbF1kLDybwLh93hGxEyncx6V8xF_GHM16gsQoa1OEZrw9RqmbsxnK-4eBYD86pMXnwz6oDaVTfK5YuZ4HhqFU"/>
+<div>
+<h4 class="text-white font-bold text-lg">Rahul K.</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary text-white uppercase tracking-wider">Franchise</span>
+<span class="text-xs text-[#9da6b9]">ID: #FR-8821</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="bg-[#111318] p-2 rounded border border-[#282e39]">
+<p class="text-[10px] text-[#9da6b9] uppercase font-semibold">Referral Code</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-xs text-primary">qr_code</span>
+<span class="text-sm font-mono text-white">SUNRAY-99</span>
+</div>
+</div>
+<div class="bg-[#111318] p-2 rounded border border-[#282e39]">
+<p class="text-[10px] text-[#9da6b9] uppercase font-semibold">Mapping Date</p>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-xs text-primary">event</span>
+<span class="text-sm text-white">24 Oct '23</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#282e39]">
+<p class="text-[10px] text-[#9da6b9] uppercase font-semibold mb-2">Mapped Under</p>
+<div class="flex items-center gap-2 text-sm text-white bg-[#111318] p-2 rounded border border-[#282e39] border-dashed">
+<div class="size-5 rounded-full bg-blue-600 flex items-center justify-center text-[8px]">NZ</div>
+<span>North Zone Head (Master)</span>
+</div>
+</div>
+</div>
+<!-- 6-Level Commission Flow -->
+<div class="mb-6">
+<h4 class="text-white text-sm font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">account_tree</span>
+                        6-Level Commission Flow
+                    </h4>
+<div class="relative pl-4 border-l-2 border-[#282e39] space-y-6">
+<!-- Level 1 -->
+<div class="relative pl-6 group">
+<div class="absolute -left-[21px] top-0 size-4 rounded-full border-2 border-[#101622] bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)]"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] text-green-400 font-bold uppercase tracking-wide">Level 1 (Direct)</p>
+<p class="text-sm text-white font-medium">Amit S. (Area Partner)</p>
+</div>
+<span class="text-sm font-bold text-white font-mono">₹5,000</span>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="relative pl-6 group">
+<div class="absolute -left-[21px] top-0 size-4 rounded-full border-2 border-[#101622] bg-blue-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] text-blue-400 font-bold uppercase tracking-wide">Level 2</p>
+<p class="text-sm text-white font-medium">North Zone Head</p>
+</div>
+<span class="text-sm font-bold text-white font-mono">₹2,500</span>
+</div>
+</div>
+<!-- Level 3 -->
+<div class="relative pl-6 group">
+<div class="absolute -left-[21px] top-0 size-4 rounded-full border-2 border-[#101622] bg-indigo-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] text-indigo-400 font-bold uppercase tracking-wide">Level 3</p>
+<p class="text-sm text-white font-medium">India Head</p>
+</div>
+<span class="text-sm font-bold text-white font-mono">₹1,200</span>
+</div>
+</div>
+<!-- Level 4 -->
+<div class="relative pl-6 group opacity-70">
+<div class="absolute -left-[21px] top-0 size-4 rounded-full border-2 border-[#101622] bg-purple-500"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] text-purple-400 font-bold uppercase tracking-wide">Level 4</p>
+<p class="text-sm text-white font-medium">Global Ops</p>
+</div>
+<span class="text-sm font-bold text-white font-mono">₹800</span>
+</div>
+</div>
+<!-- Level 5 & 6 Collapsed -->
+<div class="relative pl-6 group opacity-50">
+<div class="absolute -left-[21px] top-0 size-4 rounded-full border-2 border-[#101622] bg-[#3a4250]"></div>
+<div class="flex justify-between items-center text-xs text-[#9da6b9]">
+<span>Levels 5-6 (System Root)</span>
+<span class="font-mono">₹1,500</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Simulation Info -->
+<div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3 mb-6">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-blue-400 text-sm mt-0.5">info</span>
+<p class="text-xs text-blue-200 leading-relaxed">
+                            This mapping triggered a total payout of <span class="font-bold text-white">₹11,000</span> across the hierarchy. Revoking this will require admin approval.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Panel Actions -->
+<div class="p-5 border-t border-[#282e39] bg-[#111318]">
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg border border-red-500/50 text-red-400 hover:bg-red-500/10 transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-sm">history</span> Revoke
+                    </button>
+<button class="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors text-sm font-bold shadow-[0_0_15px_rgba(19,91,236,0.4)]">
+<span class="material-symbols-outlined text-sm">save</span> Confirm Map
+                    </button>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brave Ecom - Multi-Wallet Sovereign Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#25f4f4",
+                        "primary-dark": "#1bc4c4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                        "surface-dark": "#1a2c2c",
+                        "surface-light": "#e0e8e8",
+                        "accent-green": "#0bda50",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(37, 244, 244, 0.3)',
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.2)',
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for the "3D" cube look using CSS gradients and transforms */
+        .cube-card {
+            background: linear-gradient(135deg, rgba(26, 44, 44, 0.9) 0%, rgba(16, 34, 34, 0.95) 100%);
+            border-top: 1px solid rgba(37, 244, 244, 0.3);
+            border-left: 1px solid rgba(37, 244, 244, 0.1);
+            box-shadow: 
+                10px 10px 30px rgba(0,0,0,0.5),
+                inset 0 0 20px rgba(37, 244, 244, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cube-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 0 25px rgba(37, 244, 244, 0.2),
+                inset 0 0 30px rgba(37, 244, 244, 0.1);
+            border-color: rgba(37, 244, 244, 0.6);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(37, 244, 244, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#283939] bg-background-light/95 dark:bg-[#111818]/95 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Marketplace</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Investments</a>
+<a class="text-primary font-bold text-sm leading-normal" href="#">Wallet</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Profile</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64 group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full ring-1 ring-slate-200 dark:ring-[#3b5454] focus-within:ring-primary transition-all">
+<div class="text-slate-400 dark:text-[#9cbaba] flex border-none bg-transparent items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent focus:outline-0 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#9cbaba] px-3 text-sm font-normal leading-normal" placeholder="Search assets..." value=""/>
+</div>
+</label>
+<button class="flex items-center gap-2 px-4 h-10 bg-surface-light dark:bg-[#283939] hover:bg-slate-200 dark:hover:bg-[#3b5454] rounded-lg text-slate-900 dark:text-white transition-colors group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">account_balance_wallet</span>
+<span class="text-sm font-bold">Connect Ledger</span>
+</button>
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-transparent hover:ring-primary transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCf1tIGPKu61Nsn7XUQHl0xM66kKLdYSySdH4oO_q3U6yOMd5G_c1gEmKdDv9CdXIJ_Qghwy53h7wZmDPgKXjbbk46n9fyG4GWfxJ1yV57OqKGGvVUXfIlnr7jh918GdvwtkMpdEuJGQdK1YF1m4dJhzCmS-BjFjS9vAxTkyl9s_ADQL9GveS87q2PDUKINm0Ivh7WiQ-NTU3zNQ0wyJ8aVStaFrCyD-uZ8VwFrRafKYmLrbwXDBe6CUfRejwc9EVI_j1bxieGW9Wur");'></div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-background-dark"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-4 md:px-10 py-8 w-full max-w-[1440px] mx-auto">
+<!-- Page Title Area -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                        Sovereign Hub
+                    </h1>
+<p class="text-slate-500 dark:text-[#9cbaba] text-lg font-normal max-w-xl">
+                        Manage your sovereign assets, real-time earnings, and luxury acquisitions across multiple streams.
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center h-10 px-4 rounded-lg border border-slate-300 dark:border-[#3b5454] text-slate-600 dark:text-[#9cbaba] hover:text-primary hover:border-primary transition-all text-sm font-bold">
+<span class="material-symbols-outlined mr-2 text-[18px]">download</span> Export Report
+                   </button>
+<button class="flex items-center justify-center h-10 px-6 rounded-lg bg-primary hover:bg-primary-dark text-background-dark text-sm font-bold shadow-glow transition-all">
+<span class="material-symbols-outlined mr-2 text-[18px]">add</span> Add Funds
+                   </button>
+</div>
+</div>
+<!-- 3D Cube Cards Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<!-- Card 1: Investment ROI -->
+<div class="cube-card relative overflow-hidden rounded-2xl p-8 group">
+<div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary rotate-12">trending_up</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary/20 p-1.5 rounded-md">
+<span class="material-symbols-outlined text-primary text-sm">show_chart</span>
+</span>
+<p class="text-slate-300 dark:text-[#9cbaba] text-sm font-bold uppercase tracking-wider">Investment ROI</p>
+</div>
+<p class="text-white text-4xl font-bold tracking-tight glow-text mb-2">₹ 12,45,000</p>
+<div class="flex items-center gap-2">
+<span class="text-accent-green bg-accent-green/10 px-2 py-0.5 rounded text-xs font-bold">+12.5%</span>
+<span class="text-slate-400 text-xs">this month</span>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center">
+<span class="text-xs text-slate-400">Next Payout: Oct 31</span>
+<button class="text-primary hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
+                                Details <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Decorative background glow -->
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+<!-- Card 2: Referral Earnings -->
+<div class="cube-card relative overflow-hidden rounded-2xl p-8 group">
+<div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-purple-400 rotate-12">groups</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-purple-500/20 p-1.5 rounded-md">
+<span class="material-symbols-outlined text-purple-400 text-sm">hub</span>
+</span>
+<p class="text-slate-300 dark:text-[#9cbaba] text-sm font-bold uppercase tracking-wider">Referral Earnings</p>
+</div>
+<p class="text-white text-4xl font-bold tracking-tight mb-2" style="text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);">₹ 85,400</p>
+<div class="flex items-center gap-2">
+<span class="text-accent-green bg-accent-green/10 px-2 py-0.5 rounded text-xs font-bold">+5.2%</span>
+<span class="text-slate-400 text-xs">vs last week</span>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center">
+<span class="text-xs text-slate-400">Active Referees: 12</span>
+<button class="text-purple-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
+                                Network <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Decorative background glow -->
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+<!-- Card 3: Shopping Wallet -->
+<div class="cube-card relative overflow-hidden rounded-2xl p-8 group">
+<div class="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-amber-400 rotate-12">shopping_bag</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-amber-500/20 p-1.5 rounded-md">
+<span class="material-symbols-outlined text-amber-400 text-sm">local_mall</span>
+</span>
+<p class="text-slate-300 dark:text-[#9cbaba] text-sm font-bold uppercase tracking-wider">Shopping Wallet</p>
+</div>
+<p class="text-white text-4xl font-bold tracking-tight mb-2" style="text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);">₹ 2,10,000</p>
+<div class="flex items-center gap-2">
+<span class="text-accent-green bg-accent-green/10 px-2 py-0.5 rounded text-xs font-bold">+1.8%</span>
+<span class="text-slate-400 text-xs">cashback</span>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-700/50 flex justify-between items-center">
+<span class="text-xs text-slate-400">Credits available</span>
+<button class="text-amber-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
+                                Shop Now <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Decorative background glow -->
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+</div>
+<!-- Recent Activity & Chart Section -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Transaction Table (Span 2) -->
+<div class="xl:col-span-2 flex flex-col gap-4">
+<div class="flex justify-between items-end px-1">
+<h2 class="text-slate-900 dark:text-white tracking-light text-2xl font-bold leading-tight">Recent Transactions</h2>
+<a class="text-primary text-sm font-medium hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-hidden rounded-xl border border-slate-200 dark:border-[#3b5454] bg-white dark:bg-[#1a2c2c] shadow-card">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-[#203434] border-b border-slate-200 dark:border-[#3b5454]">
+<th class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-xs uppercase font-bold tracking-wider">Date</th>
+<th class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-xs uppercase font-bold tracking-wider">Type</th>
+<th class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-xs uppercase font-bold tracking-wider">Source</th>
+<th class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-xs uppercase font-bold tracking-wider text-right">Amount</th>
+<th class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-xs uppercase font-bold tracking-wider text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-[#3b5454]">
+<tr class="group hover:bg-slate-50 dark:hover:bg-[#203434] transition-colors">
+<td class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-sm whitespace-nowrap">Oct 24, 2023</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white font-medium text-sm flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+                                            ROI Payout
+                                        </td>
+<td class="px-6 py-4 text-slate-500 dark:text-white text-sm">Investment</td>
+<td class="px-6 py-4 text-accent-green font-bold text-sm text-right">+ ₹ 15,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Completed
+                                            </span>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-[#203434] transition-colors">
+<td class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-sm whitespace-nowrap">Oct 22, 2023</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white font-medium text-sm flex items-center gap-2">
+<div class="size-8 rounded-full bg-amber-400/10 flex items-center justify-center text-amber-400">
+<span class="material-symbols-outlined text-sm">watch</span>
+</div>
+                                            Luxury Watch
+                                        </td>
+<td class="px-6 py-4 text-slate-500 dark:text-white text-sm">Shopping</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white font-bold text-sm text-right">- ₹ 4,50,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Completed
+                                            </span>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-[#203434] transition-colors">
+<td class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-sm whitespace-nowrap">Oct 20, 2023</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white font-medium text-sm flex items-center gap-2">
+<div class="size-8 rounded-full bg-purple-400/10 flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined text-sm">group_add</span>
+</div>
+                                            Referral Bonus
+                                        </td>
+<td class="px-6 py-4 text-slate-500 dark:text-white text-sm">Referral</td>
+<td class="px-6 py-4 text-accent-green font-bold text-sm text-right">+ ₹ 2,500</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+                                                Pending
+                                            </span>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-[#203434] transition-colors">
+<td class="px-6 py-4 text-slate-500 dark:text-[#9cbaba] text-sm whitespace-nowrap">Oct 18, 2023</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white font-medium text-sm flex items-center gap-2">
+<div class="size-8 rounded-full bg-blue-400/10 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined text-sm">add_card</span>
+</div>
+                                            Deposit
+                                        </td>
+<td class="px-6 py-4 text-slate-500 dark:text-white text-sm">Shopping</td>
+<td class="px-6 py-4 text-accent-green font-bold text-sm text-right">+ ₹ 50,000</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Completed
+                                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Side Widgets -->
+<div class="flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="rounded-xl p-6 bg-gradient-to-br from-primary to-primary-dark text-background-dark shadow-glow">
+<div class="flex justify-between items-start mb-6">
+<h3 class="text-xl font-bold">Quick Actions</h3>
+<span class="material-symbols-outlined bg-black/10 p-2 rounded-lg">bolt</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-background-dark/10 hover:bg-background-dark/20 transition-colors rounded-lg p-3 flex flex-col items-center justify-center gap-2 text-center h-24">
+<span class="material-symbols-outlined text-2xl">currency_exchange</span>
+<span class="text-xs font-bold">Exchange</span>
+</button>
+<button class="bg-background-dark/10 hover:bg-background-dark/20 transition-colors rounded-lg p-3 flex flex-col items-center justify-center gap-2 text-center h-24">
+<span class="material-symbols-outlined text-2xl">send</span>
+<span class="text-xs font-bold">Send</span>
+</button>
+<button class="bg-background-dark/10 hover:bg-background-dark/20 transition-colors rounded-lg p-3 flex flex-col items-center justify-center gap-2 text-center h-24">
+<span class="material-symbols-outlined text-2xl">savings</span>
+<span class="text-xs font-bold">Invest</span>
+</button>
+<button class="bg-background-dark/10 hover:bg-background-dark/20 transition-colors rounded-lg p-3 flex flex-col items-center justify-center gap-2 text-center h-24">
+<span class="material-symbols-outlined text-2xl">qr_code_scanner</span>
+<span class="text-xs font-bold">Scan</span>
+</button>
+</div>
+</div>
+<!-- Asset Distribution (Visual representation) -->
+<div class="rounded-xl border border-slate-200 dark:border-[#3b5454] bg-white dark:bg-[#1a2c2c] p-6 shadow-card flex flex-col gap-4">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Asset Distribution</h3>
+<div class="relative h-48 w-full bg-cover bg-center rounded-lg overflow-hidden" data-alt="Abstract 3D data visualization of asset distribution" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHWYpbfuG4RbhLisrlsaLDZCsILlg8WMuW9U2RbBdEnx7aKCuOXtlbMhcyGeDmPhyiJxEtxlh2gKem28NYQo5DZtbRgmdZ21XjRd2u_dW7yX29uCWph391xoH90MsPpbSiA-jmu9lsQ2BdxBHMslxtMD14vSx7GC-qPxJbDkjpn7LrZP74UHKcYbSYFwmzwnC2pEGhGLveUXdEMQpe_f29d9DmfVIeq7syyInyDnebpYfQITWSEIT46rx5lkDgo9lnRE9Q3mqAwe-J');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1a2c2c] to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-xs text-slate-400">Total Portfolio Value</p>
+<p class="text-white font-bold text-xl">₹ 15,40,400</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-slate-600 dark:text-slate-300">Investment</span>
+</div>
+<span class="text-slate-900 dark:text-white font-bold">81%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-amber-400"></div>
+<span class="text-slate-600 dark:text-slate-300">Shopping</span>
+</div>
+<span class="text-slate-900 dark:text-white font-bold">13%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-purple-400"></div>
+<span class="text-slate-600 dark:text-slate-300">Referral</span>
+</div>
+<span class="text-slate-900 dark:text-white font-bold">6%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Mall: Product Detail &amp; ROI Mapping</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-dark": "#0a3a9b",
+                        "primary-light": "#e8effb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2332",
+                        "text-main": "#111318",
+                        "text-secondary": "#616f89",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Custom scrollbar for horizontal sections */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main antialiased min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-surface-light border-b border-[#f0f2f4] w-full">
+<div class="px-6 md:px-10 py-3 max-w-[1440px] mx-auto flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-main">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h2 class="text-text-main text-xl font-bold leading-tight tracking-[-0.015em]">Sovereign Mall</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Invest</a>
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Lifestyle</a>
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">My Portfolio</a>
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64 relative">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f2f4]">
+<div class="text-text-secondary flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-main focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-text-secondary px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search assets..." value=""/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="hidden sm:flex h-10 px-4 items-center justify-center rounded-lg bg-surface-light border border-[#dbdfe6] text-text-main hover:bg-gray-50 text-sm font-bold tracking-[0.015em] transition-colors">
+<span class="material-symbols-outlined mr-2 text-lg">login</span>
+<span>Sign In</span>
+</button>
+<button class="flex h-10 w-10 sm:w-auto sm:px-4 items-center justify-center rounded-lg bg-primary text-white hover:bg-primary-dark text-sm font-bold tracking-[0.015em] transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined sm:mr-2 text-lg">shopping_bag</span>
+<span class="hidden sm:inline">Cart (2)</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 py-6 md:py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6 text-sm">
+<a class="text-text-secondary hover:text-primary transition-colors font-medium" href="#">Home</a>
+<span class="text-text-secondary font-medium">/</span>
+<a class="text-text-secondary hover:text-primary transition-colors font-medium" href="#">Luxury Electronics</a>
+<span class="text-text-secondary font-medium">/</span>
+<span class="text-text-main font-medium">Quantum Series X</span>
+</div>
+<!-- Main Product Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- Left Column: Gallery & Details -->
+<div class="lg:col-span-7 xl:col-span-8 space-y-8">
+<!-- Product Title & Rating Header (Mobile view adjusts order) -->
+<div class="flex flex-col gap-4">
+<h1 class="text-text-main text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">Quantum Series X Workstation</h1>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-current text-lg">star</span>
+<span class="material-symbols-outlined fill-current text-lg">star</span>
+<span class="material-symbols-outlined fill-current text-lg">star</span>
+<span class="material-symbols-outlined fill-current text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star_half</span>
+</div>
+<span class="text-text-main font-bold text-sm">4.9</span>
+<span class="text-text-secondary text-sm border-l border-gray-300 pl-4">128 Verified Reviews</span>
+<span class="hidden sm:inline text-green-600 bg-green-50 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">In Stock</span>
+</div>
+</div>
+<!-- Gallery Grid -->
+<div class="w-full gap-2 overflow-hidden bg-white aspect-[4/3] md:aspect-[16/9] rounded-2xl grid grid-cols-1 md:grid-cols-3 md:grid-rows-2">
+<div class="w-full h-full bg-gray-100 md:col-span-2 md:row-span-2 relative group overflow-hidden">
+<img alt="Quantum Series X Workstation Front View" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High-end black workstation computer on a dark desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeRXx9vCIrWNqwCE5LthFTausHvni8zzZ3w9-kfXJM_qNfCZkilqb0zimao1i1Y1ES-dC5kaqzFKcxVERuoubNlsZRPUlPPKYddS20YN_bcfEO1vX54lKwtMa9p7GMkMt3nSfx0rLU-l2pgcgavqEOIWcQapRvFnspnaTgQL-S_zeqGlCpq4OuxT8RSdwiv2mDV7rkz54HeWJMoPB_z8SHLnQ_Tl8-6DK8sMJXv-dsDHyfFToczKdjd6r-kPPOpb9Uebo3ckazI6Rz"/>
+</div>
+<div class="hidden md:block w-full h-full bg-gray-100 relative group overflow-hidden">
+<img alt="Workstation Detail Side View" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up of computer cooling system and LEDs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1UOkZUtQkSZ8KOilfQO9tQXKdWT9o-KVzIx0gF02qI0oggmrtvLJfbbYAaOScxFQS50Ga_Rr6gYaPDRbyyvh89hFnPNN9gTzLAh52RhsLGdMUKLrsHq5sgXvZk4ReR8jrBp3rFecyJqtcQ9bgie3sFc1qGnGbRoQvwn9QoUpsRONdYeeLH6rBOAM77FV9YA4rZBeKYZRBMjl9s_WjtBfGVuGmgikQq00MCot-5cQsC8UdRzGMsk2H9JdofAMaTgimQOP-RBOtc748"/>
+</div>
+<div class="hidden md:block w-full h-full bg-gray-100 relative group overflow-hidden">
+<img alt="Workstation Ports and Connectivity" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Abstract sleek metallic laptop edge with ports" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwusdgk19kUW5Y-gbNv-IjL9XP8LD_ymIkImOWv1fLK1rpKOoybdzHvH34fFEpIIxjvpJZYTZWCU_4lFFOrA7GohHhFeYv8L3RaQuImpFxVjmfrfhEKdJAvupM4YAlBAH5a4WJiXp05FpHKXopNDz5_aC0U39PTYCNm_k-6pHKKkJGQUU-W4Sc9WqzhNYH_SA9nZBf2RBW1BUFcaHyBamekJg9TpL3OgVWxK65m9N3LLiEaTB0_raAbQmPuQF5_di8BgfohFLxl6w_"/>
+</div>
+</div>
+<!-- Product Description Tabs -->
+<div class="border-b border-gray-200">
+<nav aria-label="Tabs" class="-mb-px flex space-x-8">
+<a class="border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-bold text-sm" href="#">Specifications</a>
+<a class="border-transparent text-text-secondary hover:text-text-main hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" href="#">Investment Tier</a>
+<a class="border-transparent text-text-secondary hover:text-text-main hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" href="#">Warranty &amp; Support</a>
+</nav>
+</div>
+<div class="prose max-w-none text-text-secondary leading-relaxed">
+<p>The Quantum Series X is not merely a workstation; it is an asset. Engineered for high-frequency trading and heavy computational rendering, this machine features the latest Sovereign Chipset architecture. Owning this unit qualifies you for the Tier-4 Investor Circle benefits.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light border border-gray-100">
+<span class="material-symbols-outlined text-primary">memory</span>
+<span class="text-text-main font-medium">128-Core Processor</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light border border-gray-100">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="text-text-main font-medium">256GB DDR5 RAM</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light border border-gray-100">
+<span class="material-symbols-outlined text-primary">hard_drive</span>
+<span class="text-text-main font-medium">8TB NVMe SSD Gen5</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-light border border-gray-100">
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="text-text-main font-medium">Biometric Vault Security</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Purchase & Economic Impact -->
+<div class="lg:col-span-5 xl:col-span-4 space-y-6">
+<!-- Purchase Card -->
+<div class="bg-surface-light rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 sticky top-24">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-text-secondary text-sm font-medium mb-1">Current Market Price</p>
+<h2 class="text-3xl font-bold text-text-main">₹51,111</h2>
+<p class="text-green-600 text-sm font-semibold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-base">trending_up</span>
+                                +4.2% since last month
+                            </p>
+</div>
+<div class="bg-primary/10 text-primary p-2 rounded-lg">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex gap-3">
+<div class="flex-1">
+<label class="block text-xs font-semibold text-text-secondary uppercase mb-1.5">Configuration</label>
+<select class="w-full rounded-lg border-gray-200 bg-gray-50 text-text-main text-sm focus:border-primary focus:ring-primary">
+<option>Ultimate (128-Core)</option>
+<option>Pro (64-Core)</option>
+<option>Base (32-Core)</option>
+</select>
+</div>
+<div class="w-24">
+<label class="block text-xs font-semibold text-text-secondary uppercase mb-1.5">Qty</label>
+<input class="w-full rounded-lg border-gray-200 bg-gray-50 text-text-main text-sm focus:border-primary focus:ring-primary" min="1" type="number" value="1"/>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-3.5 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-base shadow-lg shadow-primary/25 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Add to Cart</span>
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+</button>
+<button class="w-full py-3.5 bg-white border border-gray-200 hover:border-primary/50 text-text-main hover:text-primary rounded-xl font-bold text-base transition-colors">
+                                Buy Now &amp; Invest
+                            </button>
+</div>
+</div>
+<!-- Economic Impact Widget -->
+<div class="bg-[#f8fafc] rounded-xl border border-blue-100 p-5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-6xl text-primary">account_tree</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+<h3 class="text-sm font-bold text-text-main uppercase tracking-wide">Economic Impact Analysis</h3>
+</div>
+<div class="space-y-4">
+<!-- Personal ROI -->
+<div class="flex justify-between items-center border-b border-gray-200 pb-3">
+<div class="flex items-center gap-2">
+<span class="bg-blue-100 text-primary p-1 rounded">
+<span class="material-symbols-outlined text-sm">savings</span>
+</span>
+<div>
+<p class="text-xs text-text-secondary font-medium">Personal Asset Value</p>
+<p class="text-sm font-bold text-text-main">Tier 4 Unlocked</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">+ ₹2,450/mo</p>
+<p class="text-[10px] text-text-secondary">Est. Passive Return</p>
+</div>
+</div>
+<!-- Network Impact -->
+<div>
+<p class="text-xs text-text-secondary font-medium mb-2">Network Distribution (6-Level Chain)</p>
+<div class="flex gap-1 h-2 w-full rounded-full overflow-hidden bg-gray-200 mb-2">
+<div class="bg-primary w-[40%]"></div>
+<div class="bg-primary/70 w-[25%]"></div>
+<div class="bg-primary/50 w-[15%]"></div>
+<div class="bg-primary/30 w-[10%]"></div>
+<div class="bg-primary/20 w-[10%]"></div>
+</div>
+<div class="flex justify-between text-[10px] text-text-secondary">
+<span>Direct: 5%</span>
+<span>L2-L6: 12% Total</span>
+</div>
+</div>
+<!-- Total Value -->
+<div class="bg-surface-light rounded-lg p-3 border border-blue-100 flex items-center justify-between">
+<span class="text-xs font-medium text-text-secondary">Total Portfolio Impact</span>
+<span class="text-sm font-bold text-text-main flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+                                    15.4% Yield
+                                </span>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Secure Transaction via Sovereign Chain</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended Luxury Add-ons Section -->
+<section class="mt-16 md:mt-24 mb-12">
+<div class="flex items-center justify-between mb-6 px-1">
+<div>
+<h3 class="text-2xl font-bold text-text-main">Recommended Luxury Add-ons</h3>
+<p class="text-text-secondary text-sm mt-1">Enhance your asset performance with these ecosystem integrations.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-text-main transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-text-main transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex overflow-x-auto gap-6 pb-8 hide-scroll snap-x snap-mandatory">
+<!-- Item 1 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-surface-light rounded-xl border border-gray-200 overflow-hidden group hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="relative h-48 bg-gray-100 overflow-hidden">
+<img alt="Professional Monitor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern sleek 4k monitor on desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4PiEG96VTGeW37bRTbmMAHTlEVrxAsMCaKL7uI71kkGwLaa6VLdIKKyeuLAHbcYCHHt9uK6e0e4Fe3KoWo1X8QDK0aQiPi98MdM37tlfgKOBq4MQiFgFyrQ4FOcg2-81QGMbeEy3Ys8ByMTQzQkqK6uVN8nHjNvoZhiN0TwwpgyLoRBBGuENt0PeN6I1jJ1ixzUebS8s0TFm7QnSSdDr528nNkmNnoZiq4ZWzpWgXGGt5S1R35A5tRlpjb98-N670jZRJyRW64MRx"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-text-main shadow-sm">
+                            Tier 2
+                        </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-bold text-text-main text-lg group-hover:text-primary transition-colors">Ocular 8K Display</h4>
+<p class="text-xs text-text-secondary">Visual Asset Class</p>
+</div>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div>
+<span class="block text-lg font-bold text-text-main">₹12,499</span>
+<span class="text-[10px] text-green-600 font-medium">+1.2% Network ROI</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-background-light hover:bg-primary hover:text-white text-text-main flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-surface-light rounded-xl border border-gray-200 overflow-hidden group hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="relative h-48 bg-gray-100 overflow-hidden">
+<img alt="Ergonomic Keyboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Mechanical keyboard with custom keycaps and lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3YibLiIbl3xIU4aIUDEfly78L-xrJo5SqAbbsiJ5o3-d2QBfBjrr7nVBmH-V_rJR4tCVmB3sxWo9f3fNTOEY_QLEt87gGFk40u_bEdYIM9BnV0b5nSQt9ejjwLsT5htg_54JLOUgeN8YJJgdBsfIH-2iqDTK052JZe2sx13vDX0yfmg83qeGDUvQ0z_mWdAf0H8TpviVujR8A6SsMZbADXCDIFBWbxt7FNOJOSSwhz2klV696gXmvfu8GQORfV3jcTTHLh6RdE8og"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-text-main shadow-sm">
+                            Tier 1
+                        </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-bold text-text-main text-lg group-hover:text-primary transition-colors">Tactile Command Key</h4>
+<p class="text-xs text-text-secondary">Input Efficiency Tool</p>
+</div>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div>
+<span class="block text-lg font-bold text-text-main">₹4,200</span>
+<span class="text-[10px] text-green-600 font-medium">+0.5% Network ROI</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-background-light hover:bg-primary hover:text-white text-text-main flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-surface-light rounded-xl border border-gray-200 overflow-hidden group hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="relative h-48 bg-gray-100 overflow-hidden">
+<img alt="Digital Storage Drive" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Futuristic external hard drive with blue light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPwDViGrHh89J4rpBnQj4UBVdSE6booXBaq5B5wHBkClAE913Bh0kXXqHMGERQpevqGXQNm2MZieTdb9uoQ4XacjKmu1gL5PSW-lBl8U6OiTlzs1ktj3UG-2E4XRPh3mXXkkXAGudkb5-IcetZpkyn7AiennqLrle4CqB0D7vy9fexR5hBmwNbvoEEuV9mksax6XFbYis2AoypO2AeY5Y2oQH6yv7Eny33oqBEFradtXR3sloRXfA-3rGAy6bfzWYwwhwoTbl6vBk2"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-text-main shadow-sm">
+                            Tier 3
+                        </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-bold text-text-main text-lg group-hover:text-primary transition-colors">Vault 4TB Cloud Node</h4>
+<p class="text-xs text-text-secondary">Data Sovereignity</p>
+</div>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div>
+<span class="block text-lg font-bold text-text-main">₹8,999</span>
+<span class="text-[10px] text-green-600 font-medium">+2.0% Network ROI</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-background-light hover:bg-primary hover:text-white text-text-main flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="min-w-[280px] md:min-w-[320px] snap-center bg-surface-light rounded-xl border border-gray-200 overflow-hidden group hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="relative h-48 bg-gray-100 overflow-hidden">
+<img alt="Luxury Headphones" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="High end noise cancelling headphones on stand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB6jfyDuGHsaXrC14Pr7uS3SI6-LyK-CA-c89eED_h5JVLo2RAXldo9sugKlGqQ07jnX54m1woLiGk_ZOIlu4rVZFSwAAXia9YII_WXFIEF5zqwaD-ckNhbHZByKul1oJqNGra6oJmP82-Kv1nliGMDamXhPNQ5GOXcCfcXkmOmNNqFvxMPuNSJJQ-JP1DT7gse97Vfx3ZPhH9eIRCOGoQ85Du6tqagQvyiSoP0DsB_sKRVVciwy8ZQhzjjUP0uf9E8HbnQ8AJZtvX"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-text-main shadow-sm">
+                            Tier 2
+                        </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-bold text-text-main text-lg group-hover:text-primary transition-colors">Sonic Pro ANC</h4>
+<p class="text-xs text-text-secondary">Audio Asset</p>
+</div>
+</div>
+<div class="flex items-end justify-between mt-4">
+<div>
+<span class="block text-lg font-bold text-text-main">₹15,200</span>
+<span class="text-[10px] text-green-600 font-medium">+1.5% Network ROI</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-background-light hover:bg-primary hover:text-white text-text-main flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Simple -->
+<footer class="bg-surface-light border-t border-gray-200 py-8 px-4 md:px-10">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-text-secondary">© 2024 Sovereign Mall. All Investment Tiers Reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-text-secondary hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-sm text-text-secondary hover:text-primary" href="#">Terms of Service</a>
+<a class="text-sm text-text-secondary hover:text-primary" href="#">ROI Disclaimer</a>
+</div>
+</div>
+</footer>
+</body></html>

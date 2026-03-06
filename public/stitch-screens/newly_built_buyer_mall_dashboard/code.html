@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Mall - Buyer Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f425af",
+                        "background-light": "#f8f5f7",
+                        "background-dark": "#22101c",
+                        "surface-dark": "#2d1625",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'prismatic-glitch': 'linear-gradient(45deg, rgba(244,37,175,0.05) 0%, rgba(34,16,28,0) 50%, rgba(244,37,175,0.05) 100%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #22101c; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392833; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f425af; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Prismatic Glitch Overlay Background -->
+<div class="absolute inset-0 bg-prismatic-glitch pointer-events-none z-0"></div>
+<div class="layout-container flex h-full grow flex-col z-10">
+<!-- Header / Top Nav -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 lg:px-10 py-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight uppercase">Sovereign Mall</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 h-10 w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-slate-700 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<div class="text-slate-400 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 px-3 text-sm font-normal" placeholder="Search collections, drops, items..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4 lg:gap-8">
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">My Vault</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Wallet</a>
+</div>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-700 pl-6">
+<button class="relative p-2 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20 cursor-pointer hover:ring-primary transition-all" data-alt="User profile avatar showing a stylish young person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBncADVP2zvjpJ-4wrEXMU0uyvqdz4PeZacbWJ52SrpCHmtyFISgtwwykpJOISLR6ko6iaOTur3w7rKxUmq9_RZ2SNd95zzO8a1ZSHfdjq_nEhQQOzNpECc97dtUaXqgNGEY5n-xrbzNZxAUd8vWt6YYC1uKRCaZ6Z1CSJMz-9G7kdrjj4GevUxP7K1mVYaPXs0sa_AoP_Gf7Xtzp7Ly95JbPSbKe79D7mDJNp6f7KbvdXMRtT8lWLsn6RiCM7ssKoM6HytMPzlXmWB");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar (Optional for larger screens) -->
+<aside class="hidden xl:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6 gap-6">
+<div class="flex flex-col gap-2">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Dashboard</h3>
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                            Overview
+                        </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            Orders
+                        </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+                            Wishlist
+                        </a>
+</div>
+<div class="mt-auto">
+<div class="p-4 rounded-xl bg-gradient-to-br from-surface-dark to-black border border-slate-700 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">bolt</span>
+</div>
+<p class="text-xs text-slate-400 mb-1">Status</p>
+<h4 class="text-white font-bold text-lg flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+                                Sovereign
+                            </h4>
+<div class="mt-3 pt-3 border-t border-slate-700">
+<p class="text-xs text-slate-400">Next Tier: <span class="text-primary">Imperial</span></p>
+<div class="w-full h-1 bg-slate-700 rounded-full mt-1">
+<div class="h-full bg-primary rounded-full w-[75%]"></div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 relative">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-8">
+<!-- Top Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Wallet Balance -->
+<div class="flex flex-col justify-between p-6 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute right-0 top-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+<span class="material-symbols-outlined text-8xl">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Wallet Pay Balance</p>
+<h3 class="text-slate-900 dark:text-white text-4xl font-bold mt-2 tracking-tight">₹ 1,24,500</h3>
+</div>
+<div class="flex items-center gap-2 mt-4 text-green-500 text-sm font-medium">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+<span>+12.5% from ROI</span>
+</div>
+</div>
+<!-- User Status Mobile/Tablet (Visible if sidebar hidden) -->
+<div class="xl:hidden flex flex-col justify-between p-6 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Member Status</p>
+<div class="flex items-center gap-3 mt-2">
+<h3 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">Sovereign</h3>
+<span class="px-2 py-1 rounded text-xs font-bold bg-green-500/10 text-green-500 border border-green-500/20 uppercase">Active</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Promo / Action -->
+<div class="lg:col-span-1 md:col-span-2 xl:col-span-2 flex items-center justify-between p-6 rounded-xl bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+<div class="relative z-10 max-w-md">
+<h3 class="text-2xl font-bold mb-1">New "Glitch" Collection</h3>
+<p class="text-white/80 text-sm mb-4">Limited edition streetwear drops available for Sovereign members only.</p>
+<button class="bg-white text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-100 transition-colors shadow-lg">
+                                        View Drop
+                                    </button>
+</div>
+<div class="hidden sm:block relative z-10">
+<!-- Decorative abstract shape -->
+<div class="w-24 h-24 rounded-full border-4 border-white/20 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-5xl">apparel</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Range Selector Tabs -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Exclusive Collections</h2>
+<button class="text-sm font-medium text-primary hover:text-primary/80 flex items-center gap-1">
+                                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="border-b border-slate-200 dark:border-slate-800">
+<nav aria-label="Tabs" class="flex gap-8 -mb-px overflow-x-auto">
+<a class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300" href="#">
+                                        Low Range (Entry)
+                                    </a>
+<a aria-current="page" class="shrink-0 border-b-2 border-primary px-1 pb-4 text-sm font-bold text-primary" href="#">
+                                        Mid Range (Core)
+                                    </a>
+<a class="shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:border-slate-300" href="#">
+                                        High Range (Elite)
+                                    </a>
+</nav>
+</div>
+</div>
+<!-- Product Grid (3D Vibe) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Product Card 1 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary hover:shadow-[0_0_20px_rgba(244,37,175,0.15)] transition-all duration-300 flex flex-col">
+<div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-black">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 bg-black/50 backdrop-blur-md text-white text-xs font-bold uppercase rounded border border-white/10">Streetwear</span>
+</div>
+<div class="absolute top-3 right-3 z-10">
+<button class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<img alt="Modern streetwear jacket on model in urban setting" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Dark streetwear jacket with high collar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnPm7ci_OPQnWVKcgHiVKvIHvd0kkCa37YmmY9uNp6ZbGk9iwfcNv4_WtxAYwyFj7sVcZeyeHAxxOb57inkWlfsjTtRwHoYq-zPgK1TYyskzDGQTq8uZOP6vIEOB4w3NtLzsNuJpw8iNJXOrbx6FWxfn26yoaaL9Yb-KmnLS2FKsWVmz0SMt8icWiiB-j_KbcuasiQPMyV9wBj2cvAdP6zvj4Xl-sDgZkSWTZoogyTVQ99dvmt5qTlujPtpaqyMu3ei-ws7vwnaS9e"/>
+<!-- Glitch Overlay Effect on Hover -->
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-overlay"></div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Void Runner Jacket</h3>
+<p class="text-slate-500 text-xs mb-3">Core Collection • Season 4</p>
+<div class="mt-auto flex items-center justify-between">
+<p class="text-xl font-bold text-slate-900 dark:text-white">₹ 18,500</p>
+<button class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-2 rounded-lg hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary hover:shadow-[0_0_20px_rgba(244,37,175,0.15)] transition-all duration-300 flex flex-col">
+<div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-black">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 bg-primary/80 backdrop-blur-md text-white text-xs font-bold uppercase rounded shadow-lg">Trending</span>
+</div>
+<div class="absolute top-3 right-3 z-10">
+<button class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<img alt="Black graphic t-shirt with modern design" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Black graphic tee with minimalist print" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMCMQdJweXgOhDApXL6pIFCW7qPSbB0-AQMiaEwC4UCVbKQFxABpES08J5DrXlrTcx70vV5bAd8IUOrIOryzgw-9TJeJFACcjQibgvjsgvonsKI3EXBTcSvfhuj3DENv82cANVL9Z_E1UO4w3Jr0g53otGAjwAXT9kpQzdfWpwn_afCDxbbta2nxnTILjMbdBAC47g1KFLu3_dXss_tP92pAke5JgOen8MUtdAEd6E9SbGA573vRSY26Bm7QjEUvY6o_0nalP-gzee"/>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Cyber Text Tee</h3>
+<p class="text-slate-500 text-xs mb-3">Core Collection • Season 4</p>
+<div class="mt-auto flex items-center justify-between">
+<p class="text-xl font-bold text-slate-900 dark:text-white">₹ 4,200</p>
+<button class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-2 rounded-lg hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary hover:shadow-[0_0_20px_rgba(244,37,175,0.15)] transition-all duration-300 flex flex-col">
+<div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-black">
+<div class="absolute top-3 right-3 z-10">
+<button class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<img alt="High top futuristic sneakers on display" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Neon green high-top sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxN7q9_GZZhtF5KhWgQ_pBLqn_Ebq19DTTBtwEZ16HjNEX2k7eXWs2MHto3SD0JuAE8I24gm7eVbudffTxGJmlM143uqTyt2RD8MNZTWvJaJ_h6hAQNa0BBStpLaOspO6yWdofxYAy7OrdcXGQEAdU9Cr7VtW-NMwRFMW8h8FriUC0Ffkimn0aOJu8Y2f9fO7GpNmqy46ktz6yARz3ptm2hGe-SszyHUG4FZsbSi_7q4vEQXwnzR7YX9i4VsrSHa2PqJwWgYwmB8zG"/>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Neon Flux Kicks</h3>
+<p class="text-slate-500 text-xs mb-3">Core Collection • Season 4</p>
+<div class="mt-auto flex items-center justify-between">
+<p class="text-xl font-bold text-slate-900 dark:text-white">₹ 24,999</p>
+<button class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-2 rounded-lg hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary hover:shadow-[0_0_20px_rgba(244,37,175,0.15)] transition-all duration-300 flex flex-col">
+<div class="relative aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-black">
+<div class="absolute top-3 left-3 z-10">
+<span class="px-2 py-1 bg-purple-600/80 backdrop-blur-md text-white text-xs font-bold uppercase rounded shadow-lg">Limited</span>
+</div>
+<div class="absolute top-3 right-3 z-10">
+<button class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<img alt="Oversized hoodie with unique texture" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Textured oversized hoodie in dark grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK5OV-Zgu-EnhjkwqqKYyIZBItosm1RPoam-rPKeA19QL8rIZWFNGb7aIJ2uqOzONTfwyxm9roX_tpCDfaMAW5cybd1mPi6fVYegcvWUCC7isROBjthxq3rOjZdmuQB94kmc8qz4d3mw0hfGMLjLKu7Z_7GmbhQTngzAMoEmJYlVYsg4KUFaTy6UtTL6fYyXurM1mLXwKq0V46ia6uqNnc0e7I5ONHXKjWeBJI8mLkCJ9l6MjuBzpbviGFJ0S6xREPYC87_c2TTVe1"/>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Shadow Hoodie</h3>
+<p class="text-slate-500 text-xs mb-3">Core Collection • Season 4</p>
+<div class="mt-auto flex items-center justify-between">
+<p class="text-xl font-bold text-slate-900 dark:text-white">₹ 12,800</p>
+<button class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 p-2 rounded-lg hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Special Offer / Banner -->
+<div class="relative rounded-2xl overflow-hidden mt-6 group">
+<div class="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
+<img alt="Model wearing futuristic fashion in neon lighting" class="w-full h-48 md:h-64 object-cover object-center group-hover:scale-105 transition-transform duration-700" data-alt="Neon lit fashion model posing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY9HcNGKfrYdhwMz44dox2Xu-MxniwCBDwL3TqQfWY0YF_nXvL7IJonEMzAKpu6k2X0QiwTjaEHHTMMYdcuvqHUOGfQ5Em7iJJJQmEjh4WMNU2l0HWJTlVX3ZqfyWCk9BlIqIAU8xrF-2z37oW_-NeGAJ-7npOv0NO8KHSkMqmrBXPgKE2hg-gTQRanms3Q4YEUw5dZVHcS1Sc9J4Io80Aj-pdboHr3_DX7h6Fu5SsIxnsGyFrCo0_tQMsEq4StofOcgiIahkV-hIx"/>
+<div class="absolute inset-0 z-20 flex flex-col justify-center p-8 md:p-12">
+<span class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold uppercase rounded w-fit mb-3">Coming Soon</span>
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-2 max-w-xl">The Prism Drop</h2>
+<p class="text-slate-300 text-sm md:text-base max-w-md mb-6">Unlock exclusive access to the upcoming holographic streetwear line. Available to Sovereign members first.</p>
+<button class="w-fit bg-white text-black px-6 py-3 rounded-lg font-bold hover:bg-primary hover:text-white transition-colors flex items-center gap-2">
+                                    Set Reminder <span class="material-symbols-outlined text-lg">alarm</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body></html>

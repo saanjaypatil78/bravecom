@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autonomous Activity &amp; Status Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bee6c",
+                        "primary-content": "#064e23",
+                        "background-light": "#f8faf9",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3324",
+                        "text-main": "#111813",
+                        "text-muted": "#61896f",
+                        "border-light": "#e5e7eb",
+                        "warning": "#f59e0b",
+                        "danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-border-light bg-surface-light dark:bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary-content">
+<span class="material-symbols-outlined">network_node</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">InvestSaaS</h2>
+</div>
+<nav class="flex items-center gap-1 hidden md:flex">
+<a class="text-text-muted hover:text-text-main hover:bg-background-light px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-text-main bg-background-light px-3 py-2 rounded-lg text-sm font-medium" href="#">Audit Protocol</a>
+<a class="text-text-muted hover:text-text-main hover:bg-background-light px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Users</a>
+<a class="text-text-muted hover:text-text-main hover:bg-background-light px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 rounded-full hover:bg-background-light flex items-center justify-center text-text-muted transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-danger rounded-full border-2 border-surface-light"></span>
+</button>
+<div class="size-10 rounded-full bg-slate-200 overflow-hidden border border-border-light" data-alt="User profile avatar">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOMcISMjfpBFfK_jVmKxRDX9W8gWEhWxHWk39aQunsaJcf87ZhkMTCr6mlHxAdF3DCFE_0DV_AzW0TwbOC8lpZ3dBd3ZclN3XUYTR9vUW8Vg0TrSH1O3HwL2aFrjtEyS_maQ-6zWpb1PuJFke0FVhhJJn23lpc9fRjG1aJ6FM3DQe0bQJuhSowTfeC_85LAw9ITiamg3JkJga_HV0idHXTWop_ERv9e1bvD-j5f5x8D3OTNty2xdkGDYzb4GXd-kmx_FMSbn6h5bLp"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 sm:px-10 py-8 max-w-[1400px] mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-text-main dark:text-white">Autonomous Activity &amp; Status Audit</h1>
+<p class="text-text-muted text-base max-w-2xl">
+                    Visualizing the Color Switching Protocol. Users must refer 1+ user every 60 days to maintain <span class="text-primary-content font-semibold">Green Status</span>.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-surface-light border border-border-light rounded-lg text-sm font-medium hover:bg-background-light transition-colors shadow-sm text-text-main">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Export Audit
+                </button>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-content rounded-lg text-sm font-bold hover:brightness-110 transition-all shadow-sm shadow-primary/30">
+<span class="material-symbols-outlined text-[20px]">settings_suggest</span>
+                    Configure Protocol
+                </button>
+</div>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="p-5 rounded-xl border border-border-light bg-surface-light shadow-sm flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-5 transform rotate-12 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[120px] text-text-main">group</span>
+</div>
+<p class="text-text-muted font-medium text-sm">Total Users Monitored</p>
+<div>
+<p class="text-3xl font-bold text-text-main dark:text-white mb-1">2,840</p>
+<div class="flex items-center gap-1 text-primary-content text-xs font-semibold bg-primary/20 w-fit px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+12% this month</span>
+</div>
+</div>
+</div>
+<div class="p-5 rounded-xl border border-primary/30 bg-primary/5 shadow-sm flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-10 transform rotate-12 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[120px] text-primary-content">check_circle</span>
+</div>
+<p class="text-primary-content/80 font-medium text-sm">Active (Green)</p>
+<div>
+<p class="text-3xl font-bold text-primary-content mb-1">1,850</p>
+<p class="text-sm text-primary-content/70">Safe for &gt; 30 days</p>
+</div>
+</div>
+<div class="p-5 rounded-xl border border-warning/30 bg-warning/5 shadow-sm flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-10 transform rotate-12 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[120px] text-warning">warning</span>
+</div>
+<p class="text-warning font-medium text-sm">Warning (Orange)</p>
+<div>
+<p class="text-3xl font-bold text-warning mb-1">410</p>
+<p class="text-sm text-warning/80">At risk within 15 days</p>
+</div>
+</div>
+<div class="p-5 rounded-xl border border-danger/20 bg-danger/5 shadow-sm flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-10 transform rotate-12 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[120px] text-danger">block</span>
+</div>
+<p class="text-danger font-medium text-sm">Inactive (Red)</p>
+<div>
+<p class="text-3xl font-bold text-danger mb-1">580</p>
+<p class="text-sm text-danger/80">Commission blocked</p>
+</div>
+</div>
+</div>
+<!-- Main Filter & Search Bar -->
+<div class="flex flex-col lg:flex-row gap-4 mb-6 bg-surface-light p-4 rounded-xl border border-border-light shadow-sm">
+<div class="flex flex-1 items-center bg-background-light rounded-lg px-3 py-2 border border-transparent focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<span class="material-symbols-outlined text-text-muted mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-text-main w-full placeholder:text-text-muted/70 focus:ring-0 p-0 text-sm" placeholder="Search by User ID, Name, or Email..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 lg:pb-0">
+<button class="flex items-center gap-2 px-3 py-2 bg-text-main text-white rounded-lg text-sm font-medium whitespace-nowrap shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    All Users
+                </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-border-light text-text-main hover:bg-background-light rounded-lg text-sm font-medium whitespace-nowrap transition-colors">
+<div class="size-2 rounded-full bg-primary"></div>
+                    Green Status
+                </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-border-light text-text-main hover:bg-background-light rounded-lg text-sm font-medium whitespace-nowrap transition-colors">
+<div class="size-2 rounded-full bg-warning"></div>
+                    Orange Status
+                </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-border-light text-text-main hover:bg-background-light rounded-lg text-sm font-medium whitespace-nowrap transition-colors">
+<div class="size-2 rounded-full bg-danger"></div>
+                    Red Status
+                </button>
+<div class="w-px bg-border-light mx-1 h-auto"></div>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-border-light text-text-muted hover:text-text-main rounded-lg text-sm font-medium whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                    Sort by Risk
+                </button>
+</div>
+</div>
+<!-- Audit Table -->
+<div class="bg-surface-light border border-border-light rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-background-light border-b border-border-light text-xs uppercase tracking-wider text-text-muted font-semibold">
+<th class="px-6 py-4">User Details</th>
+<th class="px-6 py-4">Current Investment</th>
+<th class="px-6 py-4">Protocol Status</th>
+<th class="px-6 py-4">60-Day Countdown</th>
+<th class="px-6 py-4 text-right">Referral Activity</th>
+<th class="px-6 py-4 w-10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light text-sm">
+<!-- Row 1: Urgent Orange -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-orange-100 border border-orange-200 flex items-center justify-center text-orange-700 font-bold text-xs">
+                                        JD
+                                    </div>
+<div>
+<p class="font-semibold text-text-main">John Doe</p>
+<p class="text-xs text-text-muted">ID: #882910 • Partner</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main tabular-nums">
+                                ₹1,25,000
+                                <div class="text-xs text-text-muted font-normal mt-0.5">Comm: ₹12,500</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-warning/10 text-warning border border-warning/20">
+<span class="size-1.5 rounded-full bg-warning animate-pulse"></span>
+                                    Warning
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px]">
+<div class="flex justify-between text-xs mb-1.5 font-medium">
+<span class="text-warning">3 Days Left</span>
+<span class="text-text-muted">57/60</span>
+</div>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-warning w-[95%] rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-text-main font-medium">Last: 57 days ago</div>
+<div class="text-xs text-danger font-medium mt-0.5">Due: Oct 24th</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-muted hover:text-text-main p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Active Green -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="Sarah Smith Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFKm44-0r7Xwby_AQkN_oX06qEIkBMAjjzcBesPQQCIINxqfTl2MsYAY4_9_wPZ9KyKb5NiIXx5UQSDYoH96u7mi_w5co-HN46edfDJNkvJK81xTtOGSlzK8LZz2GBpuzSAG9jM96G8m6Nq680H4jgFJ3Q97yEpBK1LYA5A-UzyBwi83dBBiGTrQmxDCC4WWtcwZEYEBV9KQesRAQ3P6xoITqpDmcRAIDijT6YEpzBcK08C-9Lrp_sQ9R1HZZolsDIY6abKuPT7WJi"/>
+</div>
+<div>
+<p class="font-semibold text-text-main">Sarah Smith</p>
+<p class="text-xs text-text-muted">ID: #993102 • Admin</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main tabular-nums">
+                                ₹5,50,000
+                                <div class="text-xs text-text-muted font-normal mt-0.5">Comm: ₹55,000</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary-content border border-primary/20">
+<span class="size-1.5 rounded-full bg-primary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px]">
+<div class="flex justify-between text-xs mb-1.5 font-medium">
+<span class="text-primary-content">45 Days Left</span>
+<span class="text-text-muted">15/60</span>
+</div>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[25%] rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-text-main font-medium">Last: 15 days ago</div>
+<div class="text-xs text-text-muted mt-0.5">Due: Dec 5th</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-muted hover:text-text-main p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Active Green (Close to deadline) -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700 font-bold text-xs">
+                                        MR
+                                    </div>
+<div>
+<p class="font-semibold text-text-main">Michael Ross</p>
+<p class="text-xs text-text-muted">ID: #112039 • Partner</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main tabular-nums">
+                                ₹85,000
+                                <div class="text-xs text-text-muted font-normal mt-0.5">Comm: ₹8,500</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary-content border border-primary/20">
+<span class="size-1.5 rounded-full bg-primary"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px]">
+<div class="flex justify-between text-xs mb-1.5 font-medium">
+<span class="text-primary-content">20 Days Left</span>
+<span class="text-text-muted">40/60</span>
+</div>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[66%] rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-text-main font-medium">Last: 40 days ago</div>
+<div class="text-xs text-text-muted mt-0.5">Due: Nov 10th</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-muted hover:text-text-main p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Inactive Red -->
+<tr class="hover:bg-background-light/50 transition-colors group bg-gray-50/50">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center overflow-hidden grayscale opacity-70">
+<img alt="Elena Gilbert Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHKuIooI3SoVLkyQe6zJ7Y1XCQVlaLfN1owTJk8DDtweePzbMnrJt0PVGWLpbXwYGJME_Yj4BLeNV8rnXkWADgz8_Hjxew-RURkpGdYp9KW_0fMNhmSHHBS2_dOBFOvS_A-xD99Tu2_Z-iyhw6w7nFseQkZYgnOXfj7I3QU9lRhnYmfo86obl7ObQSh9IaS9V4kkl5hEeHIG6D48MlTfZACuYgulJG1wUzTz6OLTvMUTpNPUCG359lSr0gggXerzu8FiSaEATiH0cL"/>
+</div>
+<div class="opacity-60">
+<p class="font-semibold text-text-main">Elena Gilbert</p>
+<p class="text-xs text-text-muted">ID: #449102 • Partner</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main tabular-nums opacity-60">
+                                ₹40,000
+                                <div class="text-xs text-text-muted font-normal mt-0.5">Comm: Frozen</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-danger/10 text-danger border border-danger/20">
+<span class="size-1.5 rounded-full bg-danger"></span>
+                                    Inactive
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px]">
+<div class="flex justify-between text-xs mb-1.5 font-medium">
+<span class="text-danger">Overdue</span>
+<span class="text-text-muted">65/60</span>
+</div>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-danger w-full rounded-full opacity-50"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right opacity-60">
+<div class="text-text-main font-medium">Last: 65 days ago</div>
+<div class="text-xs text-danger mt-0.5 font-bold">Action Required</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-muted hover:text-text-main p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Urgent Orange -->
+<tr class="hover:bg-background-light/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 font-bold text-xs">
+                                        DK
+                                    </div>
+<div>
+<p class="font-semibold text-text-main">David Kim</p>
+<p class="text-xs text-text-muted">ID: #551920 • Admin</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-text-main tabular-nums">
+                                ₹2,10,000
+                                <div class="text-xs text-text-muted font-normal mt-0.5">Comm: ₹21,000</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-warning/10 text-warning border border-warning/20">
+<span class="size-1.5 rounded-full bg-warning animate-pulse"></span>
+                                    Warning
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="w-full max-w-[140px]">
+<div class="flex justify-between text-xs mb-1.5 font-medium">
+<span class="text-warning">12 Days Left</span>
+<span class="text-text-muted">48/60</span>
+</div>
+<div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-warning w-[80%] rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-text-main font-medium">Last: 48 days ago</div>
+<div class="text-xs text-warning font-medium mt-0.5">Due: Nov 2nd</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-muted hover:text-text-main p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between px-6 py-4 border-t border-border-light bg-background-light/30">
+<div class="text-xs text-text-muted">
+                    Showing <span class="font-medium text-text-main">1</span> to <span class="font-medium text-text-main">5</span> of <span class="font-medium text-text-main">2,840</span> results
+                </div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-md border border-border-light bg-white text-xs font-medium text-text-muted hover:text-text-main disabled:opacity-50">Previous</button>
+<button class="px-3 py-1.5 rounded-md border border-border-light bg-white text-xs font-medium text-text-muted hover:text-text-main">Next</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

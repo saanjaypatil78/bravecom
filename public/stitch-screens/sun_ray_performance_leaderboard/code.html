@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sun Ray Performance Leaderboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "surface-dark": "#1a170d",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 bg-surface-dark px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-primary">wb_sunny</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Sun Ray Investment</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Portfolio</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Network</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary pb-1" href="#">Leaderboard</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 relative group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-background-dark border border-slate-700 focus-within:border-primary transition-colors">
+<div class="text-slate-400 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white focus:ring-0 placeholder:text-slate-500 text-sm" placeholder="Search partners..."/>
+</div>
+</label>
+<button class="relative">
+<span class="material-symbols-outlined text-slate-400 hover:text-white">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRnKC313l8qrA5dWBfVavBogfvM7q2UdE28T0N6RRUUjhqLgjDCSh1VAt8xyxZmS7swGPaD8FHWFdM5JtYSORyiRauGAF10PtuZ2s0ufJnU4SXR1AVvKyFG5ImVeiQt0RrpxowKOQKf82B1kbx9SmO-_YW106lrMSKRCUuob4leuu99S7x1PhKteHAJGwmiH_iZXbH_405SphrcGvJQJhHAuEpiPEqkTMBBucWr-pFadau80XgawFUGhFJdgGROMU0FsjMHNhOKzwJ");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center w-full px-6 py-8">
+<div class="w-full max-w-[1200px] flex flex-col gap-8">
+<!-- Page Header & Breadcrumbs -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-medium">Leaderboard</span>
+</div>
+<h1 class="text-4xl font-extrabold text-white tracking-tight">Sun Ray Performance <span class="text-primary">Leaderboard</span></h1>
+<p class="text-slate-400 max-w-2xl">Track top performers and your standing in the 6-level hierarchy. Maximize your potential with up to 20% referral payouts.</p>
+</div>
+<div class="flex items-center bg-surface-dark border border-slate-700 rounded-lg p-1">
+<button class="px-4 py-2 rounded text-sm font-medium bg-primary text-background-dark shadow-sm transition-all">
+                        Network Commissions
+                    </button>
+<button class="px-4 py-2 rounded text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                        Self-Investment (ROI)
+                    </button>
+</div>
+</div>
+<!-- Hall of Fame (Top 3) -->
+<section class="relative mt-8">
+<!-- Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="flex flex-col md:flex-row items-end justify-center gap-6 pb-8">
+<!-- Rank 2 -->
+<div class="order-2 md:order-1 flex-1 max-w-xs w-full bg-surface-dark border border-slate-800 rounded-xl p-6 flex flex-col items-center text-center shadow-lg relative mt-8 hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute -top-4 bg-slate-700 text-white text-xs font-bold px-3 py-1 rounded-full border border-slate-600">RANK #2</div>
+<div class="relative mb-4">
+<div class="size-20 rounded-full border-4 border-slate-300 bg-cover bg-center" data-alt="Rank 2 profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNQb91T1pmPp8itfFwEKMnxouygnLMWwo9loF_kzeVPoJCYMUa2AqinDpYh8u5E0rVwzuL9pjZJTY9J6cQL1eJd8jgKDntTR-Kb9ol_qxQ7AVT0WXieJBG8SCx2A1GDhZFFTDJ_OUB2bDOF0sH4U4MHVOa2NRdBTcW-NKG-DeeKm9eYri7ECXtlSfI6lwqoGAJF4F50kzWxQwC7eQl13Ujsu90vf3ef6JFsrAX1UHiPH7BOBNDAU8L2Vijju9pKMaiMrpc_pgUzkJp");'></div>
+<div class="absolute -bottom-2 -right-2 bg-slate-800 rounded-full p-1 border border-slate-600" title="Level 5 Sun Ray">
+<span class="material-symbols-outlined text-slate-300 text-sm">sunny</span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Priya Sharma</h3>
+<p class="text-slate-400 text-xs uppercase tracking-wider mb-4 font-semibold">Sun Ray Elite</p>
+<div class="w-full space-y-3">
+<div class="bg-background-dark/50 p-2 rounded border border-slate-800/50">
+<p class="text-xs text-slate-500 mb-0.5">Total Disbursed</p>
+<p class="text-white font-mono font-bold">₹35,40,000</p>
+</div>
+<div class="bg-background-dark/50 p-2 rounded border border-slate-800/50">
+<p class="text-xs text-slate-500 mb-0.5">Network AUM</p>
+<p class="text-primary font-mono font-bold">₹3.5 Cr</p>
+</div>
+</div>
+</div>
+<!-- Rank 1 (Center) -->
+<div class="order-1 md:order-2 flex-1 max-w-sm w-full bg-gradient-to-b from-surface-dark to-background-dark border border-primary/30 rounded-xl p-8 flex flex-col items-center text-center shadow-[0_0_30px_rgba(242,185,13,0.15)] relative z-10 hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute -top-5 bg-gradient-to-r from-primary to-yellow-300 text-black text-sm font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">emoji_events</span> RANK #1
+                        </div>
+<div class="relative mb-6 mt-2">
+<div class="size-28 rounded-full border-4 border-primary bg-cover bg-center ring-4 ring-primary/20" data-alt="Rank 1 profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCk-iUB20hwfggXJ-BJMkSvL25QDbm87zaiMFXTvCMo1R6PZPjx_c0-inoRHdRfgvn_RouonnC3UIZ-S2aPq2pWjlO0PVNQ4IdXThUjynuaOCHgxaCXNOUd_L2u6kKRFjat6-hmc7ijRPsPXEFaP9bgcfcUtYmurgmfJ8kRT8CWYacHaykeeWajUHtKkTefKNKyznSBtGZ7aFmwlY2-EWXBHUQaC7O0BrEyhDFwUAtqcN9Xv1FD4n6rpSIvHbBBYErsRqQsHOjtx5ar");'></div>
+<div class="absolute -bottom-3 -right-3 bg-primary text-black rounded-full size-8 flex items-center justify-center border-2 border-surface-dark shadow-lg" title="Level 6 Sun Ray">
+<span class="material-symbols-outlined text-lg">sunny</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-1">Arjun Verma</h3>
+<p class="text-primary text-sm uppercase tracking-wider mb-6 font-bold">Apex Leader</p>
+<div class="w-full grid grid-cols-2 gap-3">
+<div class="bg-primary/10 p-3 rounded-lg border border-primary/20">
+<p class="text-xs text-primary/80 mb-1">Total Disbursed</p>
+<p class="text-primary font-mono font-bold text-lg">₹50.2 L</p>
+</div>
+<div class="bg-primary/10 p-3 rounded-lg border border-primary/20">
+<p class="text-xs text-primary/80 mb-1">Network AUM</p>
+<p class="text-white font-mono font-bold text-lg">₹5.1 Cr</p>
+</div>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="order-3 md:order-3 flex-1 max-w-xs w-full bg-surface-dark border border-slate-800 rounded-xl p-6 flex flex-col items-center text-center shadow-lg relative mt-8 hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute -top-4 bg-slate-700 text-white text-xs font-bold px-3 py-1 rounded-full border border-slate-600">RANK #3</div>
+<div class="relative mb-4">
+<div class="size-20 rounded-full border-4 border-[#cd7f32] bg-cover bg-center" data-alt="Rank 3 profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7pSmp_MVOLw8bypyu0t3WVqxKcbzX4cb1X7XxfSTFwKNyvKtqqpeDdb3N01hE88cYoGGJGqZsGSdxXJ9oDv1c6UHTnCojDv9WGmkpcazkcWha4d13RJAUL6xYfaWCKc_Yci3rOYf3mOM5TOyg9PFc0az27JVFHrEWMILs0B0FkfNvqOHOu7Zs69PtJnAf6ZPtv6p6wjGR0wd1VI8ANO8keO_R_uCIW9yFLu7mvyM6yHq4GKFgB84_sIkh1AqYC-vstopnTcryULqi");'></div>
+<div class="absolute -bottom-2 -right-2 bg-slate-800 rounded-full p-1 border border-slate-600" title="Level 5 Sun Ray">
+<span class="material-symbols-outlined text-[#cd7f32] text-sm">sunny</span>
+</div>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Rohan Mehta</h3>
+<p class="text-slate-400 text-xs uppercase tracking-wider mb-4 font-semibold">Sun Ray Elite</p>
+<div class="w-full space-y-3">
+<div class="bg-background-dark/50 p-2 rounded border border-slate-800/50">
+<p class="text-xs text-slate-500 mb-0.5">Total Disbursed</p>
+<p class="text-white font-mono font-bold">₹31,00,000</p>
+</div>
+<div class="bg-background-dark/50 p-2 rounded border border-slate-800/50">
+<p class="text-xs text-slate-500 mb-0.5">Network AUM</p>
+<p class="text-primary font-mono font-bold">₹3.1 Cr</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Leaderboard List -->
+<section class="w-full bg-surface-dark rounded-xl border border-slate-800 overflow-hidden shadow-xl">
+<div class="flex items-center justify-between p-6 border-b border-slate-800 bg-surface-dark/50">
+<h2 class="text-xl font-bold text-white">Top Performers</h2>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-white px-3 py-1.5 rounded bg-background-dark border border-slate-700">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                            This Month
+                        </button>
+<button class="flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-white px-3 py-1.5 rounded bg-background-dark border border-slate-700">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filter
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs text-slate-500 uppercase tracking-wider border-b border-slate-800 bg-background-dark/30">
+<th class="px-6 py-4 font-medium w-20 text-center">Rank</th>
+<th class="px-6 py-4 font-medium">Partner</th>
+<th class="px-6 py-4 font-medium">Sun Ray Level</th>
+<th class="px-6 py-4 font-medium">Power Score</th>
+<th class="px-6 py-4 font-medium text-right">Total Disbursed (₹)</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-800">
+<!-- Row 4 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-center font-bold text-slate-400">#4</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-700" data-alt="Rank 4 profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnPjO0cVf81zjQ-7cbzGNPXaKph9mUYNGv0mx5RTjsNRDo0UEYlMP5g0YAPoai5chMbZzl1Lhv_tp9S6mNRv79OJDtZrdIZxaLjgjI-SHtR9uRICaWOl63Un264S8XIwMKKlZLTUrKzZIkPuhd-soBmpwpUGZAx0sEown-tcg-Qc7vCE6MsDVI-yiOxHCMOkLqJnIgSxT9qL0VB9ph4XjuFOtt-1VJuzedp9yK6bDZWW6xI9eCd3eFHlDdwGITP9sAoRlkE9Yv61s8");'></div>
+<div>
+<p class="font-semibold text-white group-hover:text-primary transition-colors">Vikram Singh</p>
+<p class="text-xs text-slate-500">Mumbai, IN</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+<span class="material-symbols-outlined text-sm">sunny</span> Level 5
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden w-24">
+<div class="h-full bg-gradient-to-r from-primary to-yellow-200 w-[85%]"></div>
+</div>
+<span class="text-xs font-mono text-slate-400">850</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-mono font-bold text-white text-base">₹12,50,000</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-center font-bold text-slate-400">#5</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-700" data-alt="Rank 5 profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCadLiW3avYfEAzTgG06pNS1H0oAPwDfzfy_P6ZL1_P1vqo-tjpdpvzcTKQi1wr348dxAlB7pxcmZmBkzI7_Ins0jpPjecV9C5Dcer-6LwFte5tgdIKxgXodXXiXmqxacC26mOoF5jJEeao1P2MFn44PZ913n3oikxfp64WEr8wwxU8oNZPUUNeFx9zmk6x_h5XNhtZr4GHZO2Z1k0b9h134ct1C0eqqk8Lad2j6WQuKSwiLbgoY_WMYyfEXqyOd-LZOJ5UerXgbraF");'></div>
+<div>
+<p class="font-semibold text-white group-hover:text-primary transition-colors">Anjali Gupta</p>
+<p class="text-xs text-slate-500">Bangalore, IN</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">sunny</span> Level 4
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden w-24">
+<div class="h-full bg-gradient-to-r from-primary/70 to-yellow-200/70 w-[72%]"></div>
+</div>
+<span class="text-xs font-mono text-slate-400">720</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-mono font-bold text-white text-base">₹9,85,000</td>
+</tr>
+<!-- Row 6 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-center font-bold text-slate-400">#6</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-700" data-alt="Rank 6 profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3rPjiNsr-B4h_S-LUEexMkny5l-UGuthRlmTO6DHy-TgV0uBi-IT7kZrSsfkalbbZsUywG9IGXRnYt0uhAUmC8KOPE8CQe6n1kBTtAmQSynxtWm_wS8FbY5q0uneDOkAK7ly24jv2dSq9EhFthKYWTVSOBWyHJbAZQEnR8_5hk9EpY3tJ4f4waz1mEdbd7iWPake5fPDW0Q8w45-CMZ2vGy0AsQ2GdCjs7_c8nYbW53nctVYIF1t7cMfS2dXcaIneWkT2oSC5dxlB");'></div>
+<div>
+<p class="font-semibold text-white group-hover:text-primary transition-colors">Rahul Desai</p>
+<p class="text-xs text-slate-500">Delhi, IN</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">sunny</span> Level 4
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden w-24">
+<div class="h-full bg-gradient-to-r from-primary/70 to-yellow-200/70 w-[68%]"></div>
+</div>
+<span class="text-xs font-mono text-slate-400">680</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-mono font-bold text-white text-base">₹8,40,000</td>
+</tr>
+<!-- Row 7 -->
+<tr class="group hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-4 text-center font-bold text-slate-400">#7</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-slate-700" data-alt="Rank 7 profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDM3To_K1njfigLDUwk1T6OFP0fB0rR_0LQZUFUAGaoDkLjDoyYRZwJKf9QkO2YNqGd3zeU63N8dAetyBG_B8fcKoRLM1FeNnndHADO_CnHpXm-u5Laa1HZwiFKLAHX8ldDhQOh2QReKhsoTMClcEzk1ZCBIxt8gIxn2usbcd0nAo6WJVD7xhnabUdJC8EqUFGOsj1ZTrF-CAEqzNpmqPQAoMN8B-sHXG8IAGhx3d5zyQ5BHQQ2aHpgovEJqKJYPKoaskkyXb7BKMKP");'></div>
+<div>
+<p class="font-semibold text-white group-hover:text-primary transition-colors">Sneha Reddy</p>
+<p class="text-xs text-slate-500">Hyderabad, IN</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">sunny</span> Level 3
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden w-24">
+<div class="h-full bg-gradient-to-r from-primary/50 to-yellow-200/50 w-[55%]"></div>
+</div>
+<span class="text-xs font-mono text-slate-400">550</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-mono font-bold text-white text-base">₹6,20,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-background-dark/30 border-t border-slate-800 p-4 flex justify-center">
+<button class="text-slate-400 text-sm hover:text-white flex items-center gap-2">
+                        View Complete Leaderboard <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky User Rank Footer -->
+<div class="sticky bottom-0 z-40 w-full bg-surface-dark border-t border-primary/20 p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="bg-primary text-black font-bold text-sm px-3 py-1 rounded">Rank #14</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full border-2 border-primary/50 bg-cover bg-center" data-alt="Current user profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgJdRgLBVLsMyvvHp9j6W1fwBAt0Gmno2_fdL75Zx-0UO9aPO6SZwkPq-ot1psIKowYynjpX6yWO4qLmTM-_uFRhy-OP40Ua_RjPnYDQ9P_y_V80Fwr0x3EL1ysT-Ppadi9ELMw_k52bw5HfBtvuZsECxlxQ_CxagDA92yFuXxVtd1AZ6CO_WXCwEv_iASf340LZNc4aVQ9XYDSSnZ2VyiMysjdRl7OyrZ1V1gbfvVp7ch3yLKS9vVmFIlXcqtxSl1xezYlV-lmxWS");'></div>
+<div>
+<p class="font-bold text-white">You (Sanjay K.)</p>
+<p class="text-xs text-primary">Sun Ray Level 3</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:block">
+<p class="text-xs text-slate-500 mb-0.5">Power Score</p>
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%]"></div>
+</div>
+<span class="text-sm font-mono text-white">450</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-slate-500 mb-0.5">Total Disbursed</p>
+<p class="text-xl font-mono font-bold text-primary">₹3,45,000</p>
+</div>
+<button class="hidden md:flex items-center justify-center size-10 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">expand_less</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

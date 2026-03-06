@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Sun Ray Ecosystem Monitor</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "primary-content": "#003b4f",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111618",
+                        "surface-dark": "#1b2529",
+                        "surface-dark-lighter": "#283539",
+                        "accent-success": "#0bda57",
+                        "accent-warning": "#f2c94c",
+                        "accent-danger": "#eb5757",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(13, 185, 242, 0.3)',
+                        'glow-sm': '0 0 8px rgba(13, 185, 242, 0.2)',
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .sun-ray-ring:hover {
+            filter: drop-shadow(0 0 8px rgba(13, 185, 242, 0.6));
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-dark-lighter px-6 py-3 bg-background-dark/95 backdrop-blur-sm z-50 sticky top-0">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">solar_power</span>
+</div>
+<div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Sun Ray Admin</h2>
+<p class="text-slate-400 text-xs font-medium tracking-wide">ECOSYSTEM MONITOR v2.4</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded bg-surface-dark border border-surface-dark-lighter">
+<span class="w-2 h-2 rounded-full bg-accent-success animate-pulse"></span>
+<span class="text-xs font-medium text-slate-300">API: HEALTHY</span>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-lg hover:bg-primary/30 transition-colors shadow-glow-sm">
+<span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+<span class="text-sm font-bold truncate">RBAC: Super Admin</span>
+</button>
+<button class="relative p-2 rounded-lg bg-surface-dark-lighter text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-accent-danger rounded-full border-2 border-surface-dark-lighter"></span>
+</button>
+<button class="p-2 rounded-lg bg-surface-dark-lighter text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface-dark-lighter overflow-hidden bg-surface-dark">
+<img alt="Admin Profile Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtFFlq9Fcmjo0vFkbyH3z-aDknsp6tHoZ83GaXpbnzpZJ0mkwKR-KCOlaXlZLUMwyHCPYmXyNF47KVchIF-jjSU6ntrgM2GCbcWR9ZA9ZBFoyHmJOsVWwszDJdRIExJ_ygK0tcd0pqpWbAxwGMgG8RsjhQVmm4_BBAEcoco8puEnYfK5QTQvBI-3A-Rq4lQlH2ZACBvP4UYF-dkvfnf6y7tP_P-L2gtevYKkOloZQJmblgGcrknk6RKwm988CsVYa-e_JSc71YwV4W"/>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row h-[calc(100vh-65px)] overflow-hidden">
+<aside class="w-20 lg:w-64 bg-background-dark border-r border-surface-dark-lighter hidden md:flex flex-col justify-between py-6">
+<nav class="flex flex-col gap-2 px-3">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 text-primary border border-primary/20 shadow-glow-sm group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="hidden lg:block font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark-lighter transition-colors group" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="hidden lg:block font-medium">Referral Tree</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark-lighter transition-colors group" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="hidden lg:block font-medium">Treasury</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark-lighter transition-colors group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="hidden lg:block font-medium">Investors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark-lighter transition-colors group" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="hidden lg:block font-medium">Compliance</span>
+</a>
+</nav>
+<div class="px-6 hidden lg:block">
+<div class="p-4 rounded-xl bg-gradient-to-br from-surface-dark to-surface-dark-lighter border border-surface-dark-lighter">
+<p class="text-xs text-slate-400 mb-1">System Load</p>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-2xl font-bold text-white">24%</span>
+<span class="text-xs text-accent-success mb-1">Normal</span>
+</div>
+<div class="h-1.5 w-full bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-accent-success w-[24%]"></div>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 overflow-y-auto no-scrollbar p-6 lg:p-10 flex flex-col gap-8">
+<section class="flex flex-col gap-4">
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div>
+<h1 class="text-3xl font-bold text-white tracking-tight mb-1">Total AUM Goal Progress</h1>
+<p class="text-slate-400 text-sm">Tracking towards ₹111 Cr Target • Real-time Updates</p>
+</div>
+<div class="flex items-end gap-3 text-right">
+<div>
+<p class="text-slate-400 text-xs uppercase tracking-wider mb-1">Current AUM</p>
+<p class="text-3xl font-bold text-white font-mono">₹45.2 Cr</p>
+</div>
+<span class="text-2xl text-slate-600 font-light">/</span>
+<div class="opacity-60">
+<p class="text-slate-400 text-xs uppercase tracking-wider mb-1">Goal</p>
+<p class="text-xl font-bold text-slate-300 font-mono">₹111 Cr</p>
+</div>
+</div>
+</div>
+<div class="relative h-14 bg-surface-dark rounded-xl border border-surface-dark-lighter overflow-visible shadow-inner">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-primary/60 to-primary w-[41%] rounded-l-xl shadow-[0_0_20px_rgba(13,185,242,0.4)] flex items-center justify-end px-4 border-r border-white/20">
+<span class="text-white font-bold text-sm drop-shadow-md">41%</span>
+</div>
+<div class="absolute inset-0 grid grid-cols-10 pointer-events-none">
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+<div class="border-r border-white/5 h-full"></div>
+</div>
+<div class="absolute top-0 bottom-0 left-[30%] w-px bg-accent-warning z-10">
+<div class="absolute -top-10 -translate-x-1/2 flex flex-col items-center">
+<div class="bg-accent-warning/10 text-accent-warning border border-accent-warning/30 px-3 py-1 rounded text-xs font-bold whitespace-nowrap backdrop-blur-md shadow-[0_0_10px_rgba(242,201,76,0.2)]">
+                            SEBI Trigger (30%) PASSED
+                        </div>
+<div class="h-4 w-px bg-accent-warning"></div>
+</div>
+<div class="absolute top-0 bottom-0 w-8 -translate-x-1/2 bg-accent-warning/5 pointer-events-none"></div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-dark-lighter hover:border-primary/30 transition-all group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">groups</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-2">Total Active Investors</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white tracking-tight">1,245</h3>
+<span class="text-accent-success text-sm font-bold flex items-center mb-1 bg-accent-success/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>12%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-dark-lighter hover:border-primary/30 transition-all group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">payments</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-2">Avg. Ticket Size</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white tracking-tight">₹3.6 L</h3>
+<span class="text-accent-success text-sm font-bold flex items-center mb-1 bg-accent-success/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>5%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-dark-lighter hover:border-primary/30 transition-all group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">hub</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-2">Referral Pool Distributed</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white tracking-tight">₹8.4 Cr</h3>
+<span class="text-accent-success text-sm font-bold flex items-center mb-1 bg-accent-success/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>18%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-dark-lighter hover:border-primary/30 transition-all group relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">water_drop</span>
+</div>
+<p class="text-slate-400 text-sm font-medium mb-2">Treasury Surplus</p>
+<div class="flex items-end gap-3">
+<h3 class="text-3xl font-bold text-white tracking-tight">₹1.2 Cr</h3>
+<span class="text-accent-success text-sm font-bold flex items-center mb-1 bg-accent-success/10 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>2%
+                    </span>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-8 flex-1 min-h-[500px]">
+<div class="xl:col-span-2 bg-surface-dark rounded-xl border border-surface-dark-lighter p-6 flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-6 z-10">
+<div>
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sunny</span>
+                            Sun Ray Referral Visualizer
+                        </h3>
+<p class="text-slate-400 text-sm mt-1">Live breakdown of the 20% Pool Distribution across 6 Levels</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-bold text-slate-300 bg-surface-dark-lighter hover:bg-white/10 rounded transition-colors border border-white/5">Export CSV</button>
+<button class="px-3 py-1.5 text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 rounded transition-colors border border-primary/20">Live View</button>
+</div>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<div class="relative w-[340px] h-[340px] md:w-[450px] md:h-[450px] group/container">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-surface-dark border-4 border-primary/30 flex flex-col items-center justify-center z-20 shadow-[0_0_30px_rgba(13,185,242,0.15)]">
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Pool</p>
+<p class="text-xl font-bold text-white">₹8.4 Cr</p>
+</div>
+<div class="absolute top-10 right-0 z-50 pointer-events-none transition-all duration-300 transform opacity-0 group-hover/l2:opacity-100 group-hover/l2:translate-y-0 translate-y-2">
+<div class="bg-surface-dark/80 backdrop-blur-xl border border-primary/40 rounded-xl p-4 shadow-[0_0_30px_rgba(13,185,242,0.2)] min-w-[240px]">
+<div class="flex items-center justify-between mb-3 border-b border-white/10 pb-2">
+<span class="text-primary font-bold text-lg">Level 2</span>
+<span class="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded border border-primary/30">Active Tier</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-sm">Commission</span>
+<span class="text-white font-bold font-mono">5.0%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-sm">Value (₹51k Tier)</span>
+<span class="text-accent-success font-bold font-mono">₹2,555.55</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-sm">Total Users</span>
+<span class="text-white font-bold font-mono">842</span>
+</div>
+<div class="pt-2 border-t border-white/5">
+<div class="w-full bg-surface-dark-lighter rounded-full h-1.5 mb-1">
+<div class="bg-gradient-to-r from-primary to-accent-success h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-[10px] text-slate-500 text-right">65% of Tier Capacity</p>
+</div>
+</div>
+<div class="absolute inset-0 border border-primary/20 rounded-xl pointer-events-none"></div>
+<div class="absolute -inset-0.5 bg-gradient-to-br from-primary/20 to-transparent opacity-30 rounded-xl blur-sm -z-10"></div>
+</div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border-[16px] border-primary/80 z-10 hover:scale-105 transition-transform cursor-pointer sun-ray-ring group/l1">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-surface-dark/90 backdrop-blur text-xs text-white px-3 py-1.5 rounded opacity-0 group-hover/l1:opacity-100 transition-opacity whitespace-nowrap border border-primary/30 shadow-lg pointer-events-none z-50">Level 1: 7%</div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border-[14px] border-primary/60 z-0 hover:scale-105 hover:border-primary transition-all duration-300 cursor-pointer sun-ray-ring group/l2 ring-offset-4 ring-offset-transparent">
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-76 h-76 md:w-80 md:h-80 rounded-full border-[10px] border-primary/40 -z-10 hover:scale-105 transition-transform cursor-pointer sun-ray-ring group/l3">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-surface-dark/90 backdrop-blur text-xs text-white px-3 py-1.5 rounded opacity-0 group-hover/l3:opacity-100 transition-opacity whitespace-nowrap border border-primary/30 shadow-lg pointer-events-none">Level 3: 2%</div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-88 h-88 md:w-96 md:h-96 rounded-full border-[8px] border-primary/30 -z-20 hover:scale-105 transition-transform cursor-pointer sun-ray-ring group/l4"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] md:w-[440px] md:h-[440px] rounded-full border-[6px] border-primary/20 -z-30 hover:scale-105 transition-transform cursor-pointer sun-ray-ring group/l5"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full border-[4px] border-dashed border-primary/10 -z-40 group/l6"></div>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-4 mt-6 z-10 border-t border-white/5 pt-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/80"></div>
+<span class="text-xs text-slate-300 font-medium">L1 (7%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/60"></div>
+<span class="text-xs text-slate-300 font-medium">L2 (5%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+<span class="text-xs text-slate-300 font-medium">L3 (2%)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/30"></div>
+<span class="text-xs text-slate-300 font-medium">L4-L6 (2% ea)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-surface-dark rounded-xl border border-surface-dark-lighter p-6 flex flex-col gap-4 relative shadow-lg overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="flex items-center justify-between z-10">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">data_usage</span>
+                            Tier Breakdown
+                        </h3>
+<span class="text-[10px] font-bold text-slate-300 uppercase bg-surface-dark-lighter px-2 py-0.5 rounded border border-white/10">L2 Selected</span>
+</div>
+<div class="grid grid-cols-2 gap-3 z-10">
+<div class="bg-surface-dark-lighter/50 p-3 rounded border border-white/5">
+<p class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Commission Pool</p>
+<p class="text-xl font-bold text-white">₹42.5 L</p>
+<span class="text-[10px] text-accent-success">+12% vs L1</span>
+</div>
+<div class="bg-surface-dark-lighter/50 p-3 rounded border border-white/5">
+<p class="text-[10px] text-slate-400 uppercase tracking-wider mb-1">Active Users</p>
+<p class="text-xl font-bold text-white">842</p>
+<span class="text-[10px] text-primary">High Activity</span>
+</div>
+</div>
+<div class="space-y-3 z-10 pt-2 border-t border-white/5">
+<div class="flex justify-between text-xs">
+<span class="text-slate-400">Avg. Payout (24h)</span>
+<span class="text-white font-mono">₹12,450</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-400">Top Earner</span>
+<span class="text-primary font-mono">ID: #8821</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-dark-lighter p-6 flex flex-col gap-4 relative shadow-lg">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-bold text-slate-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-warning text-lg">savings</span>
+                            Treasury Overflow
+                        </h3>
+<span class="w-2 h-2 rounded-full bg-accent-success animate-pulse"></span>
+</div>
+<div class="h-24 bg-black/40 rounded-lg relative overflow-hidden border border-white/5 flex items-center justify-center">
+<div class="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-accent-warning/20 to-accent-warning/60 border-t border-accent-warning/50 shadow-[0_0_20px_rgba(242,201,76,0.3)]"></div>
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+<div class="relative z-10 text-center">
+<span class="block text-2xl font-bold text-white drop-shadow-lg">₹12.4 L</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-dark-lighter p-0 flex flex-col flex-1 overflow-hidden min-h-[200px]">
+<div class="p-3 border-b border-surface-dark-lighter flex justify-between items-center bg-surface-dark sticky top-0 z-10">
+<h3 class="text-sm font-bold text-slate-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-sm">history</span>
+                            Live Ledger
+                        </h3>
+</div>
+<div class="overflow-y-auto p-2 space-y-1 no-scrollbar">
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-dark-lighter/50 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-200">L1 Comm.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-primary">+₹1,250</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-dark-lighter/50 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-accent-success/10 flex items-center justify-center text-accent-success">
+<span class="material-symbols-outlined text-xs">add_card</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-200">New Inv.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-white">+₹50k</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded hover:bg-surface-dark-lighter/50 transition-colors border border-transparent hover:border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-accent-warning/10 flex items-center justify-center text-accent-warning">
+<span class="material-symbols-outlined text-xs">water_drop</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-200">Overflow</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-accent-warning">+₹450</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+</body></html>

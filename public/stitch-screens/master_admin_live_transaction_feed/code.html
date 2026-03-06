@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Master Admin Live Transaction Feed</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1a2c20",
+                        "surface-lighter": "#233b2b",
+                        "accent-amber": "#ffb020",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the "terminal" feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102216; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233b2b; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34523e; 
+        }
+        
+        .glass-panel {
+            background: rgba(26, 44, 32, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(19, 236, 91, 0.1);
+        }
+
+        .neon-glow-text {
+            text-shadow: 0 0 10px rgba(19, 236, 91, 0.5);
+        }
+        
+        .pulse-dot {
+            box-shadow: 0 0 0 0 rgba(19, 236, 91, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(19, 236, 91, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(19, 236, 91, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(19, 236, 91, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Abstract Background Elements for "Tech" feel -->
+<div class="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none z-0"></div>
+<div class="absolute -top-20 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<div class="layout-container flex h-full grow flex-col z-10">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 glass-panel border-b border-surface-lighter px-6 py-4">
+<div class="max-w-[1400px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center bg-surface-lighter rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-2xl">security</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-none tracking-tight">Brave Ecom</h2>
+<span class="text-xs text-primary/70 font-mono tracking-widest uppercase">Governance Console</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-1 bg-surface-lighter/50 p-1 rounded-lg border border-white/5">
+<a class="px-4 py-2 text-sm font-medium text-white bg-primary/20 rounded border border-primary/20 transition-all" href="#">Dashboard</a>
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 rounded transition-all" href="#">Transactions</a>
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 rounded transition-all" href="#">Users</a>
+<a class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 rounded transition-all" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-lighter border border-primary/20">
+<div class="w-2 h-2 rounded-full bg-primary pulse-dot"></div>
+<span class="text-xs font-mono text-primary uppercase">System Online</span>
+</div>
+<div class="relative group">
+<input class="w-64 bg-surface-lighter border border-white/10 text-white text-sm rounded-lg px-4 py-2 pl-10 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-slate-500" placeholder="Search hash, ID, amount..."/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-500 text-lg">search</span>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg bg-surface-lighter border border-white/10 hover:border-primary/50 text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-surface-lighter border border-white/10 overflow-hidden relative" data-alt="User Avatar">
+<img alt="Admin Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRQpeA3FYMxfI5S753TgGHQpQ6KjKJtkftUMJwTx6i01HT7NWnEUWpJt82jDuB5nFRs_MXrTE8Dp2cfjQ2CpChW7xEdpkNk3N6cEqVhxkkqfGP71GNNubw1XtivGmOGzPpfo36yJCAIJNaesSio6DyKk1vrP7NJwRxYUdx-hKWpOUQy9Je_Lm1dmBQ8cylSBpR02FzKR6JrVoCW_pSHpVPI4qhynhZkPayIBaUSrciUPo9dCCIUA953uz0VSYb6cDDRkbZHG8NbY2M"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-6 py-8 max-w-[1400px] mx-auto w-full">
+<!-- Stats Ticker -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<!-- Total Revenue Card -->
+<div class="glass-panel p-5 rounded-xl border border-primary/20 relative overflow-hidden group">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Total Platform Revenue</p>
+<span class="material-symbols-outlined text-primary/50">monitoring</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-white text-3xl font-bold font-mono tracking-tight neon-glow-text">₹12,45,00,000</p>
+<div class="flex items-center text-primary text-xs font-bold bg-primary/10 px-1.5 py-0.5 rounded mb-1">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                5.2%
+                            </div>
+</div>
+<div class="w-full bg-surface-lighter h-1 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[75%] shadow-[0_0_10px_rgba(19,236,91,0.5)]"></div>
+</div>
+</div>
+<!-- Entry Fees Card -->
+<div class="glass-panel p-5 rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Entry Fees (1%)</p>
+<span class="material-symbols-outlined text-slate-600">login</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-white text-2xl font-bold font-mono tracking-tight">₹1,24,50,000</p>
+<div class="flex items-center text-primary text-xs font-bold bg-primary/10 px-1.5 py-0.5 rounded mb-1">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                1.1%
+                            </div>
+</div>
+<p class="text-xs text-slate-500 mt-3 font-mono">Last updated: <span class="text-slate-400">just now</span></p>
+</div>
+<!-- Admin Charges Card -->
+<div class="glass-panel p-5 rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Admin Charges (10%)</p>
+<span class="material-symbols-outlined text-slate-600">admin_panel_settings</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-white text-2xl font-bold font-mono tracking-tight">₹12,45,00,000</p>
+<div class="flex items-center text-primary text-xs font-bold bg-primary/10 px-1.5 py-0.5 rounded mb-1">
+<span class="material-symbols-outlined text-sm mr-0.5">trending_up</span>
+                                4.5%
+                            </div>
+</div>
+<p class="text-xs text-slate-500 mt-3 font-mono">Collected from withdrawals</p>
+</div>
+<!-- Ecosystem Cap Card -->
+<div class="glass-panel p-5 rounded-xl border border-white/5 bg-gradient-to-br from-surface-dark to-surface-lighter">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Ecosystem Cap</p>
+<span class="material-symbols-outlined text-accent-amber">pie_chart</span>
+</div>
+<div class="flex items-end gap-3">
+<p class="text-white text-2xl font-bold font-mono tracking-tight">₹111 Cr</p>
+<div class="flex items-center text-accent-amber text-xs font-bold bg-accent-amber/10 px-1.5 py-0.5 rounded mb-1">
+                                Max Limit
+                            </div>
+</div>
+<div class="mt-3 flex items-center justify-between text-xs text-slate-500 font-mono">
+<span>Utilization</span>
+<span class="text-white">11.2%</span>
+</div>
+<div class="w-full bg-black/40 h-1 mt-1 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-accent-amber h-full w-[11.2%]"></div>
+</div>
+</div>
+</div>
+<!-- Feed Section -->
+<div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-280px)] min-h-[600px]">
+<!-- Main Transaction Table -->
+<div class="flex-1 flex flex-col glass-panel rounded-xl border border-white/5 overflow-hidden">
+<div class="p-5 border-b border-white/5 flex flex-wrap items-center justify-between gap-4">
+<div>
+<h2 class="text-white text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-pulse">satellite_alt</span>
+                                    Live Transaction Feed
+                                </h2>
+<p class="text-slate-500 text-sm mt-1">Real-time immutable ledger monitoring</p>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="px-3 py-1.5 rounded-md bg-primary text-background-dark text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">All</button>
+<button class="px-3 py-1.5 rounded-md bg-surface-lighter text-slate-300 border border-white/5 text-xs font-medium uppercase tracking-wider hover:bg-surface-lighter/80 hover:text-white transition-all">Investment</button>
+<button class="px-3 py-1.5 rounded-md bg-surface-lighter text-slate-300 border border-white/5 text-xs font-medium uppercase tracking-wider hover:bg-surface-lighter/80 hover:text-white transition-all">ROI Payout</button>
+<button class="px-3 py-1.5 rounded-md bg-surface-lighter text-slate-300 border border-white/5 text-xs font-medium uppercase tracking-wider hover:bg-surface-lighter/80 hover:text-white transition-all">Referral</button>
+<button class="px-3 py-1.5 rounded-md bg-surface-lighter text-slate-300 border border-white/5 text-xs font-medium uppercase tracking-wider hover:bg-surface-lighter/80 hover:text-white transition-all">Treasury</button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 bg-surface-lighter/30 border-b border-white/5 text-xs font-mono text-slate-400 uppercase tracking-wider">
+<div class="col-span-2">Time</div>
+<div class="col-span-2">User ID</div>
+<div class="col-span-3">Type</div>
+<div class="col-span-2 text-right">Amount</div>
+<div class="col-span-2 text-center">Hash Proof</div>
+<div class="col-span-1 text-right">Status</div>
+</div>
+<!-- Table Body (Scrollable) -->
+<div class="overflow-y-auto flex-1 p-0">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:42:05</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-8821</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Investment
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹1,00,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x7f...a2
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="flex items-center gap-1.5 text-accent-amber text-xs font-medium animate-pulse">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:41:55</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-1029</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 15% ROI Payout
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹15,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x3c...b9
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:41:30</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-4421</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Referral Lvl 2
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹5,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x9d...e1
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:40:12</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-9932</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Treasury Overflow
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹25,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x1a...f4
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:39:45</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-5511</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Investment
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹5,00,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x8b...c3
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="flex items-center gap-1.5 text-accent-amber text-xs font-medium animate-pulse">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+</span>
+</div>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:38:22</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-2201</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Referral Lvl 1
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹10,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x4e...d7
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+<!-- Row 7 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:37:10</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-7743</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 15% ROI Payout
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹3,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x2f...a8
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+<!-- Row 8 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors items-center group">
+<div class="col-span-2 text-slate-400 font-mono text-sm">10:36:05</div>
+<div class="col-span-2 text-white font-mono text-sm group-hover:text-primary transition-colors">USR-3392</div>
+<div class="col-span-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Investment
+                                    </span>
+</div>
+<div class="col-span-2 text-right text-white font-mono font-bold">₹50,000</div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-black/40 border border-white/10 text-slate-400 text-xs font-mono cursor-pointer hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[14px]">vpn_key</span> 0x6a...e9
+                                    </div>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Footer of Table -->
+<div class="bg-surface-lighter/50 px-6 py-3 border-t border-white/5 flex items-center justify-between text-xs text-slate-500 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                                Live Feed Connected
+                            </div>
+<div>
+                                Displaying latest 50 transactions
+                            </div>
+</div>
+</div>
+<!-- Right Sidebar / Telemetry -->
+<div class="w-full lg:w-80 flex flex-col gap-6">
+<!-- System Status -->
+<div class="glass-panel rounded-xl p-5 border border-white/5">
+<h3 class="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-white/5 pb-2">Network Health</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-400">TPS (Tx/Sec)</span>
+<span class="text-primary font-mono">1,420</span>
+</div>
+<div class="w-full bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-400">Block Latency</span>
+<span class="text-accent-amber font-mono">24ms</span>
+</div>
+<div class="w-full bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-accent-amber h-full w-[15%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-400">Node Uptime</span>
+<span class="text-primary font-mono">99.99%</span>
+</div>
+<div class="w-full bg-black/40 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Audit Log -->
+<div class="glass-panel rounded-xl p-5 border border-white/5 flex-1 overflow-hidden flex flex-col">
+<h3 class="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-white/5 pb-2">Recent Alerts</h3>
+<div class="space-y-3 overflow-y-auto flex-1 pr-1">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-accent-amber text-lg mt-0.5">warning</span>
+<div>
+<p class="text-white text-xs font-medium">Large Withdrawal Initiated</p>
+<p class="text-slate-500 text-[10px] mt-0.5">USR-8821 requested ₹5L. Admin approval pending.</p>
+<span class="text-[10px] text-slate-600 font-mono mt-1 block">10:39:45 AM</span>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+<div>
+<p class="text-white text-xs font-medium">Daily ROI Distributed</p>
+<p class="text-slate-500 text-[10px] mt-0.5">Successfully processed batch #4921.</p>
+<span class="text-[10px] text-slate-600 font-mono mt-1 block">09:00:00 AM</span>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-blue-400 text-lg mt-0.5">person_add</span>
+<div>
+<p class="text-white text-xs font-medium">New High-Value Investor</p>
+<p class="text-slate-500 text-[10px] mt-0.5">USR-9912 joined Tier 1 plan.</p>
+<span class="text-[10px] text-slate-600 font-mono mt-1 block">08:45:12 AM</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 bg-surface-lighter hover:bg-white/10 text-slate-300 text-xs font-medium rounded border border-white/5 transition-colors">
+                                View System Logs
+                            </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brave Ecom - Sovereign Product Browse</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#25f4f4",
+                        "primary-dark": "#0ea5a5",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                        "surface-dark": "#162a2a",
+                        "surface-light": "#ffffff",
+                        "text-main": "#e2e8e8",
+                        "text-muted": "#9cbaba",
+                        "border-dark": "#283939",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(37, 244, 244, 0.15)',
+                        'elevation': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(37, 244, 244, 0.3);
+        }
+        /* Custom Scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102222; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283939; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25f4f4; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-text-main overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Main Content Wrapper -->
+<div class="flex flex-1 justify-center w-full">
+<div class="layout-content-container flex flex-col w-full max-w-[1440px] px-6 md:px-12 lg:px-20 pb-10">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark py-5 mb-8">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-[32px]">diamond</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight">Brave Ecom</h2>
+</div>
+<!-- Search Bar -->
+<div class="hidden md:flex flex-col min-w-[320px]">
+<div class="flex w-full items-center rounded-lg h-12 bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<div class="text-text-muted flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="flex w-full bg-transparent border-none text-slate-900 dark:text-white placeholder:text-text-muted px-4 focus:ring-0 h-full text-base" placeholder="Search curated assets..."/>
+</div>
+</div>
+</div>
+<!-- Navigation & Actions -->
+<div class="flex items-center justify-end gap-8">
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-slate-900 dark:text-white hover:text-primary transition-colors text-sm font-medium" href="#">Investments</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-0.5" href="#">Shop</a>
+<a class="text-slate-900 dark:text-white hover:text-primary transition-colors text-sm font-medium" href="#">Concierge</a>
+<a class="text-slate-900 dark:text-white hover:text-primary transition-colors text-sm font-medium" href="#">Portfolio</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-white dark:bg-surface-dark text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-border-dark transition-colors border border-slate-200 dark:border-border-dark">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-white dark:bg-surface-dark text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-border-dark transition-colors border border-slate-200 dark:border-border-dark">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjyyHUiSWFT4CWuMtd7cEeio_zBBNfB_UITa0ZUC4eS2QzkgycvLCN0sKJmyI2BpUc10TRvFUBKo-nI5vWDA6au20Sk477dRHqAWphLeGo4R7rs5Zylx9T_85uEoOhbQD8ghChVCagHQ291sXnw2R0vhtneABYBXEueV9RmHPZ0FPTdSmkY6h2EcsQ4JxK6p7nASVe87H9Y5KTjLUBipM6ILczVloZXBzR-K5XZRrjdr8t-1fP6MgeC3STB87C3RnL2WGgs0nu0iu4");'></div>
+</div>
+</header>
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-4 px-1">
+<a class="text-text-muted hover:text-primary text-sm font-medium transition-colors" href="#">Home</a>
+<span class="text-text-muted text-sm font-medium">/</span>
+<a class="text-text-muted hover:text-primary text-sm font-medium transition-colors" href="#">Luxury Goods</a>
+<span class="text-text-muted text-sm font-medium">/</span>
+<span class="text-slate-900 dark:text-white text-sm font-medium">Watches</span>
+</div>
+<!-- Page Title -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 px-1">
+<div>
+<h1 class="text-slate-900 dark:text-white tracking-tight text-4xl md:text-5xl font-bold leading-tight mb-2">Curated Timepieces</h1>
+<p class="text-text-muted text-lg">Discover rare horological masterpieces for your portfolio.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-text-muted text-sm">Showing 124 results</span>
+</div>
+</div>
+<!-- Filters Toolbar -->
+<div class="flex flex-wrap items-center gap-3 mb-10 px-1">
+<button class="group flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark pl-4 pr-3 hover:border-primary/50 transition-colors">
+<p class="text-slate-900 dark:text-white text-sm font-medium">Brand</p>
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary text-xl">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark pl-4 pr-3 hover:border-primary/50 transition-colors">
+<p class="text-slate-900 dark:text-white text-sm font-medium">Price Range</p>
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary text-xl">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark pl-4 pr-3 hover:border-primary/50 transition-colors">
+<p class="text-slate-900 dark:text-white text-sm font-medium">Material</p>
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary text-xl">keyboard_arrow_down</span>
+</button>
+<button class="group flex h-10 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark pl-4 pr-3 hover:border-primary/50 transition-colors">
+<p class="text-slate-900 dark:text-white text-sm font-medium">Availability</p>
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary text-xl">keyboard_arrow_down</span>
+</button>
+<div class="w-px h-8 bg-border-dark mx-2"></div>
+<button class="flex h-10 items-center justify-center gap-x-2 rounded-lg bg-transparent text-text-muted hover:text-white transition-colors pl-2 pr-2">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+<p class="text-sm font-medium">More Filters</p>
+</button>
+<div class="ml-auto flex gap-2">
+<button class="p-2 rounded-lg bg-surface-dark border border-border-dark text-primary"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-2 rounded-lg bg-transparent hover:bg-surface-dark text-text-muted"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-1">
+<!-- Card 1 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<span class="absolute top-3 left-3 z-10 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs text-white font-medium uppercase tracking-wider border border-white/10">Rare Find</span>
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Luxury analog watch with dark face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDzsmUimpGK83LOk9I3SEeuhgfHC1hLNyKUEJnvolsQiq44oi2bLjDlwioW2j3NhPOKguGYuBk04hu1MaccsiJ1iy7H-91TCcypm4rbac0eKHhREfVFFivBs0sA8vU75BhUZoVIYhSNYYJeQejXRAzqbo_AFuRyzvJFgt_CjMTnvyjSJnetX7auBiZx4dOEQG8WgVWjKM5nYWf_l88Bi7GuexjnqA02sQtLC5fb5KkdVw-kIHRJ3oIDBam1bgVmctVQlVfbWlYxu0d");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Rolex Daytona Panda</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+2.5%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Ref. 116500LN â€¢ 2023</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 32,50,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Patek Philippe Nautilus luxury watch close up" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvmb2xGRPAWbSosmTpRbRKQRAbXCKUx365vcKRKAitettsE_7IwfPl5ip0R7T-L8KMQbuTvc52LYHmQbo6okJtheF_iSw2Tj8Kzg1z7_psLd9K9VJYLULf-SUCiffaMe50QwnpYu7aKiDzE2PWqnUhBZk6i_Jd1KbgsmMdfFgsadH4WwcPz-ND_jQJSbob2CKex2mI48646zaA2Z4Rg2Wi459JGdCtHA_6dsI8ab9KoWjy2KFDCAbY9IQpo4LKYDj44IFaw3UnlQPr");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Patek Philippe Nautilus</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+1.2%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Ref. 5711/1A â€¢ 2021</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 1,15,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<span class="absolute top-3 left-3 z-10 bg-primary/90 text-black px-2 py-1 rounded text-xs font-bold uppercase tracking-wider shadow-lg">Trending</span>
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Audemars Piguet Royal Oak watch steel" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFQv-zcd_ZNZi1CzEGKORUyb5seudYEZbdOYGDUZ2jPCw8T5TpeydHC5NvWoyK4EQFPUPIAYh-EyOtommPeFd9Y9Q005bLHKLNihoYnKGjWpNeD7mCNjthBD4DvuKSSBT2GiGj23U8GGwAkSPabZrrOuwf0SNW1eLrUKOhZdweMqnPPp0jhR3_KM4DGguEVUOmOLjJgwe2ZR90tCKZ-JJsxqNOxUsK3UjdxcM8F7rY3z5a_dx3zL9K3PFtHwXF1utx958DlncMxrnU");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Audemars Piguet Royal Oak</h3>
+<span class="bg-red-500/10 text-red-400 text-xs font-bold px-2 py-1 rounded">-0.5%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Ref. 15500ST â€¢ 2022</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 45,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Richard Mille skeleton dial luxury watch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNusf96XYKH6RB4YSViQ-IaJr_56JHEkzC2JVfTKYFNPi64aTZdnwTzCpuBJPg9J2iiBIgYdlnnPeugAzffbhyCw1e2DxEfoW7G3TKuax-BoNx0kzAh2RWT-jEyd7vo063K7DdIRBSx_QQsyds_OouKm_PO_SIuDNSCM6ok4-Gl6Sev5Jx8tzMGfQRTXy-eV8sUph0m446Bk92GnK6Uvo1E_Jq4mB3GqYJQZR6n0QXrUx0NPbim9Hj7wH_Yp9Q9XWoA9IGy7GwxhXd");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Richard Mille RM 11-03</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+5.0%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Flyback Chronograph â€¢ 2020</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 2,80,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Vacheron Constantin Overseas blue dial" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeJdBYJKOq1buXUMGETO4Pg3_w_Fw6zyc2yTzrJVPrJv8eSNTAq42kVA7gd8qE2jD2-cVapoHM4Hr_0zsIm2bPT92OJExrm_i9R6zBIodIagj0BKdkELDJPEUSa3Hc_4HEUEEwvsPjFpospvkjlogkh5puJ-KVas9KqRYBJSciQF4lhLPu3-Dnk16Poxq_SdYc7vAIq6A7PBnjuCg99V8ULJyiJdtggVf2GemKoTXXDAhqxwAw8xnH2cl6dQVzr979PIeHFkmQQHLl");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Vacheron Overseas</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+0.8%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Ref. 4500V/110A â€¢ 2021</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 38,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Omega Speedmaster chronograph on wrist" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBsKkU90cxvleGaCBCpcnaXK3LfHuWhEqtMVmaRzhHypwHjDlMMw8FiOCvAvOuQCZgDzH_bhVY44Vrd7J7BKsEVz8sCWrmmAMcTIUqqiwY59QL9JZQVHJvrM3IUwmNCAoD144kkXRSkVbfaiiI5TdkZZRiBm23rT9-L7Rxr06Ozq-Sr0nFFHTjjlUxn4znQvOlmGAAVYDPnTusmooeC5P9wB9KpiknwGwvwFJhA2Sqmp56ZyvhNmiw031GyFOMk0brl0MMkIYcomcvD");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Omega Speedmaster Snoopy</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+3.1%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Silver Snoopy Award â€¢ 2020</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 28,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Cartier Santos classic square watch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCK-BK6BVP5D-NAtw_e9NN3_BY63qx3_d0pNO6WvOsio9nHCUx8C_P0ZvqH-CAT3HuupCKnrhsWOm1e0r-r_Z-1NHANmddCkSsX6mqPWlzf7I_HV0PVvxqpugI6qsjsgNCU5wAjfhTQwAMj9bl3BSFhX1GLYHiPNIxOhDR2rFi6NNheGK1cyjBf9gdkKfjmvdYsb8CNMgBW_CHOw15FEeHhEduBK73nn_bVjmZikH7ew7GrHHB3clYfxtanNAoQHAchVpGFud002tnZ");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Cartier Santos Skeleton</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">+0.2%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Noctambule â€¢ 2022</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 22,50,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="product-card group relative flex flex-col bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-100 dark:border-border-dark">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-gray-800">
+<span class="absolute top-3 left-3 z-10 bg-slate-700/80 backdrop-blur-md px-2 py-1 rounded text-xs text-white font-medium uppercase tracking-wider border border-white/10">Pre-Owned</span>
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/40 hover:bg-primary hover:text-black text-white backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Hublot Big Bang luxury watch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDChhNn0q8PXxRaZj1AhU8PiC9puAgGydWyr1FLKMxwnekT6DvupJ-xY6Q9ZMugdG7sxi-NEZTkuidMH4Ido2C9zzoK41MsE9rkSZeLWe3UuahqC8dJKteMsoefZGa9lx_4aUVf5Qn-4e_ebUU0dtbrMTTYW5qoQSLF01WnLoRRvXKi6p2E0odM_CeHh3itZMeb1PReas_BO7jz3_wwy7xLgl4FGc1xyKCgykqUseoEwKofr9ikb5DR2o00IZ06-JbLprbuP416-kFk");'></div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight line-clamp-2">Hublot Big Bang Unico</h3>
+<span class="bg-red-500/10 text-red-400 text-xs font-bold px-2 py-1 rounded">-1.1%</span>
+</div>
+<p class="text-text-muted text-sm font-normal mb-4">Titanium Ceramic â€¢ 2019</p>
+<div class="mt-auto flex items-center justify-between border-t border-slate-100 dark:border-border-dark pt-4">
+<div class="flex flex-col">
+<span class="text-text-muted text-xs uppercase tracking-wide">Current Ask</span>
+<span class="text-slate-900 dark:text-white text-xl font-bold">â‚¹ 18,00,000</span>
+</div>
+<button class="rounded-lg bg-slate-900 dark:bg-background-dark hover:bg-primary dark:hover:bg-primary hover:text-black text-white p-2.5 transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center mt-12 mb-8">
+<nav class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-500 dark:text-text-muted hover:bg-slate-100 dark:hover:bg-border-dark transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-lg bg-primary text-black font-bold">1</button>
+<button class="flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-border-dark transition-colors">2</button>
+<button class="flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-border-dark transition-colors">3</button>
+<span class="text-text-muted px-2">...</span>
+<button class="flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-border-dark transition-colors">12</button>
+<button class="flex items-center justify-center size-10 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-500 dark:text-text-muted hover:bg-slate-100 dark:hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</body></html>

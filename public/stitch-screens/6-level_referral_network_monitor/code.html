@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InvestSaaS - Referral Network Monitor</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#111618",
+                        "surface-dark": "#1b2427",
+                        "surface-highlight": "#283539",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-highlight bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">InvestSaaS</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Network</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Investments</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Commissions</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-surface-highlight items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-surface-highlight focus:border-none h-full placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search downline..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-3">
+<button class="relative text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-surface-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-surface-highlight cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDh9UXJkBPVKqxNcRhGdPruHzSI6xoguFGGtfx387FD6d-iD8VO93nSApGWwIBBl1gWIbwwPi9ognyYABWV1Zo9e9ODmHUlpvYCcnuItZXHV99uU-d-EINUbYGSEt513YrrQ8RU-MaRxuHS5tjU9a6aZRujxdHz5xm2rfTkC2gYb2pMKYN6xsCemMvcCNzM8SN5UIcn6ON8dJKKUjlxql-l04w-x0MYlS9twYpXwe1DuKxtkzlA3zT546-X0q0vHo3_03BTMR6lR3pB");'></div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-6 px-4 md:px-10 lg:px-20">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-6">
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between items-end gap-4 pb-2 border-b border-surface-highlight/50">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-3xl md:text-4xl font-bold leading-tight tracking-tight">Referral Network Monitor</h1>
+<p class="text-slate-400 text-base font-normal leading-normal max-w-2xl">
+                                Real-time tracking of your 6-level downline performance, commissions, and network health.
+                            </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-highlight hover:bg-[#344247] text-white text-sm font-medium rounded-lg transition-colors border border-surface-highlight">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                                Export Report
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                                Add Direct Referral
+                            </button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-surface-dark border border-surface-highlight hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Network Size</p>
+<div class="p-1.5 bg-primary/10 rounded-md text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+</div>
+<p class="text-white text-2xl font-bold leading-tight">1,245 <span class="text-base font-normal text-slate-400">Users</span></p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded text-xs font-bold">+12%</span>
+<span class="text-slate-500 text-xs">vs last month</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-surface-dark border border-surface-highlight hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Total Network AUM</p>
+<div class="p-1.5 bg-primary/10 rounded-md text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+</div>
+<p class="text-white text-2xl font-bold leading-tight">₹ 42.5 Cr</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded text-xs font-bold">+5%</span>
+<span class="text-slate-500 text-xs">vs last month</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-surface-dark border border-surface-highlight hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Commissions</p>
+<div class="p-1.5 bg-primary/10 rounded-md text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">monetization_on</span>
+</div>
+</div>
+<p class="text-white text-2xl font-bold leading-tight">₹ 12.8 Lakhs</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded text-xs font-bold">+8%</span>
+<span class="text-slate-500 text-xs">vs last month</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-surface-dark border border-surface-highlight hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-2">
+<p class="text-slate-400 text-sm font-medium uppercase tracking-wider">Network ROI Avg</p>
+<div class="p-1.5 bg-primary/10 rounded-md text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+</div>
+<p class="text-white text-2xl font-bold leading-tight">15.2%</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded text-xs font-bold">+0.5%</span>
+<span class="text-slate-500 text-xs">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Risk Alert Section -->
+<div class="relative overflow-hidden rounded-xl border border-orange-500/30 bg-gradient-to-r from-orange-900/20 to-surface-dark">
+<div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-5">
+<div class="flex gap-4 items-start">
+<div class="p-2 bg-orange-500/10 rounded-full text-orange-500 shrink-0 mt-1 md:mt-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-white text-lg font-bold leading-tight">Action Required: Inactivity Risk Detected</h3>
+<p class="text-slate-300 text-sm font-normal leading-normal max-w-2xl">
+<strong class="text-orange-400">5 users in Level 2</strong> are approaching the 60-day inactivity threshold (Orange Status). 
+                                        Contact them within 5 days to secure their active status and your commissions.
+                                    </p>
+</div>
+</div>
+<button class="shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-orange-500 text-white text-sm font-bold shadow-lg shadow-orange-900/20 hover:bg-orange-600 transition-all w-full md:w-auto">
+                                View At-Risk Users
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Data Grid Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-white text-xl font-bold">Network Detail by Level</h3>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 font-medium uppercase mr-2">Status Filter:</span>
+<div class="flex p-1 bg-surface-dark border border-surface-highlight rounded-lg">
+<button class="px-3 py-1 rounded-md bg-surface-highlight text-white text-xs font-medium shadow-sm">All</button>
+<button class="px-3 py-1 rounded-md text-slate-400 hover:text-white text-xs font-medium">Healthy</button>
+<button class="px-3 py-1 rounded-md text-slate-400 hover:text-white text-xs font-medium">At Risk</button>
+</div>
+</div>
+</div>
+<div class="@container w-full overflow-hidden rounded-xl border border-surface-highlight bg-surface-dark shadow-xl">
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-highlight bg-surface-highlight/30">
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap w-[150px]">Level Hierarchy</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">Active Users</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap text-right">Investment Vol (₹)</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap text-right">Commission (₹)</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap text-center">Health Status</th>
+<th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap text-right sticky right-0 bg-surface-dark/95 backdrop-blur-sm z-10 w-[140px]">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-highlight">
+<!-- Level 1 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">1</div>
+<span class="text-white font-medium text-sm">Direct (L1)</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">12</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">50,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-emerald-400 font-mono font-bold text-sm">2,50,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                    Healthy
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-primary hover:text-white hover:bg-primary hover:shadow-lg hover:shadow-primary/20 transition-all text-xs font-bold px-3 py-1.5 rounded border border-primary/30 hover:border-primary">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+<!-- Level 2 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-highlight flex items-center justify-center text-slate-300 font-bold text-sm">2</div>
+<span class="text-slate-300 font-medium text-sm">Level 2</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">45</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">1,20,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-slate-300 font-mono text-sm">1,80,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20 animate-pulse">
+<span class="size-1.5 rounded-full bg-orange-400"></span>
+                                                    Risk Alert
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-slate-400 hover:text-white hover:bg-surface-highlight transition-all text-xs font-bold px-3 py-1.5 rounded border border-surface-highlight">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+<!-- Level 3 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-highlight flex items-center justify-center text-slate-300 font-bold text-sm">3</div>
+<span class="text-slate-300 font-medium text-sm">Level 3</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">112</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">3,50,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-slate-300 font-mono text-sm">4,20,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                    Healthy
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-slate-400 hover:text-white hover:bg-surface-highlight transition-all text-xs font-bold px-3 py-1.5 rounded border border-surface-highlight">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+<!-- Level 4 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-highlight flex items-center justify-center text-slate-300 font-bold text-sm">4</div>
+<span class="text-slate-300 font-medium text-sm">Level 4</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">280</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">8,10,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-slate-300 font-mono text-sm">6,50,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                    Healthy
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-slate-400 hover:text-white hover:bg-surface-highlight transition-all text-xs font-bold px-3 py-1.5 rounded border border-surface-highlight">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+<!-- Level 5 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-highlight flex items-center justify-center text-slate-300 font-bold text-sm">5</div>
+<span class="text-slate-300 font-medium text-sm">Level 5</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">560</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">15,00,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-slate-300 font-mono text-sm">8,00,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+<span class="size-1.5 rounded-full bg-yellow-400"></span>
+                                                    Mixed
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-slate-400 hover:text-white hover:bg-surface-highlight transition-all text-xs font-bold px-3 py-1.5 rounded border border-surface-highlight">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+<!-- Level 6 -->
+<tr class="group hover:bg-surface-highlight/20 transition-colors">
+<td class="p-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-surface-highlight flex items-center justify-center text-slate-300 font-bold text-sm">6</div>
+<span class="text-slate-300 font-medium text-sm">Level 6</span>
+</div>
+</td>
+<td class="p-4 whitespace-nowrap text-slate-300 text-sm font-medium">236</td>
+<td class="p-4 whitespace-nowrap text-right text-white font-mono text-sm">4,50,00,000</td>
+<td class="p-4 whitespace-nowrap text-right text-slate-300 font-mono text-sm">1,50,000</td>
+<td class="p-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                                    Healthy
+                                                </span>
+</td>
+<td class="p-4 whitespace-nowrap text-right sticky right-0 bg-surface-dark group-hover:bg-[#1f292d] transition-colors z-10">
+<button class="text-slate-400 hover:text-white hover:bg-surface-highlight transition-all text-xs font-bold px-3 py-1.5 rounded border border-surface-highlight">
+                                                    View Details
+                                                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Footer / Summary -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-4 p-4 rounded-lg bg-surface-highlight/30 border border-dashed border-surface-highlight">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">info</span>
+<p class="text-slate-400 text-sm">Commission payout cycle closes in <span class="text-white font-bold">12 Days</span></p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-500 uppercase font-medium">Next Payout Estimate</p>
+<p class="text-lg font-bold text-white">₹ 24,50,000</p>
+</div>
+<button class="bg-surface-highlight hover:bg-surface-highlight/80 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+                                View History
+                            </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

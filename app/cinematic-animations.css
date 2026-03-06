@@ -1,0 +1,1070 @@
+/* ============================================================================
+   CINEMATIC ANIMATIONS LIBRARY — 1000+ Variations
+   20 Entrances × 10 Depths × 5 Curves = 1,000 combinatorial animations
+   ============================================================================ */
+
+/* ─── CUSTOM PROPERTIES ──────────────────────────────────────────────────── */
+
+:root {
+    --cin-duration: 0.8s;
+    --cin-delay: 0s;
+    --cin-distance: 60px;
+    --cin-perspective: 1200px;
+    --cin-depth: 0px;
+    --cin-stagger: 0.08s;
+    --cin-blur: 12px;
+
+    /* Timing Curves */
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* Color Tokens */
+    --glow-cyan: rgba(37, 244, 244, 0.4);
+    --glow-blue: rgba(17, 115, 212, 0.4);
+    --glow-fuchsia: rgba(192, 38, 211, 0.4);
+    --glow-amber: rgba(245, 158, 11, 0.4);
+    --glow-green: rgba(34, 197, 94, 0.4);
+}
+
+/* ─── PERSPECTIVE CONTAINER ──────────────────────────────────────────────── */
+
+.cin-perspective {
+    perspective: var(--cin-perspective);
+    perspective-origin: 50% 50%;
+}
+
+.cin-preserve-3d {
+    transform-style: preserve-3d;
+}
+
+/* ─── 20 ENTRANCE ANIMATIONS ────────────────────────────────────────────── */
+
+/* 1. Fade Up */
+@keyframes cin-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(var(--cin-distance)) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+.cin-fade-up {
+    animation: cin-fade-up var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 2. Fade Down */
+@keyframes cin-fade-down {
+    from {
+        opacity: 0;
+        transform: translateY(calc(var(--cin-distance) * -1)) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+.cin-fade-down {
+    animation: cin-fade-down var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 3. Fade Left */
+@keyframes cin-fade-left {
+    from {
+        opacity: 0;
+        transform: translateX(var(--cin-distance)) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateZ(0);
+    }
+}
+
+.cin-fade-left {
+    animation: cin-fade-left var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 4. Fade Right */
+@keyframes cin-fade-right {
+    from {
+        opacity: 0;
+        transform: translateX(calc(var(--cin-distance) * -1)) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateZ(0);
+    }
+}
+
+.cin-fade-right {
+    animation: cin-fade-right var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 5. Zoom In */
+@keyframes cin-zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.cin-zoom-in {
+    animation: cin-zoom-in var(--cin-duration) var(--ease-spring) var(--cin-delay) both;
+}
+
+/* 6. Zoom Out */
+@keyframes cin-zoom-out {
+    from {
+        opacity: 0;
+        transform: scale(1.5) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.cin-zoom-out {
+    animation: cin-zoom-out var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 7. Rotate In */
+@keyframes cin-rotate-in {
+    from {
+        opacity: 0;
+        transform: rotate(-15deg) scale(0.8) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1) translateZ(0);
+    }
+}
+
+.cin-rotate-in {
+    animation: cin-rotate-in var(--cin-duration) var(--ease-elastic) var(--cin-delay) both;
+}
+
+/* 8. Flip X */
+@keyframes cin-flip-x {
+    from {
+        opacity: 0;
+        transform: perspective(800px) rotateX(90deg) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(800px) rotateX(0) translateZ(0);
+    }
+}
+
+.cin-flip-x {
+    animation: cin-flip-x var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 9. Flip Y */
+@keyframes cin-flip-y {
+    from {
+        opacity: 0;
+        transform: perspective(800px) rotateY(90deg) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(800px) rotateY(0) translateZ(0);
+    }
+}
+
+.cin-flip-y {
+    animation: cin-flip-y var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 10. Slide Zoom */
+@keyframes cin-slide-zoom {
+    from {
+        opacity: 0;
+        transform: translateY(80px) scale(0.7) translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) translateZ(0);
+    }
+}
+
+.cin-slide-zoom {
+    animation: cin-slide-zoom var(--cin-duration) var(--ease-spring) var(--cin-delay) both;
+}
+
+/* 11. Spiral In */
+@keyframes cin-spiral-in {
+    from {
+        opacity: 0;
+        transform: rotate(180deg) scale(0) translateZ(var(--cin-depth));
+    }
+
+    60% {
+        opacity: 0.6;
+        transform: rotate(-20deg) scale(1.1) translateZ(calc(var(--cin-depth) * 0.3));
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1) translateZ(0);
+    }
+}
+
+.cin-spiral-in {
+    animation: cin-spiral-in calc(var(--cin-duration) * 1.4) var(--ease-elastic) var(--cin-delay) both;
+}
+
+/* 12. Blur In */
+@keyframes cin-blur-in {
+    from {
+        opacity: 0;
+        filter: blur(var(--cin-blur));
+        transform: translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateZ(0);
+    }
+}
+
+.cin-blur-in {
+    animation: cin-blur-in var(--cin-duration) var(--ease-smooth) var(--cin-delay) both;
+}
+
+/* 13. Scale Bounce */
+@keyframes cin-scale-bounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateZ(var(--cin-depth));
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.08) translateZ(calc(var(--cin-depth) * 0.5));
+    }
+
+    70% {
+        transform: scale(0.95) translateZ(calc(var(--cin-depth) * 0.2));
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+    }
+}
+
+.cin-scale-bounce {
+    animation: cin-scale-bounce calc(var(--cin-duration) * 1.2) var(--ease-bounce) var(--cin-delay) both;
+}
+
+/* 14. Glitch In */
+@keyframes cin-glitch-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-5px) skewX(-5deg);
+        clip-path: inset(0 100% 0 0);
+    }
+
+    20% {
+        opacity: 0.3;
+        transform: translateX(3px) skewX(3deg);
+        clip-path: inset(30% 0 30% 0);
+    }
+
+    40% {
+        opacity: 0.6;
+        transform: translateX(-2px) skewX(-2deg);
+        clip-path: inset(0 0 50% 0);
+    }
+
+    60% {
+        opacity: 0.8;
+        transform: translateX(1px) skewX(1deg);
+        clip-path: inset(20% 0 0 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) skewX(0);
+        clip-path: inset(0);
+    }
+}
+
+.cin-glitch-in {
+    animation: cin-glitch-in calc(var(--cin-duration) * 0.8) steps(1) var(--cin-delay) both;
+}
+
+/* 15. Wave */
+@keyframes cin-wave {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) rotate(3deg);
+    }
+
+    30% {
+        opacity: 0.5;
+        transform: translateY(-10px) rotate(-2deg);
+    }
+
+    60% {
+        opacity: 0.8;
+        transform: translateY(5px) rotate(1deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+.cin-wave {
+    animation: cin-wave calc(var(--cin-duration) * 1.3) var(--ease-smooth) var(--cin-delay) both;
+}
+
+/* 16. Ripple */
+@keyframes cin-ripple {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+        box-shadow: 0 0 0 0 var(--glow-cyan);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+        box-shadow: 0 0 0 20px transparent;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+.cin-ripple {
+    animation: cin-ripple var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 17. Morph */
+@keyframes cin-morph {
+    0% {
+        opacity: 0;
+        border-radius: 50%;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 0.7;
+        border-radius: 30% 70% 70% 30% / 30% 60% 40% 70%;
+        transform: scale(1.05);
+    }
+
+    to {
+        opacity: 1;
+        border-radius: inherit;
+        transform: scale(1);
+    }
+}
+
+.cin-morph {
+    animation: cin-morph calc(var(--cin-duration) * 1.2) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 18. Parallax Rise */
+@keyframes cin-parallax-rise {
+    from {
+        opacity: 0;
+        transform: translateY(120px) perspective(800px) rotateX(15deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) perspective(800px) rotateX(0);
+    }
+}
+
+.cin-parallax-rise {
+    animation: cin-parallax-rise calc(var(--cin-duration) * 1.1) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 19. Depth Reveal */
+@keyframes cin-depth-reveal {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) translateZ(-300px) rotateY(-10deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(1000px) translateZ(0) rotateY(0);
+    }
+}
+
+.cin-depth-reveal {
+    animation: cin-depth-reveal var(--cin-duration) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* 20. Curtain Reveal */
+@keyframes cin-curtain {
+    from {
+        opacity: 0;
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        transform: translateZ(var(--cin-depth));
+    }
+
+    to {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: translateZ(0);
+    }
+}
+
+.cin-curtain {
+    animation: cin-curtain calc(var(--cin-duration) * 1.2) var(--ease-cinematic) var(--cin-delay) both;
+}
+
+/* ─── 10 PARALLAX DEPTH CLASSES ──────────────────────────────────────────── */
+
+.parallax-d1 {
+    --cin-depth: 20px;
+    transform: translateZ(20px);
+}
+
+.parallax-d2 {
+    --cin-depth: 40px;
+    transform: translateZ(40px);
+}
+
+.parallax-d3 {
+    --cin-depth: 60px;
+    transform: translateZ(60px);
+}
+
+.parallax-d4 {
+    --cin-depth: 80px;
+    transform: translateZ(80px);
+}
+
+.parallax-d5 {
+    --cin-depth: 100px;
+    transform: translateZ(100px);
+}
+
+.parallax-d6 {
+    --cin-depth: 130px;
+    transform: translateZ(130px);
+}
+
+.parallax-d7 {
+    --cin-depth: 160px;
+    transform: translateZ(160px);
+}
+
+.parallax-d8 {
+    --cin-depth: 200px;
+    transform: translateZ(200px);
+}
+
+.parallax-d9 {
+    --cin-depth: 250px;
+    transform: translateZ(250px);
+}
+
+.parallax-d10 {
+    --cin-depth: 320px;
+    transform: translateZ(320px);
+}
+
+/* ─── 5 TIMING CURVE MODIFIERS ───────────────────────────────────────────── */
+
+.cin-timing-linear {
+    animation-timing-function: linear !important;
+}
+
+.cin-timing-cinematic {
+    animation-timing-function: var(--ease-cinematic) !important;
+}
+
+.cin-timing-bounce {
+    animation-timing-function: var(--ease-bounce) !important;
+}
+
+.cin-timing-elastic {
+    animation-timing-function: var(--ease-elastic) !important;
+}
+
+.cin-timing-spring {
+    animation-timing-function: var(--ease-spring) !important;
+}
+
+/* ─── STAGGER DELAYS (for grid items) ────────────────────────────────────── */
+
+.cin-stagger-1 {
+    --cin-delay: calc(var(--cin-stagger) * 1);
+}
+
+.cin-stagger-2 {
+    --cin-delay: calc(var(--cin-stagger) * 2);
+}
+
+.cin-stagger-3 {
+    --cin-delay: calc(var(--cin-stagger) * 3);
+}
+
+.cin-stagger-4 {
+    --cin-delay: calc(var(--cin-stagger) * 4);
+}
+
+.cin-stagger-5 {
+    --cin-delay: calc(var(--cin-stagger) * 5);
+}
+
+.cin-stagger-6 {
+    --cin-delay: calc(var(--cin-stagger) * 6);
+}
+
+.cin-stagger-7 {
+    --cin-delay: calc(var(--cin-stagger) * 7);
+}
+
+.cin-stagger-8 {
+    --cin-delay: calc(var(--cin-stagger) * 8);
+}
+
+.cin-stagger-9 {
+    --cin-delay: calc(var(--cin-stagger) * 9);
+}
+
+.cin-stagger-10 {
+    --cin-delay: calc(var(--cin-stagger) * 10);
+}
+
+.cin-stagger-11 {
+    --cin-delay: calc(var(--cin-stagger) * 11);
+}
+
+.cin-stagger-12 {
+    --cin-delay: calc(var(--cin-stagger) * 12);
+}
+
+/* Duration Modifiers */
+.cin-fast {
+    --cin-duration: 0.4s;
+}
+
+.cin-normal {
+    --cin-duration: 0.8s;
+}
+
+.cin-slow {
+    --cin-duration: 1.2s;
+}
+
+.cin-slower {
+    --cin-duration: 1.8s;
+}
+
+/* ─── SCROLL-TRIGGERED STATE ─────────────────────────────────────────────── */
+
+.cin-reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.cin-reveal.cin-visible {
+    /* The animation class applied by JS will handle the entrance */
+}
+
+/* ─── 3D TILT CARD (mouse-tracking) ──────────────────────────────────────── */
+
+.cin-tilt-card {
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.cin-tilt-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(37, 244, 244, 0.15);
+}
+
+/* Tilt highlight overlay */
+.cin-tilt-highlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 60%);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cin-tilt-card:hover .cin-tilt-highlight {
+    opacity: 1;
+}
+
+/* ─── GLASSMORPHISM VARIATIONS ───────────────────────────────────────────── */
+
+.glass-1 {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-2 {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-3 {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-4 {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-5 {
+    background: rgba(17, 115, 212, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(17, 115, 212, 0.15);
+}
+
+.glass-6 {
+    background: rgba(37, 244, 244, 0.03);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(37, 244, 244, 0.1);
+}
+
+.glass-7 {
+    background: rgba(192, 38, 211, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(192, 38, 211, 0.12);
+}
+
+.glass-8 {
+    background: rgba(245, 158, 11, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+.glass-9 {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-10 {
+    background: linear-gradient(135deg, rgba(17, 115, 212, 0.08), rgba(37, 244, 244, 0.03));
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(37, 244, 244, 0.12);
+}
+
+/* ─── SHIMMER & GLOW EFFECTS ─────────────────────────────────────────────── */
+
+@keyframes cin-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.cin-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: cin-shimmer 3s linear infinite;
+}
+
+@keyframes cin-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px 0 var(--glow-cyan), inset 0 0 20px 0 transparent;
+    }
+
+    50% {
+        box-shadow: 0 0 40px 8px var(--glow-cyan), inset 0 0 30px 0 rgba(37, 244, 244, 0.03);
+    }
+}
+
+.cin-glow-pulse {
+    animation: cin-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes cin-border-glow {
+
+    0%,
+    100% {
+        border-color: rgba(37, 244, 244, 0.1);
+    }
+
+    50% {
+        border-color: rgba(37, 244, 244, 0.4);
+    }
+}
+
+.cin-border-glow {
+    animation: cin-border-glow 4s ease-in-out infinite;
+}
+
+@keyframes cin-gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cin-gradient-shift {
+    background-size: 200% 200%;
+    animation: cin-gradient-shift 6s ease infinite;
+}
+
+/* Holographic */
+@keyframes cin-holographic {
+    0% {
+        background-position: 0% 0%;
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        background-position: 100% 100%;
+        filter: hue-rotate(30deg);
+    }
+
+    100% {
+        background-position: 0% 0%;
+        filter: hue-rotate(0deg);
+    }
+}
+
+.cin-holographic {
+    background: linear-gradient(135deg, #1173d4, #25f4f4, #c026d3, #f59e0b, #1173d4);
+    background-size: 400% 400%;
+    animation: cin-holographic 8s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ─── FLOATING PARTICLES ─────────────────────────────────────────────────── */
+
+@keyframes cin-float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0) rotate(0);
+    }
+
+    25% {
+        transform: translateY(-20px) translateX(10px) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-8px) translateX(-5px) rotate(-3deg);
+    }
+
+    75% {
+        transform: translateY(-25px) translateX(8px) rotate(3deg);
+    }
+}
+
+.cin-float {
+    animation: cin-float 6s ease-in-out infinite;
+}
+
+.cin-float-slow {
+    animation: cin-float 10s ease-in-out infinite;
+}
+
+.cin-float-fast {
+    animation: cin-float 3s ease-in-out infinite;
+}
+
+@keyframes cin-orbit {
+    from {
+        transform: rotate(0deg) translateX(30px) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(30px) rotate(-360deg);
+    }
+}
+
+.cin-orbit {
+    animation: cin-orbit 12s linear infinite;
+}
+
+/* ─── PAGE TRANSITIONS ───────────────────────────────────────────────────── */
+
+@keyframes cin-page-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.cin-page-enter {
+    animation: cin-page-in 0.6s var(--ease-cinematic) both;
+}
+
+@keyframes cin-page-slide-left {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cin-page-slide-left {
+    animation: cin-page-slide-left 0.5s var(--ease-cinematic) both;
+}
+
+@keyframes cin-page-zoom {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+        filter: blur(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.cin-page-zoom {
+    animation: cin-page-zoom 0.7s var(--ease-spring) both;
+}
+
+@keyframes cin-page-morph {
+    0% {
+        opacity: 0;
+        border-radius: 40px;
+        transform: scale(0.85);
+    }
+
+    60% {
+        opacity: 1;
+        border-radius: 12px;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        border-radius: 0;
+        transform: scale(1);
+    }
+}
+
+.cin-page-morph {
+    animation: cin-page-morph 0.8s var(--ease-cinematic) both;
+}
+
+/* ─── INTERACTIVE HOVER EFFECTS ──────────────────────────────────────────── */
+
+.cin-hover-lift {
+    transition: transform 0.3s var(--ease-cinematic), box-shadow 0.3s ease;
+}
+
+.cin-hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.cin-hover-glow {
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.cin-hover-glow:hover {
+    box-shadow: 0 0 30px 0 var(--glow-cyan), 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+    border-color: rgba(37, 244, 244, 0.3);
+}
+
+.cin-hover-tilt-3d {
+    transition: transform 0.3s var(--ease-elastic);
+    transform-style: preserve-3d;
+}
+
+.cin-hover-tilt-3d:hover {
+    transform: perspective(800px) rotateX(-5deg) rotateY(5deg) translateZ(20px);
+}
+
+.cin-hover-expand {
+    transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+}
+
+.cin-hover-expand:hover {
+    transform: scale(1.05);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── TEXT REVEAL ANIMATIONS ─────────────────────────────────────────────── */
+
+@keyframes cin-text-reveal {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.cin-text-reveal {
+    animation: cin-text-reveal 1s var(--ease-cinematic) var(--cin-delay) both;
+}
+
+@keyframes cin-text-blur-in {
+    from {
+        opacity: 0;
+        filter: blur(20px);
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.cin-text-blur-in {
+    animation: cin-text-blur-in 0.8s var(--ease-cinematic) var(--cin-delay) both;
+}
+
+@keyframes cin-char-cascade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotateX(90deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+/* ─── SCROLL PROGRESS BAR ────────────────────────────────────────────────── */
+
+.cin-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1173d4, #25f4f4, #c026d3);
+    transform-origin: left;
+    z-index: 9999;
+    transition: transform 0.1s linear;
+}
+
+/* ─── BACKGROUND EFFECTS ─────────────────────────────────────────────────── */
+
+@keyframes cin-aurora {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 0%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 100%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.cin-aurora-bg {
+    background: linear-gradient(135deg,
+            rgba(17, 115, 212, 0.15) 0%,
+            rgba(37, 244, 244, 0.08) 25%,
+            rgba(192, 38, 211, 0.1) 50%,
+            rgba(245, 158, 11, 0.08) 75%,
+            rgba(17, 115, 212, 0.15) 100%);
+    background-size: 400% 400%;
+    animation: cin-aurora 15s ease infinite;
+}
+
+/* Grid Noise Overlay */
+.cin-noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+}
+
+/* ─── RESPONSIVE MOTION REDUCTION ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

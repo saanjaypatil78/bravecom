@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Notification Center - Brave Ecom</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4f4",
+                        "primary-dark": "#1bc4c4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                        "surface-dark": "#162a2a",
+                        "surface-light": "#ffffff",
+                        "border-dark": "#283939",
+                        "text-main": "#ffffff",
+                        "text-muted": "#9cbaba",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon': '0 0 5px theme("colors.primary"), 0 0 20px theme("colors.primary")',
+                        'depth': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102222; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283939; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b5454; 
+        }
+        /* 3D Button Press Effect */
+        .btn-3d {
+            transition: all 0.1s;
+            transform: translateY(0);
+            box-shadow: 0 4px 0 #1bc4c4; 
+        }
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #1bc4c4;
+        }
+        .btn-3d-dark {
+            transition: all 0.1s;
+            transform: translateY(0);
+            box-shadow: 0 4px 0 #1a2626; 
+        }
+        .btn-3d-dark:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #1a2626;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark/95 backdrop-blur px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white hover:text-primary transition-colors cursor-pointer">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl">diamond</span>
+</div>
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64 group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-dark group-focus-within:border-primary transition-colors">
+<div class="text-text-muted flex border-none bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-l-none text-white focus:outline-0 focus:ring-0 border-none bg-surface-dark focus:border-none h-full placeholder:text-text-muted px-4 pl-2 text-base font-normal leading-normal" placeholder="Search assets..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Marketplace</a>
+<a class="text-text-muted hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Wallet</a>
+<a class="text-white text-sm font-medium leading-normal border-b-2 border-primary" href="#">Notifications</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark text-white hover:bg-border-dark transition-colors relative">
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full animate-pulse"></span>
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark text-white hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="flex h-10 px-4 items-center gap-2 bg-primary text-background-dark rounded-lg font-bold hover:bg-primary-dark transition-colors btn-3d">
+<span class="material-symbols-outlined text-lg">account_circle</span>
+<span>Profile</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow layout-container flex flex-col items-center py-8 px-4 md:px-10">
+<div class="w-full max-w-[1024px] flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-wrap justify-between items-end gap-4 border-b border-border-dark pb-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-5xl font-black leading-tight tracking-tight">Notification Center</h1>
+<p class="text-text-muted text-lg font-normal">Track your commissions, system alerts, and luxury drops.</p>
+</div>
+<div class="flex gap-3">
+<button class="text-text-muted hover:text-primary text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">done_all</span>
+                        Mark all as read
+                    </button>
+<button class="text-text-muted hover:text-primary text-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">settings</span>
+                        Settings
+                    </button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex h-10 px-6 items-center justify-center rounded-full bg-primary text-background-dark font-bold shadow-neon transition-transform hover:scale-105 whitespace-nowrap">
+                    All
+                </button>
+<button class="flex h-10 px-6 items-center justify-center rounded-full bg-surface-dark text-text-muted border border-border-dark hover:border-primary hover:text-white transition-all whitespace-nowrap">
+                    Commissions
+                    <span class="ml-2 bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full">3</span>
+</button>
+<button class="flex h-10 px-6 items-center justify-center rounded-full bg-surface-dark text-text-muted border border-border-dark hover:border-primary hover:text-white transition-all whitespace-nowrap">
+                    System
+                </button>
+<button class="flex h-10 px-6 items-center justify-center rounded-full bg-surface-dark text-text-muted border border-border-dark hover:border-primary hover:text-white transition-all whitespace-nowrap">
+                    Alerts
+                </button>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Feed (Timeline) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- High Priority Card -->
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+<div class="relative flex flex-col md:flex-row gap-6 p-6 rounded-xl bg-surface-dark shadow-depth border border-border-dark">
+<div class="flex-shrink-0">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-white text-xl font-bold">Commission Received: ₹45,000</h3>
+<p class="text-primary text-sm font-medium mt-1">New High! 🚀</p>
+</div>
+<span class="text-text-muted text-xs bg-background-dark px-2 py-1 rounded">2m ago</span>
+</div>
+<p class="text-text-muted text-sm leading-relaxed">
+                                    Commission from transaction <span class="text-white font-mono">#TRX-998822</span> via Referral Agent A. Your portfolio balance has been updated.
+                                </p>
+<div class="mt-4 flex gap-3">
+<button class="btn-3d flex items-center justify-center h-10 px-5 bg-primary text-background-dark text-sm font-bold rounded">
+                                        View Ledger
+                                    </button>
+<button class="btn-3d-dark flex items-center justify-center h-10 px-5 bg-background-dark text-white border border-border-dark text-sm font-bold rounded hover:bg-border-dark">
+                                        Dismiss
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Standard Notification Item -->
+<div class="flex gap-4 p-5 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-colors group">
+<div class="flex flex-col items-center gap-2">
+<div class="size-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/20">
+<span class="material-symbols-outlined">watch</span>
+</div>
+<div class="w-px h-full bg-border-dark group-hover:bg-primary/30 transition-colors"></div>
+</div>
+<div class="flex-grow pb-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-bold text-lg">Luxury Drop: Rolex Daytona</h4>
+<span class="text-text-muted text-xs">1h ago</span>
+</div>
+<p class="text-text-muted text-sm mb-3">
+                                A limited batch of Rolex Daytona (Panda Dial) is now available on the marketplace. Early access enabled for Gold Tier.
+                            </p>
+<div class="w-full h-32 rounded-lg bg-cover bg-center mb-3 border border-border-dark" data-alt="Close up of luxury watch on dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBg5Kmd186hU-IKtzYUOiA10fcL9q1UGdtnj0IzEt3RO3RwwxkDgdWPr25seNxZHned9nJ5-GNanotvMfyBNCmfr-rgUfCeisw7nlm-bu-3vg4S1Xjt3HeNHO_40RJJGMDJfgERgu6dt6HGepurKe48yg1F0BODVOYj_wojgD-Uoh82Q9ihhcju2hbMRM5jY-kmWHNsGu_smZK7eAAXl4D1VPbhc4-mBp_xMNKuNFoJWLLDBf2KHsasGrwLQWNokPW4kMW7LCwoka00');"></div>
+<div class="flex gap-4">
+<a class="text-primary text-sm font-bold hover:underline flex items-center gap-1" href="#">
+                                    Go to Marketplace <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Standard Notification Item -->
+<div class="flex gap-4 p-5 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-colors group">
+<div class="flex flex-col items-center gap-2">
+<div class="size-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+<span class="material-symbols-outlined">group_add</span>
+</div>
+<div class="w-px h-full bg-border-dark group-hover:bg-primary/30 transition-colors"></div>
+</div>
+<div class="flex-grow pb-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-bold text-lg">Referral Bonus: ₹12,000</h4>
+<span class="text-text-muted text-xs">Yesterday</span>
+</div>
+<p class="text-text-muted text-sm mb-3">
+                                Your network is growing! 3 new users signed up using your referral code <span class="text-white font-mono bg-background-dark px-1 rounded">BRAVE2024</span>.
+                            </p>
+<div class="flex gap-3">
+<button class="text-white text-sm bg-background-dark border border-border-dark px-3 py-1.5 rounded hover:border-primary transition-colors">
+                                    View Network Stats
+                                </button>
+</div>
+</div>
+</div>
+<!-- System Notification Item -->
+<div class="flex gap-4 p-5 rounded-xl bg-surface-dark border border-border-dark hover:border-orange-500/50 transition-colors group opacity-75 hover:opacity-100">
+<div class="flex flex-col items-center gap-2">
+<div class="size-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-bold text-lg">System Maintenance</h4>
+<span class="text-text-muted text-xs">2 days ago</span>
+</div>
+<p class="text-text-muted text-sm">
+                                Scheduled maintenance for the wallet module will occur on Oct 25th from 02:00 AM to 04:00 AM IST.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Sidebar / Stats -->
+<div class="flex flex-col gap-6">
+<!-- Daily Summary Card -->
+<div class="bg-gradient-to-b from-surface-dark to-background-dark border border-border-dark p-6 rounded-xl shadow-lg sticky top-24">
+<h3 class="text-text-muted text-sm font-bold uppercase tracking-wider mb-4">Daily Summary</h3>
+<div class="flex items-center justify-between mb-6">
+<div>
+<p class="text-3xl font-bold text-white">₹57,000</p>
+<p class="text-text-muted text-xs">Total Earnings Today</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-1 h-8 bg-primary rounded-full shadow-[0_0_10px_theme('colors.primary')]"></div>
+<div class="flex-1">
+<div class="flex justify-between text-sm mb-1">
+<span class="text-white">Commissions</span>
+<span class="text-primary font-bold">78%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1 h-8 bg-purple-500 rounded-full"></div>
+<div class="flex-1">
+<div class="flex justify-between text-sm mb-1">
+<span class="text-white">Referrals</span>
+<span class="text-purple-500 font-bold">22%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-1.5">
+<div class="bg-purple-500 h-1.5 rounded-full" style="width: 22%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-border-dark">
+<h4 class="text-white font-bold mb-3">Pending Actions</h4>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between bg-surface-dark p-3 rounded border border-border-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-sm">verified_user</span>
+<span class="text-text-muted text-sm">KYC Update</span>
+</div>
+<span class="size-2 bg-red-500 rounded-full"></span>
+</div>
+<div class="flex items-center justify-between bg-surface-dark p-3 rounded border border-border-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-sm">mail</span>
+<span class="text-text-muted text-sm">Unread Messages</span>
+</div>
+<span class="text-xs bg-primary text-background-dark font-bold px-1.5 rounded">2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ad / Promo Space -->
+<div class="relative overflow-hidden rounded-xl h-48 group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Abstract dark luxury geometric pattern background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtPRi3lj1tYUVhoIikMKZv4K06wqFxRtX5yBNZ13bL8WZRfrJd7pvh6wU8zTF9CNhgKnUPW1WH-SnOmh0RfwIrv7tXS1-9kUiWBrRTUVxxZo4wCKmRTmQvSsUHdhICQ7dQyIlQxVGiOQgJP9ZZyNbF0hSIaiUomcVrZVKkQZqPRvdFHQjNr4A54IS7aYilvZddgPDoUUOsfZa25txCfo04lI0AHJi_ofax_rfZJl6ePgzze8urEXg6Oc3igvzuVurOU06j7hMGwrc2');"></div>
+<div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute inset-0 p-6 flex flex-col justify-end">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-1">New Arrival</span>
+<h3 class="text-white text-xl font-bold leading-tight">Investing in Fine Art?</h3>
+<p class="text-gray-300 text-sm mt-2 line-clamp-2">Learn how fractional ownership can diversify your portfolio today.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUM &amp; Expense Structure Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+<nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-icons-round text-xl">account_balance</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">FinScale <span class="text-primary text-sm font-medium">Executive</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round block dark:hidden">dark_mode</span>
+<span class="material-icons-round hidden dark:block text-amber-400">light_mode</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-xs font-medium text-slate-500">System Admin</p>
+<p class="text-sm font-semibold">Executive Dashboard</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIgfVZTfgQlMn6mtWihGGm4fFPeOprnUL7HUYMjbSdUOh3fMQga2P9SAxgAnOGKYnIv9dEcH4ysN0HnW9Snr8zLkra5biC2Ez1db6u_jUcd8PUmXRD4j2xzfJRJYR95o-IE4LgPPJqJgOaSg--Bf97zT0S2HTlJBCrkLv6BaQRI23N0u3XEDSXvHa-1ddCOHJSIJiZo_N-Ilg1db3JMgeUVyklG_podKW4x8IVy7zfJRGMmUW5QEKqAGF8mOq0aJ7t0dS4gacZVS4H"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-[1600px] mx-auto p-6 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg material-icons-round">trending_up</span>
+<span class="text-xs font-bold text-emerald-500">+12.5%</span>
+</div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Target AUM</p>
+<h2 class="text-2xl font-bold mt-1">₹ 1,11,11,11,111</h2>
+<p class="text-xs text-slate-400 mt-2">12 Months Agreement Cycle</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg material-icons-round">payments</span>
+<span class="text-xs font-bold text-emerald-500">+15.0%</span>
+</div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Profit</p>
+<h2 class="text-2xl font-bold mt-1">₹ 16,66,66,667</h2>
+<p class="text-xs text-slate-400 mt-2">Gross Performance Revenue</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg material-icons-round">group</span>
+<span class="text-xs font-bold text-slate-400">7.0% Avg</span>
+</div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Commission</p>
+<h2 class="text-2xl font-bold mt-1">₹ 7,47,45,450</h2>
+<p class="text-xs text-slate-400 mt-2">Referral Level Payouts</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg material-icons-round">account_balance_wallet</span>
+<span class="text-xs font-bold text-rose-500">-10% Admin</span>
+</div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Deduction Amount</p>
+<h2 class="text-2xl font-bold mt-1">₹ 74,74,545</h2>
+<p class="text-xs text-slate-400 mt-2">Post-Admin Charge Net</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold">Direct Target Royalty Journey</h3>
+<p class="text-sm text-slate-500">Milestone-based achievement rewards</p>
+</div>
+<div class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">3% TOTAL ROYALTY</div>
+</div>
+<div class="relative space-y-12">
+<div class="absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-100 dark:bg-slate-800"></div>
+<div class="flex items-center gap-6 relative">
+<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-orange-600 dark:text-orange-400 z-10 border-4 border-white dark:border-slate-900">
+<span class="material-icons-round text-sm">workspace_premium</span>
+</div>
+<div class="flex-1 grid grid-cols-3 items-center bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<span class="font-bold text-sm">BRONZE</span>
+<span class="text-center font-medium text-slate-500">₹ 50 LAKH</span>
+<span class="text-right font-bold text-primary">1.00%</span>
+</div>
+</div>
+<div class="flex items-center gap-6 relative">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 z-10 border-4 border-white dark:border-slate-900">
+<span class="material-icons-round text-sm">military_tech</span>
+</div>
+<div class="flex-1 grid grid-cols-3 items-center bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<span class="font-bold text-sm">SILVER</span>
+<span class="text-center font-medium text-slate-500">₹ 1 CRORE</span>
+<span class="text-right font-bold text-primary">0.75%</span>
+</div>
+</div>
+<div class="flex items-center gap-6 relative">
+<div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/50 flex items-center justify-center text-yellow-600 dark:text-yellow-400 z-10 border-4 border-white dark:border-slate-900">
+<span class="material-icons-round text-sm">stars</span>
+</div>
+<div class="flex-1 grid grid-cols-3 items-center bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<span class="font-bold text-sm">GOLD</span>
+<span class="text-center font-medium text-slate-500">₹ 5 CRORE</span>
+<span class="text-right font-bold text-primary">0.50%</span>
+</div>
+</div>
+<div class="flex items-center gap-6 relative">
+<div class="w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center text-sky-600 dark:text-sky-400 z-10 border-4 border-white dark:border-slate-900">
+<span class="material-icons-round text-sm">diamond</span>
+</div>
+<div class="flex-1 grid grid-cols-3 items-center bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<span class="font-bold text-sm">PLATINUM / DIAMOND</span>
+<span class="text-center font-medium text-slate-500">UP TO 75 CR</span>
+<span class="text-right font-bold text-primary">0.35% - 0.25%</span>
+</div>
+</div>
+<div class="flex items-center gap-6 relative">
+<div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white z-10 border-4 border-white dark:border-slate-900">
+<span class="material-icons-round text-sm">crown</span>
+</div>
+<div class="flex-1 grid grid-cols-3 items-center bg-primary/5 dark:bg-primary/10 p-4 rounded-xl border border-primary/20">
+<span class="font-bold text-sm text-primary">AMBASSADOR</span>
+<span class="text-center font-medium text-slate-500">₹ 100 CRORE</span>
+<span class="text-right font-bold text-primary">0.15%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-lg font-bold mb-6">Deduction &amp; Expense Structure</h3>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Total Static Returns</span>
+<span class="font-bold">25%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Yearly Gifts &amp; Office Exp.</span>
+<span class="font-bold">6% (3%+3%)</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-indigo-500 h-full rounded-full" style="width: 6%"></div>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Marketing &amp; Expansion</span>
+<span class="font-bold">20% (10%+10%)</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Admin/Partner Splits</span>
+<span class="font-bold">19%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 19%"></div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-dashed border-slate-200 dark:border-slate-700 text-center">
+<div class="text-3xl font-black text-slate-800 dark:text-slate-100">70%</div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-widest mt-1">Total Structured Payout</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-lg font-bold">Tiered Investment Matrix</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-semibold bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Export CSV</button>
+<button class="px-3 py-1.5 text-xs font-semibold bg-primary text-white rounded-lg shadow-sm">Audit Report</button>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4">Level</th>
+<th class="px-6 py-4">Investment Target</th>
+<th class="px-6 py-4">Profit (15%)</th>
+<th class="px-6 py-4">Ref Level Comm.</th>
+<th class="px-6 py-4">Total Commission</th>
+<th class="px-6 py-4">Admin Charges (10%)</th>
+<th class="px-6 py-4">Final Net</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4 font-bold text-primary">L1</td>
+<td class="px-6 py-4">₹ 10,60,000</td>
+<td class="px-6 py-4">₹ 1,59,000</td>
+<td class="px-6 py-4">10% / 7% / 5% / 2% / 1%</td>
+<td class="px-6 py-4">₹ 8,38,500</td>
+<td class="px-6 py-4">₹ 83,850</td>
+<td class="px-6 py-4 font-semibold text-emerald-600">₹ 7,54,650</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-bold text-primary">L2</td>
+<td class="px-6 py-4">₹ 27,00,000</td>
+<td class="px-6 py-4">₹ 4,05,000</td>
+<td class="px-6 py-4">Ref Cycle 2</td>
+<td class="px-6 py-4">₹ 15,13,500</td>
+<td class="px-6 py-4">₹ 1,51,350</td>
+<td class="px-6 py-4 font-semibold text-emerald-600">₹ 13,62,150</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-bold text-primary">L3</td>
+<td class="px-6 py-4">₹ 53,00,000</td>
+<td class="px-6 py-4">₹ 7,95,000</td>
+<td class="px-6 py-4">Ref Cycle 3</td>
+<td class="px-6 py-4">₹ 21,20,250</td>
+<td class="px-6 py-4">₹ 2,12,025</td>
+<td class="px-6 py-4 font-semibold text-emerald-600">₹ 19,08,225</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-bold text-primary">L5</td>
+<td class="px-6 py-4">₹ 2,50,00,000</td>
+<td class="px-6 py-4">₹ 37,50,000</td>
+<td class="px-6 py-4">Ref Cycle 5</td>
+<td class="px-6 py-4">₹ 48,57,750</td>
+<td class="px-6 py-4">₹ 4,85,775</td>
+<td class="px-6 py-4 font-semibold text-emerald-600">₹ 43,71,975</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-bold text-primary">L10</td>
+<td class="px-6 py-4">₹ 2,25,00,00,000</td>
+<td class="px-6 py-4">₹ 33,75,00,000</td>
+<td class="px-6 py-4">High Tier Vol</td>
+<td class="px-6 py-4">₹ 2,13,99,000</td>
+<td class="px-6 py-4">₹ 21,39,900</td>
+<td class="px-6 py-4 font-semibold text-emerald-600">₹ 1,92,59,100</td>
+</tr>
+<tr class="bg-slate-50 dark:bg-slate-800/80 font-bold">
+<td class="px-6 py-4">TOTAL</td>
+<td class="px-6 py-4 text-primary">₹ 1,11,11,11,111</td>
+<td class="px-6 py-4 text-emerald-600">₹ 16,66,66,667</td>
+<td class="px-6 py-4 text-slate-500">15.00% Avg</td>
+<td class="px-6 py-4">₹ 7,47,45,450</td>
+<td class="px-6 py-4 text-rose-500">₹ 74,74,545</td>
+<td class="px-6 py-4 text-emerald-700 dark:text-emerald-400">₹ 6,72,70,905</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/30 flex justify-between items-center text-xs text-slate-500 border-t border-slate-100 dark:border-slate-800">
+<p>Showing calculations for 15 tiers based on spreadsheet data logic.</p>
+<div class="flex items-center gap-4">
+<span>Page 1 of 1</span>
+<div class="flex gap-1">
+<button class="w-6 h-6 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 opacity-50"><span class="material-icons-round text-sm">chevron_left</span></button>
+<button class="w-6 h-6 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"><span class="material-icons-round text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="max-w-[1600px] mx-auto px-6 py-8 border-t border-slate-200 dark:border-slate-800 text-center space-y-2">
+<p class="text-sm text-slate-500">© 2024 Investment SaaS Management Console. All financial figures are strictly bound by the 12-Month Agreement Cycle.</p>
+<div class="flex justify-center gap-6 text-xs font-semibold text-slate-400 uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Compliance Audit</a>
+<a class="hover:text-primary transition-colors" href="#">Commission Logic</a>
+</div>
+</footer>
+
+</body></html>

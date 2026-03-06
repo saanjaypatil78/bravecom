@@ -1,0 +1,86 @@
+
+> sunray_system@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Asus\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Asus\Downloads\BRAVEECOMUISTITCH\stitch_brave_ecom_pvt_ltd\sunray_system\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.2s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/55) ...
+  Generating static pages using 15 workers (13/55) 
+  Generating static pages using 15 workers (27/55) 
+  Generating static pages using 15 workers (41/55) 
+✓ Generating static pages using 15 workers (55/55) in 727.2ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin/audit-logs
+├ ○ /admin/aum-dashboard
+├ ○ /admin/commission-settings
+├ ○ /admin/disbursement-portal
+├ ○ /admin/ecosystem-monitor
+├ ○ /admin/franchise-management
+├ ○ /admin/system-health
+├ ○ /admin/treasury
+├ ƒ /api/antigravity
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/checkout/email
+├ ƒ /api/dashboard
+├ ƒ /api/distribute
+├ ƒ /api/franchise/process-recurring
+├ ƒ /api/franchise/royalty
+├ ƒ /api/franchise/savings
+├ ƒ /api/franchise/status
+├ ƒ /api/mall/products
+├ ƒ /api/otp
+├ ƒ /api/rank/batch-evaluate
+├ ƒ /api/rank/evaluate
+├ ƒ /api/rank/history
+├ ƒ /api/rank/reversal
+├ ƒ /api/rank/status
+├ ƒ /api/rank/warnings
+├ ƒ /api/register
+├ ƒ /api/sync-products
+├ ƒ /api/webhooks/commission/rank-update
+├ ○ /contact
+├ ○ /dashboard
+├ ○ /dashboard/register
+├ ○ /disbursement
+├ ○ /esop
+├ ○ /esop/register
+├ ○ /franchise
+├ ○ /income-breakdown
+├ ○ /investor/portfolio
+├ ○ /mall
+├ ○ /mall/cart
+├ ○ /mall/categories
+├ ○ /mall/checkout
+├ ○ /mall/luxury
+├ ○ /mall/product
+├ ƒ /mall/product/[id]
+├ ○ /mall/products
+├ ○ /mall/spotlight
+├ ○ /mall/tiered-spotlight
+├ ○ /network
+├ ƒ /network/rank-dynamics
+├ ○ /network/referral
+├ ○ /vendor
+└ ○ /vendor/analytics
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

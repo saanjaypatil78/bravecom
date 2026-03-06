@@ -1,0 +1,546 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  FRANCHISE_PARTNER
+  TEAM_LEADER
+  INVESTOR
+  BUYER
+  VENDOR
+  QA_ANALYST
+}
+
+enum IdColor {
+  GREEN   // Active - invested > 100k
+  ORANGE  // Passive - not invested, has network
+  RED     // Inactive - no referral, no capital > 100k
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+}
+
+model User {
+  id                 String    @id @default(uuid())
+  name               String
+  email              String    @unique
+  role               UserRole  @default(INVESTOR)
+  idColor            IdColor   @default(RED)
+  walletBalance      Float     @default(0)
+  referralCode       String    @unique // Auto-generated: fullname_date-time_place
+  place              String?
+  activationTimerEnd DateTime? // 60-day timer for ORANGE -> RED downgrade
+
+  // KYC & Onboarding Details (Phase 6 PRD)
+  username         String?   @unique
+  isMobileVerified Boolean   @default(false)
+  isEmailVerified  Boolean   @default(false)
+  kycDocUrl        String?
+  bankName         String?
+  bankAccount      String?
+  ifscCode         String?
+  passbookUrl      String?
+  guardian         String?
+  
+  // Dashboard Metrics & Badges
+  royaltyTier      String    @default("NONE") // BRONZE, SILVER, GOLD, PLATINUM
+  lastDraftSaved   String?   // JSON string of local storage draft
+
+  // Progressive Commission System Uplines
+  upline1 String?
+  upline2 String?
+  upline3 String?
+  upline4 String?
+  upline5 String?
+  upline6 String?
+
+  businessVolume    UserBusinessVolume?
+  commissionHistory CommissionStructureHistory[]
+
+  investments   Investment[]
+  commissions   CommissionLog[] @relation("Beneficiary")
+  referralsMade Referral[]      @relation("Referrer")
+  referredBy    Referral?       @relation("ReferredUser")
+
+  confirmations ConfirmationTable[] @relation("SubmittedConfirmations")
+
+  createdAt DateTime @default(now())
+}
+
+model Referral {
+  id             String   @id @default(uuid())
+  referrerId     String
+  referredUserId String   @unique // One upline per user
+  level          Int // 1 to unlimited... usually capped at 6
+  createdAt      DateTime @default(now())
+
+  referrer     User @relation("Referrer", fields: [referrerId], references: [id])
+  referredUser User @relation("ReferredUser", fields: [referredUserId], references: [id])
+}
+
+model Investment {
+  id        String   @id @default(uuid())
+  userId    String
+  amount    Float // Min 100k, Max 50 Lacs
+  startDate DateTime // Date payment was confirmed
+  status    String // ACTIVE, COMPLETED
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model CommissionLog {
+  id            String   @id @default(uuid())
+  transactionId String   @unique
+  sourceUserId  String // Investor who generated the earnings
+  beneficiaryId String
+  amount        Float // Amount paid TO beneficiary
+  level         Int // Depth level or 0 for Investor Static ROI
+  status        String // PROCESSING, CREDITED
+  createdAt     DateTime @default(now())
+
+  beneficiary User @relation("Beneficiary", fields: [beneficiaryId], references: [id])
+}
+
+model ConfirmationTable {
+  id             String        @id @default(uuid())
+  submitterId    String
+  amountInvested Float
+  paymentProof   String
+  referralCode   String? // Intended sponsor code
+  status         PaymentStatus @default(PENDING)
+  createdAt      DateTime      @default(now())
+
+  submitter User @relation("SubmittedConfirmations", fields: [submitterId], references: [id])
+}
+
+model FundraisingCampaign {
+  id            String   @id @default(uuid())
+  goalAmount    Float // Dynamic target adjustable by admin
+  currentAmount Float    @default(0)
+  status        String   @default("ACTIVE")
+  updatedAt     DateTime @updatedAt
+}
+
+// ============================================================================
+// PROGRESSIVE COMMISSION SYSTEM Additions
+// ============================================================================
+
+model FranchiseRank {
+  id               String   @id @default(uuid())
+  rankName         String   @unique
+  businessTarget   Float
+  royaltyAddon     Float
+  level1Percent    Float
+  level2Percent    Float
+  level3Percent    Float
+  level4Percent    Float
+  level5Percent    Float
+  level6Percent    Float
+  badgeColor       String   @default("GRAY") // GRAY, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND, AMBASSADOR
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model UserBusinessVolume {
+  id                    String    @id @default(uuid())
+  userId                String    @unique
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  directBusiness        Float     @default(0)
+  level2Business        Float     @default(0)
+  level3Business        Float     @default(0)
+  level4Business        Float     @default(0)
+  level5Business        Float     @default(0)
+  level6Business        Float     @default(0)
+  totalBusiness         Float     @default(0)
+  currentRank           String    @default("BASE")
+  nextRank              String?
+  businessNeededForNext Float?
+  progressPercentage    Float     @default(0)
+  rankAchievedAt        DateTime?
+  lastCalculatedAt      DateTime  @default(now())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model CommissionStructureHistory {
+  id                 String   @id @default(uuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  previousRank       String?
+  newRank            String?
+  previousCommission String?  // JSON stringified 
+  newCommission      String?  // JSON stringified 
+  businessVolume     Float?
+  changedAt          DateTime @default(now())
+  changedBy          String   @default("SYSTEM")
+}
+
+// ============================================================================
+// AUTONOMOUS RANK SYSTEM - Bi-Directional Commission Structure
+// ============================================================================
+
+model RankThreshold {
+  id                           String   @id @default(uuid())
+  rankName                     String   @unique
+  
+  // Upgrade Thresholds (To reach this rank)
+  upgradeBusinessTarget        Float
+  upgradeMinPerformanceScore   Float    @default(70.00)
+  upgradeMinActiveDownline     Int      @default(5)
+  upgradeMinMonthlyCommission  Float    @default(0)
+  upgradeMinConsecutiveMonths  Int      @default(1)
+  
+  // Downgrade Thresholds (To maintain this rank)
+  downgradeBusinessTarget      Float
+  downgradeMinPerformanceScore Float    @default(50.00)
+  downgradeMinActiveDownline   Int      @default(3)
+  downgradeMinMonthlyCommission Float   @default(0)
+  downgradeMaxInactiveMonths   Int      @default(3)
+  
+  // Grace Period Settings
+  gracePeriodDays             Int      @default(30)
+  warningBeforeDowngradeDays  Int      @default(15)
+  allowManualOverride         Boolean  @default(false)
+  
+  // Commission Structure (Bi-Directional)
+  level1Percent               Float
+  level2Percent               Float
+  level3Percent               Float
+  level4Percent               Float
+  level5Percent               Float
+  level6Percent               Float
+  
+  // Badge & Benefits
+  badgeColor                  String   @default("GRAY")
+  badgeIconUrl                String?
+  benefits                    String?  // JSON stringified
+  
+  isActive                    Boolean  @default(true)
+  createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
+}
+
+model RankPerformanceMetrics {
+  id                    String    @id @default(uuid())
+  userId                String
+  periodMonth           String    // YYYY-MM format
+  currentRank           String
+  
+  // Business Volume Metrics
+  newBusinessVolume     Float     @default(0)
+  totalBusinessVolume   Float     @default(0)
+  activeDownlineCount   Int       @default(0)
+  inactiveDownlineCount Int       @default(0)
+  
+  // Commission Metrics
+  commissionEarned      Float     @default(0)
+  commissionPaid        Float     @default(0)
+  commissionPending     Float     @default(0)
+  
+  // Performance Scores (0-100)
+  activityScore         Float     @default(0)
+  retentionScore       Float     @default(0)
+  growthScore          Float     @default(0)
+  overallPerformanceScore Float   @default(0)
+  
+  // Rank Change Tracking
+  rankAtMonthStart     String?
+  rankAtMonthEnd       String?
+  rankChanged          Boolean   @default(false)
+  rankChangeType       String?   // 'UPGRADE', 'DOWNGRADE', 'NONE'
+  rankChangeReason     String?
+  
+  // Threshold Tracking
+  upgradeThresholdMet  Boolean   @default(false)
+  downgradeThresholdTriggered Boolean @default(false)
+  warningIssued        Boolean   @default(false)
+  gracePeriodActive    Boolean   @default(false)
+  
+  // Timestamps
+  calculatedAt         DateTime  @default(now())
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  
+  @@unique([userId, periodMonth])
+  @@index([userId])
+  @@index([periodMonth])
+  @@index([currentRank])
+}
+
+model RankChangeHistory {
+  id                String    @id @default(uuid())
+  userId            String
+  previousRank      String
+  newRank           String
+  changeType        String    // 'UPGRADE', 'DOWNGRADE'
+  changeReason      String    // 'TARGET_MET', 'PERFORMANCE_DROP', 'INACTIVITY', 'VOLUNTEER'
+  triggerType       String    @default("AUTO") // 'AUTO', 'MANUAL', 'WEBHOOK'
+  webhookEventId    String?
+  
+  // Performance Data at Change
+  businessVolume    Float?
+  performanceScore  Float?
+  activeDownline   Int?
+  commissionEarned  Float?
+  
+  // Commission Structure Change
+  previousCommission String?  // JSON
+  newCommission     String?  // JSON
+  commissionDifference Float? // Net change in commission %
+  
+  // Notifications
+  notificationSent  Boolean   @default(false)
+  notificationSentAt DateTime?
+  userAcknowledged  Boolean   @default(false)
+  userAcknowledgedAt DateTime?
+  
+  // Reversal Tracking (for grace period recovery)
+  isReversible      Boolean   @default(true)
+  reversalDeadline  DateTime?
+  reversed          Boolean   @default(false)
+  reversedAt        DateTime?
+  reversalReason    String?
+  
+  // Metadata
+  calculatedBy      String    @default("SYSTEM")
+  approvedBy        String?
+  notes             String?
+  
+  createdAt         DateTime  @default(now())
+  
+  @@index([userId])
+  @@index([changeType])
+  @@index([createdAt])
+}
+
+model RankWarningNotification {
+  id                String    @id @default(uuid())
+  userId            String
+  currentRank       String
+  warningType       String    // 'PERFORMANCE_DROP', 'INACTIVITY', 'VOLUME_SHORTFALL'
+  warningLevel      String    @default("MEDIUM") // 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'
+  message           String
+  actionRequired    String?
+  deadlineDate      DateTime?
+  gracePeriodEnds   DateTime?
+  
+  // Notification Tracking
+  notificationSent  Boolean   @default(false)
+  notificationSentAt DateTime?
+  notificationChannel String?  // 'EMAIL', 'SMS', 'PUSH', 'IN_APP'
+  userRead          Boolean   @default(false)
+  userReadAt        DateTime?
+  userAcknowledged  Boolean   @default(false)
+  userAcknowledgedAt DateTime?
+  
+  // Resolution Tracking
+  resolved          Boolean   @default(false)
+  resolvedAt        DateTime?
+  resolutionType    String?   // 'PERFORMANCE_IMPROVED', 'RANK_DOWNGRADED', 'MANUAL_OVERRIDE'
+  resolutionNotes   String?
+  
+  // Downgrade Tracking
+  downgradeTriggered Boolean  @default(false)
+  downgradeTriggeredAt DateTime?
+  newRankAfterDowngrade String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([userId])
+  @@index([warningType])
+  @@index([deadlineDate])
+}
+
+// ============================================================================
+// REGISTRATION WIZARD TABLES
+// ============================================================================
+
+model RegistrationSession {
+  id              String   @id @default(uuid())
+  sessionToken    String   @unique
+  step1Data       String?  // JSON string, encrypted
+  step2Data       String?  // JSON string, encrypted
+  step3Data       String?  // JSON string, encrypted
+  step4Data       String?  // JSON string, encrypted
+  currentStep     Int      @default(1)
+  email           String
+  mobile          String?
+  referralCode   String?
+  referrerId     String?
+  createdAt       DateTime @default(now())
+  expiresAt       DateTime
+  
+  @@index([sessionToken])
+  @@index([email])
+}
+
+model OTPVerification {
+  id          String   @id @default(uuid())
+  phone       String
+  email       String
+  otpHash     String
+  purpose     String   // 'registration', 'login', 'kyc_verification'
+  verified    Boolean  @default(false)
+  attempts    Int      @default(0)
+  maxAttempts Int     @default(3)
+  createdAt   DateTime @default(now())
+  expiresAt   DateTime
+  
+  @@index([phone])
+  @@index([email])
+  @@index([otpHash])
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  action      String   // 'registration_started', 'step_completed', 'account_created'
+  userId      String?
+  sessionId   String?
+  ipAddress   String?
+  userAgent   String?
+  details     String?  // JSON string
+  createdAt   DateTime @default(now())
+  
+  @@index([action])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+// ============================================================================
+// 6-LEVEL PROGRESSIVE COMMISSION ENGINE - NEW TABLES
+// ============================================================================
+
+model CommissionLedger {
+  id              String    @id @default(uuid())
+  userId          String    // Recipient of commission
+  fromUserId      String    // Source user (who generated the commission)
+  investmentId    String?   // Associated investment
+  vendorOrderId   String?   // Associated vendor order
+  commissionType  String    // INVESTMENT, VENDOR, RANK_BONUS, TEAM_VOLUME
+  tierLevel       Int       // 1-6 for upline levels, 0 for investor
+  grossAmount     Float     // Investment/sale amount
+  commissionRate  Float     // Percentage rate applied
+  commissionAmount Float    // Calculated commission
+  status          String    @default("PENDING") // PENDING, APPROVED, RELEASED, CANCELLED
+  lockedUntil     DateTime? // Lock-in period
+  releasedAt      DateTime? // When actually paid
+  createdAt       DateTime  @default(now())
+  
+  @@index([userId])
+  @@index([commissionType])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model RankBonus {
+  id              String    @id @default(uuid())
+  userId          String    // Recipient of bonus
+  fromUserId      String    // User who achieved the rank
+  previousRank    String?
+  newRank         String    // New rank achieved
+  bonusAmount     Float
+  status          String    @default("PENDING") // PENDING, APPROVED, RELEASED, CANCELLED
+  paidAt          DateTime?
+  createdAt       DateTime  @default(now())
+  
+  @@index([userId])
+  @@index([newRank])
+  @@index([status])
+}
+
+model TeamMilestone {
+  id                String    @id @default(uuid())
+  teamId            String    // Team leader's user ID
+  milestoneType     String    // TEAM_VOLUME_1L, TEAM_VOLUME_10L, etc.
+  targetAmount      Float     // Target to achieve
+  achievedAmount    Float     // Actual achieved
+  bonusPercentage   Float     // Bonus % on milestone
+  bonusAmount       Float     // Calculated bonus
+  status            String    @default("PENDING") // PENDING, ACHIEVED, PAID
+  achievedAt        DateTime?
+  paidAt            DateTime?
+  createdAt         DateTime  @default(now())
+  
+  @@index([teamId])
+  @@index([milestoneType])
+  @@index([status])
+}
+
+// ============================================================================
+// MALL PRODUCT CATALOG — 14 Categories × 5 Subcategories × 1000 Products
+// ============================================================================
+
+model MallCategory {
+  id            String            @id @default(uuid())
+  name          String            @unique
+  slug          String            @unique
+  description   String?
+  icon          String?
+  imageUrl      String?
+  sortOrder     Int               @default(0)
+  subCategories MallSubCategory[]
+  products      MallProduct[]
+  createdAt     DateTime          @default(now())
+}
+
+model MallSubCategory {
+  id          String        @id @default(uuid())
+  categoryId  String
+  category    MallCategory  @relation(fields: [categoryId], references: [id])
+  name        String
+  slug        String        @unique
+  description String?
+  imageUrl    String?
+  sortOrder   Int           @default(0)
+  products    MallProduct[]
+  createdAt   DateTime      @default(now())
+
+  @@index([categoryId])
+}
+
+model MallProduct {
+  id               String          @id @default(uuid())
+  name             String
+  slug             String          @unique
+  description      String?
+  shortDescription String?
+  categoryId       String
+  category         MallCategory    @relation(fields: [categoryId], references: [id])
+  subCategoryId    String
+  subCategory      MallSubCategory @relation(fields: [subCategoryId], references: [id])
+  price            Float
+  mrp              Float
+  discount         Int             @default(0)
+  images           String          // JSON array of image URLs
+  badge            String?
+  rating           Float           @default(4.0)
+  reviewCount      Int             @default(0)
+  seller           String          @default("Brave Ecom")
+  stock            String          @default("In Stock")
+  tags             String?         // JSON array
+  specs            String?         // JSON key-value specs
+  isFeatured       Boolean         @default(false)
+  isTrending       Boolean         @default(false)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@index([categoryId])
+  @@index([subCategoryId])
+  @@index([isFeatured])
+  @@index([isTrending])
+  @@index([price])
+}

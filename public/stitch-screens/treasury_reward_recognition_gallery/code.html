@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Treasury Reward &amp; Recognition Gallery - Brave Ecom</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#25f4f4",
+            "background-light": "#f5f8f8",
+            "background-dark": "#102222",
+            "surface-dark": "#162a2a",
+            "surface-light": "#e0e7e7",
+            "neutral-dark": "#1e3333",
+            "neutral-light": "#ccd6d6",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem", 
+            "lg": "0.5rem", 
+            "xl": "0.75rem", 
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom utility for floating effect */
+    .floating-pedestal {
+      animation: float 6s ease-in-out infinite;
+    }
+    .floating-pedestal-delay-1 {
+      animation: float 6s ease-in-out 1s infinite;
+    }
+    .floating-pedestal-delay-2 {
+      animation: float 6s ease-in-out 2s infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-neutral-dark px-10 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 dark:text-white text-slate-900">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Brave Ecom</h2>
+</div>
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-600 dark:text-neutral-light hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Portfolio</a>
+<a class="text-slate-600 dark:text-neutral-light hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Shop</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Treasury</a>
+<a class="text-slate-600 dark:text-neutral-light hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-neutral-dark bg-slate-50 dark:bg-neutral-dark/50">
+<div class="text-slate-400 flex items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search rewards..."/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Profile</span>
+</button>
+<button class="relative flex size-10 cursor-pointer items-center justify-center rounded-lg bg-slate-200 dark:bg-neutral-dark text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-neutral-dark/80 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col items-center w-full px-4 md:px-10 py-8">
+<div class="w-full max-w-7xl flex flex-col gap-10">
+<!-- Page Header & Stats -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">Treasury Level 4</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
+            Referral Gallery
+          </h1>
+<p class="text-slate-500 dark:text-neutral-light text-lg max-w-2xl">
+            Explore your exclusive collection of earned assets. Every referral unlocks a new tier of luxury rewards and business grants.
+          </p>
+</div>
+<div class="flex gap-6 w-full md:w-auto bg-slate-100 dark:bg-surface-dark p-4 rounded-xl border border-slate-200 dark:border-neutral-dark">
+<div class="flex flex-col gap-1">
+<p class="text-xs font-medium text-slate-500 dark:text-neutral-light uppercase tracking-wider">Total Value</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">$12,450</p>
+</div>
+<div class="w-px h-auto bg-slate-300 dark:bg-neutral-dark"></div>
+<div class="flex flex-col gap-1">
+<p class="text-xs font-medium text-slate-500 dark:text-neutral-light uppercase tracking-wider">Next Tier</p>
+<p class="text-2xl font-bold text-primary">2 Referrals</p>
+</div>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex overflow-x-auto pb-2 gap-2 no-scrollbar border-b border-slate-200 dark:border-neutral-dark">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-background-dark font-bold text-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+          All Rewards
+        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-neutral-dark text-slate-600 dark:text-neutral-light hover:bg-slate-200 dark:hover:bg-neutral-dark/80 font-medium text-sm whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+          Unlocked
+        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-neutral-dark text-slate-600 dark:text-neutral-light hover:bg-slate-200 dark:hover:bg-neutral-dark/80 font-medium text-sm whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+          Locked
+        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-neutral-dark text-slate-600 dark:text-neutral-light hover:bg-slate-200 dark:hover:bg-neutral-dark/80 font-medium text-sm whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+          Business Grants
+        </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-neutral-dark text-slate-600 dark:text-neutral-light hover:bg-slate-200 dark:hover:bg-neutral-dark/80 font-medium text-sm whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">diamond</span>
+          Luxury Assets
+        </button>
+</div>
+<!-- 3D Shelf / Gallery View -->
+<div class="relative w-full min-h-[600px] bg-slate-50 dark:bg-[#0d1616] rounded-2xl overflow-hidden border border-slate-200 dark:border-neutral-dark shadow-inner p-8 md:p-12">
+<!-- Background Grid Effect -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#25f4f4 1px, transparent 1px); background-size: 32px 32px;"></div>
+<!-- Shelf Layout -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-8">
+<!-- Item 1 (Grant - Unlocked) -->
+<div class="group relative flex flex-col items-center">
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<!-- Glow Effect -->
+<div class="absolute w-40 h-40 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/40 transition-all duration-500"></div>
+<!-- Floating Pedestal -->
+<div class="floating-pedestal relative w-48 h-48 md:w-56 md:h-56">
+<!-- Product Image -->
+<div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform group-hover:scale-105 transition-transform duration-500 bg-gradient-to-br from-slate-800 to-black">
+<div class="w-full h-full bg-cover bg-center opacity-90" data-alt="Abstract sleek black card with gold accents representing a business grant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd-kFMfgIJOOjcrwVzIao64sHOTZ1T_OYONTa3tk06cCV8-SxjYUuOI2LPO1Sv_aLnYVbDE3g9E0BcbjqxrOQSyBVXNyIwbcmH7b6Zb1CYkVNcG37-59UUtKvJ1LN7URxcILKcvC5NmgzNKD4YY6vupnTzl7mraB7z0PTmjWsd8IZTWXMIT8zMGVSYg9y5UmGI30NTJg4_d9yUmRlV2zwb7Vyz-69C_3a0TpgGGhk2Z5Xq7b4CfInKvAZrIKIhSonUfWJPfb-wfL-C');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/20 backdrop-blur-sm">Tier 1 Unlocked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item Details -->
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Startup Grant $5k</h3>
+<p class="text-slate-500 dark:text-neutral-light text-sm mb-4">Initial capital boost for your venture operations.</p>
+<button class="w-full py-2 rounded bg-slate-200 dark:bg-surface-dark text-slate-900 dark:text-white font-bold text-sm border border-slate-300 dark:border-neutral-dark hover:border-primary hover:text-primary transition-all">
+                Claim Reward
+              </button>
+</div>
+</div>
+<!-- Item 2 (Luxury - Unlocked) -->
+<div class="group relative flex flex-col items-center mt-12 md:mt-0">
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<!-- Glow Effect -->
+<div class="absolute w-40 h-40 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-500/40 transition-all duration-500"></div>
+<!-- Floating Pedestal -->
+<div class="floating-pedestal-delay-1 relative w-48 h-48 md:w-56 md:h-56">
+<!-- Product Image -->
+<div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform group-hover:scale-105 transition-transform duration-500 bg-gradient-to-br from-slate-800 to-black">
+<div class="w-full h-full bg-cover bg-center opacity-90" data-alt="Close up of luxury watch details with metallic finish" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQTWMro_yFFwqlpkS9uMeNPsepIHkj-9cqJPJaiMNeYd4QWaVt7Hf_-Ysf1sEQX6AIi4vvuMvOaYJ_NDMuVe5_P8ssvoWnG4Wlwcs3HCjoC3iv2cFqW93OEfyj7QGZhR5e2vkfb-JvPHMju8qFeA8MRUfk3HYuxjTDBRaxP7lNdUovX-y9lOnkUgHzOP6yexA0lTbrRg2BKr7iJCSOW-mH14xXFvXKwJaL3Jp_rG85YvhpUqYMqEgPvV9lManA6AWLYTfWJgMyzaFX');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-bold uppercase tracking-wider border border-purple-500/20 backdrop-blur-sm">Tier 2 Unlocked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item Details -->
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-purple-400 transition-colors">Cartier Privé Access</h3>
+<p class="text-slate-500 dark:text-neutral-light text-sm mb-4">Exclusive entry to private viewing events.</p>
+<button class="w-full py-2 rounded bg-slate-200 dark:bg-surface-dark text-slate-900 dark:text-white font-bold text-sm border border-slate-300 dark:border-neutral-dark hover:border-purple-400 hover:text-purple-400 transition-all">
+                View Details
+              </button>
+</div>
+</div>
+<!-- Item 3 (Locked - Upcoming) -->
+<div class="group relative flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity mt-12 lg:mt-0">
+<!-- Lock Overlay -->
+<div class="absolute top-0 right-10 z-20">
+<span class="material-symbols-outlined text-slate-500 dark:text-neutral-light text-[24px]">lock</span>
+</div>
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<!-- Glow Effect (Muted for locked) -->
+<div class="absolute w-40 h-40 bg-slate-500/10 rounded-full blur-3xl"></div>
+<!-- Floating Pedestal -->
+<div class="floating-pedestal-delay-2 relative w-48 h-48 md:w-56 md:h-56 grayscale group-hover:grayscale-0 transition-all duration-700">
+<!-- Product Image -->
+<div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform scale-95 group-hover:scale-100 transition-transform duration-500 bg-gradient-to-br from-slate-800 to-black">
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="Modern office meeting room with glass walls" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_kn7GkxNqb5zT2BtxtfeBxxwN5Qy3gcNH1H95HGBZDr55EQfveB5lE3xGymtBzD5MvGujOzTGmUs5_RZQN2etQzEwIgy_qQxX0aPFhj3mg_pXsYvYHuUtTVkJxiLGe_2oj75cDz-iPAx2NwQpx7CgKyYkTbGDF272-QJqLdLHBmZQdAUEg_350Pdad1J0Tu7EvlhnHscq34OYieXOWvzx1qzj7XrrjGMRRCej_paovXunZMhNCySwOmr59dIa2S33CefJW1kBLnqr');"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<!-- Locked Icon in center -->
+<div class="size-12 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white/70">lock</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-0.5 rounded-full bg-slate-700/50 text-slate-300 text-[10px] font-bold uppercase tracking-wider border border-slate-600/50 backdrop-blur-sm">Tier 3 Locked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item Details -->
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Venture Networking</h3>
+<p class="text-slate-500 dark:text-neutral-light text-sm mb-4">Direct access to angel investor network.</p>
+<!-- Progress Bar -->
+<div class="w-full flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-slate-400">
+<span>Progress</span>
+<span>3/5 Referrals</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 dark:bg-neutral-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/5 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 4 (Locked - Future) -->
+<div class="group relative flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity mt-12 md:mt-20 lg:mt-0">
+<div class="absolute top-0 right-10 z-20">
+<span class="material-symbols-outlined text-slate-500 dark:text-neutral-light text-[24px]">lock</span>
+</div>
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<div class="floating-pedestal relative w-48 h-48 md:w-56 md:h-56 grayscale">
+<div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-dashed border-slate-600/50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-700 dark:text-neutral-dark text-[64px]">card_giftcard</span>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-500 text-[10px] font-bold uppercase tracking-wider border border-slate-700/50">Tier 4 Locked</span>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Mystery Luxury Box</h3>
+<p class="text-slate-500 dark:text-neutral-light text-sm mb-4">Curated selection of high-end goods.</p>
+<div class="w-full flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-slate-400">
+<span>Progress</span>
+<span>0/10 Referrals</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 dark:bg-neutral-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 5 (Locked - Future) -->
+<div class="group relative flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity mt-12 md:mt-20 lg:mt-0">
+<div class="absolute top-0 right-10 z-20">
+<span class="material-symbols-outlined text-slate-500 dark:text-neutral-light text-[24px]">lock</span>
+</div>
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<div class="floating-pedestal-delay-1 relative w-48 h-48 md:w-56 md:h-56 grayscale">
+<div class="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-dashed border-slate-600/50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-700 dark:text-neutral-dark text-[64px]">flight_takeoff</span>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-500 text-[10px] font-bold uppercase tracking-wider border border-slate-700/50">Tier 5 Locked</span>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Global Retreat</h3>
+<p class="text-slate-500 dark:text-neutral-light text-sm mb-4">All-inclusive trip to annual summit.</p>
+<div class="w-full flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-slate-400">
+<span>Progress</span>
+<span>0/25 Referrals</span>
+</div>
+<div class="w-full h-1.5 bg-slate-200 dark:bg-neutral-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty Slot Placeholder -->
+<div class="hidden lg:flex group relative flex-col items-center opacity-30 mt-0">
+<div class="relative w-full aspect-square flex items-center justify-center mb-6">
+<div class="relative w-48 h-48 md:w-56 md:h-56">
+<div class="absolute inset-0 rounded-2xl border-2 border-dashed border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-700 text-[48px]">add</span>
+</div>
+</div>
+</div>
+<div class="text-center w-full max-w-[240px]">
+<h3 class="text-lg font-medium text-slate-500 mb-1">More Coming Soon</h3>
+</div>
+</div>
+</div>
+<!-- Shelf Floor Gradient -->
+<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-200 dark:from-[#0d1616] to-transparent z-10 pointer-events-none"></div>
+</div>
+<!-- Recent Activity Section -->
+<section class="w-full pb-10">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Recent Claims</h2>
+<button class="text-primary text-sm font-bold hover:underline">View History</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-neutral-dark flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">redeem</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold">Luxury Watch Voucher</span>
+<span class="text-slate-500 dark:text-neutral-light text-xs">Claimed 2 days ago</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-neutral-dark flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">business_center</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold">Business Consultation</span>
+<span class="text-slate-500 dark:text-neutral-light text-xs">Claimed 1 week ago</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-surface-dark border border-slate-200 dark:border-neutral-dark flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">card_membership</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-900 dark:text-white font-bold">VIP Club Access</span>
+<span class="text-slate-500 dark:text-neutral-light text-xs">Claimed 2 weeks ago</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Franchise Partner Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-content": "#ffffff",
+                        "secondary": "#d4af37", // Gold for the aesthetic
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1e2433",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark mode tables */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e2433; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4354; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #505a6e; 
+        }
+        
+        /* Map placeholder styling */
+        .map-dots {
+            background-image: radial-gradient(#3b4354 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-6 py-3 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Franchise Partner Portal</h2>
+<!-- Live Indicator -->
+<div class="hidden md:flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 border border-emerald-500/20">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-xs font-medium text-emerald-500">Live Socket</span>
+</div>
+</div>
+<div class="flex items-center gap-4 md:gap-6">
+<!-- Search -->
+<div class="hidden md:flex relative">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 bg-slate-100 dark:bg-slate-800 py-2 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary" placeholder="Search Rays or Transactions..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="relative flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end hidden sm:flex">
+<span class="text-sm font-bold">Alex Morgan</span>
+<span class="text-xs text-secondary font-medium uppercase tracking-wider">Gold Tier</span>
+</div>
+<div class="h-10 w-10 rounded-full bg-cover bg-center ring-2 ring-secondary/50" data-alt="Portrait of a smiling man in a suit" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLr7YisXeSAT8dbytlWufhSehkWBd6-CVbs_kfdoEZU1kbjyaEyg5gEPaSOcHohoQG2d0bItawSWk40OZx3nov0MQKyxqv4VCPTh3klcZvnoswusND3DkjDPOQYuIGKq9S259Sb28bDWX05KBDbQCoqW5buB_CIhN4QE2SrTo2zx7eMiEuOKxLGmQCAPfqz_dabdkhGL_PuYh3zn67nz61Wf8zit4QZOH5keY4hS6frWrqfsuIDfEYl6414FKiTlomskpJGnuR8ofc')"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 md:px-8 lg:px-12 xl:px-16 max-w-[1600px] mx-auto w-full">
+<!-- Page Header & Tier Progress -->
+<div class="flex flex-col lg:flex-row gap-6 mb-8 justify-between items-start lg:items-end">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">Dashboard Overview</h1>
+<p class="text-slate-500 dark:text-slate-400">Monitoring your franchise network performance and royalty growth.</p>
+</div>
+<!-- Tier Progress Card -->
+<div class="w-full lg:w-1/2 bg-surface-light dark:bg-surface-dark rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">military_tech</span>
+</div>
+<div class="flex justify-between items-end mb-3 relative z-10">
+<div>
+<p class="text-xs font-bold text-secondary uppercase tracking-wider mb-1">Current Status: Gold</p>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Next Milestone: Ambassador</h3>
+</div>
+<div class="text-right">
+<span class="text-2xl font-bold text-slate-900 dark:text-white">85%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width: 85%"></div>
+</div>
+<p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Add <span class="text-slate-900 dark:text-white font-bold">₹2 Cr AUM</span> to unlock Ambassador benefits.</p>
+</div>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+<!-- Card 1: Network AUM -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<span class="flex items-center text-emerald-500 text-sm font-bold bg-emerald-500/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                            2.5%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Network AUM</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">₹12.5 Cr</h3>
+<p class="text-xs text-slate-400 mt-2">Target: ₹111 Cr</p>
+</div>
+<!-- Card 2: Total Team Royalty -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-500">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="flex items-center text-emerald-500 text-sm font-bold bg-emerald-500/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                            5.0%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total Team Royalty</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">₹1.2 Lakhs</h3>
+<p class="text-xs text-slate-400 mt-2">Last 30 Days</p>
+</div>
+<!-- Card 3: Active Rays -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-500">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="flex items-center text-slate-500 dark:text-slate-400 text-sm font-medium">
+                            Total: 17
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Network Health</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">14</h3>
+<span class="text-sm font-medium text-emerald-500">Active</span>
+<span class="text-slate-300 mx-1">/</span>
+<h3 class="text-3xl font-bold text-slate-500 dark:text-slate-400 tracking-tight">3</h3>
+<span class="text-sm font-medium text-amber-500">Pending</span>
+</div>
+<p class="text-xs text-slate-400 mt-2">Refreshed just now</p>
+</div>
+<!-- Card 4: Personal ROI -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-indigo-500">
+<span class="material-symbols-outlined">donut_large</span>
+</div>
+<span class="flex items-center text-emerald-500 text-sm font-bold bg-emerald-500/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[16px] mr-1">arrow_upward</span>
+                            0.2%
+                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Personal ROI</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">15.2%</h3>
+<p class="text-xs text-slate-400 mt-2">Benchmark: 15.0%</p>
+</div>
+</div>
+<!-- Main Content Area: Map & Leaderboard -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Regional Coverage Map -->
+<div class="xl:col-span-2 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col h-[500px]">
+<div class="px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Regional Coverage</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Referral concentration across active zones</p>
+</div>
+<button class="text-primary hover:text-primary/80 text-sm font-bold flex items-center gap-1">
+                            View Global Report
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 relative overflow-hidden bg-slate-50 dark:bg-[#0b101a] map-dots flex items-center justify-center p-6">
+<!-- Abstract Map Visualization using CSS/HTML -->
+<div class="relative w-full h-full max-w-2xl aspect-[16/9] opacity-80">
+<img alt="Map Background" class="absolute inset-0 w-full h-full object-cover rounded-lg mix-blend-overlay opacity-40 dark:opacity-20 grayscale" data-alt="Abstract world map background texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBX1h8Z4J7k8JzieT4KX86AzpMpWNmrweN80zfLcBtE1J8jf9l3syaprUxStvIJ7e8iNSaD5F7aycbiV-BnzXTf3HS-jwF83a9YhoXkpjo08ta9IY8t2JMqnQBBEmgn3YFHWKu7Nhx1gA1O2e8uW1mnyxE13qB4xLjkY8WeEa6qJNlPjXBfKfcHW74UMp4QzThTZuvoLgSHmQNKo9YDyHaEy1kXrQ0EW-3184YTQ4AD7_e9fqTN-iqCeXv_iOoxoGEaMvfR3dxnU7D"/>
+<!-- Map Hotspots -->
+<div class="absolute top-[30%] left-[25%] group">
+<div class="relative flex items-center justify-center w-8 h-8">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary ring-4 ring-slate-900"></span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-slate-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 shadow-lg border border-slate-700">
+                                     Mumbai: 45% (₹5.6 Cr)
+                                 </div>
+</div>
+<div class="absolute top-[45%] left-[32%] group">
+<div class="relative flex items-center justify-center w-6 h-6">
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary ring-4 ring-slate-900"></span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-slate-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 shadow-lg border border-slate-700">
+                                     Bengaluru: 20% (₹2.5 Cr)
+                                 </div>
+</div>
+<div class="absolute top-[25%] left-[30%] group">
+<div class="relative flex items-center justify-center w-4 h-4">
+<span class="relative inline-flex rounded-full h-2 w-2 bg-slate-400 ring-2 ring-slate-900"></span>
+</div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-slate-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 shadow-lg border border-slate-700">
+                                     Delhi: 10% (₹1.2 Cr)
+                                 </div>
+</div>
+<!-- Legend Overlay -->
+<div class="absolute bottom-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur p-3 rounded-lg border border-slate-200 dark:border-slate-800 text-xs shadow-lg">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-slate-600 dark:text-slate-300">High Volume (&gt; ₹5Cr)</span>
+</div>
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-slate-600 dark:text-slate-300">Med Volume (&gt; ₹2Cr)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="text-slate-600 dark:text-slate-300">Growing (&lt; ₹2Cr)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Regional Stats Strip -->
+<div class="grid grid-cols-3 divide-x divide-slate-200 dark:divide-slate-800 border-t border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark">
+<div class="p-4 text-center">
+<p class="text-xs text-slate-500 uppercase font-semibold">Top Region</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">Maharashtra</p>
+<p class="text-xs text-emerald-500 font-medium">+12% MoM</p>
+</div>
+<div class="p-4 text-center">
+<p class="text-xs text-slate-500 uppercase font-semibold">Newest Zone</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">Gujarat</p>
+<p class="text-xs text-slate-400 font-medium">Started Feb '24</p>
+</div>
+<div class="p-4 text-center">
+<p class="text-xs text-slate-500 uppercase font-semibold">Expansion Opp</p>
+<p class="text-lg font-bold text-slate-900 dark:text-white">Telangana</p>
+<p class="text-xs text-primary font-medium cursor-pointer hover:underline">View Leads</p>
+</div>
+</div>
+</div>
+<!-- Leaderboard & Recent Activity -->
+<div class="flex flex-col gap-6">
+<!-- Top Performing Rays -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex-1 flex flex-col overflow-hidden max-h-[500px]">
+<div class="px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-surface-light dark:bg-surface-dark sticky top-0 z-10">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Top Rays</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Ranked by AUM Contribution</p>
+</div>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+<div class="overflow-y-auto custom-scrollbar flex-1 p-2">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs text-slate-500 border-b border-slate-200 dark:border-slate-800">
+<th class="font-semibold py-2 px-3">Partner</th>
+<th class="font-semibold py-2 px-3 text-right">AUM</th>
+<th class="font-semibold py-2 px-3 text-right">Trend</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Row 1 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-lg">
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">VS</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Vijay S.</p>
+<p class="text-[10px] text-slate-500 uppercase">Level 1</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 text-right font-bold text-slate-900 dark:text-white">₹3.2 Cr</td>
+<td class="py-3 px-3 text-right">
+<div class="flex flex-col items-end">
+<div class="h-4 w-16 bg-emerald-500/10 rounded overflow-hidden relative">
+<!-- Simple sparkline rep using CSS gradient -->
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-emerald-500/50 to-transparent clip-path-polygon" style="clip-path: polygon(0 100%, 20% 80%, 40% 90%, 60% 50%, 80% 60%, 100% 20%, 100% 100%);"></div>
+</div>
+<span class="text-[10px] text-emerald-500 font-bold">+15%</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">RK</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Riya K.</p>
+<p class="text-[10px] text-slate-500 uppercase">Level 2</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 text-right font-bold text-slate-900 dark:text-white">₹2.1 Cr</td>
+<td class="py-3 px-3 text-right">
+<div class="flex flex-col items-end">
+<div class="h-4 w-16 bg-emerald-500/10 rounded overflow-hidden relative">
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-emerald-500/50 to-transparent clip-path-polygon" style="clip-path: polygon(0 100%, 20% 70%, 40% 60%, 60% 80%, 80% 40%, 100% 30%, 100% 100%);"></div>
+</div>
+<span class="text-[10px] text-emerald-500 font-bold">+8%</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">AM</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Amit M.</p>
+<p class="text-[10px] text-slate-500 uppercase">Level 1</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 text-right font-bold text-slate-900 dark:text-white">₹1.8 Cr</td>
+<td class="py-3 px-3 text-right">
+<div class="flex flex-col items-end">
+<div class="h-4 w-16 bg-slate-500/10 rounded overflow-hidden relative">
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-slate-400/50 to-transparent clip-path-polygon" style="clip-path: polygon(0 100%, 20% 80%, 40% 80%, 60% 80%, 80% 80%, 100% 80%, 100% 100%);"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold">0%</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">SN</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Sara N.</p>
+<p class="text-[10px] text-slate-500 uppercase">Level 3</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-3 text-right font-bold text-slate-900 dark:text-white">₹0.9 Cr</td>
+<td class="py-3 px-3 text-right">
+<div class="flex flex-col items-end">
+<div class="h-4 w-16 bg-red-500/10 rounded overflow-hidden relative">
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-red-500/50 to-transparent clip-path-polygon" style="clip-path: polygon(0 100%, 20% 20%, 40% 30%, 60% 40%, 80% 60%, 100% 80%, 100% 100%);"></div>
+</div>
+<span class="text-[10px] text-red-500 font-bold">-2%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-slate-200 dark:border-slate-800 text-center">
+<button class="text-sm font-bold text-primary hover:text-primary/80">View All Referrals</button>
+</div>
+</div>
+<!-- Live Feed (Ticker) -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                                Network Activity
+                            </h3>
+</div>
+<div class="space-y-4 max-h-[150px] overflow-y-auto custom-scrollbar pr-2">
+<div class="flex gap-3 text-sm">
+<div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-emerald-500"></div>
+<div>
+<p class="text-slate-300">New Ray <span class="text-white font-bold">Karan P.</span> onboarded via Vijay S.</p>
+<p class="text-xs text-slate-500">2 mins ago</p>
+</div>
+</div>
+<div class="flex gap-3 text-sm">
+<div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-secondary"></div>
+<div>
+<p class="text-slate-300">Royalty credited: <span class="text-white font-bold">₹12,400</span></p>
+<p class="text-xs text-slate-500">1 hour ago</p>
+</div>
+</div>
+<div class="flex gap-3 text-sm">
+<div class="mt-1 min-w-[6px] h-[6px] rounded-full bg-slate-500"></div>
+<div>
+<p class="text-slate-300">Level 2 goal reached by Riya K.</p>
+<p class="text-xs text-slate-500">3 hours ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

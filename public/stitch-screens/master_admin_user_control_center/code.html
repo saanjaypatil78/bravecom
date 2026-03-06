@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Master Admin User Control Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-dark": "#0e45b5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1c2433",
+                        "surface-hover": "#252e40",
+                        "accent-success": "#0bda5e",
+                        "accent-warning": "#f59e0b",
+                        "accent-danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark px-8 py-4 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Master Admin Portal</h2>
+</div>
+<nav class="hidden md:flex items-center gap-1 pl-6 border-l border-slate-200 dark:border-slate-700 h-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary px-3 py-1 text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary bg-primary/10 px-3 py-1 rounded-full text-sm font-bold transition-colors" href="#">User Management</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary px-3 py-1 text-sm font-medium transition-colors" href="#">Reports</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary px-3 py-1 text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64 hidden sm:block">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 py-2 pl-10 pr-4 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-background-dark dark:text-white dark:ring-slate-700 dark:focus:ring-primary sm:text-sm sm:leading-6" placeholder="Search users, IDs..." type="text"/>
+</div>
+<button class="relative p-1 text-slate-400 hover:text-slate-500 dark:hover:text-slate-300">
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">3</span>
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-700">
+<div class="text-right hidden md:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Admin User</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Super Admin</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
+<img alt="Admin Profile" class="h-full w-full object-cover" data-alt="Portrait of the current admin user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAOlMi5N8wFWcnqCWi2VktaaRwdFDcd1voO3P265nWRjniTeoyeEuinaOsywPMa3y4ryJMMt6jYwGjTdkpttMdKyX8fu8a3KUBUE5BbijbT7PcmMKbqhehRuKvtlWzDZviXqRcwR9X_rc9YXalY4_mtaK9_uuwm0Ev3AmE7rU3dqpqEa_eFfAnKZ_upLSssDcL2D3q596OC1GG3T-8YCvSzWWHjZhGI8CRGDPJvHapKVFWX0H9tO3L_3CDDSbuCr6_L4bjvKIz6cH1"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Sidebar Navigation (Optional for larger apps, simplified here to focus on table) -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto bg-background-light dark:bg-background-dark p-6 md:p-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2">User Management</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">Manage Investor and Franchise access, view referral trees, and audit payout histories. Drill down into profiles for 6-level mapping.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors font-medium text-sm shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Data
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors font-medium text-sm shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                        Add User
+                    </button>
+</div>
+</div>
+<!-- Metrics Overview -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">group</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total Users</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">12,450</h3>
+<span class="text-accent-success text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +5.2%
+                        </span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">account_balance</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total AUM</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">$845.2M</h3>
+<span class="text-accent-success text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +12.8%
+                        </span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">storefront</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Active Franchises</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white">128</h3>
+<span class="text-accent-success text-sm font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +2.1%
+                        </span>
+</div>
+</div>
+</div>
+<!-- Filters & Table Container -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex-1 flex flex-col">
+<!-- Filters Toolbar -->
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-wrap gap-3 items-center justify-between">
+<div class="flex flex-wrap gap-3 items-center">
+<div class="relative">
+<select class="appearance-none bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-3 pr-10 py-2 cursor-pointer font-medium">
+<option>Role: All</option>
+<option>Investor</option>
+<option>Franchise</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="relative">
+<select class="appearance-none bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-3 pr-10 py-2 cursor-pointer font-medium">
+<option>Region: Global</option>
+<option>North America</option>
+<option>Europe</option>
+<option>Asia Pacific</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="relative">
+<select class="appearance-none bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-3 pr-10 py-2 cursor-pointer font-medium">
+<option>AUM Tier: All</option>
+<option>&gt; $1M</option>
+<option>&gt; $500k</option>
+<option>&lt; $100k</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<div class="relative">
+<select class="appearance-none bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-3 pr-10 py-2 cursor-pointer font-medium">
+<option>Status: Active</option>
+<option>Pending</option>
+<option>Suspended</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary p-2 rounded-lg transition-colors" title="Filter Settings">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary p-2 rounded-lg transition-colors" title="Refresh Data">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left text-sm text-slate-500 dark:text-slate-400">
+<thead class="text-xs uppercase bg-slate-50 dark:bg-surface-hover text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
+<tr>
+<th class="px-6 py-4 font-semibold w-12" scope="col">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</th>
+<th class="px-6 py-4 font-semibold" scope="col">User ID</th>
+<th class="px-6 py-4 font-semibold" scope="col">Name / Entity</th>
+<th class="px-6 py-4 font-semibold" scope="col">Role</th>
+<th class="px-6 py-4 font-semibold" scope="col">Region</th>
+<th class="px-6 py-4 font-semibold text-right" scope="col">Total AUM</th>
+<th class="px-6 py-4 font-semibold" scope="col">Status</th>
+<th class="px-6 py-4 font-semibold" scope="col">Last Login</th>
+<th class="px-6 py-4 font-semibold text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1024
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="User avatar" data-alt="Small avatar of John Doe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrkIGLyobCNi3Wx59qYEfrVAn43QWZ4KuNuOU7FL27d7RspULhG1SwzjrYQNPZhDQz9qqMJLduHGdrRWjdW94P_16hs6o98M2NasvLKFPkjpz7cgzm_ZgvRpvKdKcLflg9oGer60Jl_DEPXGsZi1Z03SGB6gC41OViECR8kT-nP4diinHbw_i_jMMq7h-ki-d2vn4Eg03oCrH4mGYCcsk_uLWogxSaIXzS_c5dLV5VZnQUPpZoxMJIFJV-HCmBuGp4k5_fp_qPLAnX"/>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">John Doe</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-400/20">
+                                        Investor
+                                    </span>
+</td>
+<td class="px-6 py-4">North America</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$1.2M</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20 dark:ring-green-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4">2 mins ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1025
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-bold text-xs">
+                                             AC
+                                        </div>
+<span class="font-medium text-slate-900 dark:text-white">Alpha Capital</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-purple-50 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10 dark:ring-purple-400/20">
+                                        Franchise
+                                    </span>
+</td>
+<td class="px-6 py-4">Europe</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$45.0M</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20 dark:ring-green-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4">1 hour ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1026
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="User avatar" data-alt="Small avatar of Sarah Smith" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-IkwQGhwzuuD7h2Tmf7aaa1FycamhMuhfUhBssY9mxOuayiC6pdJn6bED6ZJw9eAgwYI9Xirtg_jnaTAYsZEOSEIr7SRUaiiiVLIcjX76ql_3yxNiL6xul6mEv4pt7Zac_Nsng2N2jpMCietXg6Gbo_IZDi2lNHQHpM5jJTorUEvzozQORr1HdJNSMK8RAnNR4aY1GqupE1Qpj4JEd5VZs-AdOARr6L_m-xlBTRbZghLdZeTtgrp9VZNHxoGCuPbp1Gj9lZlIi8u9"/>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Sarah Smith</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-400/20">
+                                        Investor
+                                    </span>
+</td>
+<td class="px-6 py-4">Asia Pacific</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$500K</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20 dark:ring-green-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4">3 hours ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer border-l-4 border-l-accent-danger/50">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1027
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-orange-600 dark:text-orange-300 font-bold text-xs">
+                                             BV
+                                        </div>
+<span class="font-medium text-slate-900 dark:text-white">Beta Ventures</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-purple-50 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10 dark:ring-purple-400/20">
+                                        Franchise
+                                    </span>
+</td>
+<td class="px-6 py-4">North America</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$22.0M</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-red-50 dark:bg-red-900/30 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-400 ring-1 ring-inset ring-red-600/20 dark:ring-red-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                        Suspended
+                                    </span>
+</td>
+<td class="px-6 py-4">2 days ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1028
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="User avatar" data-alt="Small avatar of Mike Ross" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARlXjfdSYEpdMEJSaWGLmFjLt5BxQfOzEAxMBqgQRqmoNnbDHMZiMfYJDaZtsvzUGXISggUO9bjZcxNhiVbpEJ_q5u-PkSanTnoAbygkst4bLI4wcYwZnGKG0o_YU0s1YYL0FJpk5EKq7KcON_hk5jymVqNWWoNBtFVtvHe9qGtxJvvz4Y2NvwkGdlx7GOjPDij6skDI_uMiDh_SSEs2Hd6S80USvSHCn_xi28iIWormNa2ex1tWWrEcp5Hdrxw3_jw9u4GDeUaP4Z"/>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Mike Ross</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-400/20">
+                                        Investor
+                                    </span>
+</td>
+<td class="px-6 py-4">Europe</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$2.1M</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20 dark:ring-green-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4">5 hours ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-white dark:bg-surface-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors group cursor-pointer">
+<td class="px-6 py-4">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-transparent" type="checkbox"/>
+</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                    #U-1029
+                                </td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center text-teal-600 dark:text-teal-300 font-bold text-xs">
+                                             GP
+                                        </div>
+<span class="font-medium text-slate-900 dark:text-white">Gamma Partners</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-md bg-purple-50 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10 dark:ring-purple-400/20">
+                                        Franchise
+                                    </span>
+</td>
+<td class="px-6 py-4">South America</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900 dark:text-white">$15.0M</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 rounded-full bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20 dark:ring-green-500/20">
+<span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4">1 day ago</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-slate-400 hover:text-accent-danger transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="text-slate-400 hover:text-slate-200 transition-colors" title="View Network">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-surface-hover/50 rounded-b-xl">
+<div class="text-sm text-slate-500 dark:text-slate-400">
+                        Showing <span class="font-medium text-slate-900 dark:text-white">1</span> to <span class="font-medium text-slate-900 dark:text-white">6</span> of <span class="font-medium text-slate-900 dark:text-white">12,450</span> results
+                    </div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm hover:bg-slate-50 dark:hover:bg-surface-hover disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm hover:bg-slate-50 dark:hover:bg-surface-hover">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Simulated Slide-over Panel (Right Side Drill-down) -->
+<!-- In a real app, this would toggle. Here we show it as part of the layout to meet requirements of "viewing full 6-level referral" -->
+<div class="w-96 border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark flex flex-col shadow-2xl z-10 hidden xl:flex">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-start justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Alpha Capital</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Franchise Account • ID #U-1025</p>
+</div>
+<button class="text-slate-400 hover:text-slate-500">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Referral Map Visualization (Simulated) -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Referral Network (Level 1-3)</h4>
+<button class="text-xs text-primary font-medium hover:underline">View Full Map</button>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-lg p-4 border border-dashed border-slate-300 dark:border-slate-700 h-64 relative flex items-center justify-center overflow-hidden">
+<!-- CSS-only tree structure simulation -->
+<div class="flex flex-col items-center gap-6 w-full">
+<!-- Root -->
+<div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30 z-10 relative">
+<span class="material-symbols-outlined text-sm">apartment</span>
+</div>
+<!-- Connector -->
+<div class="w-px h-6 bg-slate-300 dark:bg-slate-600 -my-2"></div>
+<!-- Level 1 -->
+<div class="flex gap-8 relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full border-t border-slate-300 dark:border-slate-600"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="h-px w-px bg-transparent pt-2"></div> <!-- spacer for line -->
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600">A</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="h-px w-px bg-transparent pt-2"></div>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600">B</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="h-px w-px bg-transparent pt-2"></div>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600">C</div>
+</div>
+</div>
+<!-- Connector for deeper levels (faded) -->
+<div class="text-xs text-slate-400 mt-2">... 3 more levels</div>
+</div>
+</div>
+</div>
+<!-- Mini Payout History Table -->
+<div>
+<h4 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Recent Payouts</h4>
+<div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+<table class="w-full text-sm text-left">
+<thead class="bg-slate-50 dark:bg-surface-hover text-xs text-slate-500 dark:text-slate-400 uppercase">
+<tr>
+<th class="px-3 py-2 font-medium">Date</th>
+<th class="px-3 py-2 font-medium">Amount</th>
+<th class="px-3 py-2 font-medium text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+<tr class="bg-white dark:bg-surface-dark">
+<td class="px-3 py-2 text-slate-700 dark:text-slate-300">Oct 24</td>
+<td class="px-3 py-2 font-medium text-slate-900 dark:text-white">$4,250.00</td>
+<td class="px-3 py-2 text-right text-xs text-accent-success">Paid</td>
+</tr>
+<tr class="bg-white dark:bg-surface-dark">
+<td class="px-3 py-2 text-slate-700 dark:text-slate-300">Sep 24</td>
+<td class="px-3 py-2 font-medium text-slate-900 dark:text-white">$3,890.50</td>
+<td class="px-3 py-2 text-right text-xs text-accent-success">Paid</td>
+</tr>
+<tr class="bg-white dark:bg-surface-dark">
+<td class="px-3 py-2 text-slate-700 dark:text-slate-300">Aug 24</td>
+<td class="px-3 py-2 font-medium text-slate-900 dark:text-white">$4,100.00</td>
+<td class="px-3 py-2 text-right text-xs text-accent-success">Paid</td>
+</tr>
+</tbody>
+</table>
+</div>
+<button class="w-full mt-3 py-2 text-sm text-primary font-medium hover:bg-primary/5 rounded-lg transition-colors border border-dashed border-primary/30">
+                        Audit Full History
+                    </button>
+</div>
+<!-- Quick Actions -->
+<div>
+<h4 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Account Actions</h4>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-surface-hover rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span>Reset Password</span>
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-surface-hover rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span>Suspend Account</span>
+<span class="material-symbols-outlined text-[18px] text-accent-warning">block</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 border border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-900/10 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors">
+<span>Delete User</span>
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
