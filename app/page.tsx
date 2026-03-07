@@ -160,20 +160,43 @@ export default function ParallaxLanding() {
                     </motion.nav>
                 ) : staticNavbar}
 
-                {/* Hero Section */}
+                {/* Hero / Splash Section */}
                 <motion.div style={{ scale: logoScale, opacity: logoOpacity, rotateZ: logoRotate }} className="absolute inset-0 flex flex-col items-center justify-center z-40 transform-style-3d pointer-events-none">
-                    <div className="relative flex flex-col items-center text-center">
-                        <div className="absolute -inset-10 bg-[#1173d4] blur-[100px] opacity-30 rounded-full animate-pulse"></div>
-                        <h1 className="text-[10vw] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-[#1173d4]/50 drop-shadow-2xl">
-                            BRAVECOM
-                        </h1>
+                    <div className="relative flex flex-col items-center text-center w-full max-w-lg px-8">
+                        {/* Glowing backdrop for the logo */}
+                        <div className="absolute -inset-10 bg-gradient-to-tr from-amber-500/40 via-[#1173d4]/40 to-fuchsia-500/40 blur-[120px] rounded-full animate-pulse z-0"></div>
+
+                        {/* Logo Image */}
+                        <div className="relative z-10 w-full aspect-square max-w-[400px]">
+                            {/* Cinematic lighting effect overlay on logo */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-50 mix-blend-overlay pointer-events-none"></div>
+                            <img
+                                src="/logo.png"
+                                alt="Sunray Ecosystem Logo"
+                                className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.2)]"
+                                onError={(e) => {
+                                    // Fallback if logo.png is not found
+                                    (e.target as HTMLImageElement).style.display = 'none';
+                                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                                }}
+                            />
+                            {/* Fallback Text if image fails to load */}
+                            <h1 className="hidden text-[10vw] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-[#1173d4]/50 drop-shadow-2xl">
+                                BRAVECOM
+                            </h1>
+                        </div>
                     </div>
-                    <p className="mt-6 text-xl md:text-2xl font-light text-slate-300 max-w-2xl text-center px-4 tracking-wide">
-                        The next-generation <b className="text-white">IPO Fundraising</b> & Ecosystem Platform.
-                    </p>
-                    <div className="absolute bottom-10 flex flex-col items-center gap-2 animate-bounce opacity-50">
-                        <span className="text-[10px] tracking-widest uppercase font-bold">Scroll to explore</span>
-                        <ChevronDown size={20} />
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                        className="mt-8 text-xl md:text-2xl font-light text-slate-300 max-w-2xl text-center px-4 tracking-wide z-10"
+                    >
+                        The next-generation <b className="text-white">Eco-System</b> Platform.
+                    </motion.p>
+                    <div className="absolute bottom-10 flex flex-col items-center gap-2 animate-bounce opacity-50 z-10">
+                        <span className="text-[10px] tracking-widest uppercase font-bold text-amber-500">Scroll to explore</span>
+                        <ChevronDown size={20} className="text-amber-500" />
                     </div>
                 </motion.div>
 
